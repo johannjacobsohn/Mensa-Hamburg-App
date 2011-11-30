@@ -1,0 +1,9 @@
+{
+	"id": "com.mensaapp.webos",
+	"version": "0.0.1",
+	"vendor": "Palm",
+	"type": "web",
+	"main": "index.html",
+	"title": "MensaApp",
+	"uiRevision": 2
+}

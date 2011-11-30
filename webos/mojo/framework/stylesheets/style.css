@@ -1,0 +1,19 @@
+.name{
+	color: #bbb;
+	font-size: 80%;
+}
+
+.palm-row{
+	padding: 4px 0 10px 0;
+}
+
+.dish{
+/*
+	height: 1em;
+	overflow: hidden;
+	text-overflow:ellipse;
+	white-space: nowrap;
+*/
+	display: block;
+}
+

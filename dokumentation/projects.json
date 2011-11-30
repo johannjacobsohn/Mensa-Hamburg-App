@@ -1,0 +1,163 @@
+{
+    "limit": 25,
+    "projects": [
+        {
+            "updated_on": "2011/01/27 12:59:35 +0100",
+            "description": "ALLE internen Buchungen der Stabstellen, die keinem Kunden zugeordnet werden können\r\n- interne Besprechungen des Teams\r\n- interne Besprechungen Satzmedia (z.B. Jour fixe)\r\n- Weiterentwicklung Produkt etc.\r\n- Urlaub, Krankheit...\r\n",
+            "identifier": "satzmedia",
+            "created_on": "2009/07/29 16:37:53 +0200",
+            "name": "Satzmedia",
+            "id": 2
+        },
+        {
+            "updated_on": "2011/01/26 20:00:41 +0100",
+            "description": "hierunter ALLE Buchungen von Team 1\r\n- Kunden\r\n- Internes\r\n- AUCH Satzmedia- Internes",
+            "identifier": "team1",
+            "created_on": "2011/01/26 20:00:41 +0100",
+            "name": "Team 1",
+            "id": 38
+        },
+        {
+            "updated_on": "2010/05/03 17:44:04 +0200",
+            "description": "",
+            "identifier": "alixa",
+            "created_on": "2010/05/03 16:20:11 +0200",
+            "name": "alixa©",
+            "id": 20,
+            "parent": {
+                "name": "Team 1",
+                "id": 38
+            }
+        },
+        {
+            "updated_on": "2010/05/17 08:14:13 +0200",
+            "description": "*{color:red}Aufgrund regelmäßiger Wartungsarbeiten ist Satzmedia projects _freitags zwischen 17:00 und 18:00 Uhr_ nicht verfügbar. Bitte speichern Sie rechtzeitig vorher Ihre Arbeiten. Wir bitten um Verständnis.*",
+            "identifier": "bijoubrigitte",
+            "created_on": "2010/02/23 15:13:45 +0100",
+            "name": "Bijou Brigitte",
+            "id": 7,
+            "parent": {
+                "name": "Team 1",
+                "id": 38
+            }
+        },
+        {
+            "updated_on": "2011/08/04 13:21:12 +0200",
+            "description": "",
+            "identifier": "dh",
+            "created_on": "2011/08/04 13:21:12 +0200",
+            "name": "D+H mechatronic",
+            "id": 50,
+            "parent": {
+                "name": "Team 1",
+                "id": 38
+            }
+        },
+        {
+            "updated_on": "2011/08/04 13:06:00 +0200",
+            "description": "",
+            "identifier": "mbcg",
+            "created_on": "2010/04/23 11:28:07 +0200",
+            "name": "MB Corporate Gift",
+            "id": 16,
+            "parent": {
+                "name": "Team 1",
+                "id": 38
+            }
+        },
+        {
+            "updated_on": "2011/08/04 13:06:17 +0200",
+            "description": "",
+            "identifier": "mbpdb",
+            "created_on": "2010/04/23 11:22:23 +0200",
+            "name": "MB PDB",
+            "id": 15,
+            "parent": {
+                "name": "Team 1",
+                "id": 38
+            }
+        },
+        {
+            "updated_on": "2011/08/04 13:01:32 +0200",
+            "description": "",
+            "identifier": "mbpdbv3",
+            "created_on": "2011/08/04 13:01:32 +0200",
+            "name": "MB PDB V3",
+            "id": 49,
+            "parent": {
+                "name": "Team 1",
+                "id": 38
+            }
+        },
+        {
+            "updated_on": "2011/05/26 18:07:37 +0200",
+            "description": "alle SEO-Projekte von Kunden, die kein eigenes projects bei uns haben und damit losgelöst von bestehenden Kundenprojekten als fakturierbare Tickets hier gesammelt werden. Dazu gehören auch die Aufwände, die gegen die (fakturierbare) SEO-Akademie laufen.",
+            "identifier": "seo",
+            "created_on": "2011/05/26 18:07:37 +0200",
+            "name": "SEO-Projekte",
+            "id": 47,
+            "parent": {
+                "name": "Team 1",
+                "id": 38
+            }
+        },
+        {
+            "updated_on": "2010/07/28 17:03:29 +0200",
+            "description": "*{color:red}Aufgrund regelmäßiger Wartungsarbeiten ist Satzmedia projects _freitags zwischen 17:00 und 18:00 Uhr_ nicht verfügbar. Bitte speichern Sie rechtzeitig vorher Ihre Arbeiten. Wir bitten um Verständnis.*",
+            "identifier": "compass",
+            "created_on": "2010/05/26 15:31:28 +0200",
+            "name": "Compass",
+            "id": 23
+        },
+        {
+            "updated_on": "2011/02/24 16:10:03 +0100",
+            "description": "Enthält die Zeiterfassung für Oldendorff (Shipsales24.com und die Crew Datenbank)",
+            "identifier": "shipsales",
+            "created_on": "2010/12/20 17:15:34 +0100",
+            "name": "Shipsales24 und Crew-DB (Oldendorff)",
+            "id": 31
+        },
+        {
+            "updated_on": "2010/05/28 09:58:53 +0200",
+            "description": "*{color:red}Aufgrund regelmäßiger Wartungsarbeiten ist Satzmedia projects _freitags zwischen 17:00 und 18:00 Uhr_ nicht verfügbar. Bitte speichern Sie rechtzeitig vorher Ihre Arbeiten. Wir bitten um Verständnis.*",
+            "identifier": "sportco",
+            "created_on": "2010/05/28 09:56:18 +0200",
+            "name": "Sportco",
+            "id": 24
+        },
+        {
+            "updated_on": "2010/09/09 12:54:43 +0200",
+            "description": "",
+            "identifier": "aliqua",
+            "created_on": "2010/09/09 12:54:43 +0200",
+            "name": "aliqua",
+            "id": 28
+        },
+        {
+            "updated_on": "2010/04/16 15:47:35 +0200",
+            "description": "*{color:red}Aufgrund regelmäßiger Wartungsarbeiten ist Satzmedia projects _freitags zwischen 17:00 und 18:00 Uhr_ nicht verfügbar. Bitte speichern Sie rechtzeitig vorher Ihre Arbeiten. Wir bitten um Verständnis.*",
+            "identifier": "hellermanntyton",
+            "created_on": "2010/04/16 10:41:39 +0200",
+            "name": "HellermannTyton",
+            "id": 13
+        },
+        {
+            "updated_on": "2011/01/04 12:00:00 +0100",
+            "description": "Bereich zur Koordination und Überwachung der Produktentwicklung von catoya.",
+            "identifier": "catoya",
+            "created_on": "2010/02/24 17:07:39 +0100",
+            "name": "catoya",
+            "id": 8
+        },
+        {
+            "updated_on": "2011/01/04 12:00:39 +0100",
+            "description": "Bereich zur Koordination und Überwachung von Katalogprojekten für unsere Kunden, die mittels catoya erstellt werden.",
+            "identifier": "kataloge",
+            "created_on": "2010/11/19 09:32:13 +0100",
+            "name": "Kataloge",
+            "id": 30
+        }
+    ],
+    "total_count": 16,
+    "offset": 0
+}

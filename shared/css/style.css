@@ -1,0 +1,9 @@
+.name{
+	font-size: 90%;
+}
+
+.dish{
+	height: 1em;
+	overflow: hidden;
+	text-overflow: ellipse;
+}

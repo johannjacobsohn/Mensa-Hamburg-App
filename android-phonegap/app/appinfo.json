@@ -1,0 +1,10 @@
+{
+	"icon": "icon.png",
+	"id": "com.satzmedia.redmine",
+	"version": "0.0.1",
+	"vendor": "Satzmedia",
+	"type": "web",
+	"main": "index.html",
+	"title": "RedmineApp",
+	"uiRevision": 2
+}
