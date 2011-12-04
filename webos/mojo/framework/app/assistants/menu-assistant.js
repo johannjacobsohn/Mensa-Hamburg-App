@@ -25,7 +25,14 @@ MenuAssistant.prototype.setup = function() {
 	mediaMenuModel = {
 		items: [
 			{
-				label: "Filtern",
+				label: "Filtern nach Gericht",
+				items : [{
+					label : "Alle",
+					command : "all"
+				}]
+			},
+			{
+				label: "Filtern nach Mensa",
 				items : [{
 					label : "Alle",
 					command : "all"
@@ -43,14 +50,7 @@ MenuAssistant.prototype.setup = function() {
 		dividerFunction : function(listitem){
 			return listitem.mensaName;
 		},
-/*		itemsCallback: function(listWidget, offset, items) {
-//			console.log("itemsCallback");
-			storage.getMenu(function(json){
-//				console.log("noticeUpdatedItems: " + json.length);
-				listWidget.mojo.noticeUpdatedItems(offset, json);
-			});
-		}
-*/	}, 
+	}, 
 	{"items": []} // Modell
 	);
 	
@@ -58,20 +58,37 @@ MenuAssistant.prototype.setup = function() {
 		this.controller = Mojo.Controller.stageController.activeScene();
 		this.controller.setWidgetModel("menu", {"items": json});
 	});
-		
+
 	storage.getTypes(function(types){
 		for(var i=0; i<types.length; i++){
-			mediaMenuModel.items[0].items.push({label: types[i].name, command: types[i].name });
+			mediaMenuModel.items[0].items.push({label: types[i].name, command: "type-" + types[i].name });
+		}
+	});
+
+	storage.getMensen(function(mensen){
+		for(var i=0; i<mensen.length; i++){
+			mediaMenuModel.items[1].items.push({label: mensen[i], command: "mensa-" + mensen[i].name });
 		}
 	});
 	
 	// handle menu commands
 	StageAssistant.prototype.handleCommand = function(event) {
 		if(event.type == Mojo.Event.command) {
-			storage.getByType(event.command, function(json){
-				this.controller = Mojo.Controller.stageController.activeScene();
-				this.controller.setWidgetModel("menu", {"items": json});
-			});
+			var temp = event.command.split("-");
+			this.controller = Mojo.Controller.stageController.activeScene();
+			switch (temp[0]) {
+				case "type": {
+					storage.getByType(temp[1], function(json){
+						this.controller.setWidgetModel("menu", {"items": json});
+					});
+					break;
+				} case "mensa" : {
+					storage.getByMensa(temp[1], function(json){
+						this.controller.setWidgetModel("menu", {"items": json});
+					});
+					break;
+				}
+			}
 		}
 	};
 };

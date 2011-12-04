@@ -3,15 +3,6 @@
  * 
  * 
  */
- function isEmpty(obj) {
-    for(var prop in obj) {
-        if(obj.hasOwnProperty(prop))
-            return false;
-    }
-
-    return true;
-}
-
 
 (function(){ // its a trap!
 	storage = {
@@ -28,7 +19,6 @@
 		getMenu : function(callback){
 			if(callback) { this.menuCallbackQueue.push(callback);}
 			for(var mensa in urls.mensen){
-//				console.log(mensa + ": " + this.loadedMensen[mensa] + "");
 				if(typeof this.loadedMensen[mensa] === "undefined" && typeof this.lock[mensa] === "undefined"){
 					this.lock[mensa] = true;
 					xhr.get(urls.mensen[mensa], function(resp, additional_args){
@@ -70,13 +60,7 @@
 							name : "Nicht geladen",
 							dish : "Ladefehler"
 						});
-						
-						// mark as cached
-//						storage.loadedMensen[additional_args.mensaName] = true;
-//						console.log("loaded " + additional_args.mensaName + ": " + storage.loadedMensen[additional_args.mensaName]);
-					
-	//					console.log(storage.menu.length);
-								
+
 						// release lock
 						delete storage.lock[additional_args.mensaName];
 						
@@ -88,28 +72,49 @@
 				}
 			}
 			
-			
-			console.log("call to run callbacks: "+this.menuCallbackQueue.length);
-			
 			this.runMenuCallbacks();
 		},
 		runMenuCallbacks : function(){
-		//	console.log("running menu callbacks...");
 			if(isEmpty(this.lock)){
-	//			console.log("no lock present");
-				console.log("running menu callbacks...");
 				while (this.menuCallbackQueue.length>0){
 					fkt = this.menuCallbackQueue.pop();
-//					console.log("running callback " + fkt);
 					fkt(this.menu);
 				}
 				return true;
 			} else {
-		//		console.log("locked")
 				return false;
 			}
 		},
 		
+		/*
+		* list all Types
+		*/
+		getTypes : function(callback){
+			this.getMenu(function(){
+				var types = {};
+				var typesArr = [];
+				for (var i=0; i<storage.menu.length; i++){
+					types[storage.menu[i].name] = storage.menu[i].name
+				}
+				
+				for(type in types){
+					typesArr.push({ name : type }); 
+				}
+				callback(typesArr);
+			});
+		},
+
+		/*
+		* list all MensaNames
+		*/
+		getMensen : function(callback){
+			var array=[], name;
+			for(name in urls.mensen){
+				array.push(name);
+			}
+			callback(array);
+		},
+
 		/*
 		* get dishes by dish type
 		*/
@@ -123,27 +128,20 @@
 				callback(filtertDishes);
 			});
 		},
+
 		/*
-		* list all Types
+		* get dishes by mensa name
 		*/
-		getTypes : function(callback){
-//			Mojo.log("getTypes");
-			this.getMenu(function(){
-//				Mojo.log("getting Types...");
-				var types = {};
-				var typesArr = [];
-				for (var i=0; i<storage.menu.length; i++){
-					types[storage.menu[i].name] = storage.menu[i].name
+		getByMensa : function(mensaName, callback){
+			this.getMenu(function(menu){
+				var filtertDishes = [];
+				for (var i=0; i<menu.length; i++){
+					if(menu[i].mensaName === mensaName || type === "all")
+						filtertDishes.push(menu[i]);
 				}
-				
-				for(type in types){
-					typesArr.push({ name : type }); 
-				}
-				
-				console.log("types: "+ typesArr.length);
-				
-				callback(typesArr);
+				callback(filtertDishes);
 			});
-		}
+		},
+
 	}
 })();
