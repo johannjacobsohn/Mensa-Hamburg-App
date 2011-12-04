@@ -1,7 +1,7 @@
 [
     {"source": "app/assistants/stage-assistant.js"},
     {"source": "js/xhr.js"},
-    {"source": "js/conf.js"},
+    {"source": "js/utils.js"},
     {"source": "js/urls.js"},
     {"source": "js/storage.js"},
     {
