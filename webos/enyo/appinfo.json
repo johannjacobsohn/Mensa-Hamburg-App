@@ -1,0 +1,9 @@
+{
+  "id": "com.jjacobsohn.mensaapp",
+  "version": "1.0.0",
+  "vendor": "jjacobsohn",
+  "type": "web",
+  "main": "index.html",
+  "title": "Mensa App",
+  "uiRevision": "2"
+}
