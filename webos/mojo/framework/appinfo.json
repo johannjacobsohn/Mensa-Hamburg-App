@@ -1,6 +1,6 @@
 {
 	"id": "com.mensaapp.webos",
-	"version": "0.0.1",
+	"version": "0.1.0",
 	"vendor": "Palm",
 	"type": "web",
 	"main": "index.html",
