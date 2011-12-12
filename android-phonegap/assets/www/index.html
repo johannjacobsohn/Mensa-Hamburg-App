@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Mensen</title>
+		
+		<script type="text/html" id="mainList">
+			{{#json}}
+				{{>listItem}}	
+			{{/json}}
+		</script>
+		<script type="text/html" id="listItem" class="partial">
+			<li>
+				<h2>{{dish}}</h2>
+
+				<p class="ui-li-aside">{{name}}</p>
+				<p>{{mensaName}}-Mensa</p>
+			</li>
+		</script>
+
+		<script type="text/javascript" charset="utf-8" src="phonegap-1.2.0.js"></script>
+
+		<script src="js/jquery.js"></script>
+		<script src="js/jquery.mobile-1.0.js"></script>
+		<script src="js/ICanHaz.js"></script>
+		
+		<script src="js/storage.js"></script>
+		<script src="js/urls.js"></script>
+		<script src="js/utils.js"></script>
+		<script src="js/xhr.js"></script>
+		<script src="js/main.js"></script>
+
+		<link rel="stylesheet"  href="css/jquery.mobile.structure-1.0.css" /> 
+		<link rel="stylesheet"  href="css/jquery.mobile-1.0.css" /> 
+	</head>
+	<body>
+
+		<div data-role="page" class="main">
+			<div data-role="header" id="header">
+				<a href="#" data-icon="arrow-l" data-iconpos="notext" id="prev-day">Vorheriger Tag</a>
+				<h1>Mensen <span class="date">Heute</span></h1>
+				<a href="#" data-icon="arrow-r" data-iconpos="notext" id="next-day">Nächster Tag</a>
+			</div>
+	
+			<div data-role="content">
+				<ul data-role="listview" id="dishes" data-filter="true">
+				</ul>
+			</div>
+		</div>
+	</body>
+</html>
