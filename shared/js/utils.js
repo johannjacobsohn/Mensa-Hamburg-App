@@ -12,7 +12,6 @@ Date.prototype.getWeek = function() {
 	return WN;
 }
 
-
  function isEmpty(obj) {
     for(var prop in obj) {
         if(obj.hasOwnProperty(prop))
@@ -21,4 +20,16 @@ Date.prototype.getWeek = function() {
 
     return true;
 }
-
+//http://james.padolsey.com/javascript/deep-copying-of-objects-and-arrays/
+function deepCopy(o) {
+    var copy = o,k;
+ 
+    if (o && typeof o === 'object') {
+        copy = Object.prototype.toString.call(o) === '[object Array]' ? [] : {};
+        for (k in o) {
+            copy[k] = deepCopy(o[k]);
+        }
+    }
+ 
+    return copy;
+}
