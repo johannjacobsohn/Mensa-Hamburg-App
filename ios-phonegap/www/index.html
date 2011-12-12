@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<title></title>
+  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no;" />
+	<meta charset="utf-8">
+
+	<!-- If your application is targeting iOS BEFORE 4.0 you MUST put json2.js from http://www.JSON.org/json2.js into your www directory and include it here -->
+	<script type="text/javascript" charset="utf-8" src="phonegap-1.1.0.js"></script>
+	<script type="text/html" id="mainList">
+		{{#json}}
+			{{>listItem}}	
+		{{/json}}
+	</script>
+	<script type="text/html" id="listItem" class="partial">
+		<li>{{mensaName}} {{name}} {{dish}} </li>
+	</script>
+
+	<script src="js/jquery.js"></script>
+	<script src="js/jquery.mobile-1.0.js"></script>
+	<script src="js/ICanHaz.js"></script>
+		
+	<script src="js/storage.js">"></script>
+	<script src="js/urls.js"></script>
+	<script src="js/utils.js"></script>
+	<script src="js/xhr.js"></script>
+	<script src="js/main.js"></script>
+
+	<link rel="stylesheet"  href="css/jquery.mobile.structure-1.0.css" /> 
+	<link rel="stylesheet"  href="css/jquery.mobile-1.0.css" /> 
+
+	<!-- iPad/iPhone specific css below, add after your main css >
+	<link rel="stylesheet" media="only screen and (max-device-width: 1024px)" href="ipad.css" type="text/css" />		
+	<link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="iphone.css" type="text/css" />	
+	-->
+	
+	</head>
+	<body>
+		<div data-role="page" class="main">
+			<h1>Mensen</h1>
+	
+			<div data-role="content">
+				<ul data-role="listview" id="dishes">
+				</ul>
+			</div>
+		</div>
+	</body>
+</html>
+
