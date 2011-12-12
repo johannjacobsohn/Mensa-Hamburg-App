@@ -2,37 +2,20 @@ Backend
 - filter sammeln
 - konfigurator
 
-Frontends
-- enyo
-- Mojo:
--- Konfig
-- Symbian (Nokia)
-- blackberry
-- jquery mobile
--- tablet ?
-- titanium
--- tablet
--- phone
--- Desktop?
-- jo framework/phonegap
-- MacOS Widget?
-
-
-
-Alle:
+Frontends:
 - webos
 -- mojo (Phone)                      - done (mostly)
 -- enyo (Tablet)                     - in Progress
 - iOS
 -- jquery mobile/phonegap - Tablet   - TODO
--- jquery mobile/phonegap - Phone    - done (mostly)
+-- jquery mobile/phonegap - Phone    - in Progress
 -- Appcelerator Titanium  - Tablet   - TODO
 -- Appcelerator Titanium  - Phone    - TODO
 -- jo Framework/phonegap  - Tablet   - TODO
 -- jo Framework/phonegap  - Phone    - TODO
 - Android
 -- jquery mobile/phonegap - Tablet   - TODO
--- jquery mobile/phonegap - Phone    - TODO
+-- jquery mobile/phonegap - Phone    - in Progress
 -- Appcelerator Titanium  - Tablet   - TODO
 -- Appcelerator Titanium  - Phone    - TODO
 -- jo Framework/phonegap  - Tablet   - TODO
@@ -47,10 +30,8 @@ Alle:
 -- jquery mobile/phonegap - Phone    - TODO
 -- jo Framework/phonegap  - Phone    - TODO
 - Desktop
--- Chrome App  ? 
--- macOS Desktop Widget (jo-Framework) - TODO
-
-
-
-
-
+-- Chrome App  ?                     - TODO
+-- MacOS Desktop Widget              - TODO
+-- Win7 Desktop Gadget               - TODO
+-- Win8 Metro Gadget                 - TODO
+-- Titanium?                         - TODO
