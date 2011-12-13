@@ -168,7 +168,7 @@
 				}
 				
 				for(type in types){
-					typesArr.push({ name : type }); 
+					typesArr.push(type); 
 				}
 				callback(typesArr);
 			});

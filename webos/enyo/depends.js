@@ -1,4 +1,5 @@
 enyo.depends(
+  "js/nameList.js",
   "js/menuList.js",
   "js/dateList.js",
   "js/mensaList.js",

@@ -31,8 +31,22 @@
 						{kind: "GrabButton"}
 					]}
 			]},
-			{name: "right", kind:"SlidingView", flex: 1, components: [
+			{name: "middle2", width: "320px", kind:"SlidingView", peekWidth: 100, components: [
 					{kind: "Header", content:"Gerichte"},
+					{kind: "Scroller", flex: 1, components: [
+						{
+							name: "nameList",
+							flex: 1,
+							peekWidth: 100,
+							kind: "nameList"
+						}
+					]},
+					{kind: "Toolbar", components: [
+						{kind: "GrabButton"}
+					]}
+			]},
+			{name: "right", kind:"SlidingView", flex: 1, peekWidth: 150, components: [
+					{kind: "Header", content:"Speisekarte"},
 					{kind: "Scroller", flex: 1, components: [
 						{
 							name: "menuList",

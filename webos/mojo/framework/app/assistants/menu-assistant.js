@@ -82,7 +82,7 @@ MenuAssistant.prototype.setup = function() {
 
 	storage.getTypes(function(types){
 		for(var i=0; i<types.length; i++){
-			mediaMenuModel.items[0].items.push({label: types[i].name, command: "type-" + types[i].name });
+			mediaMenuModel.items[0].items.push({label: types[i], command: "type-" + types[i] });
 		}
 	});
 	storage.getMensen(function(mensen){
