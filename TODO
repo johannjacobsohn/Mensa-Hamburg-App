@@ -1,6 +1,16 @@
-Backend
-- filter sammeln
-- konfigurator
+Bugs:
+-Backend
+-- konfigurator
+- mojo
+-- Nächste Woche laden
+-- Datum/Tag besser anzeigen
+-- out-of-range nicht weitergehen
+-- gesetzte Filter anzeigen
+-- Filterlist
+- enyo
+-- Tage besser formatieren (Gestern, Heute, Morgen)
+-- gesetzte Filter markieren
+-- Bessere Formatierung Gerichte (Segmentierung?)
 
 Frontends:
 - webos

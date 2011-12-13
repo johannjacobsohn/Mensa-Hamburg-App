@@ -1,11 +1,4 @@
-﻿/*
- * @TODO:
- * - Tage besser formatieren (Gestern, Heute, Morgen)
- * - gesetzte Filter markieren
- * - weiteres Panel für Dishes
- * - Bessere Formatierung Gerichte (Segmentierung?)
- */
-enyo.kind({
+﻿enyo.kind({
 	name: "main",
 	kind: enyo.VFlexBox,
 	components: [

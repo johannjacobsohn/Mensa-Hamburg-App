@@ -20,14 +20,6 @@ MenuAssistant.prototype.cleanup = function(event) {
 	   a result of being popped off the scene stack */
 };
 
-/*
- * @TODO:
- *  - nächste Woche
- *  - Datum in nächster Woche anzeigen
- *  - out-of-range nicht weitergehen
- *  - gesetzte Filter anzeigen
- *  - Filterlist
- */
 MenuAssistant.prototype.setup = function() {
 	mediaMenuModel = {
 		items: [
