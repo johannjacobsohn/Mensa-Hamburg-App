@@ -3,7 +3,7 @@
 	kind: enyo.VFlexBox,
 	components: [
 		{name: "slidingPane", kind: "SlidingPane", flex: 1, components: [
-			{name: "left", width: "320px", kind:"SlidingView", components: [
+			{name: "left", width: "200px", kind:"SlidingView", components: [
 					{kind: "Header", content:"Tage"},
 					{kind: "Scroller", flex: 1, components: [
 						{
@@ -17,7 +17,7 @@
 						{kind: "GrabButton"}
 					]}
 			]},
-			{name: "middle", width: "320px", kind:"SlidingView", peekWidth: 50, components: [
+			{name: "middle", width: "200px", kind:"SlidingView", peekWidth: 50, components: [
 					{kind: "Header", content:"Mensen"},
 					{kind: "Scroller", flex: 1, components: [
 						{
@@ -31,7 +31,7 @@
 						{kind: "GrabButton"}
 					]}
 			]},
-			{name: "middle2", width: "320px", kind:"SlidingView", peekWidth: 100, components: [
+			{name: "middle2", width: "200px", kind:"SlidingView", peekWidth: 100, components: [
 					{kind: "Header", content:"Gerichte"},
 					{kind: "Scroller", flex: 1, components: [
 						{
