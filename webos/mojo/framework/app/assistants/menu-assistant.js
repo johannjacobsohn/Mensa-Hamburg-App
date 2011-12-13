@@ -91,26 +91,14 @@ MenuAssistant.prototype.setup = function() {
 		}
 	});
 
-
 	function fetch(json){
-		 var dayNames = ["Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Sonnabend"];
 		if(typeof json === "undefined") json = []; // @TODO: gehört hier nicht hin - storage sollte nicht "undefined zurückgeben"
 
 		this.controller = Mojo.Controller.stageController.activeScene();
 		this.controller.setWidgetModel("menu", {"items": json});
 
-		now = new Date();
-		if(date.getDate() === now.getDate()){
-			dayString = "Heute";
-		} else if(date.getDate() === now.getDate()-1){
-			dayString = "Gestern";
-		} else if(date.getDate() === now.getDate()+1){
-			dayString = "Morgen";
-		} else {
-			dayString = dayNames[date.getDay()];
-		}
+		var dayString = dateToString(dateString);
 		headerMenu.items[0].items[1].label = "Mensa " + dayString;
-
 
 		this.controller.modelChanged(headerMenu, this);
 	}

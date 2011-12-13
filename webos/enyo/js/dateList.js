@@ -19,7 +19,7 @@
 		var row = this.data[inIndex];
 		if (row) {
 			return {kind: "Item", layoutKind: "HFlexLayout", onclick: "itemClick", components: [
-				{content: row, flex: 1}
+				{content: dateToString(row), value: row, flex: 1}
 			]};
 		}
 	},
@@ -31,7 +31,7 @@
 		}
 		element.addClass("enyo-held");
 
-		storage.setDateFilter(element.children[0].content)
+		storage.setDateFilter(element.children[0].value)
 		storage.filter(function(json){
 			menuList.data = json;
 			menuList.render();

@@ -33,3 +33,24 @@ function deepCopy(o) {
  
     return copy;
 }
+
+/*
+ * 
+ */
+function dateToString(isoDate){
+	var isoDateArr = isoDate.split("-");
+	var date = new Date(isoDateArr[0], isoDateArr[1]-1, isoDateArr[2]);
+
+	var dayNames = ["Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Sonnabend"];
+	var now = new Date();
+	if(date.getDay() === now.getDay()){
+		dayString = "Heute";
+	} else if(date.getDay() === now.getDay()-1){
+		dayString = "Gestern";
+	} else if(date.getDay() === now.getDay()+1){
+		dayString = "Morgen";
+	} else {
+		dayString = dayNames[date.getDay()];
+	}
+	return dayString;
+}
