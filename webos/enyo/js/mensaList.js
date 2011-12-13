@@ -12,7 +12,7 @@
 	],
 	create: function() {
 		this.inherited(arguments);
-		that = this;
+		var that = this;
 		storage.getMensen(function(json){
 			that.data = json;
 			that.$.repeater.render();
@@ -28,11 +28,9 @@
 	},
 	itemClick : function(element){
 		var menuList = this.owner.$.menuList;
-		that = this;
-		storage.getByMensa(element.content, function(json){
-			console.log(json);
-//			console.log(that);
-			menuList.data = json["2011-12-12"];
+		storage.setMensaFilter(element.content)
+		storage.filter(function(json){
+			menuList.data = json;
 			menuList.render();
 		});
 	}

@@ -9,22 +9,36 @@
  */
 (function(){ // its a trap!
 	storage = {
-		weekMenu         : {}, // Cache
-		filteredWeekMenu : {}, // Cache
+		weekMenu         : [], // Cache
+		filteredWeekMenu : [], // Cache
 		lock : [],
 		loadedMensen : {},
 		menuCallbackQueue : [],
-		activeFilters : {},
-		/*
-		 * 
-		 * @param int date   yyyy-mm-dd, eg. 2011-12-14
-		 * @param function                        !: callback kann mehrfach aufgerufen werden
-		 * @return void
-		 */
-		// @TODO: cleanup vars & documentation
-		getMenuByDate : function(date, callback){
+		filters : [],
+		filterByMensa : function(item){
+			return item.mensaName === args.mensa
+		},
+		filterByName : function(item){
+			return item.name === args.name
+		},
+		filterByDate : function(item){
+			return item.date === args.date
+		},
+		filter : function(callback){
 			this.getWeekMenu(function(){
-				callback(storage.filteredWeekMenu[date]);
+				var i;
+				//copy weekMenu to filteredWeekMenu
+				storage.filteredWeekMenu = [];
+				for(i=0; i < storage.weekMenu.length; i++){
+					storage.filteredWeekMenu.push(storage.weekMenu[i]);
+				}
+				// filter filteredWeekMenu
+				for(i=0; i < storage.filters.length; i++){
+					
+					args = storage.filters[i].args
+					storage.filteredWeekMenu = storage.filteredWeekMenu.filter(storage.filters[i].fkt);
+				}
+				callback(storage.filteredWeekMenu);
 			});
 		},
 		
@@ -89,18 +103,14 @@
 									dateString = date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getDate();
 
 									if(dish !== ""){
-										obj = {
+										storage.weekMenu.push({
 											mensaName : additional_args.mensaName,
 											name        : dishName,
 											dish        : dish,
 											studPrice   : studPrice,
-											normalPrice : normalPrice
-										};
-										//@TODO: doppelt ist doof
-										if(typeof storage.weekMenu[dateString] === "undefined") storage.weekMenu[dateString] = [];
-										storage.weekMenu[dateString].push(obj);
-										if(typeof storage.filteredWeekMenu[dateString] === "undefined") storage.filteredWeekMenu[dateString] = [];
-										storage.filteredWeekMenu[dateString].push(obj);
+											normalPrice : normalPrice,
+											date        : dateString
+										});
 									}
 								}
 							}
@@ -133,7 +143,7 @@
 			
 			this.runMenuCallbacks();
 		},
-		
+
 		runMenuCallbacks : function(){
 			// only execute callback queue if all locks are released
 			if(isEmpty(this.lock)){
@@ -146,18 +156,15 @@
 				return false;
 			}
 		},
-		
+
 		/*
 		* list all Types
 		*/
 		getTypes : function(callback){
 			this.getWeekMenu(function(){
-				var daymenu, day, type, types = {}, typesArr = [];
-				for (day in storage.weekMenu){
-					daymenu = storage.weekMenu[day];
-					for (var i=0; i<daymenu.length; i++){
-						types[daymenu[i].name] = daymenu[i].name
-					}
+				var type, types = {}, typesArr = [];
+				for (var i=0; i<storage.weekMenu.length; i++){
+					types[storage.weekMenu[i].name] = storage.weekMenu[i].name
 				}
 				
 				for(type in types){
@@ -181,49 +188,103 @@
 		* list all dates
 		*/
 		getAvailableDates: function(callback){
-			var array=["2011-12-12","2011-12-13","2011-12-14","2011-12-15","2011-12-16"]
-			callback(array);
+			this.getWeekMenu(function(){
+				var date, dates = {}, datesArr = [];
+				for (var i=0; i<storage.weekMenu.length; i++){
+					dates[storage.weekMenu[i].date] = storage.weekMenu[i].date
+				}
+				
+				for(date in dates){
+					datesArr.push(date); 
+				}
+				console.log(datesArr);
+				callback(datesArr);
+			});
 		},
 
+		getMenuByDate : function(date, callback){
+			console.log("getMenuByDate is depreciated");
+			this.getWeekMenu(function(){
+				storage.filters = [{fkt:storage.filterByDate,args:{date:date}}];
+				storage.filter(callback);
+			});
+		},
+		
 		/*
 		* get dishes by dish type
 		*/
 		getByType : function(type, callback){
+			console.log("getByType is depreciated")
 			this.getWeekMenu(function(){
-				var dayMenu;
-				for(var day in storage.weekMenu){
-					dayMenu = storage.weekMenu[day];
-					storage.filteredWeekMenu[day] = [];
-					for (var i=0; i<dayMenu.length; i++){
-						if(storage.weekMenu[day][i].name === type || type === "all"){
-							storage.filteredWeekMenu[day].push(storage.weekMenu[day][i]);
-						}
-					}
-				}
-				callback(storage.filteredWeekMenu);
+				storage.filters = [{fkt:storage.filterByType,args:{type:type}}];
+				storage.filter(callback);
 			});
 		},
 
 		/*
 		* get dishes by mensa name
 		*/
-		getByMensa : function(mensaName, callback){
-//			console.log("MENSANAME: " +mensaName);
-			this.getWeekMenu(function(filteredWeekMenu){
-				for(var day in storage.weekMenu){
-					var dayMenu = storage.weekMenu[day];
-					storage.filteredWeekMenu[day] = [];
-//					console.log(storage.weekMenu[day])
-					for (var i=0; i<dayMenu.length; i++){
-//						console.log(mensaName);
-						if(dayMenu[i].mensaName === mensaName || mensaName === "all"){
-							storage.filteredWeekMenu[day].push(dayMenu[i]);
-						}
-					}
-				}
-				callback(storage.filteredWeekMenu);
+		getByMensa : function(mensa, callback){
+			console.log("getByMensa is depreciated "+ mensa);
+			this.getWeekMenu(function(){
+				storage.filters = [{fkt:storage.filterByMensa,args:{mensa:mensa}}];
+				storage.filter(callback);
 			});
 		},
 
+		/*
+		* 
+		*/
+		setMensaFilter : function(mensa){
+			this.unsetMensaFilter();
+			storage.filters.push({fkt:storage.filterByMensa,args:{mensa:mensa}});
+		},
+		/*
+		* 
+		*/
+		unsetMensaFilter : function(){
+			storage.filters = storage.filters.filter(function(item){
+				return item.fkt !== storage.filterByMensa;
+			});
+		},
+
+		/*
+		* 
+		*/
+		setNameFilter : function(name){
+			this.unsetNameFilter();
+			storage.filters.push({fkt:storage.filterByName,args:{name:name}});
+		},
+		/*
+		* 
+		*/
+		unsetNameFilter : function(){
+			storage.filters = storage.filters.filter(function(item){
+				return item.fkt !== storage.filterByName;
+			});
+		},
+		
+		/*
+		* 
+		*/
+		setDateFilter : function(date){
+			this.unsetDateFilter();
+			storage.filters.push({fkt:storage.filterByDate,args:{date:date}});
+		},
+		/*
+		* 
+		*/
+		unsetDateFilter : function(){
+			storage.filters = storage.filters.filter(function(item){
+				return item.fkt !== storage.filterByDate;
+			});
+		},
+		
+		/*
+		* 
+		*/
+		unsetFilters : function(){
+			this.filters = [];
+		},
 	}
 })();

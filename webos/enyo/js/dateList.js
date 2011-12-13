@@ -9,7 +9,7 @@
 	data : [],
 	create: function() {
 		this.inherited(arguments);
-		that = this;
+		var that = this;
 		storage.getAvailableDates(function(json){
 			that.data = json;
 			that.$.repeater.render();
@@ -25,9 +25,8 @@
 	},
 	itemClick : function(element){
 		var menuList = this.owner.$.menuList;
-		that = this;
-		storage.getMenuByDate(element.content, function(json){
-//			console.log(that);
+		storage.setDateFilter(element.content)
+		storage.filter(function(json){
 			menuList.data = json;
 			menuList.render();
 		});

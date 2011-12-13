@@ -82,7 +82,8 @@ MenuAssistant.prototype.setup = function() {
 	date = new Date();
 	dateString = date.getFullYear() + "-" + (date.getMonth()+1) + "-" + (date.getDate());
 
-	storage.getMenuByDate(dateString, function(json){
+	storage.setDateFilter(dateString);
+	storage.filter(function(json){
 		this.controller = Mojo.Controller.stageController.activeScene();
 		this.controller.setWidgetModel("menu", {"items": json});
 	});
@@ -128,15 +129,15 @@ MenuAssistant.prototype.setup = function() {
 			if(event.command === "tomorrow"){
 				date = new Date(date.valueOf() + 60 * 60 * 24 * 1000);
 				dateString = date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getDate();
-
-				storage.getMenuByDate(dateString, fetch);
+				storage.setDateFilter(dateString);
+				storage.filter(fetch);
 				return;
 			}
 			if(event.command === "yesterday"){
 				date = new Date(date.valueOf() - 60 * 60 * 24 * 1000);
 				dateString = date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getDate();
-
-				storage.getMenuByDate(dateString, fetch);
+				storage.setDateFilter(dateString);
+				storage.filter(fetch);
 				return;
 			}
 			
@@ -144,13 +145,17 @@ MenuAssistant.prototype.setup = function() {
 			this.controller = Mojo.Controller.stageController.activeScene();
 			switch (temp[0]) {
 				case "type": {
-					storage.getByType(temp[1], function(json){
-						this.controller.setWidgetModel("menu", {"items": json[dateString]});
+					if(temp[1] === "all") storage.unsetNameFilter();
+					else storage.setNameFilter(temp[1]);
+					storage.filter(function(json){
+						this.controller.setWidgetModel("menu", {"items": json});
 					});
 					break;
 				} case "mensa" : {
-					storage.getByMensa(temp[1], function(json){
-						this.controller.setWidgetModel("menu", {"items": json[dateString]});
+					if(temp[1] === "all") storage.unsetMensaFilter();
+					else storage.setMensaFilter(temp[1]);
+					storage.filter(function(json){
+						this.controller.setWidgetModel("menu", {"items": json});
 					});
 					break;
 				}
