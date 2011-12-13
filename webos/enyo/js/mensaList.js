@@ -21,14 +21,20 @@
 	listSetupRow: function(inSender, inIndex) {
 		var row = this.data[inIndex];
 		if (row) {
-			return {kind: "Item", layoutKind: "HFlexLayout", components: [
-				{content: row, flex: 1, onclick: "itemClick"}
+			return {kind: "Item", layoutKind: "HFlexLayout", onclick: "itemClick", components: [
+				{content: row, flex: 1}
 			]};
 		}
 	},
 	itemClick : function(element){
 		var menuList = this.owner.$.menuList;
-		storage.setMensaFilter(element.content)
+		
+		for(var i=0; i<element.parent.children.length; i++){
+			element.parent.children[i].removeClass("enyo-held");
+		}
+		element.addClass("enyo-held");
+		
+		storage.setMensaFilter(element.children[0].content)
 		storage.filter(function(json){
 			menuList.data = json;
 			menuList.render();

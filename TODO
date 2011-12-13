@@ -7,10 +7,11 @@ Bugs:
 -- out-of-range nicht weitergehen
 -- gesetzte Filter anzeigen
 -- Filterlist
+-- Konfiguration
 - enyo
 -- Tage besser formatieren (Gestern, Heute, Morgen)
--- gesetzte Filter markieren
 -- Bessere Formatierung Gerichte (Segmentierung?)
+-- Konfiguration
 
 Frontends:
 - webos
