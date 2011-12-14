@@ -19,7 +19,7 @@
 	create: function() {
 		this.inherited(arguments);
 		var that = this;
-		storage.getMenuByDate("2011-12-12", function(json){
+		storage.filter(function(json){
 			that.data = json;
 			that.$.repeater.render();
 		});
@@ -29,9 +29,9 @@
 		if (row) {
 			return {kind: "Item", layoutKind: "HFlexLayout", components: [
 				{content: row.dish, flex: 1},
-				{content: row.mensaName, flex: 1},
-				{content: row.date, flex: 1},
-				{content: row.studPrice}
+//				{content: row.mensaName, flex: 1},
+//				{content: row.date, flex: 1},
+//				{content: row.studPrice}
 			]};
 		}
 	}

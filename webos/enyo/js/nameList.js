@@ -12,13 +12,14 @@
 		var that = this;
 		storage.getTypes(function(json){
 			that.data = json;
+			that.data.unshift("Alle");
 			that.$.repeater.render();
 		});
 	},
 	listSetupRow: function(inSender, inIndex) {
 		var row = this.data[inIndex];
 		if (row) {
-			return {kind: "Item", layoutKind: "HFlexLayout", onclick: "itemClick", components: [
+			return {kind: "Item", layoutKind: "HFlexLayout", className: (row === "Alle") ? "enyo-held" : "dummy", onclick: "itemClick", components: [
 				{content: row, flex: 1}
 			]};
 		}
@@ -31,7 +32,11 @@
 		}
 		element.addClass("enyo-held");
 
-		storage.setNameFilter(element.children[0].content)
+		if(element.children[0].content === "Alle"){
+			storage.unsetNameFilter()
+		} else {
+			storage.setNameFilter(element.children[0].content)
+		}
 		storage.filter(function(json){
 			menuList.data = json;
 			menuList.render();

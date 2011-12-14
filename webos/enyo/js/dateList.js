@@ -12,14 +12,16 @@
 		var that = this;
 		storage.getAvailableDates(function(json){
 			that.data = json;
+			that.data.unshift("Alle")
 			that.$.repeater.render();
 		});
 	},
 	listSetupRow: function(inSender, inIndex) {
 		var row = this.data[inIndex];
 		if (row) {
-			return {kind: "Item", layoutKind: "HFlexLayout", onclick: "itemClick", components: [
-				{content: dateToString(row), value: row, flex: 1}
+			var content = (row === "Alle") ? "Alle" : row;
+			return {kind: "Item", className: (row === "Alle") ? "enyo-held" : "dummy", layoutKind: "HFlexLayout", onclick: "itemClick", components: [
+				{content: content, value: row, flex: 1}
 			]};
 		}
 	},
@@ -31,7 +33,11 @@
 		}
 		element.addClass("enyo-held");
 
-		storage.setDateFilter(element.children[0].value)
+		if(element.children[0].value === "Alle"){
+			storage.unsetDateFilter()
+		} else {
+			storage.setDateFilter(element.children[0].value)
+		}
 		storage.filter(function(json){
 			menuList.data = json;
 			menuList.render();

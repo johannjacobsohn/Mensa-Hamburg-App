@@ -6,22 +6,20 @@
 			{kind: "Repeater", onSetupRow: "listSetupRow"}
 		]}
 	],
-	data : [
-		"WIWI",
-		"GEO"
-	],
+	data : [],
 	create: function() {
 		this.inherited(arguments);
 		var that = this;
 		storage.getMensen(function(json){
 			that.data = json;
+			that.data.unshift("Alle");
 			that.$.repeater.render();
 		});
 	},
 	listSetupRow: function(inSender, inIndex) {
 		var row = this.data[inIndex];
 		if (row) {
-			return {kind: "Item", layoutKind: "HFlexLayout", onclick: "itemClick", components: [
+			return {kind: "Item", className: (row === "Alle") ? "enyo-held" : "dummy", layoutKind: "HFlexLayout", onclick: "itemClick", components: [
 				{content: row, flex: 1}
 			]};
 		}
@@ -33,8 +31,12 @@
 			element.parent.children[i].removeClass("enyo-held");
 		}
 		element.addClass("enyo-held");
-		
-		storage.setMensaFilter(element.children[0].content)
+
+		if(element.children[0].content === "Alle"){
+			storage.unsetMensaFilter()
+		} else {
+			storage.setMensaFilter(element.children[0].content)
+		}
 		storage.filter(function(json){
 			menuList.data = json;
 			menuList.render();
