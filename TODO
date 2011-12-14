@@ -1,15 +1,14 @@
 Bugs:
 -Backend
--- konfigurator
-- mojo
+-- Konfigurator
 -- Nächste Woche laden
+- mojo
 -- Datum/Tag besser anzeigen
 -- out-of-range nicht weitergehen
 -- gesetzte Filter anzeigen
 -- Filterlist
 -- Konfiguration
 - enyo
--- Tage besser formatieren (Gestern, Heute, Morgen)
 -- Bessere Formatierung Gerichte (Segmentierung?)
 -- Konfiguration
 

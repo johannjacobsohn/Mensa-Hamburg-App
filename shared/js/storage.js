@@ -2,9 +2,9 @@
  * abstrahiert den Zugriff auf AJAX bzw. lokalen Speicher
  *
  * @TODO:
- * - on the fly filtern? Filterliste?
  * - nächste Woche
  * - globale finden und entfernen
+ * - reload neue urls
  * 
  */
 (function(){ // its a trap!
@@ -50,7 +50,9 @@
 		// @TODO: cleanup vars & documentation
 		getWeekMenu : function(callback){
 			if(callback) { this.menuCallbackQueue.push(callback);}
-			for(var mensa in urls.mensenWeek){
+			mensenArr = conf.getSavedURLs();
+			for(var m = 0; m<mensenArr.length; m++){
+				mensa = mensenArr[m];
 				if(typeof this.loadedMensen[mensa] === "undefined" && typeof this.lock[mensa] === "undefined"){
 
 					// lock execution of callback queue to prevent race conditions
@@ -104,7 +106,7 @@
 
 									if(dish !== ""){
 										storage.weekMenu.push({
-											mensaName : additional_args.mensaName,
+											mensaName   : additional_args.mensaName,
 											name        : dishName,
 											dish        : dish,
 											studPrice   : studPrice,
@@ -178,11 +180,7 @@
 		* list all MensaNames
 		*/
 		getMensen : function(callback){
-			var array=[], name;
-			for(name in urls.mensenWeek){
-				array.push(name);
-			}
-			callback(array);
+			callback(conf.getSavedURLs());
 		},
 		/*
 		* list all dates
@@ -209,7 +207,7 @@
 				storage.filter(callback);
 			});
 		},
-		
+
 		/*
 		* get dishes by dish type
 		*/
