@@ -34,12 +34,31 @@
 				}
 				// filter filteredWeekMenu
 				for(i=0; i < storage.filters.length; i++){
-					
 					args = storage.filters[i].args
 					storage.filteredWeekMenu = storage.filteredWeekMenu.filter(storage.filters[i].fkt);
 				}
 				callback(storage.filteredWeekMenu);
 			});
+		},
+
+		/*
+		 * Find and delete Data of urls that are not saved
+		 */
+		cleanData : function(){
+			var validUrls = conf.getSavedURLs();
+			this.weekMenu = this.weekMenu.filter(function(item){
+				return validUrls.indexOf(item.mensaName) !== -1;
+			});
+			this.filteredWeekMenu = this.filteredWeekMenu.filter(function(item){
+				return validUrls.indexOf(item.mensaName) !== -1;
+			});
+			
+			// Geladene Mensen feststellen
+			for(var mensa in this.loadedMensen){
+				this.loadedMensen[mensa] = this.weekMenu.filter(function(item){
+					return mensa === item.mensaName;
+				}).length > 0
+			}
 		},
 		
 		/*
@@ -53,8 +72,7 @@
 			mensenArr = conf.getSavedURLs();
 			for(var m = 0; m<mensenArr.length; m++){
 				mensa = mensenArr[m];
-				if(typeof this.loadedMensen[mensa] === "undefined" && typeof this.lock[mensa] === "undefined"){
-
+				if(!this.loadedMensen[mensa] && typeof this.lock[mensa] === "undefined"){
 					// lock execution of callback queue to prevent race conditions
 					this.lock[mensa] = true;
 					
@@ -69,7 +87,7 @@
 					xhr.get(url, function(resp, additional_args){
 						var tds, trs, dish, dishName, date, dateString, obj;
 						var tempDiv = document.createElement('div');
-						tempDiv.innerHTML = resp.replace(/<script(.|\s)*?\/script>/g, '');
+						tempDiv.innerHTML = resp.replace(/<img(.|\s)*?\>/g, '').replace(/<script(.|\s)*?\/script>/g, '');
 						trs = tempDiv.getElementsByTagName("table")[1].getElementsByTagName("tr");
 
 						// extract and parse date field
@@ -195,7 +213,6 @@
 				for(date in dates){
 					datesArr.push(date); 
 				}
-				console.log(datesArr);
 				callback(datesArr);
 			});
 		},

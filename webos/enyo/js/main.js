@@ -17,7 +17,7 @@
 						{kind: "GrabButton"}
 					]}
 			]},
-			{name: "middle", width: "200px", kind:"SlidingView", peekWidth: 50, components: [
+			{name: "mensalistpanel", width: "200px", kind:"SlidingView", peekWidth: 50, components: [
 					{kind: "Header", content:"Mensen"},
 					{kind: "Scroller", flex: 1, components: [
 						{
@@ -29,7 +29,7 @@
 					]},
 					{kind: "Toolbar", components: [
 						{kind: "GrabButton"},
-						{kind: "Button", caption: "Konfig", onclick: "example3Click"}
+						{icon: "images/Gear.png", onclick: "closePopup", onclick: "openConfig"}
 					]}
 			]},
 			{name: "middle2", width: "200px", kind:"SlidingView", peekWidth: 100, components: [
@@ -61,56 +61,17 @@
 					]}
 			]},
 			/* Scrollable */
-//			{kind: "Button", caption: "Scrollable Items in A Modal Dialog", onclick: "example3Click"},
 			{kind: "ModalDialog", name: "scrollerExample", caption: "Zu ladene Mensen", components:[
 				{kind: "Group", components: [
 					{kind:"Scroller", height: "230px", components:[
-
 						{kind: "Repeater", onSetupRow: "listSetupRow"}
-/*
-						{kind: "RowItem", className: "enyo-first", layoutKind: "HFlexLayout", components: [
-							{content: "Living Room", flex: 1},
-							{kind: "ToggleButton"}
-						]},
-						{kind: "RowItem", layoutKind: "HFlexLayout", components: [
-							{content: "Dining Room", flex: 1},
-							{kind: "ToggleButton"}
-						]},
-						{kind: "RowItem", layoutKind: "HFlexLayout", components: [
-							{content: "Bedroom", flex: 1},
-							{kind: "ToggleButton"}
-						]},
-						{kind: "RowItem", layoutKind: "HFlexLayout", components: [
-							{content: "Kitchen", flex: 1},
-							{kind: "ToggleButton"}
-						]},
-						{kind: "RowItem", layoutKind: "HFlexLayout", components: [
-							{content: "Bathroom", flex: 1},
-							{kind: "ToggleButton"}
-						]},
-						{kind: "RowItem", className: "enyo-last", layoutKind: "HFlexLayout", components: [
-							{content: "Garage", flex: 1},
-							{kind: "ToggleButton"}
-						]},
-*/
-					],
-					listSetupRow: function(inSender, inIndex) {
-						console.log("listSetupRow")
-				//		var row = this.data[inIndex];
-				//		if (row) {
-				//			return {kind: "Item", className: (row === "Alle") ? "enyo-held" : "dummy", layoutKind: "HFlexLayout", onclick: "itemClick", components: [
-				//				{content: row, flex: 1}
-				//			]};
-				//		}
-					}
-				}
+					]}
 				]},
 				{kind: "Button", className: "enyo-button-affirmative", caption: $L("Speichern"), onclick: "closePopup"},
 			]}
 		]}
 	],
-	
-	example3Click: function(inSender, inEvent) {
+	openConfig: function(inSender, inEvent) {
 		this.$.scrollerExample.openAtCenter();
 	},
 	data : [],
@@ -125,7 +86,6 @@
 			]};
 		}
 	},
-
 	closePopup: function(inSender, inEvent) {
 		var array = [], i, controls = inSender.parent.children[0].children[1].children[0].children[0].children[0].children;
 		for(i=0; i<controls.length; i++){
@@ -134,9 +94,34 @@
 			}
 		}
 
+		// Save URLs
 		conf.setURLs(array);
-		// @TODO: Reload App
 
+		// Reload Data
+		storage.cleanData();
+		storage.getWeekMenu();
+		
+		//Refresh views
+		// MensaList:
+		var mensaList = this.owner.$.main.$.mensaList;
+		storage.getMensen(function(json){
+			mensaList.data = json;
+			mensaList.data.unshift("Alle");
+			mensaList.$.repeater.render();
+		});
+		// NameList:
+		var nameList = this.owner.$.main.$.nameList;
+		storage.getTypes(function(json){
+			nameList.data = json;
+			nameList.data.unshift("Alle");
+			nameList.$.repeater.render();
+		});
+		// MenuList:
+		var menuList = this.owner.$.main.$.menuList;
+		storage.filter(function(json){
+			menuList.data = json;
+			menuList.render();
+		});
 
 		inSender.parent.parent.parent.close();
 	},

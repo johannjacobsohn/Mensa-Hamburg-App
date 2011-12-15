@@ -7,15 +7,12 @@
 		getSavedURLs : function(){
 			if(this.isConfigured()){
 				try{
-					console.log("getSavedURLs");
 					var urls = JSON.parse(localStorage.getItem("urls"));
 					return urls.length > 0 ? urls : this.getURLs();
 				} catch(e){
-					console.log("catch getSavedURLs");
 					return this.getURLs();
 				}
 			} else {
-				console.log("not Conf");
 				return this.getURLs();
 			}
 		},
