@@ -38,7 +38,7 @@
 			"Geo"                   : "http://www.studierendenwerk-hamburg.de/essen/woche.php?haus=Geomatikum&kw={{week}}",
 			"Schweinemensa"         : "http://www.studierendenwerk-hamburg.de/essen/woche.php?haus=Studierendenhaus&kw={{week}}",
 			"Physik"                : "http://www.studierendenwerk-hamburg.de/essen/woche.php?haus=Caf%C3%A9%20Jungiusstra%C3%9Fe&kw={{week}}",
-			"Bucerius Law School"   : "http://www.studierendenwerk-hamburg.de/essen/woche.php?haus=Bucerius Law School&kw={{week}}"// "FH Buzze"
+			"Bucerius Law School"   : "http://www.studierendenwerk-hamburg.de/essen/woche_bls.php?haus=Bucerius Law School&kw={{week}}"// "FH Buzze"
 		}
 	}
 })();

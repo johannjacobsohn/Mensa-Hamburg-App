@@ -97,16 +97,27 @@
 						startdate = new Date(germanStartdateArr[2],(germanStartdateArr[1]-1),germanStartdateArr[0]);
 
 						for (var j=2; j<trs.length; j++){ // erste beiden überspringen
-							tds = trs[j].getElementsByTagName("td");
+							try{
+								tds = trs[j].getElementsByTagName("td");
+							} catch(e){
+								console.log(e);
+								continue;
+							}
 
 							// Parse Dishname
 							dishName = tds[0].innerText.replace(/\s+$/, "").replace(/^\s+/, ""); //trim
+							dishName = dishName.replace(/_+$/, ""); //remove trailing underscore
 
 							// Parse dish
 							for (var i = 1; i<=5; i++){
-								p = tds[i].getElementsByTagName("p");
+								try{
+									p = tds[i].getElementsByTagName("p");
+								} catch(e){
+									console.log(e);
+									continue;
+								}
+						
 								for (var k=0; k<p.length; k++){
-
 									// Extract Price
 									price = p[k].getElementsByClassName("fliesstextklorange")[0].innerHTML.replace("€","").replace(" ","").split("/");
 									studPrice = price[0];
@@ -117,6 +128,7 @@
 									dish = p[k].innerText;
 									dish = dish.replace(/&nbsp;/g, "").replace(/\s+$/, "").replace(/^\s+/, ""); //trim
 									dish = dish.replace(/\(([0-9]+,?)*\)/g, ""); //Zusatzstoffe entfernen
+
 
 									// Figure out date
 									date = new Date(startdate.valueOf() + (i-1) * 24 * 60 * 60 * 1000);
