@@ -19,7 +19,7 @@
 	listSetupRow: function(inSender, inIndex) {
 		var row = this.data[inIndex];
 		if (row) {
-			var content = (row === "Alle") ? "Alle" : row;
+			var content = (row === "Alle") ? "Alle" : dateToString(row);
 			return {kind: "Item", className: (row === "Alle") ? "enyo-held" : "dummy", layoutKind: "HFlexLayout", onclick: "itemClick", components: [
 				{content: content, value: row, flex: 1}
 			]};

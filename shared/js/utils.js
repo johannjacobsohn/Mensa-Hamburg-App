@@ -43,11 +43,11 @@ function dateToString(isoDate){
 
 	var dayNames = ["Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Sonnabend"];
 	var now = new Date();
-	if(date.getDay() === now.getDay()){
+	if(date.getDate() === now.getDate()){
 		dayString = "Heute";
-	} else if(date.getDay() === now.getDay()-1){
+	} else if(date.getDate() === now.getDate()-1){
 		dayString = "Gestern";
-	} else if(date.getDay() === now.getDay()+1){
+	} else if(date.getDate() === now.getDate()+1){
 		dayString = "Morgen";
 	} else {
 		dayString = dayNames[date.getDay()];

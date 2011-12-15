@@ -213,7 +213,7 @@
 				for(date in dates){
 					datesArr.push(date); 
 				}
-				callback(datesArr);
+				callback(datesArr.sort());
 			});
 		},
 
