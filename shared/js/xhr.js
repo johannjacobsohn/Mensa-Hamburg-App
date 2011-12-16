@@ -12,8 +12,9 @@
 				if (xhr.readyState === 4) {
 					if(xhr.status === 200){
 						success(xhr.responseText, additional_args);
-					}
-					else if(typeof error === "function"){
+					} else if (xhr.status === 0) {
+						success(xhr.responseText, additional_args);
+					} else if(typeof error === "function"){
 						error(xhr.responseText, additional_args);
 					}
 				}
