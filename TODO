@@ -1,21 +1,23 @@
 Bugs:
 -Backend
--- Konfigurator
 -- Nächste Woche laden
+-- Mockdaten debuggen
 - mojo
+-- Konfiguration
 -- Datum/Tag besser anzeigen
 -- out-of-range nicht weitergehen
 -- gesetzte Filter anzeigen
 -- Filterlist
--- Konfiguration
 - enyo
--- Bessere Formatierung Gerichte (Segmentierung?)
--- Konfiguration
+-- Bessere Formatierung der Gerichte
+-- Reihen trennen nach Mensa || Datum (Segmentierung)
+-- Header entsprechend ändern
+-- Filter auf Mensa verhindert Ansicht wenn Mensa entfernt wird
 
 Frontends:
 - webos
 -- mojo (Phone)                      - done (mostly)
--- enyo (Tablet)                     - in Progress
+-- enyo (Tablet)                     - done
 - iOS
 -- jquery mobile/phonegap - Tablet   - TODO
 -- jquery mobile/phonegap - Phone    - in Progress

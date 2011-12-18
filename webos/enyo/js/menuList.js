@@ -27,10 +27,13 @@
 	listSetupRow: function(inSender, inIndex) {
 		var row = this.data[inIndex];
 		if (row) {
-			return {kind: "Item", layoutKind: "HFlexLayout", components: [
-				{content: row.dish, flex: 1},
-//				{content: row.mensaName, flex: 1},
-//				{content: row.date, flex: 1},
+			return {kind: "Item", components: [
+				{content: row.dish},
+				{layoutKind: "HFlexLayout", style: "font-size: 0.8em", 
+					components: [
+						{content: row.mensaName, flex: 1},
+						{content: row.date},
+					]}
 //				{content: row.studPrice}
 			]};
 		}

@@ -79,18 +79,39 @@
 					// get current Week from date
 					var now = new Date();
 					var week = now.getWeek();
-					
+console.log(mensa);
 					// load and parse URL with correct week number
 					url = urls.mensenWeek[mensa].replace(/{{week}}/, week);
+<<<<<<< Updated upstream
 					url = urls.mock[mensa].replace(/{{week}}/, week);
+=======
+<<<<<<< Updated upstream
+=======
+//					url = urls.mock[mensa].replace(/{{week}}/, week);
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
 					            
 					// Trigger AJAX-Call
 					xhr.get(url, function(resp, additional_args){
 						var tds, trs, dish, dishName, date, dateString, obj;
 						var tempDiv = document.createElement('div');
+<<<<<<< Updated upstream
 						tempDiv.innerHTML = resp.replace(/<img(.|\s)*?\>/g, '').replace(/<script(.|\s)*?\/script>/g, '');
 						trs = tempDiv.getElementsByTagName("table")[1].getElementsByTagName("tr");
+=======
+<<<<<<< Updated upstream
+						tempDiv.innerHTML = resp.replace(/<script(.|\s)*?\/script>/g, '');
+=======
+>>>>>>> Stashed changes
 
+						tempDiv.innerHTML = resp.replace(/<img(.|\s)*?\>/g, '').replace(/<script(.|\s)*?\/script>/g, '');
+console.log(additional_args.mensaName);
+try{
+>>>>>>> Stashed changes
+						trs = tempDiv.getElementsByTagName("table")[1].getElementsByTagName("tr");
+} catch(e){
+console.log(resp);
+	}
 						// extract and parse date field
 						var datefield = trs[0].getElementsByTagName("td")[0].innerText;
 						germanStartdate = datefield.split("-")[0].trim();
