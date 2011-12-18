@@ -38,12 +38,6 @@
 			"Geo"                   : "http://www.studierendenwerk-hamburg.de/essen/woche.php?haus=Geomatikum&kw={{week}}",
 			"Schweinemensa"         : "http://www.studierendenwerk-hamburg.de/essen/woche.php?haus=Studierendenhaus&kw={{week}}",
 			"Physik"                : "http://www.studierendenwerk-hamburg.de/essen/woche.php?haus=Caf%C3%A9%20Jungiusstra%C3%9Fe&kw={{week}}",
-<<<<<<< Updated upstream
-=======
-<<<<<<< Updated upstream
-			"Bucerius Law School"   : "http://www.studierendenwerk-hamburg.de/essen/woche.php?haus=Bucerius Law School&kw={{week}}"// "FH Buzze"
-=======
->>>>>>> Stashed changes
 			"Bucerius Law School"   : "http://www.studierendenwerk-hamburg.de/essen/woche_bls.php?haus=Bucerius Law School&kw={{week}}",// "FH Buzze"
 			"City Nord"             : "http://www.studierendenwerk-hamburg.de/essen/woche.php?haus=City%20Nord&kw={{week}}"
 		},
@@ -62,16 +56,9 @@
 			"Philo"                 : "mock/philosophenturm.html",
 			"Geo"                   : "mock/geomatikum.html",
 			"Schweinemensa"         : "mock/studierendenhaus.html",
-<<<<<<< Updated upstream
-			"Physik"                : "mock/jungiusstraße.html",
-			"Bucerius Law School"   : "mock/buzze.html",// "FH Buzze"
-			"City Nord"             : "mock/citynord.html"
-=======
 			"Physik"                : "mock/jungiusstrasse.html",
 			"Bucerius Law School"   : "mock/buzze.html",// "FH Buzze"
 			"City Nord"             : "mock/citynord.html"
->>>>>>> Stashed changes
->>>>>>> Stashed changes
 		}
 
 	}
