@@ -82,7 +82,7 @@
 console.log(mensa);
 					// load and parse URL with correct week number
 					url = urls.mensenWeek[mensa].replace(/{{week}}/, week);
-					url = urls.mock[mensa].replace(/{{week}}/, week);
+//					url = urls.mock[mensa].replace(/{{week}}/, week);
 					            
 					// Trigger AJAX-Call
 					xhr.get(url, function(resp, additional_args){
