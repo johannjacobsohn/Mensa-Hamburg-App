@@ -79,19 +79,22 @@
 					// get current Week from date
 					var now = new Date();
 					var week = now.getWeek();
-console.log(mensa);
+//					console.log(mensa);
+//					console.log(urls.mock[mensa]);
+					
 					// load and parse URL with correct week number
 					url = urls.mensenWeek[mensa].replace(/{{week}}/, week);
-//					url = urls.mock[mensa].replace(/{{week}}/, week);
+					url = urls.mock[mensa].replace(/{{week}}/, week);
 					            
 					// Trigger AJAX-Call
 					xhr.get(url, function(resp, additional_args){
+//						console.log("sucess!: " + resp);
 						var tds, trs, dish, dishName, date, dateString, obj;
 						var tempDiv = document.createElement('div');
 
 						tempDiv.innerHTML = resp.replace(/<img(.|\s)*?\>/g, '').replace(/<script(.|\s)*?\/script>/g, '');
 
-						console.log(additional_args.mensaName);
+//						console.log(additional_args.mensaName);
 						try{
 							trs = tempDiv.getElementsByTagName("table")[1].getElementsByTagName("tr");
 						} catch(e){
