@@ -53,12 +53,15 @@
 				return validUrls.indexOf(item.mensaName) !== -1;
 			});
 			
-			// Geladene Mensen feststellen
+			// cleanup loadedMensen
 			for(var mensa in this.loadedMensen){
 				this.loadedMensen[mensa] = this.weekMenu.filter(function(item){
 					return mensa === item.mensaName;
 				}).length > 0
 			}
+
+			// unset MensaFilter
+			this.unsetMensaFilter();
 		},
 		
 		/*
