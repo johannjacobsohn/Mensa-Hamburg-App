@@ -37,7 +37,7 @@
 		} else {
 			storage.setMensaFilter(element.children[0].content)
 		}
-		storage.filter(function(json){
+		storage.getSortedSegmented(function(json){
 			menuList.data = json;
 			menuList.render();
 		});

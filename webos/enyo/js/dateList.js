@@ -38,7 +38,7 @@
 		} else {
 			storage.setDateFilter(element.children[0].value)
 		}
-		storage.filter(function(json){
+		storage.getSortedSegmented(function(json){
 			menuList.data = json;
 			menuList.render();
 		});

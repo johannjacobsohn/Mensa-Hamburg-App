@@ -19,7 +19,7 @@
 	create: function() {
 		this.inherited(arguments);
 		var that = this;
-		storage.filter(function(json){
+		storage.getSortedSegmented(function(json){
 			that.data = json;
 			that.$.repeater.render();
 		});
@@ -27,15 +27,19 @@
 	listSetupRow: function(inSender, inIndex) {
 		var row = this.data[inIndex];
 		if (row) {
-			return {kind: "Item", components: [
-				{content: row.dish},
-				{layoutKind: "HFlexLayout", style: "font-size: 0.8em", 
-					components: [
-						{content: row.mensaName, flex: 1},
-						{content: row.date},
-					]}
-//				{content: row.studPrice}
-			]};
+			if(row.type === "header"){
+				return {kind: "Divider", caption: row.header}
+			} else {
+				return {kind: "Item", components: [
+					{content: row.dish},
+					{layoutKind: "HFlexLayout", style: "font-size: 0.8em", 
+						components: [
+							{content: row.name, flex: 1},
+							{content: row.studPrice+"€"},
+						]
+					}
+				]};
+			}
 		}
 	}
 });
