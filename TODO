@@ -1,7 +1,6 @@
 Bugs:
 -Backend
--- Nächste Woche laden
--- Mockdaten debuggen
+-- Nächste Woche (dynamisch) laden
 - mojo
 -- Konfiguration
 -- Datum/Tag besser anzeigen
@@ -9,41 +8,52 @@ Bugs:
 -- gesetzte Filter anzeigen
 -- Filterlist
 - enyo
--- Bessere Formatierung der Gerichte
--- Reihen trennen nach Mensa || Datum (Segmentierung)
--- Header entsprechend ändern
--- Filter auf Mensa verhindert Ansicht wenn Mensa entfernt wird
+-- Bessere Formatierung der Divider
+-- Bessere Datumsformatierung
 
 Frontends:
-- webos
+- webOS
 -- mojo (Phone)                      - done (mostly)
 -- enyo (Tablet)                     - done
 - iOS
--- jquery mobile/phonegap - Tablet   - TODO
--- jquery mobile/phonegap - Phone    - in Progress
--- Appcelerator Titanium  - Tablet   - TODO
--- Appcelerator Titanium  - Phone    - TODO
--- jo Framework/phonegap  - Tablet   - TODO
--- jo Framework/phonegap  - Phone    - TODO
+-- jquery mobile/phonegap - Tablet   - TODO                  2 T
+-- jquery mobile/phonegap - Phone    - Testing
+-- JQTouch/phonegap       - Phone    - TODO                  2 T
+-- Appcelerator Titanium  - Tablet   - TODO                  2 T
+-- Appcelerator Titanium  - Phone    - TODO                  2 T
+-- jo Framework/phonegap  - Tablet   - TODO                  2 T
+-- jo Framework/phonegap  - Phone    - TODO                  2 T
+-- iUi/phonegap           - Phone    - TODO                  2 T
 - Android
 -- jquery mobile/phonegap - Tablet   - TODO
--- jquery mobile/phonegap - Phone    - in Progress
+-- jquery mobile/phonegap - Phone    - Testing
+-- JQTouch/phonegap       - Phone    - TODO
 -- Appcelerator Titanium  - Tablet   - TODO
 -- Appcelerator Titanium  - Phone    - TODO
 -- jo Framework/phonegap  - Tablet   - TODO
 -- jo Framework/phonegap  - Phone    - TODO
+-- iUi/phonegap           - Phone    - TODO
 - Symbian (Nokia)
--- jquery mobile/phonegap - Phone    - TODO
--- jo Framework/phonegap  - Phone    - TODO
+-- jquery mobile/phonegap - Phone    - Testing               1 T
+-- jo Framework/phonegap  - Phone    - TODO                 .5 T
 - Blackberry
--- jquery mobile/phonegap - Phone    - TODO
--- jo Framework/phonegap  - Phone    - TODO
+-- jquery mobile/phonegap - Phone    - Testing               1 T
+-- jo Framework/phonegap  - Phone    - TODO                 .5 T
+-- jquery mobile/phonegap - Tablet   - TODO                 .5 T
+-- jo Framework/phonegap  - Tablet   - TODO                 .5 T
 - Windows Phone
--- jquery mobile/phonegap - Phone    - TODO
--- jo Framework/phonegap  - Phone    - TODO
+-- jquery mobile/phonegap - Phone    - Testing              .5 T
+-- jo Framework/phonegap  - Phone    - TODO                 .5 T
 - Desktop
--- Chrome App  ?                     - TODO
--- MacOS Desktop Widget              - TODO
--- Win7 Desktop Gadget               - TODO
--- Win8 Metro Gadget                 - TODO
--- Titanium?                         - TODO
+-- MacOS Desktop Widget              - TODO                  1 T
+-- Win7 Desktop Gadget               - TODO                  1 T
+-- Titanium?                         - TODO                  1 T
+                                                         =======
+                                                            23 T
+ 29 Versionen
+
+
+später?
+-- Chrome App  ?                     - TODO                 .5 T
+-- Sencha Touch
+-- Win8 Metro Gadget
