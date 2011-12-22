@@ -7,6 +7,9 @@
  * - reload neue urls
  * 
  */
+debug = true;
+
+ 
 (function(){ // its a trap!
 	storage = {
 		weekMenu         : [], // Cache
@@ -34,10 +37,63 @@
 				}
 				// filter filteredWeekMenu
 				for(i=0; i < storage.filters.length; i++){
+					// ? args
 					args = storage.filters[i].args
 					storage.filteredWeekMenu = storage.filteredWeekMenu.filter(storage.filters[i].fkt);
 				}
 				callback(storage.filteredWeekMenu);
+			});
+		},
+
+		getSortedSegmented : function(callback){
+			this.filter(function(json){
+				var sorted = json.sort(function(a, b){
+					var mensaNameWeight = 0,
+					    dateWeight = 0,
+					    nameA = a.mensaName.toLowerCase(),
+						nameB = b.mensaName.toLowerCase(),
+					    dateA = a.date.toLowerCase(),
+						dateB = b.date.toLowerCase()
+					if (nameA < nameB){
+						mensaNameWeight = -10;
+					} else if (nameA > nameB) {
+						mensaNameWeight =  10;
+					}
+					if (dateA < dateB){
+						dateWeight = -100;
+					} else if (dateA > dateB) {
+						dateWeight =  100;
+					}
+
+					return mensaNameWeight + dateWeight;
+				});
+
+				var isDateFilterSet = storage.filters.filter(function(item){
+					return item.fkt === storage.filterByDate;
+				}).length !== 0;
+
+				var isMensaFilterSet = storage.filters.filter(function(item){
+					return item.fkt === storage.filterByMensa;
+				}).length !== 0;
+
+//				console.log("isMensaFilterSet: " + isMensaFilterSet)
+//				console.log("isDateFilterSet: " + isDateFilterSet)
+			
+				var segmented = [], mensaName = "", date = "", i;
+				for(i=0; i<sorted.length; i++){
+					if(date != sorted[i].date && !isDateFilterSet){
+						segmented.push({header:sorted[i].date, type: "header"});
+					}
+					if(mensaName != sorted[i].mensaName && !isMensaFilterSet){
+						segmented.push({header:sorted[i].mensaName, type: "header"});
+					}
+					sorted[i].type = "item";
+					segmented.push(sorted[i]);
+					mensaName = sorted[i].mensaName;
+					date = sorted[i].date;
+				}
+
+				callback(segmented);
 			});
 		},
 
@@ -78,17 +134,18 @@
 				if(!this.loadedMensen[mensa] && typeof this.lock[mensa] === "undefined"){
 					// lock execution of callback queue to prevent race conditions
 					this.lock[mensa] = true;
-					
+
 					// get current Week from date
 					var now = new Date();
 					var week = now.getWeek();
-//					console.log(mensa);
-//					console.log(urls.mock[mensa]);
-					
+
 					// load and parse URL with correct week number
-					url = urls.mensenWeek[mensa].replace(/{{week}}/, week);
-					url = urls.mock[mensa].replace(/{{week}}/, week);
-					            
+					if(typeof debug !== "undefined" && debug){
+						url = urls.mock[mensa].replace(/{{week}}/, week);
+					} else {
+						url = urls.mensenWeek[mensa].replace(/{{week}}/, week);
+					}
+
 					// Trigger AJAX-Call
 					xhr.get(url, function(resp, additional_args){
 //						console.log("sucess!: " + resp);
@@ -134,8 +191,8 @@
 								for (var k=0; k<p.length; k++){
 									// Extract Price
 									price = p[k].getElementsByClassName("fliesstextklorange")[0].innerHTML.replace("€","").replace(" ","").split("/");
-									studPrice = price[0];
-									normalPrice = price[1];
+									studPrice = price[0].replace(/[^0-9,]/g,"");
+									normalPrice = price[1].replace(/[^0-9,]/g,"");
 
 									// Parse out dish
 									p[k].removeChild(p[k].getElementsByClassName("fliesstextklorange")[0]); // remove price
@@ -310,13 +367,13 @@
 		*/
 		setDateFilter : function(date){
 			this.unsetDateFilter();
-			storage.filters.push({fkt:storage.filterByDate,args:{date:date}});
+			this.filters.push({fkt:this.filterByDate,args:{date:date}});
 		},
 		/*
 		* 
 		*/
 		unsetDateFilter : function(){
-			storage.filters = storage.filters.filter(function(item){
+			this.filters = this.filters.filter(function(item){
 				return item.fkt !== storage.filterByDate;
 			});
 		},
