@@ -8,12 +8,5 @@
 }
 
 .dish{
-/*
-	height: 1em;
-	overflow: hidden;
-	text-overflow:ellipse;
-	white-space: nowrap;
-*/
 	display: block;
 }
-

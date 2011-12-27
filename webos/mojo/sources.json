@@ -4,6 +4,7 @@
     {"source": "js/utils.js"},
     {"source": "js/urls.js"},
     {"source": "js/storage.js"},
+    {"source": "js/conf.js"},
     {
         "scenes": "menu",
         "source": "app/assistants/menu-assistant.js"
