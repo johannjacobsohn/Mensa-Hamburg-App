@@ -1,1 +1,1 @@
-../../shared/js/xhr.js
+../../../../../shared/js/xhr.js

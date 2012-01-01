@@ -1,9 +1,9 @@
 //
 //  main.m
-//  mensaAppIOS
+//  ios-phonegap
 //
-//  Created by Johann Jacobsohn on 04.12.11.
-//  Copyright __MyCompanyName__ 2011. All rights reserved.
+//  Created by Johann Jacobsohn on 01.01.12.
+//  Copyright __MyCompanyName__ 2012. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
