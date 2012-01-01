@@ -10,6 +10,8 @@ Bugs:
 - enyo
 -- Bessere Formatierung der Divider
 -- Bessere Datumsformatierung
+- jquery mobile
+-- instabil auf Xoom/Android (localStorage funktioniert vermutlich nicht) : "ERROR/AndroidRuntime(5560): java.lang.NullPointerException: println needs a message"
 
 Frontends:
 - webOS
@@ -22,7 +24,7 @@ Frontends:
 -- Appcelerator Titanium  - Tablet   - TODO                  2 T
 -- Appcelerator Titanium  - Phone    - TODO                  2 T
 -- jo Framework/phonegap  - Tablet   - TODO                  2 T
--- jo Framework/phonegap  - Phone    - TODO                  2 T
+-- jo Framework/phonegap  - Phone    - In Progress           2 T
 -- iUi/phonegap           - Phone    - TODO                  2 T
 - Android
 -- jquery mobile/phonegap - Tablet   - TODO
@@ -31,26 +33,29 @@ Frontends:
 -- Appcelerator Titanium  - Tablet   - TODO
 -- Appcelerator Titanium  - Phone    - TODO
 -- jo Framework/phonegap  - Tablet   - TODO
--- jo Framework/phonegap  - Phone    - TODO
+-- jo Framework/phonegap  - Phone    - In Progress
 -- iUi/phonegap           - Phone    - TODO
 - Symbian (Nokia)
 -- jquery mobile/phonegap - Phone    - Testing               1 T
--- jo Framework/phonegap  - Phone    - TODO                 .5 T
+-- jo Framework/phonegap  - Phone    - In Progress          .5 T
 - Blackberry
 -- jquery mobile/phonegap - Phone    - Testing               1 T
--- jo Framework/phonegap  - Phone    - TODO                 .5 T
+-- jo Framework/phonegap  - Phone    - In Progress          .5 T
 -- jquery mobile/phonegap - Tablet   - TODO                 .5 T
 -- jo Framework/phonegap  - Tablet   - TODO                 .5 T
 - Windows Phone
 -- jquery mobile/phonegap - Phone    - Testing              .5 T
--- jo Framework/phonegap  - Phone    - TODO                 .5 T
+-- jo Framework/phonegap  - Phone    - In Progress          .5 T
+- Bada (Samsung)
+-- Phone                                                     1 T
 - Desktop
 -- MacOS Desktop Widget              - TODO                  1 T
 -- Win7 Desktop Gadget               - TODO                  1 T
 -- Titanium?                         - TODO                  1 T
+
                                                          =======
                                                             23 T
- 29 Versionen
+ 31 Versionen
 
 
 später?
