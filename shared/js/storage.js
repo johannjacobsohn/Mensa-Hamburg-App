@@ -7,8 +7,7 @@
  * - reload neue urls
  * 
  */
-debug = true;
-
+debug = false;
  
 (function(){ // its a trap!
 	storage = {
