@@ -7,7 +7,7 @@ $(document).ready(function(){
 //	$('#main').live( 'pageinit',function(event){
 		date = new Date();
 		dateString = date.getFullYear() + "-" + (date.getMonth()+1) + "-" + (date.getDate());
-		dateString = "2011-12-14"; // Mock
+//		dateString = "2011-12-14"; // Mock
 
 		storage.setDateFilter(dateString)
 		storage.getSortedSegmented(function(json){
@@ -62,7 +62,7 @@ $("#mensen form").submit(function(e){
 
 
 $('#mensen').live('pageinit', function(event){
-	var json = getMensaInfo();
+	var json = conf.getMensaInfo();
 	$("#mensenlist").html(ich.mensaCheckbox({"mensen" : json})).parent().trigger("create").find("input").checkboxradio();
 });
 
