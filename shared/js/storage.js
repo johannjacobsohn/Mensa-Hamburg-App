@@ -7,7 +7,6 @@
  * - reload neue urls
  * 
  */
-debug = false;
  
 (function(){ // its a trap!
 	storage = {
@@ -18,13 +17,13 @@ debug = false;
 		menuCallbackQueue : [],
 		filters : [],
 		filterByMensa : function(item){
-			return item.mensaName === args.mensa
+			return item.mensaName === args.mensa;
 		},
 		filterByName : function(item){
-			return item.name === args.name
+			return item.name === args.name;
 		},
 		filterByDate : function(item){
-			return item.date === args.date
+			return item.date === args.date;
 		},
 		filter : function(callback){
 			this.getWeekMenu(function(){
@@ -37,7 +36,7 @@ debug = false;
 				// filter filteredWeekMenu
 				for(i=0; i < storage.filters.length; i++){
 					// ? args
-					args = storage.filters[i].args
+					args = storage.filters[i].args;
 					storage.filteredWeekMenu = storage.filteredWeekMenu.filter(storage.filters[i].fkt);
 				}
 				callback(storage.filteredWeekMenu);
@@ -74,9 +73,6 @@ debug = false;
 				var isMensaFilterSet = storage.filters.filter(function(item){
 					return item.fkt === storage.filterByMensa;
 				}).length !== 0;
-
-//				console.log("isMensaFilterSet: " + isMensaFilterSet)
-//				console.log("isDateFilterSet: " + isDateFilterSet)
 			
 				var segmented = [], mensaName = "", date = "", i;
 				for(i=0; i<sorted.length; i++){
