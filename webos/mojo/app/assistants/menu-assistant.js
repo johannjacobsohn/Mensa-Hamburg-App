@@ -8,6 +8,16 @@ function MenuAssistant() {
 MenuAssistant.prototype.activate = function(event) {
 	/* put in event handlers here that should only be in effect when this scene is active. For
 	   example, key handlers that are observing the document */
+
+	// cleanup Data
+	storage.cleanData();
+
+	// Rerender Menu
+	storage.filter(function(json){
+		this.controller = Mojo.Controller.stageController.activeScene();
+		this.controller.setWidgetModel("menu", {"items": json});
+	});
+	
 };
 
 MenuAssistant.prototype.deactivate = function(event) {
@@ -37,10 +47,13 @@ MenuAssistant.prototype.setup = function() {
 					command : "mensa-all"
 				}]
 			},
+			{
+				label: "Mensen konfigurieren",
+				command : "conf"
+			},
 		]
 	};
 	this.controller.setupWidget(Mojo.Menu.appMenu, {}, mediaMenuModel);
-
 
 	headerMenu = {
 		visible: true,
@@ -58,7 +71,6 @@ MenuAssistant.prototype.setup = function() {
 		headerMenu
 	);
 
-    
 	// get list data async
 	this.controller.setupWidget("menu",{
 		itemTemplate: "menu/static-list-menu-entry",
@@ -112,32 +124,34 @@ MenuAssistant.prototype.setup = function() {
 				storage.setDateFilter(dateString);
 				storage.filter(fetch);
 				return;
-			}
-			if(event.command === "yesterday"){
+			} else if(event.command === "yesterday"){
 				date = new Date(date.valueOf() - 60 * 60 * 24 * 1000);
 				dateString = date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getDate();
 				storage.setDateFilter(dateString);
 				storage.filter(fetch);
 				return;
-			}
-			
-			var temp = event.command.split("-");
-			this.controller = Mojo.Controller.stageController.activeScene();
-			switch (temp[0]) {
-				case "type": {
-					if(temp[1] === "all") storage.unsetNameFilter();
-					else storage.setNameFilter(temp[1]);
-					storage.filter(function(json){
-						this.controller.setWidgetModel("menu", {"items": json});
-					});
-					break;
-				} case "mensa" : {
-					if(temp[1] === "all") storage.unsetMensaFilter();
-					else storage.setMensaFilter(temp[1]);
-					storage.filter(function(json){
-						this.controller.setWidgetModel("menu", {"items": json});
-					});
-					break;
+			} else if(event.command === "conf"){
+				this.controller.pushScene("config");
+				return;
+			} else {
+				var temp = event.command.split("-");
+				this.controller = Mojo.Controller.stageController.activeScene();
+				switch (temp[0]) {
+					case "type": {
+						if(temp[1] === "all") storage.unsetNameFilter();
+						else storage.setNameFilter(temp[1]);
+						storage.filter(function(json){
+							this.controller.setWidgetModel("menu", {"items": json});
+						});
+						break;
+					} case "mensa" : {
+						if(temp[1] === "all") storage.unsetMensaFilter();
+						else storage.setMensaFilter(temp[1]);
+						storage.filter(function(json){
+							this.controller.setWidgetModel("menu", {"items": json});
+						});
+						break;
+					}
 				}
 			}
 		}

@@ -1,10 +1,9 @@
 Bugs:
 -Backend
 -- Nächste Woche (dynamisch) laden
+-- out-of-range rückgeben
 - mojo
--- Konfiguration
 -- Datum/Tag besser anzeigen
--- out-of-range nicht weitergehen
 -- gesetzte Filter anzeigen
 -- Filterlist
 - enyo

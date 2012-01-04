@@ -8,5 +8,9 @@
     {
         "scenes": "menu",
         "source": "app/assistants/menu-assistant.js"
+    },
+    {
+        "scenes": "config",
+        "source": "app/assistants/config-assistant.js"
     }
 ]
