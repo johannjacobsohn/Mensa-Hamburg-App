@@ -17,7 +17,26 @@ MenuAssistant.prototype.activate = function(event) {
 		this.controller = Mojo.Controller.stageController.activeScene();
 		this.controller.setWidgetModel("menu", {"items": json});
 	});
-	
+
+	// Rerender Filter
+	storage.getTypes(function(types){
+		console.log("get Types" + types.length);
+		mediaMenuModel.items[0].items = [{
+			label : "Alle",
+			command : "type-all"
+		}];
+		for(var i=0; i<types.length; i++){
+			mediaMenuModel.items[0].items.push({label: types[i], command: "type-" + types[i] });
+		}
+	});
+	mediaMenuModel.items[1].items = [{
+		label : "Alle",
+		command : "type-all"
+	}];
+	var mensen = conf.getSavedURLs();
+	for(var i=0; i<mensen.length; i++){
+		mediaMenuModel.items[1].items.push({label: mensen[i], command: "mensa-" + mensen[i] });
+	}
 };
 
 MenuAssistant.prototype.deactivate = function(event) {
@@ -97,11 +116,12 @@ MenuAssistant.prototype.setup = function() {
 			mediaMenuModel.items[0].items.push({label: types[i], command: "type-" + types[i] });
 		}
 	});
-	storage.getMensen(function(mensen){
+	(function(){
+		var mensen = conf.getSavedURLs();
 		for(var i=0; i<mensen.length; i++){
 			mediaMenuModel.items[1].items.push({label: mensen[i], command: "mensa-" + mensen[i] });
 		}
-	});
+	})();
 
 	function fetch(json){
 		if(typeof json === "undefined") json = []; // @TODO: gehört hier nicht hin - storage sollte nicht "undefined zurückgeben"

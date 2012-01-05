@@ -276,6 +276,7 @@
 		* list all MensaNames
 		*/
 		getMensen : function(callback){
+			console.log("storage.getMensen is depreciated, use conf.getSavedURLs or conf.getMensaInfo");
 			callback(conf.getSavedURLs());
 		},
 		/*
