@@ -21,7 +21,10 @@
 	<key>AllowInlineMediaPlayback</key>
 	<false/>
 	<key>ExternalHosts</key>
-	<array/>
+	<array>
+		<string>192.168.2.226:8081</string>
+		<string>www.studierendenwerk-hamburg.de</string>
+	</array>
 	<key>Plugins</key>
 	<dict>
 		<key>com.phonegap.accelerometer</key>

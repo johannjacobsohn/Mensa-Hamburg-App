@@ -4,20 +4,18 @@
  *
  */
 $(document).ready(function(){
-alert("ready")
-				  //	$('#main').live( 'pageinit',function(event){
+		//	$('#main').live( 'pageinit',function(event){
 		date = new Date();
 		dateString = date.getFullYear() + "-" + (date.getMonth()+1) + "-" + (date.getDate());
-		alert(dateString)
-//		dateString = "2011-12-14"; // Mock
 
-		storage.setDateFilter(dateString)
+		storage.setDateFilter(dateString);
+				 
 		storage.getSortedSegmented(function(json){
 			$("#dishes").html(ich.mainList({"json" : json}));
 			$("#dishes").listview('refresh');
 		});
 //	});
-
+		
 	$("#mensa-select").change(function(){
 		var val = $(this).val();
 		if(val == "all") storage.unsetMensaFilter();
@@ -47,10 +45,7 @@ $("#mensen form").submit(function(e){
 	storage.getWeekMenu();
 
 	// Refresh Menulist
-	storage.getSortedSegmented(function(json){
-		$("#dishes").html(ich.mainList({"json" : json}));
-		$("#dishes").listview('refresh');
-	});
+	storage.getSortedSegmented(fetch);
 
 	// Reset Mensaselect
 	setMensaSelect();
