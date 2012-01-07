@@ -8,6 +8,35 @@ function MenuAssistant() {
 MenuAssistant.prototype.activate = function(event) {
 	/* put in event handlers here that should only be in effect when this scene is active. For
 	   example, key handlers that are observing the document */
+
+	// cleanup Data
+	storage.cleanData();
+
+	// Rerender Menu
+	storage.filter(function(json){
+		this.controller = Mojo.Controller.stageController.activeScene();
+		this.controller.setWidgetModel("menu", {"items": json});
+	});
+
+	// Rerender Filter
+	storage.getTypes(function(types){
+		console.log("get Types" + types.length);
+		mediaMenuModel.items[0].items = [{
+			label : "Alle",
+			command : "type-all"
+		}];
+		for(var i=0; i<types.length; i++){
+			mediaMenuModel.items[0].items.push({label: types[i], command: "type-" + types[i] });
+		}
+	});
+	mediaMenuModel.items[1].items = [{
+		label : "Alle",
+		command : "type-all"
+	}];
+	var mensen = conf.getSavedURLs();
+	for(var i=0; i<mensen.length; i++){
+		mediaMenuModel.items[1].items.push({label: mensen[i], command: "mensa-" + mensen[i] });
+	}
 };
 
 MenuAssistant.prototype.deactivate = function(event) {
@@ -37,10 +66,13 @@ MenuAssistant.prototype.setup = function() {
 					command : "mensa-all"
 				}]
 			},
+			{
+				label: "Mensen konfigurieren",
+				command : "conf"
+			},
 		]
 	};
 	this.controller.setupWidget(Mojo.Menu.appMenu, {}, mediaMenuModel);
-
 
 	headerMenu = {
 		visible: true,
@@ -58,7 +90,6 @@ MenuAssistant.prototype.setup = function() {
 		headerMenu
 	);
 
-    
 	// get list data async
 	this.controller.setupWidget("menu",{
 		itemTemplate: "menu/static-list-menu-entry",
@@ -85,11 +116,12 @@ MenuAssistant.prototype.setup = function() {
 			mediaMenuModel.items[0].items.push({label: types[i], command: "type-" + types[i] });
 		}
 	});
-	storage.getMensen(function(mensen){
+	(function(){
+		var mensen = conf.getSavedURLs();
 		for(var i=0; i<mensen.length; i++){
 			mediaMenuModel.items[1].items.push({label: mensen[i], command: "mensa-" + mensen[i] });
 		}
-	});
+	})();
 
 	function fetch(json){
 		if(typeof json === "undefined") json = []; // @TODO: gehört hier nicht hin - storage sollte nicht "undefined zurückgeben"
@@ -112,32 +144,34 @@ MenuAssistant.prototype.setup = function() {
 				storage.setDateFilter(dateString);
 				storage.filter(fetch);
 				return;
-			}
-			if(event.command === "yesterday"){
+			} else if(event.command === "yesterday"){
 				date = new Date(date.valueOf() - 60 * 60 * 24 * 1000);
 				dateString = date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getDate();
 				storage.setDateFilter(dateString);
 				storage.filter(fetch);
 				return;
-			}
-			
-			var temp = event.command.split("-");
-			this.controller = Mojo.Controller.stageController.activeScene();
-			switch (temp[0]) {
-				case "type": {
-					if(temp[1] === "all") storage.unsetNameFilter();
-					else storage.setNameFilter(temp[1]);
-					storage.filter(function(json){
-						this.controller.setWidgetModel("menu", {"items": json});
-					});
-					break;
-				} case "mensa" : {
-					if(temp[1] === "all") storage.unsetMensaFilter();
-					else storage.setMensaFilter(temp[1]);
-					storage.filter(function(json){
-						this.controller.setWidgetModel("menu", {"items": json});
-					});
-					break;
+			} else if(event.command === "conf"){
+				this.controller.pushScene("config");
+				return;
+			} else {
+				var temp = event.command.split("-");
+				this.controller = Mojo.Controller.stageController.activeScene();
+				switch (temp[0]) {
+					case "type": {
+						if(temp[1] === "all") storage.unsetNameFilter();
+						else storage.setNameFilter(temp[1]);
+						storage.filter(function(json){
+							this.controller.setWidgetModel("menu", {"items": json});
+						});
+						break;
+					} case "mensa" : {
+						if(temp[1] === "all") storage.unsetMensaFilter();
+						else storage.setMensaFilter(temp[1]);
+						storage.filter(function(json){
+							this.controller.setWidgetModel("menu", {"items": json});
+						});
+						break;
+					}
 				}
 			}
 		}

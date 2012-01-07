@@ -25,7 +25,11 @@
 			return localStorage.setItem("urls", JSON.stringify(urls));
 		},
 		isConfigured : function(urls){
-			return typeof localStorage.getItem("urls") === "string";
+			try{
+				return typeof localStorage.getItem("urls") === "string";
+			} catch(e){
+				return false;
+			}
 		},
 		getMensaInfo : function(){
 			var json = [];

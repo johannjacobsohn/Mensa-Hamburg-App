@@ -1,10 +1,9 @@
 Bugs:
 -Backend
 -- Nächste Woche (dynamisch) laden
+-- out-of-range rückgeben
 - mojo
--- Konfiguration
 -- Datum/Tag besser anzeigen
--- out-of-range nicht weitergehen
 -- gesetzte Filter anzeigen
 -- Filterlist
 - enyo
@@ -19,7 +18,7 @@ Frontends:
 -- enyo (Tablet)                     - done
 - iOS
 -- jquery mobile/phonegap - Tablet   - TODO                  2 T
--- jquery mobile/phonegap - Phone    - Testing
+-- jquery mobile/phonegap - Phone    - Done
 -- JQTouch/phonegap       - Phone    - TODO                  2 T
 -- Appcelerator Titanium  - Tablet   - TODO                  2 T
 -- Appcelerator Titanium  - Phone    - TODO                  2 T
@@ -28,7 +27,7 @@ Frontends:
 -- iUi/phonegap           - Phone    - TODO                  2 T
 - Android
 -- jquery mobile/phonegap - Tablet   - TODO
--- jquery mobile/phonegap - Phone    - Testing
+-- jquery mobile/phonegap - Phone    - Done
 -- JQTouch/phonegap       - Phone    - TODO
 -- Appcelerator Titanium  - Tablet   - TODO
 -- Appcelerator Titanium  - Phone    - TODO
@@ -36,8 +35,8 @@ Frontends:
 -- jo Framework/phonegap  - Phone    - In Progress
 -- iUi/phonegap           - Phone    - TODO
 - Symbian (Nokia)
--- jquery mobile/phonegap - Phone    - Testing               1 T
--- jo Framework/phonegap  - Phone    - In Progress          .5 T
+-- S40                    - Phone    - In Progress           1 T
+-- S60/phonegap           - Phone    - In Progress          .5 T
 - Blackberry
 -- jquery mobile/phonegap - Phone    - Testing               1 T
 -- jo Framework/phonegap  - Phone    - In Progress          .5 T

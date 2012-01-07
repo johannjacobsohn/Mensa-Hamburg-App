@@ -17,7 +17,7 @@
 			"WIWI"                  : "http://www.studierendenwerk-hamburg.de/essen/tag.php?haus=Campus", 
 			"Philo"                 : "http://www.studierendenwerk-hamburg.de/essen/tag.php?haus=Philosophenturm",
 			"Geo"                   : "http://www.studierendenwerk-hamburg.de/essen/tag.php?haus=Geomatikum",
-			"Schweinemensa"         : "http://www.studierendenwerk-hamburg.de/essen/tag.php?haus=Studierendenhaus",
+			"Schweinemensa"         : "http://www.studierendenwerk-hamburg.de/essen/tag.php?haus=Studierendenhaus"
 //			"Physik"                : "http://www.studierendenwerk-hamburg.de/essen/tag.php?haus=Caf%C3%A9%20Jungiusstra%C3%9Fe",
 //			"FH Buzze"              : "http://www.studierendenwerk-hamburg.de/essen/tag_bls.php?haus=Bucerius%20Law%20School"
 //			"Bucerius Law School"   : "http://www.studierendenwerk-hamburg.de/essen/tag.php?haus=Bucerius Law School",
