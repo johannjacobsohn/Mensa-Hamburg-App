@@ -2,26 +2,37 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>Breakpoints</key>
+	<dict>
+		<key>widget.wdgt/main.js:23</key>
+		<string>-load</string>
+		<key>widget.wdgt/main.js:24</key>
+		<string>-load</string>
+	</dict>
+	<key>CYBreakOnException</key>
+	<false/>
 	<key>CYLastWindowPosition</key>
-	<string>{744, 346}</string>
+	<string>{980, 538}</string>
 	<key>ContentSplitViewGeometry</key>
 	<dict>
 		<key>ContentSplitViewConfig</key>
 		<integer>8</integer>
 		<key>SplitViewConfig</key>
-		<integer>1</integer>
+		<integer>3</integer>
 		<key>_indexOfCollapsedView</key>
 		<integer>0</integer>
 		<key>sizes</key>
 		<array>
-			<string>{{0, 0}, {759, 402}}</string>
-			<string>{{0, 412}, {759, 225}}</string>
+			<string>{{0, 0}, {759, 256}}</string>
+			<string>{{0, 266}, {759, 371}}</string>
 		</array>
 	</dict>
 	<key>ContentViewType</key>
 	<integer>0</integer>
 	<key>DeploymentOptions</key>
 	<dict>
+		<key>CompressJavaScript</key>
+		<false/>
 		<key>Destination</key>
 		<string>localhost.default</string>
 		<key>Path</key>
@@ -33,6 +44,8 @@
 	</dict>
 	<key>Design time language</key>
 	<string>de.lproj</string>
+	<key>EvaluatorFrame</key>
+	<string>497 64 479 226 0 0 1152 848 </string>
 	<key>MainSplitViewGeometry</key>
 	<dict>
 		<key>_indexOfCollapsedView</key>
@@ -44,7 +57,7 @@
 		</array>
 	</dict>
 	<key>MainWindowFrame</key>
-	<string>502 -49 1004 679 0 0 1152 848 </string>
+	<string>-82 169 1004 679 0 0 1152 848 </string>
 	<key>NavigatorSplitViewGeometry</key>
 	<dict>
 		<key>ContentSplitViewConfig</key>
@@ -69,10 +82,6 @@
 			<array>
 				<integer>0</integer>
 				<integer>0</integer>
-			</array>
-			<array>
-				<integer>0</integer>
-				<integer>0</integer>
 				<integer>3</integer>
 			</array>
 			<array>
@@ -83,13 +92,6 @@
 			</array>
 			<array>
 				<integer>0</integer>
-				<integer>0</integer>
-				<integer>4</integer>
-			</array>
-			<array>
-				<integer>0</integer>
-				<integer>0</integer>
-				<integer>4</integer>
 				<integer>0</integer>
 			</array>
 		</array>
@@ -100,6 +102,8 @@
 			<integer>0</integer>
 			<integer>1</integer>
 			<integer>2</integer>
+			<integer>3</integer>
+			<integer>4</integer>
 		</array>
 		<key>Visible StackLayout Views</key>
 		<array>

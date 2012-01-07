@@ -9,22 +9,23 @@
 // Called by HTML body element's onload event when the widget is ready to start
 //
 	
-	// Templates konfigurieren
-	var mainListTemplate      = Hogan.compile(document.getElementById("mainList").innerHTML);
-	selectOptionsTemplate     = Hogan.compile(document.getElementById("selectOptions").innerHTML);
-	var mensaCheckboxTemplate = Hogan.compile(document.getElementById("mensaCheckbox").innerHTML);
-	
 function load(){
 	dashcode.setupParts();
 
+	// Templates konfigurieren
+	mainListTemplate      = Hogan.compile(document.getElementById("mainList").innerHTML);
+//	selectOptionsTemplate = Hogan.compile(document.getElementById("selectOptions").innerHTML);
+//	mensaCheckboxTemplate = Hogan.compile(document.getElementById("mensaCheckbox").innerHTML);
+	
+    var date = new Date();
 	var dateString = date.getFullYear() + "-" + (date.getMonth()+1) + "-" + (date.getDate());
-	storage.setDateFilter(dateString)
+	storage.setDateFilter(dateString);
 	storage.getSortedSegmented(fetch);
 }
 
 	function fetch(json){
 		if(typeof json === "undefined") json = [];
-		var dayString = dateToString(dateString);
+//		var dayString = dateToString(dateString);
 //		$("#header .date").text(dayString);
 		
 		document.getElementById("list").innerHTML = mainListTemplate.render({"json" : json});
