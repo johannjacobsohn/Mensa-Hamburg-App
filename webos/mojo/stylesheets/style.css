@@ -1,12 +1,21 @@
+.palm-row{
+	padding: 4px 0 10px 0;
+	position: relative;
+}
+
 .name{
 	color: #bbb;
 	font-size: 80%;
 }
 
-.palm-row{
-	padding: 4px 0 10px 0;
-}
-
 .dish{
 	display: block;
+}
+
+.price{
+	font-size: 20px;
+	color: #667;
+	position: absolute;
+	top: 2px;
+	right: 2px;
 }
