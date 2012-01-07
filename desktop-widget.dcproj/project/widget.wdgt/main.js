@@ -8,10 +8,28 @@
 // Function: load()
 // Called by HTML body element's onload event when the widget is ready to start
 //
-function load()
-{
-    dashcode.setupParts();
+	
+	// Templates konfigurieren
+	var mainListTemplate      = Hogan.compile(document.getElementById("mainList").innerHTML);
+	selectOptionsTemplate     = Hogan.compile(document.getElementById("selectOptions").innerHTML);
+	var mensaCheckboxTemplate = Hogan.compile(document.getElementById("mensaCheckbox").innerHTML);
+	
+function load(){
+	dashcode.setupParts();
+
+	var dateString = date.getFullYear() + "-" + (date.getMonth()+1) + "-" + (date.getDate());
+	storage.setDateFilter(dateString)
+	storage.getSortedSegmented(fetch);
 }
+
+	function fetch(json){
+		if(typeof json === "undefined") json = [];
+		var dayString = dateToString(dateString);
+//		$("#header .date").text(dayString);
+		
+		document.getElementById("list").innerHTML = mainListTemplate.render({"json" : json});
+	}
+
 
 //
 // Function: remove()
