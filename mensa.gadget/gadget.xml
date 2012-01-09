@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<gadget>
+  <name>Mensa Gadget</name>
+  <namespace>windows.sdk</namespace>
+  <version>1.0.0.0</version>
+  <author name="jjacobsohn">
+    <info url="msdn.microsoft.com" />
+    <logo src="logo.png" />
+  </author>
+  <copyright>&#169; Johann Jacobsohn.</copyright>
+  <description>Mensamenu anzeigen.</description>
+  <icons>
+    <icon height="48" width="48" src="icon.png" />
+  </icons>
+  <hosts>
+    <host name="sidebar">
+      <base type="HTML" apiVersion="1.0.0" src="index.html" />
+      <permissions>Full</permissions>
+      <platform minPlatformVersion="1.0" />
+      <defaultImage src="icon.png" />
+    </host>
+  </hosts>
+</gadget>
+

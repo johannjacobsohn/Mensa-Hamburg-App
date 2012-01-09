@@ -1,0 +1,86 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=Unicode" />
+		<meta http-equiv="X-UA-Compatible" content="IE8" />
+
+		<title>Mensa Gadget</title>
+        <style type="text/css">
+        *{
+            margin: 0;	
+            font-size: 11px;
+			list-style: none;
+		}
+		body{
+			background: lightblue;
+            width: 300px;
+            font-family: verdana;
+			height: 500px;
+        }
+        #gadgetContent{
+            m-argin-top: 20px;
+            w-idth: 400px;
+            v-ertical-align: middle;
+            height: 400px;
+            overflow-y: scroll;
+        }
+		h2{
+			font-size: 120%;
+			font-weight: bold;
+		}
+		.divider{
+			background: darkblue;
+			color: white;
+		}
+
+
+		#header, #footer{
+			height: 50px;
+		}
+		
+        </style>
+
+	</head>
+	<body>
+		<script src="js/filter-polyfill.js" type="text/javascript"></script>
+		<script src="js/conf.js"      type="text/javascript"></script>
+		<script src="js/hogan.min.js" type="text/javascript"></script>
+		<script src="js/storage.js"   type="text/javascript"></script>
+		<script src="js/urls.js"      type="text/javascript"></script>
+		<script src="js/utils.js"     type="text/javascript"></script>
+		<script src="js/xhr.js"       type="text/javascript"></script>
+		<script src="js/app.js"       type="text/javascript"></script>
+
+		<script type="text/html" id="mainList">
+			{{#json}}
+				{{^mensaName}}
+					<li class="divider">{{header}}</li>
+				{{/mensaName}}
+				{{#mensaName}}
+					<li>
+						<h2>{{dish}}</h2>
+
+						<p class="price">{{studPrice}}€</p>
+						<p>{{name}}</p>
+					</li>
+				{{/mensaName}}	
+			{{/json}}
+		</script>
+		<script type="text/html" id="selectOptions">
+			{{#options}}
+				<option value="{{value}}">{{name}}</option>
+			{{/options}}
+		</script>
+		<script type="text/html" id="mensaCheckbox">
+			{{#mensen}}
+				<li>
+					<input type="checkbox" {{#active}}checked="checked"{{/active}} name="mensen" value="{{name}}" id="{{name}}" class="custom">
+					<label for="{{name}}">{{name}}</label>
+				</li>
+			{{/mensen}}
+		</script>
+
+		<div id="gadgetContent">
+			<ul id="dishes"></ul>
+		</div>
+	</body>
+</html>
