@@ -13,17 +13,17 @@ Bugs:
 
 Frontends:
 - webOS
--- mojo (Phone)                      - done (mostly)
+-- mojo (Phone)                      - done
 -- enyo (Tablet)                     - done
 - iOS
--- jquery mobile/phonegap - Tablet   - TODO                  2 T
+-- jquery mobile/phonegap - Tablet   - TODO
 -- jquery mobile/phonegap - Phone    - Done
--- JQTouch/phonegap       - Phone    - TODO                  2 T
--- Appcelerator Titanium  - Tablet   - TODO                  2 T
--- Appcelerator Titanium  - Phone    - TODO                  2 T
--- jo Framework/phonegap  - Tablet   - TODO                  2 T
--- jo Framework/phonegap  - Phone    - In Progress           2 T
--- iUi/phonegap           - Phone    - TODO                  2 T
+-- JQTouch/phonegap       - Phone    - TODO
+-- Appcelerator Titanium  - Tablet   - TODO
+-- Appcelerator Titanium  - Phone    - TODO
+-- jo Framework/phonegap  - Tablet   - TODO
+-- jo Framework/phonegap  - Phone    - In Progress
+-- iUi/phonegap           - Phone    - TODO
 - Android
 -- jquery mobile/phonegap - Tablet   - TODO
 -- jquery mobile/phonegap - Phone    - Done
@@ -34,29 +34,31 @@ Frontends:
 -- jo Framework/phonegap  - Phone    - In Progress
 -- iUi/phonegap           - Phone    - TODO
 - Symbian (Nokia)
--- S40                    - Phone    - In Progress           1 T
--- S60/phonegap           - Phone    - In Progress          .5 T
+-- S40                    - Phone    - In Progress
+-- S60                    - Phone    - TODO
 - Blackberry
--- jquery mobile/phonegap - Phone    - Testing               1 T
--- jo Framework/phonegap  - Phone    - In Progress          .5 T
--- jquery mobile/phonegap - Tablet   - TODO                 .5 T
--- jo Framework/phonegap  - Tablet   - TODO                 .5 T
+-- jquery mobile/phonegap - Phone    - Testing
+-- jo Framework /phonegap - Phone    - In Progress
+-- jquery mobile/phonegap - Tablet   - TODO
+-- jo Framework /phonegap - Tablet   - TODO
 - Windows Phone
--- jquery mobile/phonegap - Phone    - Testing              .5 T
--- jo Framework/phonegap  - Phone    - In Progress          .5 T
+-- jquery mobile/phonegap - Phone    - Testing
+-- jo Framework /phonegap - Phone    - In Progress
 - Bada (Samsung)
--- Phone                                                     1 T
+-- Phone                             - TODO
 - Desktop
--- MacOS Desktop Widget              - TODO                  1 T
--- Win7 Desktop Gadget               - TODO                  1 T
--- Titanium?                         - TODO                  1 T
-
-                                                         =======
-                                                            23 T
- 31 Versionen
-
+-- MacOS Desktop Widget              - in Progress
+-- Win7 Desktop Gadget               - in Progress
+-- Titanium?                         - TODO
 
 später?
--- Chrome App  ?                     - TODO                 .5 T
+-- Chrome App
 -- Sencha Touch
 -- Win8 Metro Gadget
+-- Google Gadget
+-- Opera Widget
+-- Yahoo!_Widget
+-- Screenlet
+-- KDE Plasmoid (Web Widget)
+-- Gnome Shell Extension
+
