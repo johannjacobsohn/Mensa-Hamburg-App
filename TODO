@@ -4,7 +4,6 @@ Bugs:
 -- out-of-range rückgeben
 - mojo
 -- Datum/Tag besser anzeigen
--- gesetzte Filter anzeigen
 -- Filterlist
 - enyo
 -- Bessere Formatierung der Divider

@@ -22,7 +22,11 @@
 			return array;
 		},
 		setURLs : function(urls){
-			return localStorage.setItem("urls", JSON.stringify(urls));
+			try{
+				return localStorage.setItem("urls", JSON.stringify(urls));
+			} catch(e){
+				return false;
+			}
 		},
 		isConfigured : function(urls){
 			try{

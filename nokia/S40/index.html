@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>mensaApp</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<script language="javascript" type="text/javascript" src="js/conf.js"></script>
+		<script language="javascript" type="text/javascript" src="js/storage.js"></script>
+		<script language="javascript" type="text/javascript" src="js/urls.js"></script>
+		<script language="javascript" type="text/javascript" src="js/utils.js"></script>
+		<script language="javascript" type="text/javascript" src="js/xhr.js"></script>
+		
+		<script language="javascript" type="text/javascript" src="js/zepto.min.js"></script>
+		<script language="javascript" type="text/javascript" src="js/hogan.js"></script>
+
+		<script language="javascript" type="text/javascript" src="js/screensize.js"></script>
+		<script language="javascript" type="text/javascript" src="js/app.js"></script>
+
+        <link rel="stylesheet" href="css/base_s40.css" type="text/css" />
+
+		<script type="text/html" id="mainList">
+			{{#json}}
+				{{^mensaName}}
+					<li class="divider">{{header}}</li>
+				{{/mensaName}}
+				{{#mensaName}}
+					<li>
+						<h2>{{dish}}</h2>
+
+						<p class="price">{{studPrice}}€</p>
+						<p>{{name}}</p>
+					</li>
+				{{/mensaName}}	
+			{{/json}}
+		</script>
+		<script type="text/html" id="selectOptions">
+			{{#options}}
+				<option value="{{value}}">{{name}}</option>
+			{{/options}}
+		</script>
+		<script type="text/html" id="mensaCheckbox">
+			{{#mensen}}
+				<li>
+					<input type="checkbox" {{#active}}checked="checked"{{/active}} name="mensen" value="{{name}}" id="{{name}}" class="custom">
+					<label for="{{name}}">{{name}}</label>
+				</li>
+			{{/mensen}}
+		</script>
+    </head>
+    <body>
+		<!--Main-->
+		<div id="main">
+			<!--Header-->
+			<div id="titlebar" class="header_background">
+				<table class="header_table" cellpadding="0" cellspacing="0">
+					<tr>
+						<td class="alignL" id="prev-day">&laquo;</td>
+						<td><div id="title">Heute</div></td>
+						<td class="alignR" width="40" id="next-day">&raquo;</td>
+					</tr>
+				</table>
+			</div>
+			<!--End Header-->
+
+			<!--Stage-->
+			<div id="stage">
+				<div class="page" id="menu">
+					<ul class="item_container" id="dishes"></ul>
+					<div class="footer">
+						<select id="dish-select"></select>
+						<select id="mensa-select"></select>
+						<a href="#">Konfigurieren</a>
+					</div>
+				</div>
+				<div class="page" id="config">
+					<form>
+						<ul class="item_container" id="mensenlist"></ul>
+						<input type="submit" value="speichern">
+					</form>
+				</div>
+			</div>
+			<!--End Stage-->
+		</div>
+		<!--End Main-->
+	</body>
+</html>

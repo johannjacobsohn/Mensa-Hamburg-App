@@ -379,6 +379,6 @@
 		*/
 		unsetFilters : function(){
 			this.filters = [];
-		},
+		}
 	}
 })();

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <widget xmlns="http://www.w3.org/ns/widgets" height="200" id="http://mensaApp" version="0.1" viewmodes="windowed fullscreen" width="200">
+    
+    <name short="mensaApp">mensaApp</name>    
+
+    <description>
+       Mensen der Uni Hamburg
+    </description>
+    
+    <!-- Note: Author href MUST BE Url encoded 
+        @see http://en.wikipedia.org/wiki/Percent-encoding -->   
+    <author email="johann.jacobsohn@directbox.com" href="http://satzmedia.de">
+        Johann Jacobsohn
+    </author>
+    
+    <icon src="icon.png"/>
+
+    <content src="index.html"/>
+    
+    <license>
+	   
+    </license>
+    
+   	<feature name="nokia://s40.nokia.com/SAWRT/1.5" required="true" />
+</widget>

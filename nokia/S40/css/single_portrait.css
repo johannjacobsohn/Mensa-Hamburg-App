@@ -1,0 +1,62 @@
+/*
+ * Add your Stylesheet contents here
+ */
+#titlebar {
+	
+}
+#main {
+	width: 240px;
+	overflow: hidden;
+}
+#stage {
+	width: 480px;
+	overflow: hidden;
+}
+
+#menu,
+#config {
+	padding-top: 25px;
+	width: 238px;
+	border:1px solid #ced3c6;
+	border-width:0px 1px 1px 1px;
+	display: table-cell;
+}
+
+#stage {
+	-webkit-transition: margin-left 0.5s linear;
+}
+
+#loader {
+	text-align: center;
+	vertical-align: middle;
+}
+
+.show_menu {
+	margin-left: 0px;
+}
+
+.show_config {
+	margin-left: -240px;
+}
+
+.show {
+	display: block;
+}
+
+.hide {
+	display: none;
+}
+
+
+
+
+.footer{
+	p-osition: fixed;
+	bottom:0;
+	background: #fff;
+	border-top: 1px solid #000;
+}
+
+.footer select{
+	width: 40%;
+}
