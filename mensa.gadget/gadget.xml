@@ -4,8 +4,8 @@
   <namespace>windows.sdk</namespace>
   <version>1.0.0.0</version>
   <author name="jjacobsohn">
-    <info url="msdn.microsoft.com" />
-    <logo src="logo.png" />
+    <info url="www.satzmedia.de" />
+    <logo src="icon.png" />
   </author>
   <copyright>&#169; Johann Jacobsohn.</copyright>
   <description>Mensamenu anzeigen.</description>
