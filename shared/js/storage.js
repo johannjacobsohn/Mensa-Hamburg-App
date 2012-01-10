@@ -143,13 +143,10 @@
 
 					// Trigger AJAX-Call
 					xhr.get(url, function(resp, additional_args){
-//						console.log("sucess!: " + resp);
 						var tds, trs, dish, dishName, date, dateString, obj;
 						var tempDiv = document.createElement('div');
 
 						tempDiv.innerHTML = resp.replace(/<img(.|\s)*?\>/g, '').replace(/<script(.|\s)*?\/script>/g, '');
-
-//						console.log(additional_args.mensaName);
 						try{
 							trs = tempDiv.getElementsByTagName("table")[1].getElementsByTagName("tr");
 						} catch(e){
@@ -185,16 +182,31 @@
 						
 								for (var k=0; k<p.length; k++){
 									// Extract Price
-									price = p[k].getElementsByClassName("fliesstextklorange")[0].innerHTML.replace("€","").replace(" ","").split("/");
+
+									// Windows Desktop Gadgets run under IE8 (at most),
+									// so they dont know about getElementsByClassName
+									if(p[k].getElementsByClassName){
+										priceEl = p[k].getElementsByClassName("fliesstextklorange")[0];
+									} else {
+										var t = p[k].getElementsByTagName("*");
+										var tl = t.length;
+										for(var l=0; l < tl; l++){
+											if(t[l].className === "fliesstextklorange"){
+												priceEl = t[l];
+												break;
+											}
+										}
+									}
+
+									price = priceEl.innerHTML.replace("€","").replace(" ","").split("/");
 									studPrice = price[0].replace(/[^0-9,]/g,"");
 									normalPrice = price[1].replace(/[^0-9,]/g,"");
 
 									// Parse out dish
-									p[k].removeChild(p[k].getElementsByClassName("fliesstextklorange")[0]); // remove price
+									p[k].removeChild(priceEl); // remove price
 									dish = p[k].innerText;
 									dish = dish.replace(/&nbsp;/g, "").replace(/\s+$/, "").replace(/^\s+/, ""); //trim
 									dish = dish.replace(/\(([0-9]+,?)*\)/g, ""); //Zusatzstoffe entfernen
-
 
 									// Figure out date
 									date = new Date(startdate.valueOf() + (i-1) * 24 * 60 * 60 * 1000);
