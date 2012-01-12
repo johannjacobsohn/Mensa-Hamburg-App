@@ -10,7 +10,13 @@
 					var urls = JSON.parse(localStorage.getItem("urls"));
 					return urls.length > 0 ? urls : this.getURLs();
 				} catch(e){
-					return this.getURLs();
+					try{
+						console.log("polyfill!");
+						var urls = JSON.parse(localStoragePolyfill.getItem("urls"));
+						return urls.length > 0 ? urls : this.getURLs();
+					} catch(e) {
+						return this.getURLs();
+					}
 				}
 			} else {
 				return this.getURLs();
@@ -25,14 +31,23 @@
 			try{
 				return localStorage.setItem("urls", JSON.stringify(urls));
 			} catch(e){
-				return false;
+				try{
+					return localStoragePolyfill.setItem("urls", JSON.stringify(urls));
+				} catch(e) {
+					console.log("cannot save!")
+					return false;
+				}
 			}
 		},
 		isConfigured : function(urls){
 			try{
 				return typeof localStorage.getItem("urls") === "string";
 			} catch(e){
-				return false;
+				try{
+					return typeof localStoragePolyfill.getItem("urls") === "string";
+				} catch(e) {
+					return false;
+				}
 			}
 		},
 		getMensaInfo : function(){

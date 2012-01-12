@@ -5,7 +5,7 @@
 	
 }
 #main {
-	width: 240px;
+	width: 236px;
 	overflow: hidden;
 }
 #stage {
@@ -37,26 +37,4 @@
 
 .show_config {
 	margin-left: -240px;
-}
-
-.show {
-	display: block;
-}
-
-.hide {
-	display: none;
-}
-
-
-
-
-.footer{
-	p-osition: fixed;
-	bottom:0;
-	background: #fff;
-	border-top: 1px solid #000;
-}
-
-.footer select{
-	width: 40%;
 }

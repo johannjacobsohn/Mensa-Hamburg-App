@@ -8,6 +8,7 @@
 		<script language="javascript" type="text/javascript" src="js/urls.js"></script>
 		<script language="javascript" type="text/javascript" src="js/utils.js"></script>
 		<script language="javascript" type="text/javascript" src="js/xhr.js"></script>
+		<script language="javascript" type="text/javascript" src="js/storage-polyfill.js"></script>
 		
 		<script language="javascript" type="text/javascript" src="js/zepto.min.js"></script>
 		<script language="javascript" type="text/javascript" src="js/hogan.js"></script>
@@ -23,11 +24,11 @@
 					<li class="divider">{{header}}</li>
 				{{/mensaName}}
 				{{#mensaName}}
-					<li>
+					<li class="{{#first}}first{{/first}}{{#last}}last{{/last}}">
 						<h2>{{dish}}</h2>
 
 						<p class="price">{{studPrice}}€</p>
-						<p>{{name}}</p>
+						<p class="name">{{name}}</p>
 					</li>
 				{{/mensaName}}	
 			{{/json}}
@@ -50,14 +51,10 @@
 		<!--Main-->
 		<div id="main">
 			<!--Header-->
-			<div id="titlebar" class="header_background">
-				<table class="header_table" cellpadding="0" cellspacing="0">
-					<tr>
-						<td class="alignL" id="prev-day">&laquo;</td>
-						<td><div id="title">Heute</div></td>
-						<td class="alignR" width="40" id="next-day">&raquo;</td>
-					</tr>
-				</table>
+			<div id="header">
+				<a id="prev-day">&laquo;</a>
+				<div id="title">Heute</div>
+				<a id="next-day">&raquo;</a>
 			</div>
 			<!--End Header-->
 

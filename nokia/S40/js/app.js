@@ -7,8 +7,8 @@ $(document).ready(function(){
 	var date = new Date();
 	
 	//debug
-	date = new Date(2011, 11, 12);
-	debug = true;
+//	date = new Date(2011, 11, 12);
+//	debug = true;
 
 	var dateString = date.getFullYear() + "-" + (date.getMonth()+1) + "-" + (date.getDate());
 	storage.setDateFilter(dateString)
@@ -32,13 +32,23 @@ $(document).ready(function(){
 		$(this).find("input[type=checkbox]:checked").each(function(){
 			inputs.push( $(this).val() );
 		});
-		
+
+		// Save URLs
+		console.log(inputs);
 		conf.setURLs(inputs);
 
+		// Reload data and refresh menulist
 		storage.cleanData();
 		storage.getSortedSegmented(fetch);
-		
-		$("#stage").addClass("show_menu");
+
+		// Reset Mensaselect
+		setMensaSelect();
+	
+		// Reset Dishselect
+		setDishSelect();
+
+		// Transistion back
+		$("#stage").removeClass("show_config").addClass("show_menu");
 	});
 	
 	$("#mensa-select").change(function(){
@@ -54,42 +64,12 @@ $(document).ready(function(){
 		storage.getSortedSegmented(fetch);
 	});
 	
-	$("#mensen form").submit(function(e){
-		e.preventDefault();
-		var inputs = $(this).serializeArray();
-		var array = [];
-		for(var i=0; i<inputs.length; i++){
-			array.push(inputs[i].value);
-		}
-	
-		// Save URLs
-		conf.setURLs(array);
-	
-		// Reload Data
-		storage.cleanData();
-		storage.getWeekMenu();
-	
-		// Refresh Menulist
-		storage.getSortedSegmented(function(json){
-			$("#dishes").html(mainListTemplate.render({"json" : json}));
-			$("#dishes").listview('refresh');
-		});
-	
-		// Reset Mensaselect
-		setMensaSelect();
-	
-		// Reset Dishselect
-		setDishSelect();
-	});
-
 	var json = conf.getMensaInfo();
 	$("#mensenlist").html(mensaCheckboxTemplate.render({"mensen" : json}));//.parent().trigger("create").find("input").checkboxradio();
 
 	function fetch(json){
 		if(typeof json === "undefined") json = []; // @TODO: gehört hier nicht hin - storage sollte nicht "undefined zurückgeben"
-		var dayString = dateToString(dateString);
-		$("#header .date").text(dayString);
-		
+		$("#title").text(dateToString(dateString));		
 		$("#dishes").html(mainListTemplate.render({"json" : json}));
 	}
 
@@ -134,28 +114,3 @@ function setDishSelect(){
 		$("#dish-select").html(selectOptionsTemplate.render({"options" : obj}));
 	});
 }
-
-/*
-function init(){
-    //  Add your code which you need to initialize at the time application launch
-	date = new Date();
-	dateString = date.getFullYear() + "-" + (date.getMonth()+1) + "-" + (date.getDate());
-
-//	document.getElementById('toc').innerHTML = '<div>hier!</div>';
-	dateString = "2012-1-4";
-	storage.setDateFilter(dateString);
-	storage.getSortedSegmented(function(json){
-		var i, html="";
-		for(i=0; i<json.length; i++){
-			html += "<li><h2>" + json[i].dish + "</h2></li>";	
-		}
-		document.getElementById("today").innerHTML = html;
-	});
-
-	
-	
-//	mwl.switchClass('#slider', 'show_toc', 'show_scratchpad');
-//	mwl.setGroupTarget('#homeImgs','#home1', 'show', 'hide');
-
-}
-*/
