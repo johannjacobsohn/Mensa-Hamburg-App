@@ -74,15 +74,23 @@
 					return item.fkt === storage.filterByMensa;
 				}).length !== 0;
 			
-				var segmented = [], mensaName = "", date = "", i;
+				var segmented = [], mensaName = "", date = "", i, first=false;
 				for(i=0; i<sorted.length; i++){
+					first = false;
 					if(date != sorted[i].date && !isDateFilterSet){
+						if(segmented.length>0) segmented[segmented.length-1].last = true;
 						segmented.push({header:sorted[i].date, type: "header"});
+						// wenn Header dann dieses und nächsten Eintrag als "First" oder "Last" kennzeichnen
+						first = true;
 					}
 					if(mensaName != sorted[i].mensaName && !isMensaFilterSet){
+						if(segmented.length>0) segmented[segmented.length-1].last = true;
 						segmented.push({header:sorted[i].mensaName, type: "header"});
+						// wenn Header dann dieses und nächsten Eintrag als "First" oder "Last" kennzeichnen
+						first = true;
 					}
 					sorted[i].type = "item";
+					sorted[i].first = first;
 					segmented.push(sorted[i]);
 					mensaName = sorted[i].mensaName;
 					date = sorted[i].date;

@@ -30,7 +30,7 @@
 			if(row.type === "header"){
 				return {kind: "Divider", caption: row.header}
 			} else {
-				return {kind: "Item", components: [
+				return {kind: "Item", className: "enyo-item" + (row.first ? " enyo-first" : "") + (row.last ? " enyo-last" : ""), components: [
 					{content: row.dish},
 					{layoutKind: "HFlexLayout", style: "font-size: 0.8em", 
 						components: [

@@ -2,11 +2,11 @@ Bugs:
 -Backend
 -- Nächste Woche (dynamisch) laden
 -- out-of-range rückgeben
+-- Warteindikator
 - mojo
 -- Datum/Tag besser anzeigen
 -- Filterlist
 - enyo
--- Bessere Formatierung der Divider
 -- Bessere Datumsformatierung
 - jquery mobile
 -- instabil auf Xoom/Android (localStorage funktioniert vermutlich nicht) : "ERROR/AndroidRuntime(5560): java.lang.NullPointerException: println needs a message"
