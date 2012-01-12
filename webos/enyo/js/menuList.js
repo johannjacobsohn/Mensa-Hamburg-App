@@ -28,7 +28,7 @@
 		var row = this.data[inIndex];
 		if (row) {
 			if(row.type === "header"){
-				return {kind: "Divider", caption: row.header}
+				return {kind: "Divider", caption: row.headerType === "date" ? dateToString(row.header) : row.header}
 			} else {
 				return {kind: "Item", className: "enyo-item" + (row.first ? " enyo-first" : "") + (row.last ? " enyo-last" : ""), components: [
 					{content: row.dish},

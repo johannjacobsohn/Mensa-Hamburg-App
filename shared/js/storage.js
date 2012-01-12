@@ -50,18 +50,15 @@
 					    dateWeight = 0,
 					    nameA = a.mensaName.toLowerCase(),
 						nameB = b.mensaName.toLowerCase(),
-					    dateA = a.date.toLowerCase(),
-						dateB = b.date.toLowerCase()
+					    dateA = a.date.split("-"),
+						dateB = b.date.split("-")
 					if (nameA < nameB){
 						mensaNameWeight = -10;
 					} else if (nameA > nameB) {
 						mensaNameWeight =  10;
 					}
-					if (dateA < dateB){
-						dateWeight = -100;
-					} else if (dateA > dateB) {
-						dateWeight =  100;
-					}
+
+					dateWeight = parseInt(dateA[0])*1000 + parseInt(dateA[1])*100 + parseInt(dateA[2]) - parseInt(dateB[0])*1000 - parseInt(dateB[1])*100 - parseInt(dateB[2]);
 
 					return mensaNameWeight + dateWeight;
 				});
@@ -78,16 +75,17 @@
 				for(i=0; i<sorted.length; i++){
 					first = false;
 					if(date != sorted[i].date && !isDateFilterSet){
-						if(segmented.length>0) segmented[segmented.length-1].last = true;
-						segmented.push({header:sorted[i].date, type: "header"});
 						// wenn Header dann dieses und nächsten Eintrag als "First" oder "Last" kennzeichnen
+						if(segmented.length>0) segmented[segmented.length-1].last = true;
 						first = true;
+
+						segmented.push({header:sorted[i].date, type: "header", headerType: "date"});
 					}
 					if(mensaName != sorted[i].mensaName && !isMensaFilterSet){
-						if(segmented.length>0) segmented[segmented.length-1].last = true;
-						segmented.push({header:sorted[i].mensaName, type: "header"});
 						// wenn Header dann dieses und nächsten Eintrag als "First" oder "Last" kennzeichnen
+						if(segmented.length>0) segmented[segmented.length-1].last = true;
 						first = true;
+						segmented.push({header:sorted[i].mensaName, type: "header", headerType: "mensa"});
 					}
 					sorted[i].type = "item";
 					sorted[i].first = first;
@@ -312,7 +310,14 @@
 				for(date in dates){
 					datesArr.push(date); 
 				}
-				callback(datesArr.sort());
+
+				datesArr.sort(function(a, b){
+					a = a.split("-");
+					b = b.split("-");
+					return parseInt(a[0])*1000 + parseInt(a[1])*100 + parseInt(a[2]) - parseInt(b[0])*1000 - parseInt(b[1])*100 - parseInt(b[2]);
+				});
+
+				callback(datesArr);
 			});
 		},
 
