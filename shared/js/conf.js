@@ -7,17 +7,12 @@
 		getSavedURLs : function(){
 			if(this.isConfigured()){
 				try{
-					var urls = JSON.parse(localStorage.getItem("urls"));
-					return urls.length > 0 ? urls : this.getURLs();
+					var urls = JSON.parse(data.get("urls"));
 				} catch(e){
-					try{
-						console.log("polyfill!");
-						var urls = JSON.parse(localStoragePolyfill.getItem("urls"));
-						return urls.length > 0 ? urls : this.getURLs();
-					} catch(e) {
-						return this.getURLs();
-					}
+					console.log("data.js missing!");
+					var urls = JSON.parse(localStorage.getItem("urls"));
 				}
+				return urls.length > 0 ? urls : this.getURLs();
 			} else {
 				return this.getURLs();
 			}
@@ -29,22 +24,19 @@
 		},
 		setURLs : function(urls){
 			try{
-				return localStorage.setItem("urls", JSON.stringify(urls));
+				return data.save("urls", JSON.stringify(urls));
 			} catch(e){
-				try{
-					return localStoragePolyfill.setItem("urls", JSON.stringify(urls));
-				} catch(e) {
-					console.log("cannot save!")
-					return false;
-				}
+				console.log("data.js missing!");
+				return localStorage.setItem("urls", JSON.stringify(urls));
 			}
 		},
 		isConfigured : function(urls){
 			try{
-				return typeof localStorage.getItem("urls") === "string";
+				return typeof data.get("urls") === "string";
 			} catch(e){
+				console.log("data.js missing!");
 				try{
-					return typeof localStoragePolyfill.getItem("urls") === "string";
+					return typeof localStorage.getItem("urls") === "string";
 				} catch(e) {
 					return false;
 				}

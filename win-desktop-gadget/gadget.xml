@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <gadget>
   <name>Mensa Gadget</name>
-  <namespace>windows.sdk</namespace>
-  <version>1.0.0.0</version>
+  <namespace>mensa</namespace>
+  <version>0.1</version>
   <author name="jjacobsohn">
     <info url="www.satzmedia.de" />
     <logo src="icon.png" />

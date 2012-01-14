@@ -137,6 +137,7 @@
 					this.lock[mensa] = true;
 
 					// get current Week from date
+					// @TODO: Figure out if this or next weel is meant
 					var now = new Date();
 					var week = now.getWeek();
 
@@ -161,7 +162,7 @@
 						}
 						// extract and parse date field
 						var datefield = trs[0].getElementsByTagName("td")[0].innerText;
-						germanStartdate = datefield.split("-")[0].trim();
+						germanStartdate = datefield.split("-")[0];//.trim();
 						germanStartdateArr = germanStartdate.split(".");
 						startdate = new Date(germanStartdateArr[2],(germanStartdateArr[1]-1),germanStartdateArr[0]);
 

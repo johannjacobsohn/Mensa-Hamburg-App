@@ -1,4 +1,15 @@
 
+
+// Gadget Settings
+System.Gadget.settingsUI = "settings.html";
+System.Gadget.onSettingsClosing = function(event){
+	if (event.closeAction == event.Action.commit) {
+		storage.cleanData();
+		storage.getSortedSegmented(fetch);
+	}
+}
+
+
 var mainListTemplate = {},
     mensaCheckboxTemplate = {},
     selectOptionsTemplate = {},
