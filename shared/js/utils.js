@@ -60,10 +60,18 @@ function dateToString(isoDate){
 http://stackoverflow.com/questions/1744310/how-to-fix-array-indexof-in-javascript-for-ie-browsers
 */
 if (!Array.prototype.indexOf) {
-Array.prototype.indexOf = function(obj, start) {
-     for (var i = (start || 0), j = this.length; i < j; i++) {
-         if (this[i] === obj) { return i; }
-     }
-     return -1;
+	Array.prototype.indexOf = function(obj, start) {
+		for (var i = (start || 0), j = this.length; i < j; i++) {
+			if (this[i] === obj) { return i; }
+		}
+		return -1;
+	}
 }
+
+
+//http://blog.stevenlevithan.com/archives/faster-trim-javascript
+if (!String.prototype.trim) {
+	String.prototype.trim = function() {
+		return this.replace(/^\s\s*/, '').replace(/\s\s*$/, '');
+	}
 }

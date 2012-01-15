@@ -162,7 +162,7 @@
 						}
 						// extract and parse date field
 						var datefield = trs[0].getElementsByTagName("td")[0].innerText;
-						germanStartdate = datefield.split("-")[0];//.trim();
+						germanStartdate = datefield.split("-")[0].trim(); //@TODO: Test in Explorer!
 						germanStartdateArr = germanStartdate.split(".");
 						startdate = new Date(germanStartdateArr[2],(germanStartdateArr[1]-1),germanStartdateArr[0]);
 
