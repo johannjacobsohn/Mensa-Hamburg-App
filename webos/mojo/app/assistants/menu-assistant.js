@@ -50,6 +50,15 @@ MenuAssistant.prototype.cleanup = function(event) {
 };
 
 MenuAssistant.prototype.setup = function() {
+	// Swipe gestures
+	Mojo.Event.listen(this.controller.topContainer(), Mojo.Event.flick, function(event) {
+		if(event.velocity.x > 1000){
+			yesterday();
+		} else if (event.velocity.x < -1000){
+			tomorrow();
+		}
+	});
+	
 	mediaMenuModel = {
 		items: [
 			{
@@ -135,20 +144,28 @@ MenuAssistant.prototype.setup = function() {
 		this.controller.modelChanged(headerMenu, this);
 	}
 
+	function tomorrow(){
+		date = new Date(date.valueOf() + 60 * 60 * 24 * 1000);
+		dateString = date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getDate();
+		storage.setDateFilter(dateString);
+		storage.filter(fetch);
+	}
+	
+	function yesterday(){
+		date = new Date(date.valueOf() - 60 * 60 * 24 * 1000);
+		dateString = date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getDate();
+		storage.setDateFilter(dateString);
+		storage.filter(fetch);
+	}
+
 	// handle menu commands
 	StageAssistant.prototype.handleCommand = function(event) {
 		if(event.type == Mojo.Event.command) {
 			if(event.command === "tomorrow"){
-				date = new Date(date.valueOf() + 60 * 60 * 24 * 1000);
-				dateString = date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getDate();
-				storage.setDateFilter(dateString);
-				storage.filter(fetch);
+				tomorrow();
 				return;
 			} else if(event.command === "yesterday"){
-				date = new Date(date.valueOf() - 60 * 60 * 24 * 1000);
-				dateString = date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getDate();
-				storage.setDateFilter(dateString);
-				storage.filter(fetch);
+				yesterday();
 				return;
 			} else if(event.command === "conf"){
 				this.controller.pushScene("config");
@@ -176,5 +193,4 @@ MenuAssistant.prototype.setup = function() {
 			}
 		}
 	};
-/**/
 };
