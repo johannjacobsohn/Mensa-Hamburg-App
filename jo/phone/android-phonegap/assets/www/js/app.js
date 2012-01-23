@@ -1,22 +1,42 @@
 // required
 jo.load();
 
+//debug = true;
+
 var App = (function() {
 	var scn;
 	var stack;
 	var menuList;
-	var date = new Date();
-	var dateString = date.getFullYear() + "-" + (date.getMonth()+1) + "-" + (date.getDate());	var cards = {
+	var cards = {
 		lists: function() {
 			menuList = new joList([]);
 			menuList.formatItem = function(item, index) {
 				var element = document.createElement('jolistitem');
-				element.innerHTML = item.dish;
-				element.setAttribute("index", index);
-
-				return element;
+				if (item.type === "header") {
+					z = new joContainer([
+						new joTitle((item.headerTyp === "date") ? dateToString(item.header) : item.header),
+						// a simple row of things
+					]);
+//					element.innerHTML = (item.headerTyp === "date") ? dateToString(item.header) : item.header;
+//					element.className = "header";
+				} else {
+//					element.innerHTML = item.dish;
+					var contain = new joContainer([
+						new joFlexrow([
+							item.dish,
+							item.name
+						])
+					]);
+					z = document.createElement('jolistitem');
+//					z.appendChild(contain.container);
+					z.innerHTML = "<h2>" + item.dish + "</h2>" + 
+						"<p class='name'>" + item.name + "</p>" +
+						"<p class='price'>" + item.studPrice + "€</p>";
+				}
+				return z;
 			};
-			return new joCard([menuList]).setTitle("Mensen");
+			card = new joCard([menuList]).setTitle("Mensen")
+			return card;
 		},
 		config: function(){
 			var rec = {},
@@ -25,7 +45,7 @@ var App = (function() {
 			for(i=0; i<json.length; i++){
 				rec[json[i].name] = json[i].active;
 			}
-			record = new joRecord(rec).setAutoSave(false);
+			record = new joRecord(rec).setAutoSave(true);
 
 			for(i=0; i<json.length; i++){
 				rows.push(
@@ -51,30 +71,18 @@ var App = (function() {
 		stack.push(joCache.get(param));
 	};
 	function nextDay() {
-		console.log("nextDay")
-		date = new Date(date.valueOf() + 60 * 60 * 24 * 1000);
-		dateString = date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getDate();
-		getData();
+		storage.nextDay(setData);
 	}
 	function prevDay() {
-		console.log("prevDay")
-		date = new Date(date.valueOf() - 60 * 60 * 24 * 1000);
-		dateString = date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getDate();
-		getData();
+		storage.prevDay(setData);
 	}
-	function getData(){
-		console.log("getData")
-		storage.setDateFilter(dateString);
-		storage.filter(function(json){
-			menuList.data = json;
-			menuList.refresh();
-			console.log(json)
-		});
+	function setData(json, dateStr){
+		menuList.data = json;
+		menuList.refresh();
+		if(dateStr) document.querySelectorAll("joview.title")[0].innerHTML = dateToString(dateStr);
 	}
 
 	function init() {
-		//var nav;
-		
 		for(var cardName in cards) {
 			joCache.set(cardName, cards[cardName]);
 		}
@@ -83,47 +91,87 @@ var App = (function() {
 			new joContainer([
 				new joFlexcol([
 					nav = new joNavbar(),
-					stack = new joStackScroller()
+					stack = new joStackScroller(),
 				]),
 				this.toolbar = new joToolbar([
 					new joFlexrow([
 						edit = new joButton("Edit"),
-						mensaSelect = new joSelect([ "Apples", "Oranges", "Grapes" ]),
-						dishSelect  = new joSelect([ "Apples", "Oranges", "Grapes" ], 2)
+						mensaSelect = new joSelect([ "Alle" ]),
+						dishSelect  = new joSelect([ "Alle" ])
 					])
 				])
 			])
 		);
-		
 
-		var yesterdayButton = new joBackButton("Gestern").setStyle("active").selectEvent.subscribe(prevDay)
-		var tomorrowButton = new joBackButton("Morgen"  ).setStyle("active").selectEvent.subscribe(nextDay)
+		var yesterdayButton = new joBackButton("Gestern").setStyle("active").selectEvent.subscribe(prevDay);
+		var tomorrowButton = new joBackButton("Morgen"  ).setStyle("active").selectEvent.subscribe(nextDay);
 		nav.row.push(yesterdayButton);
 		nav.row.push(tomorrowButton);
 
-		var urls = conf.getSavedURLs()
-//		mensaSelect.data = urls;
-//		mensaSelect.refresh()
-		
-		// respond to the change event
-		mensaSelect.changeEvent = function(value, list) {
-			console.log("Fruit: " + list.getNodeValue(value));
-		};
-		
+		var urls = conf.getSavedURLs();
+		urls.unshift("Alle");
+		mensaSelect.list.data = urls;
+		mensaSelect.list.refresh();
+
+		storage.getTypes(function(json){
+			json.unshift("Alle");
+			dishSelect.list.data = json;
+			dishSelect.list.refresh();
+		});
+
+		// 
+		nav.back.selectEvent.subscribe(function(){
+			mensen = [];
+			for(r in record.data){
+				if(record.data[r]) mensen.push(r)
+			}
+			conf.setURLs(mensen);
+			storage.cleanData();
+			storage.getSortedSegmented(setData);
+
+			var urls = conf.getSavedURLs();
+			urls.unshift("Alle");
+			mensaSelect.list.data = urls;
+			mensaSelect.list.refresh();
+
+			storage.getTypes(function(json){
+				json.unshift("Alle");
+				dishSelect.list.data = json;
+				dishSelect.list.refresh();
+			});
+		});
+
+		mensaSelect.selectEvent.subscribe(function(value, list) {
+			if(list.data[value] === "Alle") {
+				storage.unsetMensaFilter();
+			} else {
+				storage.setMensaFilter(list.data[value]);
+			}
+			storage.getSortedSegmented(setData);
+		});
+
+		dishSelect.selectEvent.subscribe(function(value, list) {
+			if(list.data[value] === "Alle") {
+				storage.unsetNameFilter();
+			} else {
+				storage.setNameFilter(list.data[value]);
+			}
+			storage.getSortedSegmented(setData);
+		});
+
 		edit.selectEvent.subscribe(function() {
 			navigate("config");
 		});
 
 		nav.setStack(stack);
 		navigate("lists");
-		getData();
+
+		storage.thisDay(setData);
 	}
 
 	// public stuff
 	return {
 		"init": init,
-		"getStack": function() { return stack; },
-		"prevDay": prevDay,
-		"nextDay": nextDay,
+		"getStack": function() { return stack; }
 	}
 }());
