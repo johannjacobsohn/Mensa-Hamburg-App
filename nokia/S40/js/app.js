@@ -11,7 +11,7 @@ $(document).ready(function(){
 //	debug = true;
 
 	var dateString = date.getFullYear() + "-" + (date.getMonth()+1) + "-" + (date.getDate());
-	storage.setDateFilter(dateString)
+	storage.setDateFilter(dateString);
 	storage.getSortedSegmented(fetch);
 	
 	// Templates konfigurieren

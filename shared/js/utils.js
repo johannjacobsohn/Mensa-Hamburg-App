@@ -12,15 +12,15 @@ Date.prototype.getWeek = function() {
 	return WN;
 }
 
- function isEmpty(obj) {
-    for(var prop in obj) {
-        if(obj.hasOwnProperty(prop)){
-            return false;
+function isEmpty(obj) {
+	for(var prop in obj) {
+		if(obj.hasOwnProperty(prop)){
+			return false;
 		}
-    }
-
-    return true;
+	}
+	return true;
 }
+
 //http://james.padolsey.com/javascript/deep-copying-of-objects-and-arrays/
 function deepCopy(o) {
     var copy = o,k;
@@ -67,7 +67,6 @@ if (!Array.prototype.indexOf) {
 		return -1;
 	}
 }
-
 
 //http://blog.stevenlevithan.com/archives/faster-trim-javascript
 if (!String.prototype.trim) {
