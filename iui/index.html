@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+   <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
+   <link rel="stylesheet" href="iui/iui.css" type="text/css" />
+   <link rel="stylesheet" href="iui/t/default/default-theme.css" type="text/css"/>
+   <script type="application/x-javascript" src="iui/iui.js"></script>
+   <script type="application/x-javascript" src="iui/ext-sandbox/TbBMod/TbBMod.js"></script>
+   <title>iUI Theaters</title>
+</head>
+
+<body>
+   <div class="toolbar">
+	  <h1 id="pageTitle"></h1>
+	  <a id="backButton" class="button" href="#"></a>
+	  <a id="yesterday" class="button" href="#yesterday">Y</a>
+	  <a id="tomorrow" class="button" href="#tomorrow">T</a>
+	</div>
+		
+	<script type="text/html" id="list-template">
+		<ul id="id{{date}}" title="{{date}}" class="panel">
+			{{#dishes}}
+				{{^mensaName}}
+					<li class="group">{{header}}</li>
+				{{/mensaName}}
+				{{#mensaName}}
+					<li>
+						<span>{{dish}}</span>
+
+						<span class="">{{studPrice}}€</span>
+						<span>{{name}}</span>
+					</li>
+				{{/mensaName}}
+			{{/dishes}}
+<!--
+			<form>
+			<input type = "hidden" name = "TbBModHREF_tomorrow" value = "id2011-12-14" />
+			<input type = "hidden" name = "TbBMod" value = "true" />
+			</form>
+-->
+		</ul>
+	</script>
+
+	<form id="conf" title="Conf" name="formname" class="dialog" action="" method="GET" >
+		<input type="text" name="inputname">
+		<input type="submit">
+	</form>
+
+	<script src="js/conf.js"></script>
+	<script src="js/hogan.min.js"></script>
+	<script src="js/localStorage.js"></script>
+	<script src="js/storage.js"></script>
+	<script src="js/urls.js"></script>
+	<script src="js/utils.js"></script>
+	<script src="js/xhr.js"></script>
+	<script src="js/app.js"></script>
+
+</body>
+</html>
