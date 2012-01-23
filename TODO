@@ -1,62 +1,83 @@
 Bugs:
 -Backend
--- Nächste Woche (dynamisch) laden
+-- Woche dynamisch abhängig vom Filter laden
 -- out-of-range rückgeben
 -- Warteindikator
+-- Menu cachen
+-- incremental callbacks ?
+-- numberOfFailed?
+-- conf: Nicht-Studentenpreise
 - mojo
 -- Datum/Tag besser anzeigen
 -- Filterlist
+-- Warteindikator
+- enyo
+-- segments durcheinander
+-- first-last?
 - jquery mobile
 -- instabil auf Xoom/Android (localStorage funktioniert vermutlich nicht) : "ERROR/AndroidRuntime(5560): java.lang.NullPointerException: println needs a message"
+- Win7 Desktop Gadget
+-- Design
+-- Filter
+- Jo Framework
+-- Header schmaler und keine Morgen/Gestern auf Einstellungsseite
+-- cleanup
 
 Frontends:
 - webOS
 -- mojo (Phone)                      - done
 -- enyo (Tablet)                     - done
 - iOS
--- jquery mobile/phonegap - Tablet   - TODO
--- jquery mobile/phonegap - Phone    - Done
+-- jquery mobile/phonegap - Phone    - Testing
 -- JQTouch/phonegap       - Phone    - TODO
--- Appcelerator Titanium  - Tablet   - TODO
 -- Appcelerator Titanium  - Phone    - TODO
--- jo Framework/phonegap  - Tablet   - TODO
 -- jo Framework/phonegap  - Phone    - In Progress
--- iUi/phonegap           - Phone    - TODO
+-- iUi/phonegap           - Phone    - In Progress
 - Android
--- jquery mobile/phonegap - Tablet   - TODO
--- jquery mobile/phonegap - Phone    - Done
+-- jquery mobile/phonegap - Phone    - Testing
 -- JQTouch/phonegap       - Phone    - TODO
--- Appcelerator Titanium  - Tablet   - TODO
 -- Appcelerator Titanium  - Phone    - TODO
--- jo Framework/phonegap  - Tablet   - TODO
 -- jo Framework/phonegap  - Phone    - In Progress
--- iUi/phonegap           - Phone    - TODO
+-- iUi/phonegap           - Phone    - In Progress
 - Symbian (Nokia)
--- S40                    - Phone    - In Progress
--- S60                    - Phone    - TODO
+-- S40                    - Phone    - Done
+-- Symbian^3              - Phone    - TODO
+-- Symbian Belle          - Phone    - TODO
 - Blackberry
--- jquery mobile/phonegap - Phone    - Testing
--- jo Framework /phonegap - Phone    - In Progress
--- jquery mobile/phonegap - Tablet   - TODO
--- jo Framework /phonegap - Tablet   - TODO
+-- jquery mobile/phonegap - Phone    - TODO
+-- jo Framework /phonegap - Phone    - TODO
 - Windows Phone
--- jquery mobile/phonegap - Phone    - Testing
--- jo Framework /phonegap - Phone    - In Progress
+-- jquery mobile/phonegap - Phone    - TODO
+-- jo Framework /phonegap - Phone    - TODO
 - Bada (Samsung)
 -- Phone                             - TODO
 - Desktop
 -- MacOS Desktop Widget              - in Progress
--- Win7 Desktop Gadget               - in Progress
+-- Win7 Desktop Gadget               - Done (mostly)
 -- Titanium?                         - TODO
 
 später?
--- Chrome App
--- Sencha Touch
--- Win8 Metro Gadget
--- Google Gadget
--- Opera Widget
--- Yahoo!_Widget
--- Screenlet
--- KDE Plasmoid (Web Widget)
--- Gnome Shell Extension
-
+- http://www.jqmobi.com/
+- http://www.winktoolkit.org/
+- iOS
+-- jquery mobile/phonegap - Tablet   - TODO
+-- Appcelerator Titanium  - Tablet   - TODO
+-- jo Framework/phonegap  - Tablet   - TODO
+- Android
+-- jquery mobile/phonegap - Tablet   - TODO
+-- Appcelerator Titanium  - Tablet   - TODO
+-- jo Framework/phonegap  - Tablet   - TODO
+- Blackberry
+-- jquery mobile/phonegap - Tablet   - TODO
+-- jo Framework /phonegap - Tablet   - TODO
+- W3C Widget - http://www.w3.org/TR/widgets-apis/
+- Maemo/Titzen
+- Chrome App
+- Sencha Touch
+- Win8 Metro Gadget
+- Google Gadget
+- Opera Widget
+- Yahoo!_Widget
+- Screenlet
+- KDE Plasmoid (Web Widget)
+- Gnome Shell Extension
