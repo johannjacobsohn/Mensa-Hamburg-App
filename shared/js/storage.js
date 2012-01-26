@@ -242,13 +242,16 @@
 								}
 							}
 						}
-
-						price = priceEl.innerHTML.replace("€","").replace(" ","").split("/");
+						if(priceEl){
+							price = priceEl.innerHTML.replace("€","").replace(" ","").split("/");
+							p[k].removeChild(priceEl); // remove price
+						} else {
+							price = ["0", "0"];
+						}
 						studPrice = price[0].replace(/[^0-9,]/g,"");
 						normalPrice = price[1].replace(/[^0-9,]/g,"");
 
 						// Parse out dish
-						p[k].removeChild(priceEl); // remove price
 						dish = p[k].innerText;
 						dish = dish.replace(/&nbsp;/g, "").trim();
 						dish = dish.replace(/\(([0-9]+,?)*\)/g, ""); //Zusatzstoffe entfernen
