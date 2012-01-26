@@ -172,20 +172,20 @@ MenuAssistant.prototype.setup = function() {
 				return;
 			} else {
 				var temp = event.command.split("-");
-				this.controller = Mojo.Controller.stageController.activeScene();
+				var control = Mojo.Controller.stageController.activeScene();
 				switch (temp[0]) {
 					case "type": {
 						if(temp[1] === "all") storage.unsetNameFilter();
 						else storage.setNameFilter(temp[1]);
 						storage.filter(function(json){
-							this.controller.setWidgetModel("menu", {"items": json});
+							control.setWidgetModel("menu", {"items": json});
 						});
 						break;
 					} case "mensa" : {
 						if(temp[1] === "all") storage.unsetMensaFilter();
 						else storage.setMensaFilter(temp[1]);
 						storage.filter(function(json){
-							this.controller.setWidgetModel("menu", {"items": json});
+							control.setWidgetModel("menu", {"items": json});
 						});
 						break;
 					}
