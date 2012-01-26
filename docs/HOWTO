@@ -1,0 +1,4 @@
+
+
+// Test in Chrome
+chromium-browser --disable-web-security --allow-file-access-from-files 
