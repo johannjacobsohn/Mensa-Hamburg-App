@@ -1,6 +1,5 @@
 Bugs:
 - Backend
--- mockdaten neu erstellen 
 -- Woche dynamisch abhängig vom Filter laden
 -- out-of-range rückgeben
 -- Warteindikator
@@ -22,6 +21,7 @@ Bugs:
 -- Filter
 - Jo Framework
 -- Header schmaler und keine Morgen/Gestern auf Einstellungsseite
+-- Icons für Morgen/Gestern/Edit
 -- cleanup
 
 Frontends:
@@ -63,11 +63,12 @@ Frontends:
 
 
 später?
-- gbone.js     - https://github.com/gobhi/gbone.js/tree/master/example
-- spine.js     - http://spinejs.com
-- jqmobi       - http://www.jqmobi.com/
-- winktoolkit  - http://www.winktoolkit.org/
-- W3C Widget   - http://www.w3.org/TR/widgets-apis/
+- The M Project - http://the-m-project.org/
+- gbone.js      - https://github.com/gobhi/gbone.js/tree/master/example
+- spine.js      - http://spinejs.com
+- jqmobi        - http://www.jqmobi.com/
+- winktoolkit   - http://www.winktoolkit.org/
+- W3C Widget    - http://www.w3.org/TR/widgets-apis/
 - Maemo/Titzen
 - Sencha Touch
 - Win8 Metro Gadget

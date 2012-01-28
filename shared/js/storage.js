@@ -12,7 +12,7 @@
 	storage = {
 		weekMenu         : [], // Cache
 		filteredWeekMenu : [], // Cache
-		date : typeof debug !== "undefined" && debug ? new Date(2011, 11, 12) : new Date(), //now
+		date : typeof debug !== "undefined" && debug ? new Date(2012, 0, 24) : new Date(), //now
 		lock : [],
 		loadedMensen : {},
 		menuCallbackQueue : [],
@@ -426,7 +426,7 @@
 		* convinient method to get today menu
 		*/
 		thisDay : function(callback){
-			this.date = typeof debug !== "undefined" && debug ? new Date(2011, 11, 12) : new Date(), //now
+			this.date = typeof debug !== "undefined" && debug ? new Date(2012, 0, 24) : new Date(), //now
 
 			console.log(this.date);
 			this.setDateFilter(this.dateToDateString(this.date));
