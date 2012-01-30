@@ -20,7 +20,7 @@
 			"Physik"                : "http://speiseplan.studierendenwerk-hamburg.de/index.php/de/610/2012/{{week}}/",
 			"Bucerius Law School"   : "http://speiseplan.studierendenwerk-hamburg.de/index.php/de/410/2012/{{week}}/",
 			"Botanischer Garten"    : "http://speiseplan.studierendenwerk-hamburg.de/index.php/de/560/2012/{{week}}/",
-			"Geo"                   : "http://speiseplan.studierendenwerk-hamburg.de/index.php/de/540/2012/04/"
+			"Geo"                   : "http://speiseplan.studierendenwerk-hamburg.de/index.php/de/540/2012/{{week}}/"
 /* alt
 			"Armgartstrasse"         : "http://www.studierendenwerk-hamburg.de/essen/woche.php?haus=Armgartstra%DFe&kw={{week}}",
 			"Bergedorf"             : "http://www.studierendenwerk-hamburg.de/essen/woche.php?haus=Bergedorf&kw={{week}}",
