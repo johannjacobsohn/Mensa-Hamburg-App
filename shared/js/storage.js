@@ -163,7 +163,7 @@
 						// try to run callbacks
 						storage.runMenuCallbacks();
 					}, function(resp, additional_args){
-						console.log("xhr error");
+						console.error("xhr error");
 
 						// release lock
 						delete storage.lock[additional_args.mensaName];
@@ -183,15 +183,17 @@
 
 		parseMensaHTML : function(html, mensa){
 
-			var tds, trs, dish, dishName, date, dateString, obj;
-			var tempDiv = document.createElement('div');
+			var tds, trs, dish, dishName, date, dateString, obj,
+				properties = [],
+				additives = [],
+				imgs,
+				spans,
+				tempDiv = document.createElement('div');
 
-			tempDiv.innerHTML = html.replace(/<img(.|\s)*?\>/g, '').replace(/<script(.|\s)*?\/script>/g, '');
+			tempDiv.innerHTML = html.replace(/src="(.)*?"/g, '').replace(/<script(.|\s)*?\/script>/g, '');
 			try{
 				trs = tempDiv.getElementsByTagName("table")[0].getElementsByTagName("tr");
 			} catch(e){
-				console.log(e);
-				console.log(html);
 				return;
 			}
 			// extract and parse date field
@@ -246,15 +248,45 @@
 							price = priceEl.innerHTML.replace("€","").replace(" ","").split("/");
 							p[k].removeChild(priceEl); // remove price
 						} else {
-							price = ["0", "0"];
+							// try to match the price with a regexp
+							price = p[k].innerText.match(/[0-9]+,[0-9][0-9]/g) || ["0", "0"];
+							price = price.length === 2 ? price : ["0", "0"];
+							p[k].innerHTML = p[k].innerHTML.replace(/[0-9]+,[0-9][0-9]/g,"")// remove Price from String
 						}
 						studPrice = price[0].replace(/[^0-9,]/g,"");
 						normalPrice = price[1].replace(/[^0-9,]/g,"");
 
+						// Parse Properties
+						properties = [];
+						tempObj = {};
+						imgs = p[k].getElementsByTagName("img");
+						for ( l = 0; l < imgs.length; l++ ) {
+							tempObj[imgs[l].title] = imgs[l].title;
+						}
+						
+						for ( key in tempObj ) {
+							properties.push({ name : key });
+						}
+
+						// Parse Additives
+						additives = [];
+						tempObj = {};
+						spans = p[k].getElementsByTagName("span"); // no getElementsByClassName for IE
+						for ( l = 0; l < spans.length; l++ ) {
+							if(spans[l].className === "tooltip") {
+								//additives.push({ name : spans[l].title });
+								tempObj[spans[l].title] = spans[l].title;
+							}
+						}
+						
+						for ( key in tempObj ) {
+							additives.push({ name : key });
+						}
+
 						// Parse out dish
 						dish = p[k].innerText;
 						dish = dish.replace(/&nbsp;/g, "").trim();
-						dish = dish.replace(/\(([0-9]+,?)*\)/g, ""); //Zusatzstoffe entfernen
+						dish = dish.replace(/\(([0-9]+,?)*\)/g, ""); //remove additives
 
 						// Figure out date
 						date = new Date(startdate.valueOf() + (i) * 24 * 60 * 60 * 1000);
@@ -267,7 +299,9 @@
 								dish        : dish,
 								studPrice   : studPrice,
 								normalPrice : normalPrice,
-								date        : dateString
+								date        : dateString,
+								properties  : properties,
+								additives   : additives
 							});
 						}
 					}
@@ -428,7 +462,6 @@
 		thisDay : function(callback){
 			this.date = typeof debug !== "undefined" && debug ? new Date(2012, 0, 24) : new Date(), //now
 
-			console.log(this.date);
 			this.setDateFilter(this.dateToDateString(this.date));
 			this.getSortedSegmented(function(json){
 				callback(json, storage.dateToDateString(storage.date), storage.date);

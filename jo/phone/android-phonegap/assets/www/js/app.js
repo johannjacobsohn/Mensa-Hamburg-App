@@ -1,7 +1,7 @@
 // required
 jo.load();
 
-//debug = true;
+ debug = true;
 
 var App = (function() {
 	var scn;
@@ -35,7 +35,14 @@ var App = (function() {
 				}
 				return z;
 			};
-			card = new joCard([menuList]).setTitle("Mensen")
+			card = new joCard([
+					new joFlexrow([
+						new joButton("Gestern"),
+						new joButton("Edit"),
+						new joButton("Morgen"  )
+					]),
+					menuList
+				]).setTitle("Mensen")
 			return card;
 		},
 		config: function(){

@@ -3,14 +3,17 @@
  * - Seitenübergänge zu morgen/gestern
  *
  */
+debug = true;
+ 
 $(document).ready(function(){
 //	$('#main').live( 'pageinit',function(event){
 		date = new Date();
-		dateString = date.getFullYear() + "-" + (date.getMonth()+1) + "-" + (date.getDate());
-//		dateString = "2011-12-14"; // Mock
+//		dateString = date.getFullYear() + "-" + (date.getMonth()+1) + "-" + (date.getDate());
+		dateString = "2012-1-24"; // Mock
 
 		storage.setDateFilter(dateString)
 		storage.getSortedSegmented(function(json){
+			console.log(json)
 			$("#dishes").html(ich.mainList({"json" : json}));
 			$("#dishes").listview('refresh');
 		});

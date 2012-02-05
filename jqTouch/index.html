@@ -1,33 +1,110 @@
 <!doctype html>
 <html>
-    <head>
-        <meta charset="UTF-8" />
-        
-        <title>jQTouch &beta;</title>
-        <style type="text/css" media="screen">@import "../../themes/css/jqtouch.css";</style>
-        <script src="../../src/lib/zepto.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="../../src/jqtouch.min.js" type="text/javascript" charset="utf-8"></script>
-        <script type="text/javascript" charset="utf-8">
-            var jQT = new $.jQTouch({
-                icon: 'jqtouch.png',
-                addGlossToIcon: false,
-                startupScreen: 'jqt_startup.png',
-                statusBar: 'black'
-            });
+<head>
+	<meta charset="UTF-8" />
+	
+	<title>jQTouch &beta;</title>
+	<link rel="stylesheet" type="text/css" media="screen" href="css/jqtouch.css">
+	<script src="js/zepto.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/jqtouch.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" charset="utf-8">
+		var jQT = new $.jQTouch({
+			icon: 'jqtouch.png',
+			addGlossToIcon: false,
+			startupScreen: 'jqt_startup.png',
+			statusBar: 'black'
+		});
 
-            $(function(){
-                // Custom Javascript (onReady)
-            });
-        </script>
-        <style type="text/css" media="screen">
-            /* Custom Style */
-        </style>
-    </head>
-    <body>
-        <div id="jqt">
-            <div id="start">
-                
-            </div>
-        </div>
-    </body>
+		$(function(){
+			// Custom Javascript (onReady)
+		});
+	</script>
+
+	<script type="text/html" id="list-template">
+		<div id="id{{date}}">
+			<div class="toolbar">
+				<a class="button slideup" id="infoButton" href="#edit">Prev</a>
+				<h1>{{date}}</h1>
+				<a class="button slideup" id="infoButton" href="#edit">Next</a>
+				<a class="button slideup" id="infoButton" href="#edit">Edit</a>
+			</div>
+			<div class="scroll">
+				<ul class="rounded">
+					{{#dishes}}
+						{{^mensaName}}
+							<li class="sep">{{header}}</li>
+						{{/mensaName}}
+						{{#mensaName}}
+							<li>
+								<a>{{dish}}</a>
+
+								<span class="counter">{{studPrice}}€</span>
+								<a>{{name}}</a>
+							</li>
+						{{/mensaName}}
+					{{/dishes}}
+				</ul>
+			</div>
+		</div>
+	</script>
+	
+	<script type="text/html" id="mensaCheckbox">
+		{{#mensen}}
+			<li>
+				<li>{{name}}} <span class="toggle"><input type="checkbox" {{#active}}checked="checked"{{/active}} value="{{name}}" id="{{name}}" /></span></li>
+			</li>
+		{{/mensen}}
+	</script>
+</head>
+<body>
+	<div id="jqt">
+		<div id="menu">
+			<div class="toolbar">
+				<a class="button" id="" href="#edit">Prev</a>
+				<h1>jQTouch</h1>
+				<a class="button" id="" href="#edit">Next</a>
+				<a class="button slideup" id="infoButton" href="#edit">Edit</a>
+			</div>
+			<div class="scroll">
+				<ul class="rounded" id="menu">
+				</ul>
+			</div>
+		</div>
+		<div id="edit">
+			<div class="toolbar">
+				<h1>jQTouch</h1>
+				<a href="#" class="back">Back</a>
+			</div>
+				
+			<form class="scroll">
+				<ul class="rounded edit" id="">
+					<li>Philo <span class="toggle"><input type="checkbox" /></span></li>
+					<li>Geo <span class="toggle"><input type="checkbox" /></span></li>
+					<li>Wiwi <span class="toggle"><input type="checkbox" /></span></li>
+					<li>Buzze <span class="toggle"><input type="checkbox" /></span></li>
+					<li>Philo <span class="toggle"><input type="checkbox" /></span></li>
+					<li>Geo <span class="toggle"><input type="checkbox" /></span></li>
+					<li>Wiwi <span class="toggle"><input type="checkbox" /></span></li>
+					<li>Buzze <span class="toggle"><input type="checkbox" /></span></li>
+					<li>Philo <span class="toggle"><input type="checkbox" /></span></li>
+					<li>Geo <span class="toggle"><input type="checkbox" /></span></li>
+					<li>Wiwi <span class="toggle"><input type="checkbox" /></span></li>
+					<li>Buzze <span class="toggle"><input type="checkbox" /></span></li>
+					<li>Philo <span class="toggle"><input type="checkbox" /></span></li>
+					<li>Geo <span class="toggle"><input type="checkbox" /></span></li>
+					<li>Wiwi <span class="toggle"><input type="checkbox" /></span></li>
+					<li>Buzze <span class="toggle"><input type="checkbox" /></span></li>
+					<li>Philo <span class="toggle"><input type="checkbox" /></span></li>
+					<li>Geo <span class="toggle"><input type="checkbox" /></span></li>
+					<li>Wiwi <span class="toggle"><input type="checkbox" /></span></li>
+					<li>Buzze <span class="toggle"><input type="checkbox" /></span></li>
+					<li>Philo <span class="toggle"><input type="checkbox" /></span></li>
+					<li>Geo <span class="toggle"><input type="checkbox" /></span></li>
+					<li>Wiwi <span class="toggle"><input type="checkbox" /></span></li>
+					<li>Buzze <span class="toggle"><input type="checkbox" /></span></li>
+				</ul>
+			</form>
+		</div>
+	</div>
+</body>
 </html>

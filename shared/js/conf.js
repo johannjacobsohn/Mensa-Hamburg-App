@@ -53,6 +53,15 @@
 				});
 			}
 			return json;
-		}
+		},
+
+		setStudentPrices : function(state){
+			return data.set(state ? "1" : "0");
+		},
+
+		displayStudentPrices : function(){
+			return typeof data.get("displayStudentPrices") === "undefined" || data.get("displayStudentPrices") === "1"
+		},
+		
 	};
 })();

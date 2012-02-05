@@ -1,19 +1,23 @@
 Bugs:
 - Backend
--- Woche dynamisch abhängig vom Filter laden
+!- Woche dynamisch abhängig vom Filter laden
 -- out-of-range rückgeben
 -- Warteindikator
--- Menu cachen
+!- Menu cachen
 -- incremental callbacks ?
 -- numberOfFailed? numberOfLoaded?
--- conf: Nicht-Studentenpreise
+!- conf: Nicht-Studentenpreise
+!- About/Info-Seite
+-- Language
+-- Unittests
+-- Detailmodus? Ansicht?
 - mojo
 -- Datum/Tag besser anzeigen
 -- Filterlist
 -- Warteindikator
 - enyo
--- segments durcheinander
--- first-last?
+!- segments durcheinander
+!- first-last?
 - jquery mobile
 -- instabil auf Xoom/Android (localStorage funktioniert vermutlich nicht) : "ERROR/AndroidRuntime(5560): java.lang.NullPointerException: println needs a message"
 - Win7 Desktop Gadget
@@ -61,6 +65,14 @@ Frontends:
 -- Titanium                          - TODO
 -- Enyo/ChromeApp                    - TODO
 
+- Einstellen in
+-- github
+-- App Catalog      (webOS)
+-- Market Place     (Android)
+-- App World        (Blackberry)
+-- App Store        (iOS)?
+-- Chrome App Store (Google)
+-- Windows irgendwas
 
 später?
 - The M Project - http://the-m-project.org/
@@ -77,4 +89,5 @@ später?
 - Yahoo!_Widget
 - Screenlet
 - KDE Plasmoid (Web Widget)
+- Plasma Active App http://community.kde.org/Plasma/Active/Apps
 - Gnome Shell Extension

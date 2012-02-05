@@ -19,6 +19,13 @@
 
 					<p class="ui-li-aside">{{studPrice}}€</p>
 					<p>{{name}}</p>
+					{{#properties}}
+						{{name}},
+					{{/properties}}
+					<br><br>
+					{{#additives}}
+						{{name}},
+					{{/additives}}
 			</li>
 				{{/mensaName}}
 		</script>
