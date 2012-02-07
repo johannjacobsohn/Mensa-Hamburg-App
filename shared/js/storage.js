@@ -50,9 +50,9 @@
 					var mensaNameWeight = 0,
 					    dateWeight = 0,
 					    nameA = a.mensaName.toLowerCase(),
-						nameB = b.mensaName.toLowerCase(),
+					    nameB = b.mensaName.toLowerCase(),
 					    dateA = a.date.split("-"),
-						dateB = b.date.split("-")
+					    dateB = b.date.split("-")
 					if (nameA < nameB){
 						mensaNameWeight = -10;
 					} else if (nameA > nameB) {
@@ -124,23 +124,33 @@
 		
 		/*
 		 * 
-		 * @param function                        !: callback kann mehrfach aufgerufen werden
+		 * @param function
 		 * @return void
 		 */
 		// @TODO: cleanup vars & documentation
 		getWeekMenu : function(callback){
+			var mensenArr = conf.getSavedURLs(),
+			    mensa = "",
+			    now = new Date(),
+			    thisWeek = now.getWeek(),  // get this week's number
+			    week = this.date.getWeek() // get Week from date
+
+			// enqueue the callback to be executed when everything has been loaded
 			if(callback) { this.menuCallbackQueue.push(callback);}
-			mensenArr = conf.getSavedURLs();
+
+			// populate this.loadedMensen and this.weekMenu from cache
+			this.loadCachedData();
+
 			for(var m = 0; m<mensenArr.length; m++){
 				mensa = mensenArr[m];
-				if(!this.loadedMensen[mensa] && typeof this.lock[mensa] === "undefined"){
+				this.loadedMensen[mensa] = this.loadedMensen[mensa] || {};
+
+				// skip loading if this mensa has been already loaded, its currently loading or date is not this or next week -> there won't be any data on the server
+				// @TODO: think of better way to do this
+				if(!this.loadedMensen[mensa][week] && typeof this.lock[mensa] === "undefined" && ( week === thisWeek || week === thisWeek + 1 ) ){
+
 					// lock execution of callback queue to prevent race conditions
 					this.lock[mensa] = true;
-
-					// get current Week from date
-					// @TODO: Figure out if this or next weel is meant
-					var now = new Date();
-					var week = now.getWeek();
 
 					// load and parse URL with correct week number
 					if(typeof debug !== "undefined" && debug){
@@ -153,9 +163,9 @@
 					xhr.get(url, function(resp, additional_args){
 						// parse HTML
 						storage.parseMensaHTML(resp, additional_args.mensaName);
-						
+
 						// mark as cached
-						storage.loadedMensen[additional_args.mensaName] = true;
+						storage.loadedMensen[additional_args.mensaName][additional_args.week] = true;
 
 						// release lock
 						delete storage.lock[additional_args.mensaName];
@@ -167,17 +177,18 @@
 
 						// release lock
 						delete storage.lock[additional_args.mensaName];
-						
+
 						// try to run callbacks
 						storage.runMenuCallbacks();
 					},
 					{
-						mensaName : mensa
+						mensaName : mensa,
+						week : week
 					}
 					);
 				}
 			}
-			
+
 			this.runMenuCallbacks();
 		},
 
@@ -316,10 +327,30 @@
 					fkt = this.menuCallbackQueue.pop();
 					fkt(this.filteredWeekMenu);
 				}
+
+				// sync cache
+				this.cache();
+
 				return true;
 			} else {
 				return false;
 			}
+		},
+
+		cache : function(){
+//			console.log("cache!", this.loadedMensen, JSON.stringify(this.loadedMensen))
+			data.save("menu", JSON.stringify(this.weekMenu) );
+			data.save("loadedMensen", JSON.stringify(this.loadedMensen) );
+		},
+
+		loadCachedData : function(){
+			this.weekMenu = JSON.parse( data.get("menu") ) || [];
+			this.loadedMensen = JSON.parse( data.get("loadedMensen") ) || {};
+		},
+
+		clearCache : function(){
+			data.remove("menu");
+			data.remove("loadedMensen");
 		},
 
 		/*

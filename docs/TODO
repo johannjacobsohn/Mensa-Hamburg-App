@@ -1,9 +1,7 @@
 Bugs:
 - Backend
-!- Woche dynamisch abhängig vom Filter laden
 -- out-of-range rückgeben
 -- Warteindikator
-!- Menu cachen
 -- incremental callbacks ?
 -- numberOfFailed? numberOfLoaded?
 !- conf: Nicht-Studentenpreise
