@@ -13,14 +13,16 @@ MenuAssistant.prototype.activate = function(event) {
 	storage.cleanData();
 
 	// Rerender Menu
-	storage.filter(function(json){
+	storage.thisDay(function(json){
 		this.controller = Mojo.Controller.stageController.activeScene();
+
+		this.controller.get('spinner').mojo.stop();
+
 		this.controller.setWidgetModel("menu", {"items": json});
-	});
+	}, false);
 
 	// Rerender Filter
 	storage.getTypes(function(types){
-		console.log("get Types" + types.length);
 		mediaMenuModel.items[0].items = [{
 			label : "Alle",
 			command : "type-all"
@@ -31,7 +33,7 @@ MenuAssistant.prototype.activate = function(event) {
 	});
 	mediaMenuModel.items[1].items = [{
 		label : "Alle",
-		command : "type-all"
+		command : "mensa-all"
 	}];
 	var mensen = conf.getSavedURLs();
 	for(var i=0; i<mensen.length; i++){
@@ -79,16 +81,34 @@ MenuAssistant.prototype.setup = function() {
 				label: "Mensen konfigurieren",
 				command : "conf"
 			},
+			{
+				label: "Zurücksetzen",
+				command : "reset"
+			},
+			{
+				label: "Über diese App",
+				command : "about"
+			}
 		]
 	};
 	this.controller.setupWidget(Mojo.Menu.appMenu, {}, mediaMenuModel);
+
+	spinner = this.controller.setupWidget("spinner",
+		this.attributes = {
+			spinnerSize: "large"
+		},
+		this.model = {
+			spinning: true
+		}
+	); 
+
 
 	headerMenu = {
 		visible: true,
 		items: [{
 			items: [
 				{ label: $L('Yesterday') ,icon: "back"   , command: 'yesterday'},
-				{ label: "Mensa Heute"   , width: 210 },
+				{ label: "Heute"   , width: 210 },
 				{ label: $L('Refresh')   , icon:'forward', command:'tomorrow'  }
 			]
 		}]
@@ -111,15 +131,6 @@ MenuAssistant.prototype.setup = function() {
 	{"items": []} // Modell
 	);
 
-	date = new Date();
-	dateString = date.getFullYear() + "-" + (date.getMonth()+1) + "-" + (date.getDate());
-
-	storage.setDateFilter(dateString);
-	storage.filter(function(json){
-		this.controller = Mojo.Controller.stageController.activeScene();
-		this.controller.setWidgetModel("menu", {"items": json});
-	});
-
 	storage.getTypes(function(types){
 		for(var i=0; i<types.length; i++){
 			mediaMenuModel.items[0].items.push({label: types[i], command: "type-" + types[i] });
@@ -132,30 +143,28 @@ MenuAssistant.prototype.setup = function() {
 		}
 	})();
 
-	function fetch(json){
+	function fetch(json, dateString, date){
 		if(typeof json === "undefined") json = []; // @TODO: gehört hier nicht hin - storage sollte nicht "undefined zurückgeben"
 
 		this.controller = Mojo.Controller.stageController.activeScene();
+		this.controller.get('spinner').mojo.stop();
 		this.controller.setWidgetModel("menu", {"items": json});
 
-		var dayString = dateToString(dateString);
-		headerMenu.items[0].items[1].label = "Mensa " + dayString;
+		headerMenu.items[0].items[1].label = dateToString(dateString) + ", " + date.getDate() + "." + ( date.getMonth() + 1 ) + "."
 
 		this.controller.modelChanged(headerMenu, this);
 	}
 
 	function tomorrow(){
-		date = new Date(date.valueOf() + 60 * 60 * 24 * 1000);
-		dateString = date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getDate();
-		storage.setDateFilter(dateString);
-		storage.filter(fetch);
+		this.controller = Mojo.Controller.stageController.activeScene();
+		this.controller.get('spinner').mojo.start();
+		storage.nextDay(fetch, false);
 	}
 	
 	function yesterday(){
-		date = new Date(date.valueOf() - 60 * 60 * 24 * 1000);
-		dateString = date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getDate();
-		storage.setDateFilter(dateString);
-		storage.filter(fetch);
+		this.controller = Mojo.Controller.stageController.activeScene();
+		this.controller.get('spinner').mojo.start();
+		storage.prevDay(fetch, false);
 	}
 
 	// handle menu commands
@@ -170,26 +179,36 @@ MenuAssistant.prototype.setup = function() {
 			} else if(event.command === "conf"){
 				this.controller.pushScene("config");
 				return;
+			} else if(event.command === "reset"){
+				data.clear();
+				location.reload();
+				return;
+			} else if(event.command === "about"){
+				//
+				return;
 			} else {
 				var temp = event.command.split("-");
 				var control = Mojo.Controller.stageController.activeScene();
 				switch (temp[0]) {
 					case "type": {
-						if(temp[1] === "all") storage.unsetNameFilter();
-						else storage.setNameFilter(temp[1]);
-						storage.filter(function(json){
-							control.setWidgetModel("menu", {"items": json});
-						});
+						if(temp[1] === "all"){
+							storage.unsetNameFilter();
+						} else {
+							storage.setNameFilter(temp[1]);
+						}
 						break;
 					} case "mensa" : {
-						if(temp[1] === "all") storage.unsetMensaFilter();
-						else storage.setMensaFilter(temp[1]);
-						storage.filter(function(json){
-							control.setWidgetModel("menu", {"items": json});
-						});
+						if(temp[1] === "all"){
+							storage.unsetMensaFilter();
+						} else {
+							storage.setMensaFilter(temp[1]);
+						}
 						break;
 					}
 				}
+				storage.filter(function(json){
+					control.setWidgetModel("menu", {"items": json});
+				});
 			}
 		}
 	};

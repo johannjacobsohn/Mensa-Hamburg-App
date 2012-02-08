@@ -19,3 +19,16 @@
 	top: 2px;
 	right: 2px;
 }
+
+#spinner{
+	margin: 1em auto;
+	display: block;
+}
+#spinner:after{
+	content: "… lädt …";
+	display: block;
+	padding-top: 150px;
+	text-align: center;
+	color: #191919;
+	font-weight: bold;
+}
