@@ -490,34 +490,58 @@
 		/*
 		* convinient method to get today menu
 		*/
-		thisDay : function(callback){
+		thisDay : function(callback, sortedSegmented){
 			this.date = typeof debug !== "undefined" && debug ? new Date(2012, 0, 24) : new Date(), //now
-
+			sortedSegmented = typeof sortedSegmented === "undefined" ? true : sortedSegmented;
+			
 			this.setDateFilter(this.dateToDateString(this.date));
-			this.getSortedSegmented(function(json){
-				callback(json, storage.dateToDateString(storage.date), storage.date);
-			});
+
+			if(sortedSegmented){
+				this.getSortedSegmented(function(json){
+					callback(json, storage.dateToDateString(storage.date), storage.date);
+				});
+			} else {
+				this.filter(function(json){
+					callback(json, storage.dateToDateString(storage.date), storage.date);
+				});
+			}
 		},
 		/*
 		* convinient method to get the next Day
 		*/
-		nextDay : function(callback){
+		nextDay : function(callback, sortedSegmented){
 			this.date = new Date(this.date.valueOf() + 60 * 60 * 24 * 1000);
 			this.setDateFilter(this.dateToDateString(this.date));
-			this.getSortedSegmented(function(json){
-				callback(json, storage.dateToDateString(storage.date), storage.date);
-			});
+			sortedSegmented = typeof sortedSegmented === "undefined" ? true : sortedSegmented;
+
+			if(sortedSegmented){
+				this.getSortedSegmented(function(json){
+					callback(json, storage.dateToDateString(storage.date), storage.date);
+				});
+			} else {
+				this.filter(function(json){
+					callback(json, storage.dateToDateString(storage.date), storage.date);
+				});
+			}
 		},
 
 		/*
 		* convinient method to get the next Day
 		*/
-		prevDay : function(callback){
+		prevDay : function(callback, sortedSegmented){
 			this.date = new Date(this.date.valueOf() - 60 * 60 * 24 * 1000);
 			this.setDateFilter(this.dateToDateString(this.date));
-			this.getSortedSegmented(function(json){
-				callback(json, storage.dateToDateString(storage.date), storage.date);
-			});
+			sortedSegmented = typeof sortedSegmented === "undefined" ? true : sortedSegmented;
+
+			if(sortedSegmented){
+				this.getSortedSegmented(function(json){
+					callback(json, storage.dateToDateString(storage.date), storage.date);
+				});
+			} else {
+				this.filter(function(json){
+					callback(json, storage.dateToDateString(storage.date), storage.date);
+				});
+			}
 		},
 
 
