@@ -23,18 +23,22 @@
 		},
 		filter : function(callback){
 			this.getWeekMenu(function(){
-				var i;
-				//copy weekMenu to filteredWeekMenu
+				var i = 0;
+
+				// @TODO: remove "global"
+				args = {};
+				// copy weekMenu to filteredWeekMenu
 				storage.filteredWeekMenu = [];
 				for(i=0; i < storage.weekMenu.length; i++){
 					storage.filteredWeekMenu.push(storage.weekMenu[i]);
 				}
+
 				// filter filteredWeekMenu
 				for(i=0; i < storage.filters.length; i++){
-					// ? args
 					args = storage.filters[i].args;
 					storage.filteredWeekMenu = storage.filteredWeekMenu.filter(storage.filters[i].fkt);
 				}
+
 				callback(storage.filteredWeekMenu);
 			});
 		},
@@ -106,6 +110,7 @@
 		 */
 		cleanData : function(){
 			var validUrls = conf.getSavedURLs();
+
 
 			// filter menu
 			this.weekMenu = this.weekMenu.filter(function(item){
@@ -510,7 +515,15 @@
 		* convinient method to get today menu
 		*/
 		thisDay : function(callback, sortedSegmented){
-			this.date = typeof debug !== "undefined" && debug ? new Date(2012, 0, 24) : new Date(), //now
+
+			this.date = typeof debug !== "undefined" && debug ? new Date(2012, 0, 24) : new Date(); //now
+
+			if ( this.date.getDay() === 6 ){ // Saturday
+				this.date.setDate( this.date.getDate() + 2 );
+			} else if ( this.date.getDay() === 0 ){ // Sunday
+				this.date.setDate( this.date.getDate() + 1 );
+			}
+
 			sortedSegmented = typeof sortedSegmented === "undefined" ? true : sortedSegmented;
 			
 			this.setDateFilter(this.dateToDateString(this.date));
@@ -529,9 +542,17 @@
 		* convinient method to get the next Day
 		*/
 		nextDay : function(callback, sortedSegmented){
-			this.date = new Date(this.date.valueOf() + 60 * 60 * 24 * 1000);
+			var sortedSegmented = typeof sortedSegmented === "undefined" ? true : sortedSegmented,
+			    thisDay = this.date.getDay();
+
+			// skip Weekends
+			if ( thisDay === 5 ) {
+				this.date.setDate( this.date.getDate() + 3 );
+			} else {
+				this.date.setDate( this.date.getDate() + 1 );
+			}
+
 			this.setDateFilter(this.dateToDateString(this.date));
-			sortedSegmented = typeof sortedSegmented === "undefined" ? true : sortedSegmented;
 
 			if(sortedSegmented){
 				this.getSortedSegmented(function(json){
@@ -548,9 +569,17 @@
 		* convinient method to get the next Day
 		*/
 		prevDay : function(callback, sortedSegmented){
-			this.date = new Date(this.date.valueOf() - 60 * 60 * 24 * 1000);
+			var sortedSegmented = typeof sortedSegmented === "undefined" ? true : sortedSegmented,
+			    thisDay = this.date.getDay();
+			
+			// skip Weekends
+			if ( thisDay === 1 ) {
+				this.date.setDate( this.date.getDate() - 3 );
+			} else {
+				this.date.setDate( this.date.getDate() - 1 );
+			}
+
 			this.setDateFilter(this.dateToDateString(this.date));
-			sortedSegmented = typeof sortedSegmented === "undefined" ? true : sortedSegmented;
 
 			if(sortedSegmented){
 				this.getSortedSegmented(function(json){
