@@ -56,11 +56,11 @@
 		},
 
 		setStudentPrices : function(state){
-			return data.set(state ? "1" : "0");
+			return data.save("displayStudentPrices", state ? "1" : "0");
 		},
 
 		displayStudentPrices : function(){
-			return typeof data.get("displayStudentPrices") === "undefined" || data.get("displayStudentPrices") === "1"
+			return (typeof data.get("displayStudentPrices") === "undefined" ||  data.get("displayStudentPrices") === null || data.get("displayStudentPrices") === "1")
 		},
 		
 	};
