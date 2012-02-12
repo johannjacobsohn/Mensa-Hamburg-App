@@ -9,12 +9,9 @@
 	data : [],
 	create: function() {
 		this.inherited(arguments);
-		var that = this;
-		storage.getMensen(function(json){
-			that.data = json;
-			that.data.unshift("Alle");
-			that.$.repeater.render();
-		});
+		this.data = conf.getSavedURLs();
+		this.data.unshift("Alle");
+		this.$.repeater.render();
 	},
 	listSetupRow: function(inSender, inIndex) {
 		var row = this.data[inIndex];

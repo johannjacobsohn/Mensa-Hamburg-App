@@ -2,6 +2,27 @@
 	name: "main",
 	kind: enyo.VFlexBox,
 	components: [
+		{kind: "AppMenu", components: [
+			{caption: "Konfigurieren", onclick: "conf", onclick: "openConfig"},
+			{caption: "Über diese App", onclick: "about", onclick: "openAbout"},
+			{caption: "Zurücksetzen", onclick: "reset", onclick: "reset"},
+
+			{kind: "ModalDialog", name: "about", caption: info.appName, components:[
+				{ content: info.appDesc },
+				{kind: "Button", className: "enyo-button-affirmative", caption: $L("Ok"), onclick: "closePopup"},
+				{kind: "Button", caption: $L("Mehr Informationen"), onclick: "moreInfo"},
+				{kind: "Button", caption: $L("Email schreiben"), onclick: "email"},
+			]},
+			{
+				name : "openEmail",
+				kind : "PalmService",
+				service : "palm://com.palm.applicationManager",
+				method : "open",
+				onSuccess : "openEmailSuccess",
+				onFailure : "openEmailFailure",
+				subscribe : true
+			},
+		]},
 		{name: "slidingPane", kind: "SlidingPane", flex: 1, components: [
 			{name: "left", width: "200px", kind:"SlidingView", components: [
 					{kind: "Header", content:"Tage"},
@@ -61,33 +82,64 @@
 					]}
 			]},
 			/* Scrollable */
-			{kind: "ModalDialog", name: "scrollerExample", caption: "Zu ladene Mensen", components:[
+			{kind: "ModalDialog", name: "conf", caption: "Zu ladene Mensen", components:[
 				{kind: "Group", components: [
+					{
+						kind: "Picker",
+						value: conf.displayStudentPrices(),
+						items: [
+							{caption: "Studentenpreise anzeigen",       value: true},
+							{caption: "Nicht-Studentenpreise anzeigen", value: false}
+						],
+						onChange: "changeStudentPrice"
+					},
+
 					{kind:"Scroller", height: "230px", components:[
 						{kind: "Repeater", onSetupRow: "listSetupRow"}
 					]}
 				]},
-				{kind: "Button", className: "enyo-button-affirmative", caption: $L("Speichern"), onclick: "closePopup"},
+				{kind: "Button", className: "enyo-button-affirmative", caption: $L("Speichern"), onclick: "saveConf"},
 			]}
 		]}
 	],
 	openConfig: function(inSender, inEvent) {
-		this.$.scrollerExample.openAtCenter();
+		this.$.conf.openAtCenter();
+	},
+	openAbout: function(inSender, inEvent) {
+		this.$.about.openAtCenter();
 	},
 	data : [],
 	listSetupRow: function(inSender, inIndex) {
-		var row = this.data[inIndex];
-		//figure out if url has been saved
-		savedUrls = conf.getSavedURLs();
+		var row = this.data[inIndex],
+		    savedUrls = conf.getSavedURLs(),
+		    isConfigured = conf.isConfigured();
 		if(row){
 			return {kind: "RowItem", layoutKind: "HFlexLayout", components: [
 				{content: row, flex: 1},
-				{kind: "ToggleButton", state: savedUrls.indexOf(row) != -1}
+				{kind: "ToggleButton", state: isConfigured && savedUrls.indexOf(row) != -1}
 			]};
 		}
 	},
-	closePopup: function(inSender, inEvent) {
-		var array = [], i, controls = inSender.parent.children[0].children[1].children[0].children[0].children[0].children;
+	moreInfo : function(inSender, inEvent){
+		location.href = info.appURL;
+		this.closePopup(inSender, inEvent);
+	},
+	email : function(inSender, inEvent){
+		this.$.openEmail.call({ "target": "mailto: " + info.appEmail});
+		this.closePopup(inSender, inEvent);
+	},
+	reset : function(inSender, inEvent){
+		data.clear();
+		location.reload();
+	},
+	closePopup : function(inSender, inEvent){
+		inSender.parent.parent.parent.close();
+	},
+	changeStudentPrice : function(instance, value){
+		conf.setStudentPrices(value);
+	},
+	saveConf: function(inSender, inEvent) {
+		var array = [], i, controls = inSender.parent.children[0].children[1].children[1].children[0].children[0].children;
 		for(i=0; i<controls.length; i++){
 			if(controls[i].children[1].state){
 				array.push(controls[i].children[0].content)
@@ -118,16 +170,20 @@
 		});
 		// MenuList:
 		var menuList = this.owner.$.main.$.menuList;
-		storage.filter(function(json){
+		storage.getSortedSegmented(function(json){
 			menuList.data = json;
 			menuList.render();
 		});
-
-		inSender.parent.parent.parent.close();
+		this.closePopup(inSender, inEvent)
 	},
 
 	create: function() {
 		this.inherited(arguments);
 		this.data = conf.getURLs();
+		var confPopup = this.$.conf;
+		window.addEventListener("load", function(){
+			if(!conf.isConfigured()) confPopup.openAtCenter();
+		}, false);
 	}
 });
+

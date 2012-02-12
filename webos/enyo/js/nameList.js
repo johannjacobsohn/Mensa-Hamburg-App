@@ -2,6 +2,7 @@
 	name: "nameList",
 	kind: enyo.VFlexBox,
 	components: [
+		{kind: "SpinnerLarge", showing: true},
 		{kind: "Scroller", flex: 1, components: [
 			{kind: "Repeater", onSetupRow: "listSetupRow"}
 		]}
@@ -11,6 +12,7 @@
 		this.inherited(arguments);
 		var that = this;
 		storage.getTypes(function(json){
+			that.$.spinnerLarge.hide();
 			that.data = json;
 			that.data.unshift("Alle");
 			that.$.repeater.render();

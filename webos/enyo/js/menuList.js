@@ -2,6 +2,7 @@
 	name: "menuList",
 	kind: enyo.VFlexBox,
 	components: [
+		{kind: "SpinnerLarge", showing: true},
 		{kind: "Scroller", flex: 1, components: [
 			{kind: "Repeater", onSetupRow: "listSetupRow"}
 		]}
@@ -16,10 +17,13 @@
 			date : ""
 */		}
 	],
+
 	create: function() {
 		this.inherited(arguments);
+
 		var that = this;
 		storage.getSortedSegmented(function(json){
+			that.$.spinnerLarge.hide();
 			that.data = json;
 			that.$.repeater.render();
 		});
@@ -29,13 +33,13 @@
 		if (row) {
 			if(row.type === "header"){
 				return {kind: "Divider", caption: row.headerType === "date" ? dateToString(row.header) : row.header}
-			} else {
+			} else if( row.dish ) {
 				return {kind: "Item", className: "enyo-item" + (row.first ? " enyo-first" : "") + (row.last ? " enyo-last" : ""), components: [
-					{content: row.dish},
+					{content: row.dish },
 					{layoutKind: "HFlexLayout", style: "font-size: 0.8em", 
 						components: [
 							{content: row.name, flex: 1},
-							{content: row.studPrice+"€"},
+							{content: (conf.displayStudentPrices() ? row.studPrice : row.normalPrice) + "€"},
 						]
 					}
 				]};
