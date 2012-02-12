@@ -1,9 +1,10 @@
 {
-	"id": "com.mensaapp.webos",
-	"version": "0.6.0",
-	"vendor": "JJacobsohn",
-	"type": "web",
-	"main": "index.html",
-	"title": "MensaApp",
-	"uiRevision": 2
+  "id"         : "com.mensaapp.webos",
+  "version"    : "1.0.0",
+  "vendor"     : "jjacobsohn",
+  "type"       : "web",
+  "main"       : "index.html",
+  "title"      : "Mensa HH",
+  "uiRevision" : "1",
+  "icon"       : "icon.png"
 }

@@ -9,17 +9,8 @@ MenuAssistant.prototype.activate = function(event) {
 	/* put in event handlers here that should only be in effect when this scene is active. For
 	   example, key handlers that are observing the document */
 
-	// cleanup Data
-	storage.cleanData();
-
 	// Rerender Menu
-	storage.thisDay(function(json){
-		this.controller = Mojo.Controller.stageController.activeScene();
-
-		this.controller.get('spinner').mojo.stop();
-
-		this.controller.setWidgetModel("menu", {"items": json});
-	}, false);
+	storage.thisDay(fetch, false);
 
 	// Rerender Filter
 	storage.getTypes(function(types){
@@ -52,11 +43,28 @@ MenuAssistant.prototype.cleanup = function(event) {
 };
 
 MenuAssistant.prototype.setup = function() {
+
+	if(!conf.isConfigured()){
+		this.controller.showAlertDialog({
+			onChoose: function(value) {
+				if(value === "conf"){
+					Mojo.Controller.stageController.pushScene("config");
+				}
+			},
+			title   : info.notConfTitle,
+			message : info.notConfText,
+			choices : [
+				{label:$L("OK"), value:""},
+				{label:$L("Jetzt konfigurieren"), value: "conf"}
+			]
+		});
+	}
+	
 	// Swipe gestures
 	Mojo.Event.listen(this.controller.topContainer(), Mojo.Event.flick, function(event) {
-		if(event.velocity.x > 1000){
+		if(event.velocity.x > 600){
 			yesterday();
-		} else if (event.velocity.x < -1000){
+		} else if (event.velocity.x < -600){
 			tomorrow();
 		}
 	});
@@ -91,7 +99,7 @@ MenuAssistant.prototype.setup = function() {
 			}
 		]
 	};
-	this.controller.setupWidget(Mojo.Menu.appMenu, {}, mediaMenuModel);
+	this.controller.setupWidget(Mojo.Menu.appMenu, {omitDefaultItems:true}, mediaMenuModel);
 
 	spinner = this.controller.setupWidget("spinner",
 		this.attributes = {
@@ -107,9 +115,9 @@ MenuAssistant.prototype.setup = function() {
 		visible: true,
 		items: [{
 			items: [
-				{ label: $L('Yesterday') ,icon: "back"   , command: 'yesterday'},
-				{ label: "Heute"   , width: 210 },
-				{ label: $L('Refresh')   , icon:'forward', command:'tomorrow'  }
+				{ label: $L('Yesterday'), icon  : "back"   , command: 'yesterday' },
+				{ label: "Heute"        , width : 210      , command: 'today'     },
+				{ label: $L('Refresh')  , icon  :'forward' , command: 'tomorrow'  }
 			]
 		}]
 	};
@@ -131,29 +139,12 @@ MenuAssistant.prototype.setup = function() {
 	{"items": []} // Modell
 	);
 
-	storage.getTypes(function(types){
-		for(var i=0; i<types.length; i++){
-			mediaMenuModel.items[0].items.push({label: types[i], command: "type-" + types[i] });
-		}
-	});
 	(function(){
 		var mensen = conf.getSavedURLs();
 		for(var i=0; i<mensen.length; i++){
 			mediaMenuModel.items[1].items.push({label: mensen[i], command: "mensa-" + mensen[i] });
 		}
 	})();
-
-	function fetch(json, dateString, date){
-		if(typeof json === "undefined") json = []; // @TODO: gehört hier nicht hin - storage sollte nicht "undefined zurückgeben"
-
-		this.controller = Mojo.Controller.stageController.activeScene();
-		this.controller.get('spinner').mojo.stop();
-		this.controller.setWidgetModel("menu", {"items": json});
-
-		headerMenu.items[0].items[1].label = dateToString(dateString) + ", " + date.getDate() + "." + ( date.getMonth() + 1 ) + "."
-
-		this.controller.modelChanged(headerMenu, this);
-	}
 
 	function tomorrow(){
 		this.controller = Mojo.Controller.stageController.activeScene();
@@ -167,14 +158,25 @@ MenuAssistant.prototype.setup = function() {
 		storage.prevDay(fetch, false);
 	}
 
+	function today(){
+		this.controller = Mojo.Controller.stageController.activeScene();
+		this.controller.get('spinner').mojo.start();
+		storage.thisDay(fetch, false);
+	}
+
 	// handle menu commands
 	StageAssistant.prototype.handleCommand = function(event) {
+		var activeScene = Mojo.Controller.stageController.activeScene();
+
 		if(event.type == Mojo.Event.command) {
 			if(event.command === "tomorrow"){
 				tomorrow();
 				return;
 			} else if(event.command === "yesterday"){
 				yesterday();
+				return;
+			} else if(event.command === "today"){
+				today();
 				return;
 			} else if(event.command === "conf"){
 				this.controller.pushScene("config");
@@ -184,11 +186,42 @@ MenuAssistant.prototype.setup = function() {
 				location.reload();
 				return;
 			} else if(event.command === "about"){
-				//
+				activeScene.showAlertDialog({
+					onChoose: function(value) {
+						if(value === "more-info"){
+							location.href = info.appURL
+						} else if (value === "email"){
+							this.controller.serviceRequest('palm://com.palm.applicationManager', {
+								method: 'launch',
+								parameters: {
+									id: 'com.palm.app.email',
+									params: {
+										summary: 'Mensa Hamburg App',
+										text: "Moin!",
+										recipients:[{
+											"type": "email",
+											"contactDisplay": "Team Mensa App",
+											"role": 1,
+											"value": info.appEmail
+										 }]
+									}
+								}
+							});
+
+						}
+					},
+					title   : info.appName,
+					message : info.appDesc,
+					choices : [
+						{label:$L("OK"), value:""},
+						{label:$L("Mehr Infos"), value: "more-info"},
+						{label:$L("Eine Email schreiben"), value: "email"}
+					]
+				});
+
 				return;
 			} else {
 				var temp = event.command.split("-");
-				var control = Mojo.Controller.stageController.activeScene();
 				switch (temp[0]) {
 					case "type": {
 						if(temp[1] === "all"){
@@ -206,10 +239,30 @@ MenuAssistant.prototype.setup = function() {
 						break;
 					}
 				}
-				storage.filter(function(json){
-					control.setWidgetModel("menu", {"items": json});
-				});
+				storage.filter(fetch);
 			}
 		}
 	};
 };
+
+
+function fetch(json, dateString, date){
+		if(typeof json === "undefined") json = []; // @TODO: gehört hier nicht hin - storage sollte nicht "undefined" zurückgeben können
+
+		this.controller = Mojo.Controller.stageController.activeScene();
+		this.controller.get('spinner').mojo.stop();
+
+		// Preise unterscheiden
+		var studentPrices = conf.displayStudentPrices();
+		
+		for(var i=0; i<json.length; i++){
+			json[i].price = studentPrices ? json[i].studPrice : json[i].normalPrice;
+		}
+
+		this.controller.setWidgetModel("menu", {"items": json});
+
+		if(dateString && date){
+			headerMenu.items[0].items[1].label = dateToString(dateString)
+			this.controller.modelChanged(headerMenu, this);
+		}
+	}

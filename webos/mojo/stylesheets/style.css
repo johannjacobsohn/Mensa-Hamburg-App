@@ -31,4 +31,6 @@
 	text-align: center;
 	color: #191919;
 	font-weight: bold;
+	float: left;
+	width: 100%;
 }

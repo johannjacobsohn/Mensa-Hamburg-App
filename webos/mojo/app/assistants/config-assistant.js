@@ -23,7 +23,11 @@ ConfigAssistant.prototype.cleanup = function(event) {
 	for(mensa in mensaTogglemodels){
 		if(mensaTogglemodels[mensa].value) arr.push(mensa);
 	}
+
 	conf.setURLs(arr);
+
+	// cleanup Data
+	storage.cleanData();
 };
 
 ConfigAssistant.prototype.setup = function() {
@@ -43,8 +47,22 @@ ConfigAssistant.prototype.setup = function() {
 		  },
 		  mensaTogglemodels[mensen[i].name] = {
 			  value: mensen[i].active,
-			  disabled: false
 		  }
-		); 
+		);
 	}
+
+	this.controller.setupWidget("studPrices",
+		this.attributes = {
+			choices: [
+				{label: "Studentenpreise", value: 1},
+				{label: "Nicht-Studentenpreise", value: 0}
+			]
+		},
+		this.model = {
+			value: 0 + conf.displayStudentPrices()
+		}
+	);
+	Mojo.Event.listen(this.controller.get("studPrices"), Mojo.Event.propertyChange, function(o){
+		conf.setStudentPrices(o.value === "1");
+	});
 };
