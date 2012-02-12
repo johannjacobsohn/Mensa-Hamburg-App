@@ -35,8 +35,11 @@ function deepCopy(o) {
     return copy;
 }
 
-/*
- * 
+/**
+ * Create a nicely formated string representation of any given Date
+ *
+ * @param  {string} isoDate  Date in iso format (yyyy-mm-dd)
+ * @return {string} formated String
  */
 function dateToString(isoDate){
 	var isoDateArr = isoDate.split("-");
@@ -51,7 +54,7 @@ function dateToString(isoDate){
 	} else if(date.getDate() === now.getDate()+1){
 		dayString = "Morgen";
 	} else {
-		dayString = dayNames[date.getDay()];
+		dayString = dayNames[date.getDay()] + ", " + date.getDate() + "." + (date.getMonth() + 1) + "." ;
 	}
 	return dayString;
 }
