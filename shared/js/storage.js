@@ -380,25 +380,20 @@
 		/*
 		* list all dates
 		*/
-		getAvailableDates: function(callback){
-			this.getWeekMenu(function(){
-				var date, dates = {}, datesArr = [];
-				for (var i=0; i<storage.weekMenu.length; i++){
-					dates[storage.weekMenu[i].date] = storage.weekMenu[i].date
-				}
-				
-				for(date in dates){
-					datesArr.push(date); 
-				}
+		getAvailableDates: function(getNextWeek){
+			var noOfDays = getNextWeek ? 13 : 5,
+			    today = new Date(),
+			    day = today.getDay(),
+			    date = today.getDate(),
+			    dates = [];
+			for(var i = 0; i < noOfDays-1; i++){
+				if(i === 5 || i === 6) continue;
+				dates.push(
+					this.dateToDateString(new Date( today.setDate( date - day - ( 6 - i ) )))
+				);
+			}
 
-				datesArr.sort(function(a, b){
-					a = a.split("-");
-					b = b.split("-");
-					return parseInt(a[0])*1000 + parseInt(a[1])*100 + parseInt(a[2]) - parseInt(b[0])*1000 - parseInt(b[1])*100 - parseInt(b[2]);
-				});
-
-				callback(datesArr);
-			});
+			return dates;
 		},
 
 		getMenuByDate : function(date, callback){
