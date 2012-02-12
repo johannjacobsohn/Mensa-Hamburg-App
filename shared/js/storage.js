@@ -111,6 +111,8 @@
 		cleanData : function(){
 			var validUrls = conf.getSavedURLs();
 
+			// Make sure we load the cache before we save an empty menu
+			this.loadCachedData();
 
 			// filter menu
 			this.weekMenu = this.weekMenu.filter(function(item){
