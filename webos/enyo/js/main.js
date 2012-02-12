@@ -10,7 +10,7 @@
 			{kind: "ModalDialog", name: "about", caption: info.appName, components:[
 				{ content: info.appDesc },
 				{kind: "Button", className: "enyo-button-affirmative", caption: $L("Ok"), onclick: "closePopup"},
-				{kind: "Button", caption: $L("Mehr Informationen"), onclick: "moreInfo"},
+				{kind: "Button", caption: $L("Zur Projektseite"), onclick: "moreInfo"},
 				{kind: "Button", caption: $L("Email schreiben"), onclick: "email"},
 			]},
 			{
