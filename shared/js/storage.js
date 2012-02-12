@@ -7,6 +7,7 @@
 		weekMenu         : [], // Cache
 		filteredWeekMenu : [], // Cache
 		date : typeof debug !== "undefined" && debug ? new Date(2012, 0, 24) : new Date(), //now
+		week : function(){ return this.date.getWeek() },
 		lock : [],
 		loadedMensen : {},
 		menuCallbackQueue : [],
@@ -105,22 +106,30 @@
 		 */
 		cleanData : function(){
 			var validUrls = conf.getSavedURLs();
+
+			// filter menu
 			this.weekMenu = this.weekMenu.filter(function(item){
 				return validUrls.indexOf(item.mensaName) !== -1;
 			});
 			this.filteredWeekMenu = this.filteredWeekMenu.filter(function(item){
 				return validUrls.indexOf(item.mensaName) !== -1;
 			});
-			
+
 			// cleanup loadedMensen
 			for(var mensa in this.loadedMensen){
-				this.loadedMensen[mensa] = this.weekMenu.filter(function(item){
-					return mensa === item.mensaName;
-				}).length > 0
+				for(var week in this.loadedMensen[mensa]){
+					this.loadedMensen[mensa][week] = this.weekMenu.filter(function(item){
+						return (mensa === item.mensaName && week == item.week); // intentionally week comparison, since week can be a number or a string
+					}).length > 0
+				}
 			}
 
 			// unset MensaFilter
 			this.unsetMensaFilter();
+
+			// sync cache
+			this.cache();
+
 		},
 		
 		/*
@@ -129,12 +138,12 @@
 		 * @return void
 		 */
 		// @TODO: cleanup vars & documentation
-		getWeekMenu : function(callback){
+		getWeekMenu : function(callback, week){
 			var mensenArr = conf.getSavedURLs(),
 			    mensa = "",
 			    now = new Date(),
 			    thisWeek = now.getWeek(),  // get this week's number
-			    week = this.date.getWeek() // get Week from date
+			    week = week ? week : this.date.getWeek() // get Week from date
 
 			// enqueue the callback to be executed when everything has been loaded
 			if(callback) { this.menuCallbackQueue.push(callback);}
@@ -163,10 +172,13 @@
 					// Trigger AJAX-Call
 					xhr.get(url, function(resp, additional_args){
 						// parse HTML
-						storage.parseMensaHTML(resp, additional_args.mensaName);
+						var oldWeekMenuLength = storage.weekMenu.length;
+						storage.parseMensaHTML(resp, additional_args.mensaName, additional_args.week);
 
-						// mark as cached
-						storage.loadedMensen[additional_args.mensaName][additional_args.week] = true;
+						// mark as cached only if new dishes where found
+						if(oldWeekMenuLength < storage.weekMenu.length){
+							storage.loadedMensen[additional_args.mensaName][additional_args.week] = true;
+						}
 
 						// release lock
 						delete storage.lock[additional_args.mensaName];
@@ -191,9 +203,11 @@
 			}
 
 			this.runMenuCallbacks();
+
+			this.cleanUpOldData();
 		},
 
-		parseMensaHTML : function(html, mensa){
+		parseMensaHTML : function(html, mensa, week){
 
 			var tds, trs, dish, dishName, date, dateString, obj,
 				properties = [],
@@ -307,6 +321,7 @@
 						if(dish !== ""){
 							this.weekMenu.push({
 								mensaName   : mensa,
+								week        : week,
 								name        : dishName,
 								dish        : dish,
 								studPrice   : studPrice,
@@ -339,7 +354,6 @@
 		},
 
 		cache : function(){
-//			console.log("cache!", this.loadedMensen, JSON.stringify(this.loadedMensen))
 			data.save("menu", JSON.stringify(this.weekMenu) );
 			data.save("loadedMensen", JSON.stringify(this.loadedMensen) );
 		},
@@ -352,6 +366,15 @@
 		clearCache : function(){
 			data.remove("menu");
 			data.remove("loadedMensen");
+		},
+
+		cleanUpOldData : function(){
+			var week = this.week();
+			this.weekMenu.filter(function(item){
+				return (week === item.week || week + 1 === item.week);
+			});
+
+			this.cache();
 		},
 
 		/*
