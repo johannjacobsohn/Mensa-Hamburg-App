@@ -5,13 +5,9 @@
 (function(){
 	conf = {
 		getSavedURLs : function(){
+			var urls = [];
 			if(this.isConfigured()){
-				try{
-					var urls = JSON.parse(data.get("urls"));
-				} catch(e){
-					console.log("data.js missing!");
-					var urls = JSON.parse(localStorage.getItem("urls"));
-				}
+				urls = JSON.parse(data.get("urls"));
 				return urls.length > 0 ? urls : this.getURLs();
 			} else {
 				return this.getURLs();
@@ -61,7 +57,6 @@
 
 		displayStudentPrices : function(){
 			return (typeof data.get("displayStudentPrices") === "undefined" ||  data.get("displayStudentPrices") === null || data.get("displayStudentPrices") === "1")
-		},
-		
+		}
 	};
 })();
