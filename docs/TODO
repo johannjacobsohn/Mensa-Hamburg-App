@@ -1,22 +1,14 @@
 Bugs:
+- Global
+-- Mehrsprachigkeit
 - Backend
 -- out-of-range rückgeben
 -- incremental callbacks ?
 -- numberOfFailed? numberOfLoaded?
-!- conf: Nicht-Studentenpreise
-!- About/Info-Seite
 -- Language
 -- Unittests
+-- JSDocs
 -- Detailmodus? Ansicht?
-- mojo
--- Filterlist
-!- conf: Nicht-Studentenpreise
-!- About/Info-Seite
-- enyo
-!- segments durcheinander
-!- conf: Nicht-Studentenpreise
-!- About/Info-Seite
--- Warteindikator
 - jquery mobile
 -- instabil auf Xoom/Android (localStorage funktioniert vermutlich nicht) : "ERROR/AndroidRuntime(5560): java.lang.NullPointerException: println needs a message"
 - Win7 Desktop Gadget
@@ -65,8 +57,8 @@ Frontends:
 -- Enyo/ChromeApp                    - TODO
 
 - Einstellen in
--- github
--- App Catalog      (webOS)
+x- github
+x- App Catalog      (webOS)
 -- Market Place     (Android)
 -- App World        (Blackberry)
 -- App Store        (iOS)?
