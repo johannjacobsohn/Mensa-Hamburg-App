@@ -10,7 +10,6 @@
 		appEmail : "mensa-hamburg-app@directbox.com",
 
 		notConfTitle : "Noch nicht konfiguriert",
-		notConfText : "Uh, scheinbar ist hier noch nichts konfiguriert, daher werden einfach mal *alle* Mensen geladen... es wäre alles viel schneller wenn Du nur die Mensen wählen würdest die Du brauchst.",
-
+		notConfText : "Uh, scheinbar ist hier noch nichts konfiguriert, daher werden einfach mal *alle* Mensen geladen... es wäre alles viel schneller wenn Du nur die Mensen wählen würdest die Du brauchst."
 	}
 })();
