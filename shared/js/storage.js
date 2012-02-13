@@ -420,7 +420,7 @@
 			for(var i = 0; i < noOfDays-1; i++){
 				if(i === 5 || i === 6) continue;
 				dates.push(
-					this.dateToDateString(new Date( today.setDate( date - day - ( 6 - i ) )))
+					this.dateToDateString(new Date( today.setDate( date - day + i + 1 )))
 				);
 			}
 
