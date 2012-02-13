@@ -377,7 +377,7 @@
 
 		cleanUpOldData : function(){
 			var week = this.week();
-			this.weekMenu.filter(function(item){
+			this.weekMenu = this.weekMenu.filter(function(item){
 				return (week === item.week || week + 1 === item.week);
 			});
 
