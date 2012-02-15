@@ -376,7 +376,7 @@
 		},
 
 		cleanUpOldData : function(){
-			var week = this.week();
+			var week = (new Date()).getWeek();
 			this.weekMenu = this.weekMenu.filter(function(item){
 				return (week === item.week || week + 1 === item.week);
 			});
@@ -517,7 +517,6 @@
 		* convinient method to get today menu
 		*/
 		thisDay : function(callback, sortedSegmented){
-
 			this.date = typeof debug !== "undefined" && debug ? new Date(2012, 0, 24) : new Date(); //now
 
 			if ( this.date.getDay() === 6 ){ // Saturday
@@ -572,14 +571,20 @@
 		*/
 		prevDay : function(callback, sortedSegmented){
 			var sortedSegmented = typeof sortedSegmented === "undefined" ? true : sortedSegmented,
+//			    oldDate = this.date,
 			    thisDay = this.date.getDay();
-			
+			    
 			// skip Weekends
 			if ( thisDay === 1 ) {
 				this.date.setDate( this.date.getDate() - 3 );
 			} else {
 				this.date.setDate( this.date.getDate() - 1 );
 			}
+
+			// reject if new date is not available
+//			if ( this.getAvailableDates.indexOf( this.dateToDateString(this.date) ) === "-1" ){
+//				this.date = oldDate; //! @TEST: Pass by reference?! 
+//			}
 
 			this.setDateFilter(this.dateToDateString(this.date));
 
