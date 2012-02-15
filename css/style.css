@@ -45,13 +45,13 @@ pre {
 	width: 100%;
 	margin-bottom: 3em;
 }
-.app > div{
+.app > *{
 	float: left;
 	width: 44%;
 	margin: 1em 3%;
 	position: relative;
 }
-.app:nth-child(2n+1) > div{
+.app:nth-child(2n+1) > *{
 	float: right;
 }
 
