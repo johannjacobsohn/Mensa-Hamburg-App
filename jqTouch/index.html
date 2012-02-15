@@ -3,46 +3,56 @@
 <head>
 	<meta charset="UTF-8" />
 	
-	<title>jQTouch &beta;</title>
+	<title>Mensa Hamburg</title>
 	<link rel="stylesheet" type="text/css" media="screen" href="css/jqtouch.css">
-	<script src="js/zepto.min.js" type="text/javascript" charset="utf-8"></script>
-	<script src="js/jqtouch.min.js" type="text/javascript" charset="utf-8"></script>
-	<script type="text/javascript" charset="utf-8">
-		var jQT = new $.jQTouch({
-			icon: 'jqtouch.png',
-			addGlossToIcon: false,
-			startupScreen: 'jqt_startup.png',
-			statusBar: 'black'
-		});
+	<link rel="stylesheet" type="text/css" media="screen" href="css/jqt.bars.css">
+	<link rel="stylesheet" type="text/css" media="screen" href="css/custom.css">
 
-		$(function(){
-			// Custom Javascript (onReady)
-		});
-	</script>
+
+	<script src="js/jquery-1.7.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/jqtouch.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/jqtouch-jquery.js" type="text/javascript" charset="utf-8"></script>
+	
+	<script src="js/jqt.bars/jqt.bars.js" type="application/x-javascript" charset="utf-8"></script>
+
+	<script src="js/conf.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/data.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/filter-polyfill.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/hogan.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/storage.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/urls.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/utils.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/xhr.js" type="text/javascript" charset="utf-8"></script>
+	
+	<script src="js/app.js" type="text/javascript" charset="utf-8"></script>
 
 	<script type="text/html" id="list-template">
-		<div id="id{{date}}">
-			<div class="toolbar">
-				<a class="button slideup" id="infoButton" href="#edit">Prev</a>
-				<h1>{{date}}</h1>
-				<a class="button slideup" id="infoButton" href="#edit">Next</a>
-				<a class="button slideup" id="infoButton" href="#edit">Edit</a>
-			</div>
-			<div class="scroll">
-				<ul class="rounded">
-					{{#dishes}}
-						{{^mensaName}}
-							<li class="sep">{{header}}</li>
-						{{/mensaName}}
-						{{#mensaName}}
-							<li>
-								<a>{{dish}}</a>
+		{{#dishes}}
+			{{^mensaName}}
+				<li class="sep">{{header}}</li>
+			{{/mensaName}}
+			{{#mensaName}}
+				<li>
+					<span class="dish">{{dish}}</span>
+					<span class="price">{{studPrice}}€</span>
+					<span class="type">{{name}}</span>
+				</li>
+			{{/mensaName}}
+		{{/dishes}}
+	</script>
 
-								<span class="counter">{{studPrice}}€</span>
-								<a>{{name}}</a>
-							</li>
-						{{/mensaName}}
-					{{/dishes}}
+	<script type="text/html" id="day-template">
+		<div id="id{{date}}" data-class="day" data-date="{{date}}" data-dataVersion="{{dataVersion}}">
+			<div class="toolbar">
+				<h1>
+					<span class="title">{{date}}</span>
+				</h1>
+				<a class="button prev leftButton" href="#prev">Prev</a>
+				<a class="button next" href="#next">Next</a>
+			</div>
+			<div class="s-scrollwrapper">
+				<ul class="rounded">
+					{{>listTemplate}}
 				</ul>
 			</div>
 		</div>
@@ -51,60 +61,97 @@
 	<script type="text/html" id="mensaCheckbox">
 		{{#mensen}}
 			<li>
-				<li>{{name}}} <span class="toggle"><input type="checkbox" {{#active}}checked="checked"{{/active}} value="{{name}}" id="{{name}}" /></span></li>
+				{{name}} <span class="toggle"><input type="checkbox" {{#active}}checked="checked"{{/active}} value="{{name}}" id="{{name}}" /></span>
 			</li>
 		{{/mensen}}
 	</script>
+
+	<script type="text/html" id="selectOptions">
+		{{#options}}
+			<option value="{{.}}">{{.}}</option>
+		{{/options}}
+	</script>
 </head>
 <body>
+
+	<!-- tabbar -->
+	<div id="tabbar">
+		<div>
+			<ul>
+				<li>
+					<a href="#edit" mask="bar_img/alert.png" mask2x="bar_img/alert@2x.png" animation="slideup">
+						<strong>Einstellungen</strong>
+					</a>
+				</li>
+				<li>
+					<a href="#about" mask="bar_img/alert.png" mask2x="bar_img/alert@2x.png" animation="slideup">
+						<strong>About</strong>
+					</a>
+				</li>
+				<li>
+					<a href="#filter" mask="bar_img/alert.png" mask2x="bar_img/alert@2x.png" animation="slideup">
+						<strong>Filtern</strong>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+
 	<div id="jqt">
-		<div id="menu">
+		<div id="start">
 			<div class="toolbar">
-				<a class="button" id="" href="#edit">Prev</a>
-				<h1>jQTouch</h1>
-				<a class="button" id="" href="#edit">Next</a>
-				<a class="button slideup" id="infoButton" href="#edit">Edit</a>
+				<h1>
+					<span class="title">Mensaplan</span>
+				</h1>
+				<a class="button" href="#edit">Edit</a>
 			</div>
 			<div class="scroll">
-				<ul class="rounded" id="menu">
-				</ul>
+				Lädt...
 			</div>
 		</div>
+
+		<div id="about">
+			<div class="toolbar">
+				<h1>Über</h1>
+				<a href="#" class="back">Back</a>
+			</div>
+			<div class="content">
+				<p>Hallo Welt</p>
+			</div>
+		</div>
+
+		<div id="filter">
+			<div class="toolbar">
+				<h1>Filtern</h1>
+				<a href="#" class="back">Back</a>
+			</div>
+			<ul class="scroll">
+				<li>
+					<select id="mensafilter">
+						<option>Mensa</option>
+					</select>
+				</li>
+				<li>
+					<select id="dishfilter">
+						<option>Gericht</option>
+					</select>
+				</li>
+			</ul>
+		</div>
+
 		<div id="edit">
 			<div class="toolbar">
-				<h1>jQTouch</h1>
+				<h1>Mensen wählen</h1>
 				<a href="#" class="back">Back</a>
 			</div>
 				
 			<form class="scroll">
 				<ul class="rounded edit" id="">
-					<li>Philo <span class="toggle"><input type="checkbox" /></span></li>
-					<li>Geo <span class="toggle"><input type="checkbox" /></span></li>
-					<li>Wiwi <span class="toggle"><input type="checkbox" /></span></li>
-					<li>Buzze <span class="toggle"><input type="checkbox" /></span></li>
-					<li>Philo <span class="toggle"><input type="checkbox" /></span></li>
-					<li>Geo <span class="toggle"><input type="checkbox" /></span></li>
-					<li>Wiwi <span class="toggle"><input type="checkbox" /></span></li>
-					<li>Buzze <span class="toggle"><input type="checkbox" /></span></li>
-					<li>Philo <span class="toggle"><input type="checkbox" /></span></li>
-					<li>Geo <span class="toggle"><input type="checkbox" /></span></li>
-					<li>Wiwi <span class="toggle"><input type="checkbox" /></span></li>
-					<li>Buzze <span class="toggle"><input type="checkbox" /></span></li>
-					<li>Philo <span class="toggle"><input type="checkbox" /></span></li>
-					<li>Geo <span class="toggle"><input type="checkbox" /></span></li>
-					<li>Wiwi <span class="toggle"><input type="checkbox" /></span></li>
-					<li>Buzze <span class="toggle"><input type="checkbox" /></span></li>
-					<li>Philo <span class="toggle"><input type="checkbox" /></span></li>
-					<li>Geo <span class="toggle"><input type="checkbox" /></span></li>
-					<li>Wiwi <span class="toggle"><input type="checkbox" /></span></li>
-					<li>Buzze <span class="toggle"><input type="checkbox" /></span></li>
-					<li>Philo <span class="toggle"><input type="checkbox" /></span></li>
-					<li>Geo <span class="toggle"><input type="checkbox" /></span></li>
-					<li>Wiwi <span class="toggle"><input type="checkbox" /></span></li>
-					<li>Buzze <span class="toggle"><input type="checkbox" /></span></li>
 				</ul>
 			</form>
 		</div>
-	</div>
+
+
+</div>
 </body>
 </html>
