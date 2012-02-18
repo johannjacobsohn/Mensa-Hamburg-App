@@ -1,1 +1,0 @@
-../../../base-shared/js/xhr.js
