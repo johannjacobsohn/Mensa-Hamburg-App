@@ -1,0 +1,70 @@
+joview.title{
+
+}
+
+
+jolistitem{
+	overflow-y: auto;
+}
+
+jolistitem * {
+	margin: 0;
+	padding: 0;
+	text-shadow: #E3E3E3 0 1px 1px;
+}
+
+jolistitem h2 {
+	font-size: 120%;
+}
+
+jolistitem .price {
+	float: right;
+	color: #666;
+}
+jolistitem .name {
+	float: left;
+}
+
+
+jobackbutton.prev,
+jobackbutton.next {
+	border: none;
+	width: 32px;
+	overflow: hidden;
+	text-indent: 999em;
+	white-space: nowrap;
+
+	-webkit-box-shadow:none;
+	-moz-box-shadow:none;
+	-ms-box-shadow:none;
+	-o-box-shadow:none;
+}
+
+jonavbar div {
+	-webkit-box-ordinal-group: 2;
+	-moz-box-ordinal-group: 2;
+	-ms-box-ordinal-group: 2;
+	-o-box-ordinal-group: 2;
+	box-ordinal-group: 2;
+}
+jobackbutton.prev {
+	background: url(../img/menu-icon-back.png) no-repeat;
+	-webkit-box-ordinal-group: 1;
+	-moz-box-ordinal-group: 1;
+	-ms-box-ordinal-group: 1;
+	-o-box-ordinal-group: 1;
+	box-ordinal-group: 1;
+}
+jobackbutton.next {
+	background: url(../img/menu-icon-forward.png) no-repeat right top;
+	-webkit-box-ordinal-group: 3;
+}
+
+body > jocontainer {
+	padding-bottom: 102px;
+}
+
+
+
+
+
