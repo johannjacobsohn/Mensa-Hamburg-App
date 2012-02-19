@@ -103,11 +103,10 @@ $('#mensen').live('pageinit', function(event){
 
 
 function setMensaSelect(){
-	storage.getMensen(function(json){
-		var obj = [{name:"Alle", value:"all"}];
-		for(var i=0; i<json.length; i++) obj.push({name:json[i], value:json[i] })
-		$("#mensa-select").html(ich.selectOptions({"options" : obj})).trigger("create");
-	});
+	var json = conf.getSavedURLs(),
+	    obj = [{name:"Alle", value:"all"}];
+	for(var i=0; i<json.length; i++) obj.push({name:json[i], value:json[i] })
+	$("#mensa-select").html(ich.selectOptions({"options" : obj})).trigger("create");
 }
 
 function setDishSelect(){

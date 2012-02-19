@@ -151,16 +151,14 @@
 
 		// Reload Data
 		storage.cleanData();
-		storage.getWeekMenu();
 		
 		//Refresh views
 		// MensaList:
 		var mensaList = this.owner.$.main.$.mensaList;
-		storage.getMensen(function(json){
-			mensaList.data = json;
-			mensaList.data.unshift("Alle");
-			mensaList.$.repeater.render();
-		});
+		mensaList.data = array;
+		mensaList.data.unshift("Alle");
+		mensaList.$.repeater.render();
+
 		// NameList:
 		var nameList = this.owner.$.main.$.nameList;
 		storage.getTypes(function(json){

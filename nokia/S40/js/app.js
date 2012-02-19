@@ -99,12 +99,11 @@ $(document).ready(function(){
 
 
 function setMensaSelect(){
-	storage.getMensen(function(json){
-		var obj = [{name:"Alle", value:"all"}];
-		for(var i=0; i<json.length; i++) obj.push({name:json[i], value:json[i] })
-		
-		$("#mensa-select").html(selectOptionsTemplate.render({"options" : obj}));
-	});
+	var json = conf.getMensaInfo(),
+	    obj = [{name:"Alle", value:"all"}];
+	for(var i=0; i<json.length; i++) obj.push({name:json[i], value:json[i] })
+	
+	$("#mensa-select").html(selectOptionsTemplate.render({"options" : obj}));
 }
 
 function setDishSelect(){
