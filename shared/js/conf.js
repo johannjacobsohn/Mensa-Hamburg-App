@@ -5,37 +5,21 @@
 (function(){
 	conf = {
 		getSavedURLs : function(){
-			var urls = [];
-			if(this.isConfigured()){
-				urls = JSON.parse(data.get("urls"));
-				return urls.length > 0 ? urls : this.getURLs();
-			} else {
-				return this.getURLs();
-			}
+			return JSON.parse(data.get("urls")) || [];
 		},
 		getURLs : function(){
-			var array = [], item;
+			var array = [], item = "";
 			for(item in urls.mensenWeek) array.push(item);
 			return array;
 		},
 		setURLs : function(urls){
-			try{
-				return data.save("urls", JSON.stringify(urls));
-			} catch(e){
-				console.log("data.js missing!");
-				return localStorage.setItem("urls", JSON.stringify(urls));
-			}
+			return data.save("urls", JSON.stringify(urls));
 		},
 		isConfigured : function(urls){
 			try{
-				return typeof data.get("urls") === "string";
-			} catch(e){
-				console.log("data.js missing!");
-				try{
-					return typeof localStorage.getItem("urls") === "string";
-				} catch(e) {
-					return false;
-				}
+				return typeof localStorage.getItem("urls") === "string";
+			} catch(e) {
+				return false;
 			}
 		},
 		getMensaInfo : function(){
