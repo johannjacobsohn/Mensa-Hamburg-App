@@ -219,8 +219,7 @@ var App = (function() {
 		s = stack;
 		console.log("date", date, dateStr)
 		joCache.set(dateStr, cards.lists);
-//		console.log(joCache.get(dateStr))
-		stack.push(joCache.get(dateStr));
+		stack.push(joCache.clear(dateStr).get(dateStr));
 		nav.back.setStyle("")
 
 		menuList.data = json;
@@ -235,8 +234,11 @@ var App = (function() {
 		
 		App.scn = new joScreen(
 			new joContainer([
-				nav = new joNavbar(),
-				stack = new joStackScroller(),
+
+				new joFlexcol([
+					nav = new joNavbar(),
+					stack = new joStackScroller(),
+				]),
 				this.toolbar = new joToolbar([
 					new joFlexrow([
 						edit = new joButton("Edit"),
