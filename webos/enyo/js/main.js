@@ -161,14 +161,18 @@
 
 		// NameList:
 		var nameList = this.owner.$.main.$.nameList;
+		nameList.$.spinnerLarge.show();
 		storage.getTypes(function(json){
+			nameList.$.spinnerLarge.hide();
 			nameList.data = json;
 			nameList.data.unshift("Alle");
 			nameList.$.repeater.render();
 		});
 		// MenuList:
 		var menuList = this.owner.$.main.$.menuList;
+		menuList.$.spinnerLarge.show();
 		storage.getSortedSegmented(function(json){
+			menuList.$.spinnerLarge.hide();
 			menuList.data = json;
 			menuList.render();
 		});
