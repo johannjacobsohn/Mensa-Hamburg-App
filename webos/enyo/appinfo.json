@@ -1,6 +1,6 @@
 {
   "id"         : "jjacobsohn.mensaapp.enyo",
-  "version"    : "1.0.0",
+  "version"    : "1.0.1",
   "vendor"     : "jjacobsohn",
   "type"       : "web",
   "main"       : "index.html",
