@@ -1,7 +1,7 @@
 var data = (function(){
-	var version = "1", // we might want to trigger a reload of cached data (if the)
+	var version = "2", // we might want to trigger a reload of cached data (if the)
 	
-	    get = function(key){
+		get = function(key){
 			return localStorage.getItem(key);
 		},
 
@@ -14,7 +14,6 @@ var data = (function(){
 		},
 
 		clear = function(){
-		console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!clear!")
 			return localStorage.clear();
 		}
 

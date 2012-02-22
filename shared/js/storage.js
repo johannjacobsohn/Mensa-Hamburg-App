@@ -2,10 +2,12 @@
  * 
  */
 var storage = (function(){ // its a trap!
-	var weekMenu         = [], // Cache
-		filteredWeekMenu = [], // Cache
+	var weekMenu         = {}, // Cache
+		filteredWeekMenu = {}, // Cache
 		isFiltered       = false;
+		isDateFilterSet  = false;
 		date = typeof debug !== "undefined" && debug ? new Date(2012, 0, 24) : new Date(), //now
+		getDateStr = function(){ return dateToDateString(date) },
 		week = function(){ return date.getWeek() },
 		lock = [],
 		loadedMensen = {},
@@ -17,30 +19,41 @@ var storage = (function(){ // its a trap!
 		filterByName = function(item){
 			return item.name === args.name;
 		},
-		filterByDate = function(item){
-			return item.date === args.date;
-		},
 		filter = function(callback){
 			getWeekMenu(function(){
-				var i = 0;
+				var i = 0, day = "";
 				if(!isFiltered) {
-
 					// @TODO: remove "global"
 					args = {};
 					// copy weekMenu to filteredWeekMenu
-					filteredWeekMenu = [];
-					for(i=0; i < weekMenu.length; i++){
-						filteredWeekMenu.push(weekMenu[i]);
+					filteredWeekMenu = {};
+					for (day in weekMenu){
+						filteredWeekMenu[day] = [];
+						for(i=0; i < weekMenu[day].length; i++){
+							filteredWeekMenu[day].push(weekMenu[day][i]);
+						}
 					}
 
 					// filter filteredWeekMenu
-					for(i=0; i < filters.length; i++){
-						args = filters[i].args;
-						filteredWeekMenu = filteredWeekMenu.filter(filters[i].fkt);
+					for (day in filteredWeekMenu){
+						for(i=0; i < filters.length; i++){
+							args = filters[i].args;
+							filteredWeekMenu[day] = filteredWeekMenu[day].filter(filters[i].fkt);
+						}
 					}
+					isFiltered = true;
 				}
 
-				callback(filteredWeekMenu);
+				if(isDateFilterSet){
+					callback(filteredWeekMenu[getDateStr()] || []);
+				} else { // flatten Object into Array
+					var tmpArr = []
+					for (day in filteredWeekMenu){
+						tmpArr = tmpArr.concat(filteredWeekMenu[day])
+					}
+					callback(tmpArr);
+					
+				}
 			});
 		},
 
@@ -69,15 +82,11 @@ var storage = (function(){ // its a trap!
 					return mensaNameWeight + dateWeight * 100;
 				});
 
-				var isDateFilterSet = filters.filter(function(item){
-					return item.fkt === filterByDate;
-				}).length !== 0;
-
 				var isMensaFilterSet = filters.filter(function(item){
 					return item.fkt === filterByMensa;
 				}).length !== 0;
 			
-				var segmented = [], mensaName = "", date = "", i, first=false;
+				var segmented = [], mensaName = "", date = "", i, first=false, savedMensenExist = (conf.getSavedURLs()).length > 1;
 				for(i=0; i<sorted.length; i++){
 					first = false;
 					if(date != sorted[i].date && !isDateFilterSet){
@@ -87,7 +96,7 @@ var storage = (function(){ // its a trap!
 
 						segmented.push({header:sorted[i].date, type: "header", headerType: "date"});
 					}
-					if(mensaName != sorted[i].mensaName && !isMensaFilterSet && (conf.getSavedURLs()).length > 1){
+					if(mensaName != sorted[i].mensaName && !isMensaFilterSet && savedMensenExist){
 						// wenn Header dann dieses und nächsten Eintrag als "First" bzw. "Last" kennzeichnen
 						if(segmented.length>0) segmented[segmented.length-1].last = true;
 						first = true;
@@ -110,25 +119,34 @@ var storage = (function(){ // its a trap!
 		 * Find and delete Data of urls that are not saved
 		 */
 		cleanData = function(){
-			var validUrls = conf.getSavedURLs();
+			var validUrls = conf.getSavedURLs(), day = "";
 
 			// Make sure we load the cache before we save an empty menu
 			loadCachedData();
 
 			// filter menu
-			weekMenu = weekMenu.filter(function(item){
-				return validUrls.indexOf(item.mensaName) !== -1;
-			});
-			filteredWeekMenu = filteredWeekMenu.filter(function(item){
-				return validUrls.indexOf(item.mensaName) !== -1;
-			});
+			for(day in weekMenu){
+				weekMenu[day] = weekMenu[day].filter(function(item){
+					return validUrls.indexOf(item.mensaName) !== -1;
+				});
+			}
+			for(day in filteredWeekMenu){
+				filteredWeekMenu[day] = filteredWeekMenu[day].filter(function(item){
+					return validUrls.indexOf(item.mensaName) !== -1;
+				});
+			}
 
 			// cleanup loadedMensen
 			for(var mensa in loadedMensen){
 				for(var week in loadedMensen[mensa]){
-					loadedMensen[mensa][week] = weekMenu.filter(function(item){
-						return (mensa === item.mensaName && week == item.week); // intentionally week comparison, since week can be a number or a string
-					}).length > 0
+					var mensaLength = 0,
+						day = "";
+					for (day in weekMenu){
+						mensaLength += weekMenu[day].filter(function(item){
+							return (mensa === item.mensaName && week == item.week); // intentionally week comparison, since week can be a number or a string
+						}).length > 0
+					}
+					loadedMensen[mensa][week] = mensaLength > 0
 				}
 			}
 
@@ -137,7 +155,6 @@ var storage = (function(){ // its a trap!
 
 			// sync cache
 			cache();
-
 		},
 		
 		/*
@@ -159,7 +176,6 @@ var storage = (function(){ // its a trap!
 			for(var m = 0; m<mensenArr.length; m++){
 				mensa = mensenArr[m];
 				loadedMensen[mensa] = loadedMensen[mensa] || {};
-
 				// skip loading if this mensa has been already loaded, its currently loading or date is not this or next week -> there won't be any data on the server
 				// @TODO: think of better way to do this
 
@@ -180,11 +196,17 @@ var storage = (function(){ // its a trap!
 					// Trigger AJAX-Call
 					xhr.get(url, function(resp, additional_args){
 						// parse HTML
-						var oldWeekMenuLength = weekMenu.length;
+						var day = "", oldWeekMenuLength = 0, newWeekMenuLength = 0;
+						for(day in weekMenu){
+							oldWeekMenuLength += weekMenu[day].length;
+						}
 						parseMensaHTML(resp, additional_args.mensaName, additional_args.week);
 
 						// mark as cached only if new dishes where found
-						if(oldWeekMenuLength < weekMenu.length){
+						for(day in weekMenu){
+							newWeekMenuLength += weekMenu[day].length;
+						}
+						if(oldWeekMenuLength < newWeekMenuLength){
 							loadedMensen[additional_args.mensaName][additional_args.week] = true;
 						}
 
@@ -325,7 +347,10 @@ var storage = (function(){ // its a trap!
 						dateString = date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getDate();
 
 						if(dish !== ""){
-							weekMenu.push({
+							if(!weekMenu[dateString]){
+								weekMenu[dateString] = [];
+							}
+							weekMenu[dateString].push({
 								mensaName   : mensa,
 								week        : week,
 								name        : dishName,
@@ -365,7 +390,7 @@ var storage = (function(){ // its a trap!
 		},
 
 		loadCachedData = function(){
-			weekMenu = JSON.parse( data.get("menu") ) || [];
+			weekMenu = JSON.parse( data.get("menu") ) || {};
 			loadedMensen = JSON.parse( data.get("loadedMensen") ) || {};
 		},
 
@@ -375,11 +400,12 @@ var storage = (function(){ // its a trap!
 		},
 
 		cleanUpOldData = function(){
-			var week = (new Date()).getWeek();
-			weekMenu = weekMenu.filter(function(item){
-				return (week === item.week || week + 1 === item.week);
-			});
-
+			var week = (new Date()).getWeek(), day = "";
+			for(day in weekMenu){
+				weekMenu[day] = weekMenu[day].filter(function(item){
+					return (week === item.week || week + 1 === item.week);
+				});
+			}
 			cache();
 		},
 
@@ -388,9 +414,11 @@ var storage = (function(){ // its a trap!
 		*/
 		getTypes = function(callback){
 			getWeekMenu(function(){
-				var type, types = {}, typesArr = [];
-				for (var i=0; i<weekMenu.length; i++){
-					types[weekMenu[i].name] = weekMenu[i].name
+				var type, types = {}, typesArr = [], day = "", i = 0;
+				for(day in weekMenu){
+					for (i=0; i<weekMenu[day].length; i++){	
+						types[weekMenu[day][i].name] = weekMenu[day][i].name
+					}
 				}
 				for(type in types){
 					typesArr.push(type); 
@@ -425,6 +453,16 @@ var storage = (function(){ // its a trap!
 				filter(callback);
 			});
 		},
+
+
+		setDateFilter = function(dateStr){
+			isDateFilterSet = true;
+			date = dateStringToDate(dateStr);
+		}
+
+		unsetDateFilter = function(dateStr){
+			isDateFilterSet = false;
+		}
 
 		/*
 		* 
@@ -462,23 +500,6 @@ var storage = (function(){ // its a trap!
 			});
 		},
 
-		/*
-		* 
-		*/
-		setDateFilter = function(dateString){
-			date = dateStringToDate(dateString);
-			unsetDateFilter();
-			filters.push({fkt:filterByDate,args:{date:dateString}});
-		},
-		/*
-		* 
-		*/
-		unsetDateFilter = function(){
-			filters = filters.filter(function(item){
-				return item.fkt !== filterByDate;
-			});
-		},
-		
 		/*
 		* 
 		*/
@@ -586,12 +607,13 @@ var storage = (function(){ // its a trap!
 		}
 
 
-// init
+		// init
 
-			// populate loadedMensen and weekMenu from cache
-			loadCachedData();
+		// populate loadedMensen and weekMenu from cache
+		loadCachedData();
 
-			cleanUpOldData();
+		// remove old data for performance
+		cleanUpOldData();
 
 	return {
 		clearCache : clearCache,
