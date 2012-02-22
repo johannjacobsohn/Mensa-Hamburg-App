@@ -6,23 +6,22 @@
 			{caption: "Konfigurieren", onclick: "conf", onclick: "openConfig"},
 			{caption: "Über diese App", onclick: "about", onclick: "openAbout"},
 			{caption: "Zurücksetzen", onclick: "reset", onclick: "reset"},
-
-			{kind: "ModalDialog", name: "about", caption: info.appName, components:[
-				{ content: info.appDesc },
-				{kind: "Button", className: "enyo-button-affirmative", caption: $L("Ok"), onclick: "closePopup"},
-				{kind: "Button", caption: $L("Zur Projektseite"), onclick: "moreInfo"},
-				{kind: "Button", caption: $L("Email schreiben"), onclick: "email"},
-			]},
-			{
-				name : "openEmail",
-				kind : "PalmService",
-				service : "palm://com.palm.applicationManager",
-				method : "open",
-				onSuccess : "openEmailSuccess",
-				onFailure : "openEmailFailure",
-				subscribe : true
-			},
 		]},
+		{kind: "ModalDialog", name: "about", caption: info.appName, components:[
+			{ content: info.appDesc },
+			{kind: "Button", className: "enyo-button-affirmative", caption: $L("Ok"), onclick: "closePopup"},
+			{kind: "Button", caption: $L("Zur Projektseite"), onclick: "moreInfo"},
+			{kind: "Button", caption: $L("Email schreiben"), onclick: "email"},
+		]},
+		{
+			name : "openEmail",
+			kind : "PalmService",
+			service : "palm://com.palm.applicationManager",
+			method : "open",
+			onSuccess : "openEmailSuccess",
+			onFailure : "openEmailFailure",
+			subscribe : true
+		},
 		{name: "slidingPane", kind: "SlidingPane", flex: 1, components: [
 			{name: "left", width: "200px", kind:"SlidingView", components: [
 					{kind: "Header", content:"Tage"},
@@ -99,6 +98,7 @@
 					]}
 				]},
 				{kind: "Button", className: "enyo-button-affirmative", caption: $L("Speichern"), onclick: "saveConf"},
+				{kind: "Button", className: "enyo-button-negative", caption: $L("App Zurücksetzen"), onclick: "reset"}
 			]}
 		]}
 	],

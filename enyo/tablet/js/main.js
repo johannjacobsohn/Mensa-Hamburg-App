@@ -6,32 +6,25 @@
 			{caption: "Konfigurieren", onclick: "conf", onclick: "openConfig"},
 			{caption: "Über diese App", onclick: "about", onclick: "openAbout"},
 			{caption: "Zurücksetzen", onclick: "reset", onclick: "reset"},
-
-			{kind: "ModalDialog", name: "about", caption: info.appName, components:[
-				{ content: info.appDesc },
-				{kind: "Button", className: "enyo-button-affirmative", caption: $L("Ok"), onclick: "closePopup"},
-				{kind: "Button", caption: $L("Zur Projektseite"), onclick: "moreInfo"},
-				{kind: "Button", caption: $L("Email schreiben"), onclick: "email"},
-			]},
-			{
-				name : "openEmail",
-				kind : "PalmService",
-				service : "palm://com.palm.applicationManager",
-				method : "open",
-				onSuccess : "openEmailSuccess",
-				onFailure : "openEmailFailure",
-				subscribe : true
-			},
 		]},
+		{kind: "ModalDialog", name: "about", caption: info.appName, components:[
+			{ content: info.appDesc },
+			{kind: "Button", className: "enyo-button-affirmative", caption: $L("Ok"), onclick: "closePopup"},
+			{kind: "Button", caption: $L("Zur Projektseite"), onclick: "moreInfo"},
+			{kind: "Button", caption: $L("Email schreiben"), onclick: "email"},
+		]},
+		{
+			name : "openEmail",
+			kind : "PalmService",
+			service : "palm://com.palm.applicationManager",
+			method : "open",
+			onSuccess : "openEmailSuccess",
+			onFailure : "openEmailFailure",
+			subscribe : true
+		},
 		{name: "slidingPane", kind: "SlidingPane", flex: 1, components: [
 			{name: "left", width: "200px", kind:"SlidingView", components: [
-					{kind: "Header",
-					components: [
-//						{kind: "IconButton", icon: "images/info-icon.png", onclick: "appMenuOpen"},
-						{kind: "Image", src: "images/info-icon.png", onclick: "appMenuOpen"},
-						{content: "Tage"}
-					]
-					},
+					{kind: "Header", content:"Tage"},
 					{kind: "Scroller", flex: 1, components: [
 						{
 							name: "dateList",
@@ -41,7 +34,8 @@
 						}
 					]},
 					{kind: "Toolbar", components: [
-						{kind: "GrabButton"}
+						{kind: "GrabButton"},
+						{kind: "Image", src: "images/info-icon.png", onclick: "openAbout"}
 					]}
 			]},
 			{name: "mensalistpanel", width: "200px", kind:"SlidingView", peekWidth: 50, components: [
@@ -105,12 +99,10 @@
 					]}
 				]},
 				{kind: "Button", className: "enyo-button-affirmative", caption: $L("Speichern"), onclick: "saveConf"},
+				{kind: "Button", className: "enyo-button-negative", caption: $L("App Zurücksetzen"), onclick: "reset"}
 			]}
 		]}
 	],
-	appMenuOpen : function(){
-		enyo.appMenu.open()
-	},
 	openConfig: function(inSender, inEvent) {
 		this.$.conf.openAtCenter();
 	},
@@ -134,7 +126,7 @@
 		this.closePopup(inSender, inEvent);
 	},
 	email : function(inSender, inEvent){
-		this.$.openEmail.call({ "target": "mailto: " + info.appEmail});
+		location.href = "mailto: " + info.appEmail;
 		this.closePopup(inSender, inEvent);
 	},
 	reset : function(inSender, inEvent){
@@ -160,7 +152,6 @@
 
 		// Reload Data
 		storage.cleanData();
-		storage.getWeekMenu();
 		
 		//Refresh views
 		// MensaList:
@@ -171,14 +162,18 @@
 
 		// NameList:
 		var nameList = this.owner.$.main.$.nameList;
+		nameList.$.spinnerLarge.show();
 		storage.getTypes(function(json){
+			nameList.$.spinnerLarge.hide();
 			nameList.data = json;
 			nameList.data.unshift("Alle");
 			nameList.$.repeater.render();
 		});
 		// MenuList:
 		var menuList = this.owner.$.main.$.menuList;
+		menuList.$.spinnerLarge.show();
 		storage.getSortedSegmented(function(json){
+			menuList.$.spinnerLarge.hide();
 			menuList.data = json;
 			menuList.render();
 		});
