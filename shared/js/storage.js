@@ -390,8 +390,16 @@ var storage = (function(){ // its a trap!
 		},
 
 		loadCachedData = function(){
-			weekMenu = JSON.parse( data.get("menu") ) || {};
-			loadedMensen = JSON.parse( data.get("loadedMensen") ) || {};
+			try {
+				weekMenu = JSON.parse( data.get("menu") ) || {};
+			} catch (e) {
+				weekMenu = {}
+			}
+			try {
+				loadedMensen = JSON.parse( data.get("loadedMensen") ) || {};
+			} catch (e) {
+				loadedMensen = {}
+			}
 		},
 
 		clearCache = function(){
