@@ -1,10 +1,10 @@
 /*
  * 
  */
- 
 var storage = (function(){ // its a trap!
 	var weekMenu         = [], // Cache
 		filteredWeekMenu = [], // Cache
+		isFiltered       = false;
 		date = typeof debug !== "undefined" && debug ? new Date(2012, 0, 24) : new Date(), //now
 		week = function(){ return date.getWeek() },
 		lock = [],
@@ -23,19 +23,21 @@ var storage = (function(){ // its a trap!
 		filter = function(callback){
 			getWeekMenu(function(){
 				var i = 0;
+				if(!isFiltered) {
 
-				// @TODO: remove "global"
-				args = {};
-				// copy weekMenu to filteredWeekMenu
-				filteredWeekMenu = [];
-				for(i=0; i < weekMenu.length; i++){
-					filteredWeekMenu.push(weekMenu[i]);
-				}
+					// @TODO: remove "global"
+					args = {};
+					// copy weekMenu to filteredWeekMenu
+					filteredWeekMenu = [];
+					for(i=0; i < weekMenu.length; i++){
+						filteredWeekMenu.push(weekMenu[i]);
+					}
 
-				// filter filteredWeekMenu
-				for(i=0; i < filters.length; i++){
-					args = filters[i].args;
-					filteredWeekMenu = filteredWeekMenu.filter(filters[i].fkt);
+					// filter filteredWeekMenu
+					for(i=0; i < filters.length; i++){
+						args = filters[i].args;
+						filteredWeekMenu = filteredWeekMenu.filter(filters[i].fkt);
+					}
 				}
 
 				callback(filteredWeekMenu);
@@ -160,7 +162,10 @@ var storage = (function(){ // its a trap!
 
 				// skip loading if this mensa has been already loaded, its currently loading or date is not this or next week -> there won't be any data on the server
 				// @TODO: think of better way to do this
+
 				if(!loadedMensen[mensa][week] && typeof lock[mensa] === "undefined" && ( week === thisWeek || week === thisWeek + 1 ) ){
+
+					isFiltered = false;
 
 					// lock execution of callback queue to prevent race conditions
 					lock[mensa] = true;
@@ -387,7 +392,6 @@ var storage = (function(){ // its a trap!
 				for (var i=0; i<weekMenu.length; i++){
 					types[weekMenu[i].name] = weekMenu[i].name
 				}
-				
 				for(type in types){
 					typesArr.push(type); 
 				}
@@ -426,6 +430,7 @@ var storage = (function(){ // its a trap!
 		* 
 		*/
 		setMensaFilter = function(mensa){
+			isFiltered = false;
 			unsetMensaFilter();
 			filters.push({fkt:filterByMensa,args:{mensa:mensa}});
 		},
@@ -433,6 +438,7 @@ var storage = (function(){ // its a trap!
 		* 
 		*/
 		unsetMensaFilter = function(){
+			isFiltered = false;
 			filters = filters.filter(function(item){
 				return item.fkt !== filterByMensa;
 			});
@@ -442,6 +448,7 @@ var storage = (function(){ // its a trap!
 		* 
 		*/
 		setNameFilter = function(name){
+			isFiltered = false;
 			unsetNameFilter();
 			filters.push({fkt:filterByName,args:{name:name}});
 		},
@@ -449,11 +456,12 @@ var storage = (function(){ // its a trap!
 		* 
 		*/
 		unsetNameFilter = function(){
+			isFiltered = false;
 			filters = filters.filter(function(item){
 				return item.fkt !== filterByName;
 			});
 		},
-		
+
 		/*
 		* 
 		*/
@@ -475,6 +483,7 @@ var storage = (function(){ // its a trap!
 		* 
 		*/
 		unsetFilters = function(){
+			isFiltered = false;
 			filters = [];
 		},
 
@@ -601,7 +610,8 @@ var storage = (function(){ // its a trap!
 
 		getWeekMenu : getWeekMenu,
 		getSortedSegmented : getSortedSegmented,
-		
+		filter : filter,
+
 		thisDay : thisDay,
 		nextDay : nextDay,
 		prevDay : prevDay
