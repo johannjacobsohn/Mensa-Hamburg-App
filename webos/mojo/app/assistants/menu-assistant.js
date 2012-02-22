@@ -54,8 +54,7 @@ MenuAssistant.prototype.setup = function() {
 			title   : info.notConfTitle,
 			message : info.notConfText,
 			choices : [
-				{label:$L("OK"), value:""},
-				{label:$L("Jetzt konfigurieren"), value: "conf"}
+				{ label: $L("Jetzt konfigurieren"), value: "conf" }
 			]
 		});
 	}
