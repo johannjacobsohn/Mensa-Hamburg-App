@@ -5,7 +5,11 @@
 (function(){
 	conf = {
 		getSavedURLs : function(){
-			return JSON.parse(data.get("urls")) || [];
+			try {
+				return JSON.parse(data.get("urls")) || [];
+			} catch (e) {
+				return [];
+			}
 		},
 		getURLs : function(){
 			var array = [], item = "";
