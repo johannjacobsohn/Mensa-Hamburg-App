@@ -257,7 +257,7 @@ var storage = (function(){ // its a trap!
 			germanStartdateArr = germanStartdate.split(".");
 			startdate = new Date(germanStartdateArr[2],(germanStartdateArr[1]-1),germanStartdateArr[0]);
 
-			for (var j=2; j<trs.length; j++){ // erste beiden überspringen
+			for (var j = 1; j < trs.length; j++){ // erste überspringen
 				try{
 					tds = trs[j].getElementsByTagName("td");
 					ths = trs[j].getElementsByTagName("th");
