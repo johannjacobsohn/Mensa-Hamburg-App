@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'Mensa Hamburg App Tablet' target in the 'Mensa Hamburg App Tablet' project
+//
+
+#ifdef __OBJC__
+    #import <UIKit/UIKit.h>
+#endif
