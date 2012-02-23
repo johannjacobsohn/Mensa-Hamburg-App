@@ -49,16 +49,16 @@
 		{kind: "ModalDialog", name: "filter", caption: "Zu ladene Mensen", components:[
 			{kind: "Group", components: [
 				{
-						kind: "Picker",
-						name: "mensaFilter",
-						value: 0,
-						label: "Nach Mensa filtern",
-						items: ["Alle"],
-						onChange: "filterByMensa"
+					kind: "Picker",
+					name: "mensaFilter",
+					value: 0,
+					label: "Nach Mensa filtern",
+					items: ["Alle"],
+					onChange: "filterByMensa"
 				},
 				{
 					kind: "Picker",
-						name: "typeFilter",
+					name: "typeFilter",
 					label: "Nach Gericht filtern",
 					value: 0,
 					items: ["Alle"],
@@ -147,10 +147,30 @@
 
 		// MenuList:
 		var menuList = this.owner.$.main.$.menuList;
+		menuList.$.spinnerLarge.show();
 		storage.thisDay(function(json){
+			menuList.$.spinnerLarge.hide();
 			menuList.data = json;
 			menuList.render();
 		});
+
+		if(this.$.mensaFilter){
+			this.$.mensaFilter.setItems( ["Alle"].concat(array) );
+			this.$.mensaFilter.render();
+		} else {
+			this.$.filter.components[0].components[0].items = ["Alle"].concat( conf.getSavedURLs() );
+		}
+
+		var that = this
+		storage.getTypes(function(types){
+			if(that.$.typeFilter){
+				that.$.typeFilter.setItems( ["Alle"].concat(types) );
+				that.$.typeFilter.render();
+			} else {
+				that.$.filter.components[0].components[1].items = ["Alle"].concat( types );
+			}
+		});
+
 		this.closePopup(inSender, inEvent)
 	},
 	next: function(inSender, inEvent) {
@@ -182,11 +202,10 @@
 			if(!conf.isConfigured()) confPopup.openAtCenter();
 		}, false);
 
-		var mensen = this.$.filter.components[0].components[0].items;
-		this.$.filter.components[0].components[0].items = mensen.concat( conf.getSavedURLs() );
+		this.$.filter.components[0].components[0].items = ["Alle"].concat( conf.getSavedURLs() );
 		var that = this
 		storage.getTypes(function(types){
-			that.$.filter.components[0].components[1].items = that.$.filter.components[0].components[1].items.concat( types );
+			that.$.filter.components[0].components[1].items = ["Alle"].concat( types );
 		});
 	}
 });
