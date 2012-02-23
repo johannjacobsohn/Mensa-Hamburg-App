@@ -439,16 +439,16 @@ var storage = (function(){ // its a trap!
 		* list all dates
 		*/
 		getAvailableDates= function(getNextWeek){
-			var noOfDays = getNextWeek ? 13 : 5,
+			var noOfDays = getNextWeek ? 12 : 5,
 			    today = new Date(),
-			    day = today.getDay(),
-			    date = today.getDate(),
+			    monday = today.getDate() - today.getDay()
+			    d    = new Date ( today.setDate( monday ) ),
 			    dates = [];
-			for(var i = 0; i < noOfDays-1; i++){
-				if(i === 5 || i === 6) continue;
-				dates.push(
-					dateToDateString(new Date( today.setDate( date - day + i + 1 )))
-				);
+			for(var i = 0; i < noOfDays; i++){
+				d = new Date ( d.valueOf() + 60 * 60 * 24 * 1000 );
+				if(i !== 5 && i !== 6) {
+					dates.push( dateToDateString(d) );
+				}
 			}
 
 			return dates;
