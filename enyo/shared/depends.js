@@ -1,9 +1,9 @@
 enyo.depends(
   "js/info.js",
+  "js/utils.js",
   "js/data.js",
   "js/conf.js",
   "js/urls.js",
-  "js/utils.js",
   "js/xhr.js",
   "js/storage.js",
   "js/nameList.js",
