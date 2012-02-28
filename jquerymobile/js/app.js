@@ -9,7 +9,6 @@ $(document).ready(function(){
 //	$('#main').live( 'pageinit',function(event){
 		date = new Date();
 		dateString = date.getFullYear() + "-" + (date.getMonth()+1) + "-" + (date.getDate());
-//		dateString = "2012-1-24"; // Mock
 
 		storage.setDateFilter(dateString)
 		storage.getSortedSegmented(function(json){
@@ -17,6 +16,10 @@ $(document).ready(function(){
 			$("#dishes").listview('refresh');
 		});
 //	});
+
+	$("#info h1").text(info.appName);
+	$("#info [data-role=content]").text(info.appDesc);
+	
 
 	$("#mensa-select").change(function(){
 		var val = $(this).val();
