@@ -46,7 +46,7 @@
 			{kind: "Button", caption: $L("Email schreiben"), onclick: "email"},
 		]},
 
-		{kind: "ModalDialog", name: "filter", caption: "Zu ladene Mensen", components:[
+		{kind: "ModalDialog", name: "filter", caption: "Gerichte filtern", components:[
 			{kind: "Group", components: [
 				{
 					kind: "Picker",
