@@ -1,69 +1,73 @@
 Bugs:
 - Global
 -- Mehrsprachigkeit
+-- Besseres Icon
 - Backend
--- out-of-range rückgeben
--- incremental callbacks ?
--- numberOfFailed? numberOfLoaded?
--- Language
 -- Unittests
 -- JSDocs
--- Detailmodus? Ansicht?
 - jquery mobile
--- instabil auf Xoom/Android (localStorage funktioniert vermutlich nicht) : "ERROR/AndroidRuntime(5560): java.lang.NullPointerException: println needs a message"
+-- Info
+-- Filtern
+-- Preiseinstellung
 - Win7 Desktop Gadget
 -- Design
 -- Filter
+-- Preiseinstellung
 - Jo Framework
--- Header schmaler und keine Morgen/Gestern auf Einstellungsseite
--- Icons für Morgen/Gestern/Edit
+-- initialer Konfigurierhinweis
+-- Neu laden nach Back
+-- Icons für Buttons
 -- cleanup
+-- Warteindikator
+-- anderes Theme
+- jQTouch
+-- Filter
+-- AppMenu
+-- Preiseinstellung
+-- About
+-- Icons
+-- Warteindikator
+-- gewählte Mensen speichern
 
 Frontends:
+- jquery mobile/phonegap - Phone    - In Progress
+- JQTouch/phonegap       - Phone    - In Progress
+- jo Framework/phonegap  - Phone    - In Progress
+- iUi/phonegap           - Phone    - In Progress
+
 - webOS
--- mojo (Phone)                      - done
--- Enyo 1 (Tablet)                   - done
+-- mojo (Phone)                      - Done
+-- Enyo 1 (Tablet)                   - Done
 - iOS
--- jquery mobile/phonegap - Phone    - Testing
--- JQTouch/phonegap       - Phone    - In Progress
--- Appcelerator Titanium  - Phone    - TODO
--- jo Framework/phonegap  - Phone    - In Progress
--- iUi/phonegap           - Phone    - In Progress
--- Enyo/phonegap          - Tablet   - TODO
+-- Enyo/phonegap          - Tablet   - Done
+-- Enyo/phonegap          - Phone    - Done
 - Android
--- jquery mobile/phonegap - Phone    - Testing
--- JQTouch/phonegap       - Phone    - In Progress
--- Appcelerator Titanium  - Phone    - TODO
--- jo Framework/phonegap  - Phone    - In Progress
--- iUi/phonegap           - Phone    - In Progress
--- Enyo/phonegap          - Tablet   - TODO
+-- Enyo/phonegap          - Tablet   - Done
+-- Enyo/phonegap          - Phone    - Done
 - Symbian (Nokia)
--- S40                    - Phone    - Done
+-- S40                    - Phone    - In Progress
 -- Symbian^3              - Phone    - TODO
 -- Symbian Belle          - Phone    - TODO
 - Blackberry
--- jquery mobile/phonegap - Phone    - TODO
--- jo Framework /phonegap - Phone    - TODO
--- Enyo/phonegap          - Tablet   - TODO
+-- Enyo/Phonegap          - Phone    - TODO
+-- Enyo/Phonegap          - Tablet   - Done
 - Windows Phone
--- jquery mobile/phonegap - Phone    - TODO
--- jo Framework /phonegap - Phone    - TODO
+-- jQueryMobile/phonegap  - Phone    - In Progress
 - Bada (Samsung)
 -- Phone                             - TODO
 - Desktop
 -- MacOS Desktop Widget              - in Progress
--- Win7 Desktop Gadget               - Done (mostly)
--- Titanium                          - TODO
--- Enyo/ChromeApp                    - TODO
+-- Win7 Desktop Gadget               - in Progress
+-- Enyo/ChromeApp                    - in Progress
 
 - Einstellen in
 x- github
-x- App Catalog      (webOS)
--- Market Place     (Android)
--- App World        (Blackberry)
--- App Store        (iOS)?
+xx App Catalog      (webOS)
+x- Market Place     (Android)
+x- App World        (Rim)
+xx App Store        (iOS)
 -- Chrome App Store (Google)
--- Windows irgendwas
+-- Windows Phone Marketplace (Microsoft)
 
 später?
 - The M Project - http://the-m-project.org/
@@ -72,7 +76,7 @@ später?
 - jqmobi        - http://www.jqmobi.com/
 - winktoolkit   - http://www.winktoolkit.org/
 - W3C Widget    - http://www.w3.org/TR/widgets-apis/
-- Maemo/Titzen
+- Titzen
 - Sencha Touch
 - Win8 Metro Gadget
 - Google Gadget
