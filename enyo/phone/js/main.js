@@ -4,7 +4,7 @@
 	components: [
 		{kind: "Header", components: [
 			{kind: "IconButton", icon: "images/menu-icon-back.png", onclick: "prev"},
-			{content: "Header", flex: 1, style: "text-align:center"},
+			{content: "Header", flex: 1, style: "text-align:center", onclick: "today"},
 			{kind: "IconButton", icon: "images/menu-icon-forward.png", onclick: "next"}
 		]},
 		{kind: "Scroller", flex: 1, components: [{
@@ -65,7 +65,7 @@
 					onChange: "filterByType"
 				},
 			]},
-			{kind: "Button", className: "enyo-button-affirmative", caption: $L("Filtern"), onclick: "filter"},
+			{kind: "Button", className: "enyo-button-affirmative", caption: $L("Filtern"), onclick: "render"},
 		]}
 	],
 	filterByMensa : function( instance, value ){
@@ -76,21 +76,11 @@
 		}
 	},
 	filterByType  : function( instance, value ){
-		console.log(arguments)
 		if(value === "Alle"){
 			storage.unsetNameFilter()
 		} else {
 			storage.setNameFilter( value )
 		}
-	},
-	filter : function(inSender, inEvent){
-		var menuList = this.owner.$.main.$.menuList;
-		storage.thisDay(function(json, dateStr){
-			document.getElementById("main_control").innerText = dateToString(dateStr);
-			menuList.data = json;
-			menuList.render();
-		});
-		this.closePopup(inSender, inEvent);
 	},
 	openConfig: function(inSender, inEvent) {
 		this.$.conf.openAtCenter();
@@ -176,24 +166,25 @@
 	next: function(inSender, inEvent) {
 		var menuList = this.owner.$.main.$.menuList;
 			menuList.$.spinnerLarge.show();
-		storage.nextDay(function(json, dateStr){
-			menuList.$.spinnerLarge.hide();
-			document.getElementById("main_control").innerText = dateToString(dateStr);
-			menuList.data = json;
-			menuList.render();
-		});
+		storage.nextDay(this.render);
 	},
 	prev: function(inSender, inEvent) {
 		var menuList = this.owner.$.main.$.menuList;
 			menuList.$.spinnerLarge.show();
-		storage.prevDay(function(json, dateStr){
-			menuList.$.spinnerLarge.hide();
-			document.getElementById("main_control").innerText = dateToString(dateStr);
-			menuList.data = json;
-			menuList.render();
-		});
+		storage.prevDay(this.render);
 	},
-
+	today: function(inSender, inEvent) {
+		var menuList = this.owner.$.main.$.menuList;
+			menuList.$.spinnerLarge.show();
+		storage.today(this.render);
+	},
+	render: function(json, dateStr){
+		var menuList = enyo.$.main.$.menuList;
+		menuList.$.spinnerLarge.hide();
+		document.getElementById("main_control").innerText = dateToString(dateStr);
+		menuList.data = json;
+		menuList.render();
+	},
 	create: function() {
 		this.inherited(arguments);
 		this.data = conf.getURLs();

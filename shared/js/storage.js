@@ -662,6 +662,8 @@ var storage = (function(){ // its a trap!
 
 		thisDay : thisDay,
 		nextDay : nextDay,
-		prevDay : prevDay
+		prevDay : prevDay,
+		today   : today
+
 	}
 })();
