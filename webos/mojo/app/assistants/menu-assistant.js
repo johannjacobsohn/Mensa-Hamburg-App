@@ -10,6 +10,8 @@ MenuAssistant.prototype.activate = function(event) {
 	   example, key handlers that are observing the document */
 
 	// Rerender Menu
+	this.controller = Mojo.Controller.stageController.activeScene();
+	this.controller.get('spinner').mojo.start();
 	storage.thisDay(fetch, false);
 
 	// Rerender Filter
@@ -160,7 +162,7 @@ MenuAssistant.prototype.setup = function() {
 	function today(){
 		this.controller = Mojo.Controller.stageController.activeScene();
 		this.controller.get('spinner').mojo.start();
-		storage.thisDay(fetch, false);
+		storage.today(fetch, false);
 	}
 
 	// handle menu commands
