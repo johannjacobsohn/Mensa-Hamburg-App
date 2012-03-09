@@ -517,9 +517,27 @@ var storage = (function(){ // its a trap!
 		},
 
 		/*
-		* convinient method to get today menu
+		* convinient method to get this days' menu
 		*/
 		thisDay = function(callback, sortedSegmented){
+			sortedSegmented = typeof sortedSegmented === "undefined" ? true : sortedSegmented;
+			
+			setDateFilter(dateToDateString(date));
+
+			if(sortedSegmented){
+				getSortedSegmented(function(json){
+					callback(json, dateToDateString(date), date);
+				});
+			} else {
+				filter(function(json){
+					callback(json, dateToDateString(date), date);
+				});
+			}
+		},
+		/*
+		* convinient method to get today menu
+		*/
+		today = function(callback, sortedSegmented){
 			date = typeof debug !== "undefined" && debug ? new Date(2012, 0, 24) : new Date(); //now
 
 			if ( date.getDay() === 6 ){ // Saturday
@@ -644,6 +662,8 @@ var storage = (function(){ // its a trap!
 
 		thisDay : thisDay,
 		nextDay : nextDay,
-		prevDay : prevDay
+		prevDay : prevDay,
+		today   : today
+
 	}
 })();
