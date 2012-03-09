@@ -1,0 +1,11 @@
+<loader version="1.0" >
+<application id="MensaHamburgHD">
+<name>Mensa Hamburg HD</name>
+<description>Essen essen essen</description>
+<version>1.0.0.0</version>
+<fileset Java="1.45">
+<directory></directory>
+<files>MensaHamburgHD.cod</files>
+</fileset>
+</application>
+</loader>

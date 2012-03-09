@@ -1,0 +1,15 @@
+enyo.depends(
+  "js/info.js",
+  "js/utils.js",
+  "js/data.js",
+  "js/conf.js",
+  "js/urls.js",
+  "js/xhr.js",
+  "js/storage.js",
+  "js/nameList.js",
+  "js/menuList.js",
+  "js/dateList.js",
+  "js/mensaList.js",
+  "js/main.js",
+  "css/main.css"
+);
