@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <!--
   Widget Configuration Reference:
@@ -9,10 +9,10 @@
         xmlns:rim="http://www.blackberry.com/ns/widgets"
 	version="1.0.0.0">
 
-  <name>Mensa Hamburg HD </name>
-
+  <name>Mensa Hamburg HD</name>
+  <author>Johann Jacobsohn</author>
   <description>
-      Essen essen essen
+      Wann gibt es welches Essen in welcher Mensa?	
   </description>
 
   <license href="http://opensource.org/licenses/alphabetical">
