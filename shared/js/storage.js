@@ -1,11 +1,39 @@
-/*
+/**
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ * Internal data format
+ * ====================
+ *
+ * loadedMensen{
+ *     mensaName1 : {
+ *         week1 : {},
+ *         week2 : {...}
+ *     },
+ *     mensaName2 : {...}
+ * } 
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ * @module storage
+ *
  * 
- */
+ */ 
 var storage = (function(){ // its a trap!
 	var weekMenu         = {}, // Cache
 		filteredWeekMenu = {}, // Cache
-		isFiltered       = false;
-		isDateFilterSet  = false;
+		isFiltered       = false,
+		isDateFilterSet  = false,
 		date = typeof debug !== "undefined" && debug ? new Date(2012, 0, 24) : new Date(), //now
 		getDateStr = function(){ return dateToDateString(date) },
 		week = function(){ return date.getWeek() },
@@ -14,17 +42,15 @@ var storage = (function(){ // its a trap!
 		menuCallbackQueue = [],
 		filters = [],
 		filterByMensa = function(item){
-			return item.mensaName === args.mensa;
+			return item.mensaName === this.mensa;
 		},
 		filterByName = function(item){
-			return item.name === args.name;
+			return item.name === this.name;
 		},
 		filter = function(callback){
 			getWeekMenu(function(){
 				var i = 0, day = "";
 				if(!isFiltered) {
-					// @TODO: remove "global"
-					args = {};
 					// copy weekMenu to filteredWeekMenu
 					filteredWeekMenu = {};
 					for (day in weekMenu){
@@ -37,8 +63,7 @@ var storage = (function(){ // its a trap!
 					// filter filteredWeekMenu
 					for (day in filteredWeekMenu){
 						for(i=0; i < filters.length; i++){
-							args = filters[i].args;
-							filteredWeekMenu[day] = filteredWeekMenu[day].filter(filters[i].fkt);
+							filteredWeekMenu[day] = filteredWeekMenu[day].filter(filters[i].fkt, filters[i].args);
 						}
 					}
 					isFiltered = true;
@@ -115,13 +140,20 @@ var storage = (function(){ // its a trap!
 			});
 		},
 
-		/*
+		/**
 		 * Find and delete Data of urls that are not saved
+		 *
+		 * @param void
+		 * @return this
 		 */
 		cleanData = function(){
-			var validUrls = conf.getSavedURLs(), day = "";
+			var validUrls   = conf.getSavedURLs(),
+				day         = "",
+				mensa       = "",
+				week        = 0,
+				mensaLength = 0;
 
-			// Make sure we load the cache before we save an empty menu
+			// Make sure we load the cache before we cleanup and save an empty menu
 			loadCachedData();
 
 			// filter menu
@@ -137,16 +169,15 @@ var storage = (function(){ // its a trap!
 			}
 
 			// cleanup loadedMensen
-			for(var mensa in loadedMensen){
-				for(var week in loadedMensen[mensa]){
-					var mensaLength = 0,
-						day = "";
+			for(mensa in loadedMensen){
+				for(week in loadedMensen[mensa]){
+					mensaLength = 0;
 					for (day in weekMenu){
 						mensaLength += weekMenu[day].filter(function(item){
 							return (mensa === item.mensaName && week == item.week); // intentionally week comparison, since week can be a number or a string
-						}).length > 0
+						}).length;
 					}
-					loadedMensen[mensa][week] = mensaLength > 0
+					loadedMensen[mensa][week].loaded = mensaLength > 0
 				}
 			}
 
@@ -155,20 +186,26 @@ var storage = (function(){ // its a trap!
 
 			// sync cache
 			cache();
+
+			return this;
 		},
 		
-		/*
+		/**
+		 *
+		 * get weekmenu
+		 *
+		 * retrieves menu data for a given date
 		 * 
 		 * @param function
-		 * @return void
+		 * @return this
 		 */
-		// @TODO: cleanup vars & documentation
 		getWeekMenu = function(callback, week){
 			var mensenArr = conf.getSavedURLs(),
 			    mensa = "",
 			    now = new Date(),
 			    thisWeek = now.getWeek(),  // get this week's number
-			    week = week ? week : date.getWeek() // get Week from date
+			    week = week || date.getWeek(), // get Week from date
+				url = "";
 
 			// enqueue the callback to be executed when everything has been loaded
 			if(callback) { menuCallbackQueue.push(callback);}
@@ -235,6 +272,16 @@ var storage = (function(){ // its a trap!
 			runMenuCallbacks();
 		},
 
+		/**
+		 * parseMensaHTML
+		 *
+		 * parses retrieved html from the mensa pages and returns retreaved data
+		 *
+		 * @param  {string} html
+		 * @param  {string} mensa
+		 * @param  {int}    week
+		 * @return {object} fetched dishes
+		 */
 		parseMensaHTML = function(html, mensa, week){
 
 			var tds, trs, dish, dishName, date, dateString, obj,
@@ -251,11 +298,10 @@ var storage = (function(){ // its a trap!
 				return;
 			}
 			// extract and parse date field
-			dtrs = trs;
 			var datefield = trs[0].getElementsByTagName("th")[0].innerHTML.split("<br>")[1];
-			germanStartdate = datefield.split("-")[0].trim(); //@TODO: Test in Explorer!
-			germanStartdateArr = germanStartdate.split(".");
-			startdate = new Date(germanStartdateArr[2],(germanStartdateArr[1]-1),germanStartdateArr[0]);
+			var germanStartdate = datefield.split("-")[0].trim(); //@TODO: Test in Explorer!
+			var germanStartdateArr = germanStartdate.split(".");
+			var startdate = new Date(germanStartdateArr[2],(germanStartdateArr[1]-1),germanStartdateArr[0]);
 
 			for (var j = 1; j < trs.length; j++){ // erste überspringen
 				try{
@@ -340,7 +386,7 @@ var storage = (function(){ // its a trap!
 						// Parse out dish
 						dish = p[k].innerText;
 						dish = dish.replace(/&nbsp;/g, "").trim();
-						dish = dish.replace(/\(([0-9]+,?)*\)/g, ""); //remove additives
+						dish = dish.replace(/\(([0-9.]+,?)*\)/g, ""); //remove additives
 
 						// Figure out date
 						date = new Date(startdate.valueOf() + (i) * 24 * 60 * 60 * 1000);
@@ -368,6 +414,7 @@ var storage = (function(){ // its a trap!
 		},
 
 		runMenuCallbacks = function(){
+			var fkt;
 			// only execute callback queue if all locks are released
 			if(isEmpty(lock)){
 				while (menuCallbackQueue.length>0){
@@ -466,11 +513,11 @@ var storage = (function(){ // its a trap!
 		setDateFilter = function(dateStr){
 			isDateFilterSet = true;
 			date = dateStringToDate(dateStr);
-		}
+		},
 
 		unsetDateFilter = function(dateStr){
 			isDateFilterSet = false;
-		}
+		},
 
 		/*
 		* 
@@ -603,6 +650,7 @@ var storage = (function(){ // its a trap!
 			}
 
 			// reject if new date is not available
+			// @FIXME
 //			if ( getAvailableDates.indexOf( dateToDateString(date) ) === "-1" ){
 //				date = oldDate; //! @TEST: Pass by reference?! 
 //			}
@@ -643,27 +691,26 @@ var storage = (function(){ // its a trap!
 
 	return {
 		clearCache : clearCache,
-		cleanData : cleanData,
+		cleanData  : cleanData,
 		
-		getTypes : getTypes,
-		getAvailableDates: getAvailableDates,
+		getTypes          : getTypes,
+		getAvailableDates : getAvailableDates,
 
-		setMensaFilter : setMensaFilter,
+		setMensaFilter   : setMensaFilter,
 		unsetMensaFilter : unsetMensaFilter,
-		setNameFilter : setNameFilter,
-		unsetNameFilter : unsetNameFilter,
-		setDateFilter : setDateFilter,
-		unsetDateFilter : unsetDateFilter,
-		unsetFilters : unsetFilters,
+		setNameFilter    : setNameFilter,
+		unsetNameFilter  : unsetNameFilter,
+		setDateFilter    : setDateFilter,
+		unsetDateFilter  : unsetDateFilter,
+		unsetFilters     : unsetFilters,
 
-		getWeekMenu : getWeekMenu,
+		getWeekMenu        : getWeekMenu,
 		getSortedSegmented : getSortedSegmented,
-		filter : filter,
+		filter             : filter,
 
 		thisDay : thisDay,
 		nextDay : nextDay,
 		prevDay : prevDay,
 		today   : today
-
 	}
 })();
