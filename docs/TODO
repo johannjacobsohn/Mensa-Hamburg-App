@@ -1,10 +1,22 @@
-Bugs:
+Bugs/Features:
 - Global
 -- Mehrsprachigkeit
 -- Besseres Icon
 - Backend
 -- Unittests
 -- JSDocs
+-- silent update der Daten der nächsten Woche?
+-- performancemessungen
+- Enyo1/Phone
+-- Speichern der Settings
+-- Swipen
+- Enyo1/Tablet
+-- automatisch nachladen
+- Enyo1/Phone
+-- Header nicht korrekt wenn man auf anderem Tag ist und Mensen ändert
+-- Default-Header "Header"
+- Mojo
+-- Warteindikator wenn initial geladen wird
 - jquery mobile
 -- Info
 -- Filtern
@@ -52,7 +64,7 @@ Frontends:
 -- Enyo/Phonegap          - Phone    - TODO
 -- Enyo/Phonegap          - Tablet   - Done
 - Windows Phone
--- jQueryMobile/phonegap  - Phone    - In Progress
+-- Enyo2/phonegap         - Phone    - In Progress
 - Bada (Samsung)
 -- Phone                             - TODO
 - Desktop

@@ -12,7 +12,7 @@ MenuAssistant.prototype.activate = function(event) {
 	// Rerender Menu
 	this.controller = Mojo.Controller.stageController.activeScene();
 	this.controller.get('spinner').mojo.start();
-	storage.thisDay(fetch, false);
+	storage.today(fetch, false);
 
 	// Rerender Filter
 	storage.getTypes(function(types){
@@ -63,6 +63,8 @@ MenuAssistant.prototype.setup = function() {
 	
 	// Swipe gestures
 	Mojo.Event.listen(this.controller.topContainer(), Mojo.Event.flick, function(event) {
+		if(event.velocity.y > 200) return; // detect only vertical swipes
+
 		if(event.velocity.x > 600){
 			yesterday();
 		} else if (event.velocity.x < -600){
@@ -248,7 +250,7 @@ MenuAssistant.prototype.setup = function() {
 
 
 function fetch(json, dateString, date){
-		if(typeof json === "undefined") json = []; // @TODO: gehört hier nicht hin - storage sollte nicht "undefined" zurückgeben können
+		json = json || [];
 
 		this.controller = Mojo.Controller.stageController.activeScene();
 		this.controller.get('spinner').mojo.stop();
@@ -262,8 +264,8 @@ function fetch(json, dateString, date){
 
 		this.controller.setWidgetModel("menu", {"items": json});
 
-		if(dateString && date){
-			headerMenu.items[0].items[1].label = dateToString(dateString)
+		if(date){
+			headerMenu.items[0].items[1].label = formatDate(date)
 			this.controller.modelChanged(headerMenu, this);
 		}
 	}
