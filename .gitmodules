@@ -1,0 +1,6 @@
+[submodule "enyo2/externals/enyo"]
+	path = enyo2/externals/enyo
+	url = https://github.com/enyojs/enyo.git
+[submodule "enyo2/externals/enyo2-lib"]
+	path = enyo2/externals/enyo2-lib
+	url = https://github.com/MacFJA/enyo2-lib.git
