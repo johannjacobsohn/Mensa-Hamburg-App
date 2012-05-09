@@ -4,3 +4,9 @@
 [submodule "enyo2/externals/enyo2-lib"]
 	path = enyo2/externals/enyo2-lib
 	url = https://github.com/MacFJA/enyo2-lib.git
+[submodule "enyo2/externals/layout"]
+	path = enyo2/externals/layout
+	url = https://github.com/enyojs/layout.git
+[submodule "enyo2/externals/onyx"]
+	path = enyo2/externals/onyx
+	url = https://github.com/enyojs/onyx.git
