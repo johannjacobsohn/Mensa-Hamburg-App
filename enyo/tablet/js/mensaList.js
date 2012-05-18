@@ -10,6 +10,7 @@
 	create: function() {
 		this.inherited(arguments);
 		this.data = conf.getSavedURLs();
+
 		this.data.unshift("Alle");
 		this.$.repeater.render();
 	},
@@ -21,18 +22,45 @@
 			]};
 		}
 	},
+	filterList : [],
 	itemClick : function(element){
-		var menuList = this.owner.$.menuList;
-		
-		for(var i=0; i<element.parent.children.length; i++){
-			element.parent.children[i].removeClass("enyo-held");
-		}
-		element.addClass("enyo-held");
+		//t = (new Date()).valueOf();
 
-		if(element.children[0].content === "Alle"){
+		var menuList = this.owner.$.menuList;
+		var l = element.parent.children.length;
+		var isAll = element.children[0].content === "Alle";
+		var parent = element.parent;
+		var child;
+
+		this.filterList = [];
+		
+		if(element.hasClass("enyo-held")){
+			element.removeClass("enyo-held");
+		} else {
+			element.parent.children[0].removeClass("enyo-held")
+			element.addClass("enyo-held");
+		}
+
+		for(var i=1; i < l; i++){
+			child = parent.children[i];
+			if(child.hasClass("enyo-held")){
+				if( isAll ){
+					child.removeClass("enyo-held");
+				} else {
+					this.filterList.push( child.children[0].content );
+				}
+			}
+		}
+
+		if(this.filterList.length === 0){
+			element.parent.children[0].addClass("enyo-held");
+			isAll = true;
+		}
+
+		if(isAll){
 			storage.unsetMensaFilter()
 		} else {
-			storage.setMensaFilter(element.children[0].content)
+			storage.setMensaFilter(this.filterList)
 		}
 		storage.getSortedSegmented(function(json){
 			menuList.data = json;

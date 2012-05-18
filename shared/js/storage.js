@@ -18,7 +18,7 @@
  * } 
  *
  *
- *
+ * @TODO: DateFilter
  *
  *
  *
@@ -42,10 +42,10 @@ var storage = (function(){ // its a trap!
 		menuCallbackQueue = [],
 		filters = [],
 		filterByMensa = function(item){
-			return item.mensaName === this.mensa;
+			return this.mensa.indexOf(item.mensaName) !== -1;
 		},
 		filterByName = function(item){
-			return item.name === this.name;
+			return this.name.indexOf(item.name) !== -1;
 		},
 		filter = function(callback){
 			getWeekMenu(function(){
@@ -509,7 +509,6 @@ var storage = (function(){ // its a trap!
 			});
 		},
 
-
 		setDateFilter = function(dateStr){
 			isDateFilterSet = true;
 			date = dateStringToDate(dateStr);
@@ -525,7 +524,8 @@ var storage = (function(){ // its a trap!
 		setMensaFilter = function(mensa){
 			isFiltered = false;
 			unsetMensaFilter();
-			filters.push({fkt:filterByMensa,args:{mensa:mensa}});
+			if(typeof mensa === "string") mensa = [mensa];
+			filters.push({ fkt:filterByMensa, args:{mensa:mensa} } );
 		},
 		/*
 		* 
@@ -543,7 +543,8 @@ var storage = (function(){ // its a trap!
 		setNameFilter = function(name){
 			isFiltered = false;
 			unsetNameFilter();
-			filters.push({fkt:filterByName,args:{name:name}});
+			if(typeof name === "string") name = [name];
+			filters.push( {fkt:filterByName,args:{name:name}} );
 		},
 		/*
 		* 

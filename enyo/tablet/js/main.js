@@ -138,6 +138,7 @@
 	},
 	changeStudentPrice : function(instance, value){
 		conf.setStudentPrices(value);
+		this.$.menuList.displayStudentPrices = value;
 	},
 	saveConf: function(inSender, inEvent) {
 		var array = [], i, controls = inSender.parent.children[0].children[1].children[1].children[0].children[0].children;

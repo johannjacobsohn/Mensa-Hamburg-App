@@ -28,6 +28,8 @@
 			that.$.repeater.render();
 		});
 	},
+	displayStudentPrices : conf.displayStudentPrices(),
+	
 	listSetupRow: function(inSender, inIndex) {
 		var row = this.data[inIndex];
 		if (row) {
@@ -39,7 +41,7 @@
 					{layoutKind: "HFlexLayout", style: "font-size: 0.8em", 
 						components: [
 							{content: row.name, flex: 1},
-							{content: (conf.displayStudentPrices() ? row.studPrice : row.normalPrice) + "€"},
+							{content: (this.displayStudentPrices ? row.studPrice : row.normalPrice) + "€"},
 						]
 					}
 				]};
