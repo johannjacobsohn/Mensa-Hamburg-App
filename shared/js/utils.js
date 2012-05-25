@@ -1,4 +1,3 @@
-
 // http://syn.ac/tech/19/get-the-weeknumber-with-javascript/
 Date.prototype.getWeek = function() {
 	var determinedate = new Date();
@@ -47,10 +46,7 @@ function deepCopy(o) {
  * @return {string} formated String
  */
 function dateToString(isoDate, lang){
-	var isoDateArr = isoDate.split("-"),
-	    date = new Date(isoDateArr[0], isoDateArr[1]-1, isoDateArr[2]);
-	
-	return formatDate(date, lang);
+	return formatDate(new Date(isoDate), lang);
 }
 
 /**
@@ -63,9 +59,7 @@ function dateToString(isoDate, lang){
 function formatDate(date, lang){
 	var lang = lang || "de",
 		millisecondsInDay = 60 * 60 * 24 * 1000,
-		thatDate = Math.round(date.getTime() / millisecondsInDay),
-		thisDate = Math.round(+new Date() / millisecondsInDay),
-		dateDiff = (thatDate - thisDate),
+		dateDiff = daysBetween(new Date(), date),
 		dayStrings = {
 			de : {
 				"-1" : "Gestern",
@@ -89,6 +83,24 @@ function formatDate(date, lang){
 
 	return dateDiff >= -1 && dateDiff <= 1 ? dayStrings[lang][dateDiff] : dateFormats[lang];
 }
+
+/*
+ * http://stackoverflow.com/questions/1036742/date-difference-in-javascript-ignoring-time-of-day
+ */
+function daysBetween(first, second) {
+	// Copy date parts of the timestamps, discarding the time parts.
+	var one = new Date(first.getFullYear(), first.getMonth(), first.getDate());
+	var two = new Date(second.getFullYear(), second.getMonth(), second.getDate());
+
+	// Do the math.
+	var millisecondsPerDay = 1000 * 60 * 60 * 24;
+	var millisBetween = two.getTime() - one.getTime();
+	var days = millisBetween / millisecondsPerDay;
+
+	// Round down.
+	return Math.floor(days);
+}
+
 
 /*
 http://stackoverflow.com/questions/1744310/how-to-fix-array-indexof-in-javascript-for-ie-browsers
