@@ -107,31 +107,66 @@ var storage = (function(){ // its a trap!
 					return mensaNameWeight + dateWeight * 100;
 				});
 
-				var isMensaFilterSet = filters.filter(function(item){
+				var mensaFilter = filters.filter(function(item){
 					return item.fkt === filterByMensa;
-				}).length !== 0;
+				});
+
+				var isMensaFilterSet = mensaFilter.length !== 0;
+				var filteredByMensenLength = mensaFilter[0] && mensaFilter[0].args.mensa.length || 0;
 			
-				var segmented = [], mensaName = "", date = "", i, first=false, savedMensenExist = (conf.getSavedURLs()).length > 1;
-				for(i=0; i<sorted.length; i++){
+				var segmented = [],
+					mensaName = "",
+					date = "",
+					i = 0,
+					l = sorted.length,
+					first = false,
+					savedMensenExist = (conf.getSavedURLs()).length > 1;
+
+
+				/*
+				 * wenn nur eine Mensa gewählt ist sollte diese als erstes in den Headern stehen
+				 */
+				 if( isMensaFilterSet && filteredByMensenLength === 1 ){
+					segmented.push({
+						header     : mensaFilter[0].args.mensa[0],
+						type       : "header",
+						headerType : "mensa"
+					});
+				}
+
+				for( i = 0; i < l; i++ ){
 					first = false;
 					if(date != sorted[i].date && !isDateFilterSet){
-						// wenn Header dann dieses und nächsten Eintrag als "First" bzw. "Last" kennzeichnen
-						if(segmented.length>0) segmented[segmented.length-1].last = true;
+						if( segmented.length > 0 ) {// wenn Header dann dieses und nächsten Eintrag als "First" bzw. "Last" kennzeichnen
+							segmented[segmented.length - 1].last = true;
+						}
 						first = true;
 
-						segmented.push({header:sorted[i].date, type: "header", headerType: "date"});
+						segmented.push({
+							header     : sorted[i].date,
+							type       : "header",
+							headerType : "date"
+						});
 					}
-					if(mensaName != sorted[i].mensaName && !isMensaFilterSet && savedMensenExist){
+
+					if(mensaName != sorted[i].mensaName && (!isMensaFilterSet || filteredByMensenLength !== 1) && savedMensenExist){
 						// wenn Header dann dieses und nächsten Eintrag als "First" bzw. "Last" kennzeichnen
-						if(segmented.length>0) segmented[segmented.length-1].last = true;
+						if( segmented.length > 0 ){
+							segmented[segmented.length-1].last = true;
+						}
 						first = true;
 
-						segmented.push({header:sorted[i].mensaName, type: "header", headerType: "mensa"});
+						segmented.push({
+							header    : sorted[i].mensaName,
+							type      : "header",
+							headerType: "mensa"
+						});
 					}
-					sorted[i].type = "item";
+					sorted[i].type  = "item";
 					sorted[i].first = first;
-					sorted[i].last = false;
+					sorted[i].last  = false;
 					segmented.push(sorted[i]);
+					
 					mensaName = sorted[i].mensaName;
 					date = sorted[i].date;
 				}
