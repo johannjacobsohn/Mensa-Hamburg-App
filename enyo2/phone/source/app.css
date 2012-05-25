@@ -1,10 +1,18 @@
+
 body {
 	font-family: Prelude, Prelude Medium, Segoe UI, Arial, Helvetica, Sans-Serif;
-	font-size: 18px;
+	font-size: 16px;
+
+	color: #333;
+	background-color: #d8d8d8;
+/*	#333
 	text-shadow: 1px 1px 1px #000;
 	color: #afafaf;
 	background-color: #323232;
+*/
 }
+
+
 
 /*
 	size those pesky elements like inputs, textareas, iframes, etc.
@@ -34,20 +42,48 @@ body {
 }
 .item {
 	padding: 10px;
-/*	border-bottom: 1px solid #0e0e0e;
-*/	cursor: pointer;
-
+/*
+	border-bottom: 1px solid #0e0e0e;
+*/
+	cursor: pointer;
+	border-top: 1px solid rgba(255, 255, 255, 0.5);
+	border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+	text-shadow: 1px 1px 1px #eee;
+}
+.item.first {
+	border-top: none;
+}
+.item.last {
+	border-bottom: none;
+}
+/*
+.item {
+	padding: 10px;
+	border-bottom: 1px solid #0e0e0e;
+	cursor: pointer;
 }
 .item.last {
 	border-bottom: none;
 }
 
-
+enyo-list-page> div:nth-child(odd) {
+	background-color: #424242;
+}
+*/
 .dish{
-	color: #fff;
+	color: #000;
+	font-size: 18px;
+}
+.mensa,
+.name {
+	color: #666;
+	font-size: .8em;
+}
+.price {
+	float: right;
 }
 
-.seperator{
+.divider{
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
@@ -55,45 +91,7 @@ body {
 	font-size: 12pt;
 	color: #3A8BCB;
 	-webkit-box-flex: .1;
-}
-
-.enyo-slideable{
-	background: #323232;
-}
-
-/*
-.loading #app_viewer_toolbar{
-	background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
-	background-size: 40px 40px;
-	height: 40px;
-	-webkit-animation: progress-bar-stripes 1s linear infinite;
-}
-@-webkit-keyframes progress-bar-stripes {
-  from {
-    background-position: 0 0;
-  }
-  to {
-    background-position: 40px 0;
-  }
-}
-*/
-
-body .onyx-toolbar {
-	padding: 0;
-}
-
-.onyx-toolbar .onyx-icon-button {
-	background-position: center 0;
-}
-
-body .onyx-toolbar .onyx-icon-button:active,
-body .onyx-icon.active,
-body .onyx-icon:active:hover {
-	background-position: center -32px;
-}
-
-#app_viewer_mainHeader{
-	padding-top: 4px;
+	text-shadow: 1px 1px 1px #eee;
 }
 
 .loading-message,
@@ -107,7 +105,17 @@ body .onyx-icon:active:hover {
 .empty-message{
 	margin-top: 150px;
 }
+.onyx-toolbar .onyx-icon-button {
+	background-position: center 0;
+}
 
-body .onyx-toolbar-inline > * {
-	margin: 0;
+body .onyx-toolbar .onyx-icon-button:active,
+body .onyx-icon.active,
+body .onyx-icon:active:hover {
+	background-position: center -32px;
+}
+
+
+.selected{
+	background: red;
 }
