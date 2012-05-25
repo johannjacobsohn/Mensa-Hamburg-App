@@ -23,7 +23,7 @@
 			subscribe : true
 		},
 		{name: "slidingPane", kind: "SlidingPane", flex: 1, components: [
-			{name: "left", width: "200px", kind:"SlidingView", components: [
+			{name: "left", width: "160px", kind:"SlidingView", components: [
 					{kind: "Header", content:"Tage"},
 					{kind: "Scroller", flex: 1, components: [
 						{
@@ -34,11 +34,10 @@
 						}
 					]},
 					{kind: "Toolbar", components: [
-						{kind: "GrabButton"},
-						{kind: "Image", src: "images/info-icon.png", onclick: "openAbout"}
+						{kind: "GrabButton"}
 					]}
 			]},
-			{name: "mensalistpanel", width: "200px", kind:"SlidingView", peekWidth: 50, components: [
+			{name: "mensalistpanel", width: "160px", kind:"SlidingView", peekWidth: 50, components: [
 					{kind: "Header", content:"Mensen"},
 					{kind: "Scroller", flex: 1, components: [
 						{
@@ -49,11 +48,10 @@
 						}
 					]},
 					{kind: "Toolbar", components: [
-						{kind: "GrabButton"},
-						{icon: "images/Gear.png", onclick: "closePopup", onclick: "openConfig"}
+						{kind: "GrabButton"}
 					]}
 			]},
-			{name: "middle2", width: "200px", kind:"SlidingView", peekWidth: 100, components: [
+			{name: "middle2", width: "160px", kind:"SlidingView", peekWidth: 100, components: [
 					{kind: "Header", content:"Gerichte"},
 					{kind: "Scroller", flex: 1, components: [
 						{
@@ -67,7 +65,7 @@
 						{kind: "GrabButton"}
 					]}
 			]},
-			{name: "right", kind:"SlidingView", flex: 1, peekWidth: 150, components: [
+			{name: "right", kind:"SlidingView", flex: 1, components: [
 					{kind: "Header", content:"Speisekarte"},
 					{kind: "Scroller", flex: 1, components: [
 						{
@@ -78,7 +76,9 @@
 						}
 					]},
 					{kind: "Toolbar", components: [
-						{kind: "GrabButton"}
+						{kind: "GrabButton"},
+						{content: "Mensa Hamburg", onclick: "openAbout"},
+						{icon: "images/Gear.png", onclick: "closePopup", onclick: "openConfig"}
 					]}
 			]},
 			/* Scrollable */
