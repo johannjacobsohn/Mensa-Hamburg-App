@@ -6,7 +6,6 @@
 	"js/storage.js",
 	"js/urls.js",
 	"js/xhr.js",
-//	"source/Panel.js",
 	"source/app.css",
 	"source/App.js",
 	"$lib/onyx",
