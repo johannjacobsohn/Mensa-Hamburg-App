@@ -10,7 +10,21 @@
 </head>
 <body>
 <script type="text/javascript">
-	new App().renderInto(document.body);
+	mensaApp = new App().renderInto(document.body);
+
+	if(!conf.isConfigured()){
+		mensaApp.showNotConfigured();
+		mensaApp.settings();
+	}
+	
+	enyo.gesture.drag.flick = function(e){
+		var velo = .5;
+		if(e.xVelocity > velo){
+			mensaApp.yesterday();
+		} else if(e.xVelocity < -velo){
+			mensaApp.tomorrow();
+		}
+	};
 </script>
 </body>
 </html>
