@@ -10,11 +10,11 @@
  * ====================
  *
  * loadedMensen{
- *     mensaName1 : {
+ *     mensa1 : {
  *         week1 : {},
  *         week2 : {...}
  *     },
- *     mensaName2 : {...}
+ *     mensa2 : {...}
  * } 
  *
  *
@@ -30,71 +30,122 @@
  * 
  */ 
 var storage = (function(){ // its a trap!
-	var weekMenu         = {}, // Cache
-		filteredWeekMenu = {}, // Cache
+	var weekMenu         = [], // Cache
+		filteredWeekMenu = [], // Cache
 		isFiltered       = false,
-		isDateFilterSet  = false,
 		date = typeof debug !== "undefined" && debug ? new Date(2012, 0, 24) : new Date(), //now
 		getDateStr = function(){ return dateToDateString(date) },
 		week = function(){ return date.getWeek() },
 		lock = [],
 		loadedMensen = {},
 		menuCallbackQueue = [],
-		filters = [],
-		filterByMensa = function(item){
-			return this.mensa.indexOf(item.mensaName) !== -1;
+
+		/*
+		 * Filters
+		 *
+		 */
+		 
+		// Flag if filters should be remembered
+		persistentFilters = data.get("persistentFilters") || true,
+		
+		setPersistentFilters = function(save){
+			persistentFilters = save;
+			data.set("persistentFilters", persistentFilters);
 		},
-		filterByName = function(item){
-			return this.name.indexOf(item.name) !== -1;
+		getPersistentFilters = function(){
+			return persistentFilters;
 		},
+
+		filterProperties = {},
+		filterValues = {},
+
+		loadFilters = function(){
+			/// @TODO
+			if( persistentFilters ){
+				filterProperties = JSON.parse( data.get("filterProperties") || "{}" );
+				filterValues     = JSON.parse( data.get("filterValues")     || "{}" );
+			}
+		},
+
+		saveFilters = function(){
+			if( persistentFilters ){
+				data.set("filterProperties", JSON.stringify(filterProperties) );
+				data.set("filterValues",     JSON.stringify(filterValues)     );
+			}
+		},
+
+		// do the filtering
 		filter = function(callback){
 			getWeekMenu(function(){
-				var i = 0, day = "";
-				if(!isFiltered) {
+				var i = 0, prop;
+				if(!isFiltered) { // skip if already filtered
 					// copy weekMenu to filteredWeekMenu
-					filteredWeekMenu = {};
-					for (day in weekMenu){
-						filteredWeekMenu[day] = [];
-						for(i=0; i < weekMenu[day].length; i++){
-							filteredWeekMenu[day].push(weekMenu[day][i]);
-						}
+					filteredWeekMenu = [];
+					for(i=0; i < weekMenu.length; i++){
+						filteredWeekMenu.push(weekMenu[i]);
 					}
 
 					// filter filteredWeekMenu
-					for (day in filteredWeekMenu){
-						for(i=0; i < filters.length; i++){
-							filteredWeekMenu[day] = filteredWeekMenu[day].filter(filters[i].fkt, filters[i].args);
+					for( prop in filterProperties ){
+						if( filterProperties.hasOwnProperty(prop) ){
+							filteredWeekMenu = filteredWeekMenu.filter( function(item){
+								return filterValues[prop].indexOf( item[prop] ) !== -1;
+							} );
 						}
 					}
 					isFiltered = true;
 				}
 
-				if(isDateFilterSet){
-					callback(filteredWeekMenu[getDateStr()] || []);
-				} else { // flatten Object into Array
-					var tmpArr = []
-					for (day in filteredWeekMenu){
-						tmpArr = tmpArr.concat(filteredWeekMenu[day])
-					}
-					callback(tmpArr);
-					
-				}
+				callback(filteredWeekMenu);
 			});
 		},
 
+		setFilter = function(prop, value){
+			isFiltered = false;
+			if(typeof value === "string") value = [value];
+
+//			console.log(persistentFilters, filterProperties, filterValues)
+			filterProperties[prop] = prop;
+			filterValues[prop] = value;
+
+			saveFilters();
+		},
+
+		unsetFilter = function(type){
+			isFiltered = false;
+			delete filterProperties[type];
+			delete filterValues[type];
+			saveFilters();
+		},
+
+		/*
+		* 
+		*/
+		unsetFilters = function(){
+			isFiltered = false;
+			filterLength = {};
+			filters = {};
+			
+			saveFilters();
+		},
+
+		/**
+		 *
+		 * @TODO: streamline
+		 */
 		getSortedSegmented = function(callback){
 			filter(function(json){
 				var sorted = json.sort(function(a, b){
-					var mensaNameWeight = 0,
+					var mensaWeight = 0,
 					    dateWeight = 0,
-					    nameA = a.mensaName.toLowerCase(),
-					    nameB = b.mensaName.toLowerCase(),
+					    nameA = a.mensa.toLowerCase(),
+					    nameB = b.mensa.toLowerCase(),
 					    dateA = a.date.split("-"),
 					    dateB = b.date.split("-")
 					if (nameA < nameB){
-						mensaNameWeight = -10;
+						mensaWeight = -10;
 					} else if (nameA > nameB) {
-						mensaNameWeight =  10;
+						mensaWeight =  10;
 					}
 
 					dateWeight = parseInt(dateA[0]) * 100
@@ -104,31 +155,28 @@ var storage = (function(){ // its a trap!
 					             - parseInt(dateB[1])*10
 					             - parseInt(dateB[2]);
 
-					return mensaNameWeight + dateWeight * 100;
+					return mensaWeight + dateWeight * 100;
 				});
 
-				var mensaFilter = filters.filter(function(item){
-					return item.fkt === filterByMensa;
-				});
+				var isMensaFilterSet = typeof filterValues["mensa"] !== "undefined";
+				var filteredByMensenLength = isMensaFilterSet && filterValues["mensa"].length || 0;
 
-				var isMensaFilterSet = mensaFilter.length !== 0;
-				var filteredByMensenLength = mensaFilter[0] && mensaFilter[0].args.mensa.length || 0;
-			
+				var isDateFilterSet = typeof filterValues["date"] !== "undefined" && filterValues["date"].length === 1;
+
 				var segmented = [],
-					mensaName = "",
+					mensa = "",
 					date = "",
 					i = 0,
 					l = sorted.length,
 					first = false,
 					savedMensenExist = (conf.getSavedURLs()).length > 1;
 
-
 				/*
 				 * wenn nur eine Mensa gewählt ist sollte diese als erstes in den Headern stehen
 				 */
-				 if( isMensaFilterSet && filteredByMensenLength === 1 ){
+				 if( isMensaFilterSet && filteredByMensenLength === 1 && json[0]){
 					segmented.push({
-						header     : mensaFilter[0].args.mensa[0],
+						header     : json[0].mensa,
 						type       : "header",
 						headerType : "mensa"
 					});
@@ -149,7 +197,7 @@ var storage = (function(){ // its a trap!
 						});
 					}
 
-					if(mensaName != sorted[i].mensaName && (!isMensaFilterSet || filteredByMensenLength !== 1) && savedMensenExist){
+					if(mensa != sorted[i].mensa && (!isMensaFilterSet || filteredByMensenLength !== 1) && savedMensenExist){
 						// wenn Header dann dieses und nächsten Eintrag als "First" bzw. "Last" kennzeichnen
 						if( segmented.length > 0 ){
 							segmented[segmented.length-1].last = true;
@@ -157,7 +205,7 @@ var storage = (function(){ // its a trap!
 						first = true;
 
 						segmented.push({
-							header    : sorted[i].mensaName,
+							header    : sorted[i].mensa,
 							type      : "header",
 							headerType: "mensa"
 						});
@@ -167,7 +215,7 @@ var storage = (function(){ // its a trap!
 					sorted[i].last  = false;
 					segmented.push(sorted[i]);
 					
-					mensaName = sorted[i].mensaName;
+					mensa = sorted[i].mensa;
 					date = sorted[i].date;
 				}
 
@@ -192,32 +240,27 @@ var storage = (function(){ // its a trap!
 			loadCachedData();
 
 			// filter menu
-			for(day in weekMenu){
-				weekMenu[day] = weekMenu[day].filter(function(item){
-					return validUrls.indexOf(item.mensaName) !== -1;
-				});
-			}
-			for(day in filteredWeekMenu){
-				filteredWeekMenu[day] = filteredWeekMenu[day].filter(function(item){
-					return validUrls.indexOf(item.mensaName) !== -1;
-				});
-			}
+			weekMenu = weekMenu.filter(function(item){
+				return validUrls.indexOf(item.mensa) !== -1;
+			});
+
+			filteredWeekMenu = filteredWeekMenu.filter(function(item){
+				return validUrls.indexOf(item.mensa) !== -1;
+			});
 
 			// cleanup loadedMensen
 			for(mensa in loadedMensen){
 				for(week in loadedMensen[mensa]){
-					mensaLength = 0;
-					for (day in weekMenu){
-						mensaLength += weekMenu[day].filter(function(item){
-							return (mensa === item.mensaName && week == item.week); // intentionally week comparison, since week can be a number or a string
-						}).length;
-					}
+					mensaLength = weekMenu.filter(function(item){
+						return (mensa === item.mensa && week == item.week); // intentionally week comparison, since week can be a number or a string
+					}).length;
+
 					loadedMensen[mensa][week].loaded = mensaLength > 0
 				}
 			}
 
 			// unset MensaFilter
-			unsetMensaFilter();
+			unsetFilter("mensa");
 
 			// sync cache
 			cache();
@@ -268,22 +311,19 @@ var storage = (function(){ // its a trap!
 					// Trigger AJAX-Call
 					xhr.get(url, function(resp, additional_args){
 						// parse HTML
-						var day = "", oldWeekMenuLength = 0, newWeekMenuLength = 0;
-						for(day in weekMenu){
-							oldWeekMenuLength += weekMenu[day].length;
-						}
-						parseMensaHTML(resp, additional_args.mensaName, additional_args.week);
+						var day = "", oldWeekMenuLength = weekMenu.length, newWeekMenuLength = 0;
+
+						parseMensaHTML(resp, additional_args.mensa, additional_args.week);
 
 						// mark as cached only if new dishes where found
-						for(day in weekMenu){
-							newWeekMenuLength += weekMenu[day].length;
-						}
+						newWeekMenuLength = weekMenu.length;
+
 						if(oldWeekMenuLength < newWeekMenuLength){
-							loadedMensen[additional_args.mensaName][additional_args.week] = true;
+							loadedMensen[additional_args.mensa][additional_args.week] = true;
 						}
 
 						// release lock
-						delete lock[additional_args.mensaName];
+						delete lock[additional_args.mensa];
 						
 						// try to run callbacks
 						runMenuCallbacks();
@@ -291,13 +331,13 @@ var storage = (function(){ // its a trap!
 						console.error("xhr error");
 
 						// release lock
-						delete lock[additional_args.mensaName];
+						delete lock[additional_args.mensa];
 
 						// try to run callbacks
 						runMenuCallbacks();
 					},
 					{
-						mensaName : mensa,
+						mensa : mensa,
 						week : week
 					}
 					);
@@ -428,11 +468,8 @@ var storage = (function(){ // its a trap!
 						dateString = date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getDate();
 
 						if(dish !== ""){
-							if(!weekMenu[dateString]){
-								weekMenu[dateString] = [];
-							}
-							weekMenu[dateString].push({
-								mensaName   : mensa,
+							weekMenu.push({
+								mensa       : mensa,
 								week        : week,
 								name        : dishName,
 								dish        : dish,
@@ -473,9 +510,9 @@ var storage = (function(){ // its a trap!
 
 		loadCachedData = function(){
 			try {
-				weekMenu = JSON.parse( data.get("menu") ) || {};
+				weekMenu = JSON.parse( data.get("menu") ) || [];
 			} catch (e) {
-				weekMenu = {}
+				weekMenu = []
 			}
 			try {
 				loadedMensen = JSON.parse( data.get("loadedMensen") ) || {};
@@ -491,36 +528,111 @@ var storage = (function(){ // its a trap!
 
 		cleanUpOldData = function(){
 			var week = (new Date()).getWeek(), day = "";
-			for(day in weekMenu){
-				weekMenu[day] = weekMenu[day].filter(function(item){
-					return (week === item.week || week + 1 === item.week);
-				});
-			}
+			weekMenu = weekMenu.filter(function(item){
+				return (week === item.week || week + 1 === item.week);
+			});
+
 			cache();
 		},
 
 		/*
 		* list all Types
+		* @depreciated
 		*/
 		getTypes = function(callback){
 			getWeekMenu(function(){
-				var type, types = {}, typesArr = [], day = "", i = 0;
-				for(day in weekMenu){
-					for (i=0; i<weekMenu[day].length; i++){	
-						types[weekMenu[day][i].name] = weekMenu[day][i].name
-					}
+				var type, types = {}, typesArr = [], l = weekMenu.length;
+				while ( l-- ){
+					types[weekMenu[l].name] = true;
 				}
+
 				for(type in types){
-					typesArr.push(type); 
+					if( types.hasOwnProperty(type) ){
+						typesArr.push(type);
+					}
 				}
 				callback(typesArr);
 			});
 		},
 
 		/*
+		* list all Types
+		*/
+		getTypeInfo = function(callback){
+			getWeekMenu(function(){
+				var type, types = {}, typesArr = [], l = weekMenu.length;
+				while ( l-- ){
+					types[weekMenu[l].name] = true;
+				}
+
+				for(type in types){
+					if( types.hasOwnProperty(type) ){
+						typesArr.push({
+							content  : type,
+							name     : type,
+							filtered : typeof filterProperties["name"] !== "undefined" && filterValues["name"].indexOf( type ) !== -1
+						});
+					}
+				}
+				callback(typesArr);
+			});
+		},
+
+		/*
+		* list all Mensen
+		*/
+		getMensaInfo = function(callback){
+			var mensen = conf.getMensaInfo();
+			var l = mensen.length;
+			var i = 0;
+			var activeMensen = [];
+			for( i=0; i < l; i++ ){
+				if( mensen[i].active ) {
+					mensen[i].filtered = typeof filterProperties["mensa"] !== "undefined"
+						&& filterValues["mensa"].indexOf( mensen[i].name ) !== -1;
+
+					mensen[i].content = mensen[i].name;
+					activeMensen.push(mensen[i]);
+					
+				}
+			}
+			callback(activeMensen);
+		},
+
+		getDateInfo = function(callback){
+			var dates = getAvailableDates(true);
+			var l = dates.length;
+			while( l-- ){
+				dates[l] = {
+					filtered : typeof filterProperties["date"] !== "undefined" && filterValues["date"].indexOf( dates[l] ) !== -1,
+					name     : dates[l],
+					content  : dateToString(dates[l])
+				}
+			}
+			callback (dates);
+		},
+
+		getInfo = function(type, callback){
+			switch(type){
+				case "date" : {
+					getDateInfo(callback);
+					break;
+				}
+				case "mensa" : {
+					getMensaInfo(callback);
+					break;
+				}
+				case "name" : {
+					getTypeInfo(callback);
+					break;
+				}
+			}
+			return this;
+		},
+		/*
 		* list all dates
 		*/
-		getAvailableDates= function(getNextWeek){
+		getAvailableDates = function(getNextWeek){
 			var noOfDays = getNextWeek ? 12 : 5,
 			    today = new Date(),
 			    monday = today.getDate() - today.getDay()
@@ -536,92 +648,29 @@ var storage = (function(){ // its a trap!
 			return dates;
 		},
 
+		/**
+		 *
+		 * @depreciated
+		 */
 		getMenuByDate = function(date, callback){
 			console.log("getMenuByDate is depreciated");
-			getWeekMenu(function(){
-				filters = [{fkt:filterByDate,args:{date:date}}];
-				filter(callback);
-			});
+			//   @TODO: Broken!
 		},
-
-		setDateFilter = function(dateStr){
-			isDateFilterSet = true;
-			date = dateStringToDate(dateStr);
-		},
-
-		unsetDateFilter = function(dateStr){
-			isDateFilterSet = false;
-		},
-
-		/*
-		* 
-		*/
-		setMensaFilter = function(mensa){
-			isFiltered = false;
-			unsetMensaFilter();
-			if(typeof mensa === "string") mensa = [mensa];
-			filters.push({ fkt:filterByMensa, args:{mensa:mensa} } );
-		},
-		/*
-		* 
-		*/
-		unsetMensaFilter = function(){
-			isFiltered = false;
-			filters = filters.filter(function(item){
-				return item.fkt !== filterByMensa;
-			});
-		},
-
-		/*
-		* 
-		*/
-		setNameFilter = function(name){
-			isFiltered = false;
-			unsetNameFilter();
-			if(typeof name === "string") name = [name];
-			filters.push( {fkt:filterByName,args:{name:name}} );
-		},
-		/*
-		* 
-		*/
-		unsetNameFilter = function(){
-			isFiltered = false;
-			filters = filters.filter(function(item){
-				return item.fkt !== filterByName;
-			});
-		},
-
-		/*
-		* 
-		*/
-		unsetFilters = function(){
-			isFiltered = false;
-			filters = [];
-		},
-
+		
 		/*
 		* convinient method to get this days' menu
 		*/
 		thisDay = function(callback, sortedSegmented){
 			sortedSegmented = typeof sortedSegmented === "undefined" ? true : sortedSegmented;
-			
-			setDateFilter(dateToDateString(date));
 
-			if(sortedSegmented){
-				getSortedSegmented(function(json){
-					callback(json, dateToDateString(date), date);
-				});
-			} else {
-				filter(function(json){
-					callback(json, dateToDateString(date), date);
-				});
-			}
+			day(date, sortedSegmented, callback);
 		},
 		/*
 		* convinient method to get today menu
 		*/
 		today = function(callback, sortedSegmented){
 			date = typeof debug !== "undefined" && debug ? new Date(2012, 0, 24) : new Date(); //now
+			sortedSegmented = typeof sortedSegmented === "undefined" ? true : sortedSegmented;
 
 			if ( date.getDay() === 6 ){ // Saturday
 				date.setDate( date.getDate() + 2 );
@@ -629,19 +678,7 @@ var storage = (function(){ // its a trap!
 				date.setDate( date.getDate() + 1 );
 			}
 
-			sortedSegmented = typeof sortedSegmented === "undefined" ? true : sortedSegmented;
-			
-			setDateFilter(dateToDateString(date));
-
-			if(sortedSegmented){
-				getSortedSegmented(function(json){
-					callback(json, dateToDateString(date), date);
-				});
-			} else {
-				filter(function(json){
-					callback(json, dateToDateString(date), date);
-				});
-			}
+			day(date, sortedSegmented, callback);
 		},
 		/*
 		* convinient method to get the next Day
@@ -657,17 +694,7 @@ var storage = (function(){ // its a trap!
 				date.setDate( date.getDate() + 1 );
 			}
 
-			setDateFilter(dateToDateString(date));
-
-			if(sortedSegmented){
-				getSortedSegmented(function(json){
-					callback(json, dateToDateString(date), date);
-				});
-			} else {
-				filter(function(json){
-					callback(json, dateToDateString(date), date);
-				});
-			}
+			day(date, sortedSegmented, callback);
 		},
 
 		/*
@@ -691,7 +718,15 @@ var storage = (function(){ // its a trap!
 //				date = oldDate; //! @TEST: Pass by reference?! 
 //			}
 
-			setDateFilter(dateToDateString(date));
+			day(date, sortedSegmented, callback);
+		},
+
+		/**
+		 *
+		 * @private
+		 */
+		day = function(date, sortedSegmented, callback){
+			setFilter("date", dateToDateString(date));
 
 			if(sortedSegmented){
 				getSortedSegmented(function(json){
@@ -703,7 +738,6 @@ var storage = (function(){ // its a trap!
 				});
 			}
 		},
-
 
 		// Helpers
 		dateToDateString = function(date){
@@ -722,23 +756,39 @@ var storage = (function(){ // its a trap!
 		// populate loadedMensen and weekMenu from cache
 		loadCachedData();
 
+		// reset saved Filters
+		loadFilters();
+
 		// remove old data for performance
 		cleanUpOldData();
 
 	return {
 		clearCache : clearCache,
 		cleanData  : cleanData,
-		
+
+
+		getInfo      : getInfo,
+		getTypeInfo  : getTypeInfo,
+		getMensaInfo : getMensaInfo,
+		getDateInfo  : getDateInfo,
+
+		// DEPRECIATED:
 		getTypes          : getTypes,
 		getAvailableDates : getAvailableDates,
 
-		setMensaFilter   : setMensaFilter,
-		unsetMensaFilter : unsetMensaFilter,
-		setNameFilter    : setNameFilter,
-		unsetNameFilter  : unsetNameFilter,
-		setDateFilter    : setDateFilter,
-		unsetDateFilter  : unsetDateFilter,
+		setFilter        : setFilter,
+		unsetFilter      : unsetFilter,
 		unsetFilters     : unsetFilters,
+		// shortcuts and legacy
+		setMensaFilter   : function(val){   setFilter("mensa", val); },
+		unsetMensaFilter : function(){      unsetFilter("mensa"); },
+		setNameFilter    : function(val){   setFilter("name", val);  },
+		unsetNameFilter  : function(){      unsetFilter("name");  },
+		setDateFilter    : function(val){   setFilter("date", val);  },
+		unsetDateFilter  : function(){      unsetFilter("date");  },
+
+		setPersistentFilters : setPersistentFilters,
+		getPersistentFilters : getPersistentFilters,
 
 		getWeekMenu        : getWeekMenu,
 		getSortedSegmented : getSortedSegmented,

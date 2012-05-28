@@ -11,12 +11,15 @@
 <body>
 <script type="text/javascript">
 	mensaApp = new App().renderInto(document.body);
+	mensaApp.render(); // Hotfix
 
 	if(!conf.isConfigured()){
-		mensaApp.showNotConfigured();
 		mensaApp.settings();
+		mensaApp.showNotConfigured();
+	} else {
+		mensaApp.display("thisDay");
 	}
-	
+
 	enyo.gesture.drag.flick = function(e){
 		var velo = .5;
 		if(e.xVelocity > velo){

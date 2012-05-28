@@ -1,30 +1,31 @@
 var data = (function(){
-	var version = "2", // we might want to trigger a reload of cached data (if the)
-	
-		get = function(key){
-			return localStorage.getItem(key);
-		},
+	var version = "3", // we might want to trigger a reload of cached data (if the)
 
-		save = function(key, value){
-			return localStorage.setItem(key, value);
-		},
+	get = function(key){
+		return localStorage.getItem(key);
+	},
 
-		remove = function(key){
-			return localStorage.removeItem(key);
-		},
+	set = function(key, value){
+		return localStorage.setItem(key, value);
+	},
 
-		clear = function(){
-			return localStorage.clear();
-		}
+	remove = function(key){
+		return localStorage.removeItem(key);
+	},
+
+	clear = function(){
+		return localStorage.clear();
+	}
 
 	// setup
 	if( get("version") !== version ){
 		clear();
-		save("version", version);
+		set("version", version);
 	}
 	
 	return {
-		save   : save,
+		save   : set,
+		set    : set,
 		get    : get,
 		remove : remove,
 		clear  : clear

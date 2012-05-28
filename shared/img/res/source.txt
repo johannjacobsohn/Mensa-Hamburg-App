@@ -1,3 +1,4 @@
 AB-Rast.svg : https://commons.wikimedia.org/wiki/File:AB-Rast.svg
 Mojo_Design_Circle_Back.png : http://www.webos-internals.org/wiki/Mojo_Design_Icons#Circle_Backing
 lab_funnel.svg: http://openclipart.org/detail/153283/laboratory-conical-funnel-by-boobaloo
+spinner.gif: http://ajaxload.info/

@@ -1,13 +1,7 @@
 ﻿/*
  *
- * RC:
- * - Icons aktiv zeigen wenn in Seite gewechselt
- * - nichts zeigen während Wartemessage
- * - nicht über die möglichen Tage hinaus
- * - Header schmaler
  * - @FIXMEs
- * - Filter speichern
- * 
+ * - nicht über die möglichen Tage hinaus
  * - Dokumentation
  * - Strings auslagern
  * - Ziel: 400 Z inkl. Doku
@@ -33,15 +27,14 @@ enyo.kind({
 			 * Menuansicht
 			 *
 			 */
-//			{name: "spinner", tag: "img", src: "img/spinner.gif", showing: false, classes: "search-spinner"},
-			{name: "emptyMessage", classes: "empty-message", content: "Heute kein Essen", showing: false},
+			{name: "spinner", tag: "img", src: "img/spinner.gif", showing: false, classes: "search-spinner"},
 			{name: "loadingMessage", classes: "loading-message", content: "Wird geladen...", showing: false},
 
 
 			{kind: "onyx.Toolbar", name:"menuHeader", components: [
 				{kind: "FittableColumns", style:"width: 100%; margin: 0px", components: [
 					{kind: "onyx.IconButton", style: "height: 32px;", src: "img/menu-icon-back.png", ontap: "yesterday", name: "yesterdayControl"},
-					{content: "Header", name: "mainHeader", fit: true, ontap: "today", style:"text-align: center;"},
+					{content: "", name: "mainHeader", fit: true, ontap: "today", style:"text-align: center;"},
 					{kind: "onyx.IconButton", style:"height: 32px;", src: "img/menu-icon-forward.png", ontap: "tomorrow", name: "tomorrowControl"}
 				]}
 			]},
@@ -117,12 +110,12 @@ enyo.kind({
 					{kind: "onyx.Toolbar", components: [
 						{ content: "Einstellungen" },
 					]},
-					{kind: "Select", style:"padding: 4px; display:block;", onchange: "setPrices", selected: conf.displayStudentPrices(), components: [
+					{kind: "Select", style:"padding: 3%; display:block; width: 100%;", onchange: "setPrices", selected: this.displayStudentPrices, components: [
 						{content: "Studentenpreise anzeigen", value: true},
 						{content: "Normale Preise anzeigen", value: false}
 					]},
 					{kind: "Scroller", fit: true, components: [
-						{name: "availableMensen", kind: "Repeater", onSetupItem: "setupMensaRow", components: [
+						{name: "availableMensen", kind: "Repeater", onSetupItem: "setupAllMensaRows", components: [
 							{kind: "toggleItem", classes: "item enyo-border-box"}
 						]}
 					]},
@@ -147,11 +140,11 @@ enyo.kind({
 					{kind: "onyx.Toolbar", components: [
 						{ content: "Gerichte filtern" },
 					]},
-					{kind: "toggleItem", name:"preserveFilters"},
+					{name: "preserveFilters", kind: "toggleItem", onclick : "changePreserveFilters",  onSetupItem: "setupNameRow"},
 					{kind: "Scroller", fit: true, components: [
 						{kind: "onyx.Groupbox", components: [
 							{kind: "onyx.GroupboxHeader", content: "Nach Gericht filtern"},
-							{name: "typeFilter", kind: "Repeater", onSetupItem: "setupNameRow", components: [
+							{name: "nameFilter", kind: "Repeater", onSetupItem: "setupNameRow", components: [
 								{kind: "toggleItem"}
 							]}
 						]},
@@ -165,25 +158,31 @@ enyo.kind({
 */
 						{kind: "onyx.Groupbox", components: [
 							{kind: "onyx.GroupboxHeader", content: "Nach Mensa filtern"},
-							{name: "mensenFilter", kind: "Repeater", onSetupItem: "setupMensaRow2", components: [
+							{name: "mensaFilter", kind: "Repeater", onSetupItem: "setupMensaRow", components: [
 								{kind: "toggleItem", classes: "item enyo-border-box"}
 							]}
 						]},
 					]},
-					{kind: "onyx.Button", content: "Filtern", style:"width: 100%;", classes: "onyx-affirmative", onclick: "filterfilter"},
+					{kind: "onyx.Button", content: "Filtern", style:"width: 100%;", classes: "onyx-affirmative", onclick: "applyFilters"},
 				]
 			},
 
 			{kind: "onyx.Toolbar", components: [
-				{kind: "onyx.IconButton", style: "width: 25%;height: 32px;", src: "img/menu.png",    ontap: "menuView" },
-				{kind: "onyx.IconButton", style: "width: 25%;height: 32px;", src: "img/Gear.png",    ontap: "settings" },
-				{kind: "onyx.IconButton", style: "width: 25%;height: 32px;", src: "img/filter.png",  ontap: "filter"   },
-				{kind: "onyx.IconButton", style: "width: 25%;height: 32px;", src: "img/info.png",    ontap: "info"     }
+				{kind: "onyx.IconButton", name: "menuButton",     style: "width: 25%;height: 32px;", src: "img/menu.png",     ontap: "menuView", classes: "navButton active"},
+				{kind: "onyx.IconButton", name: "settingsButton", style: "width: 25%;height: 32px;", src: "img/settings.png", ontap: "settings", classes: "navButton"},
+				{kind: "onyx.IconButton", name: "filterButton",   style: "width: 25%;height: 32px;", src: "img/filter.png",   ontap: "filter"  , classes: "navButton"},
+				{kind: "onyx.IconButton", name: "infoButton",     style: "width: 25%;height: 32px;", src: "img/info.png",     ontap: "info"    , classes: "navButton"}
 			]}
 		]},
-		{name: "popup", kind: "onyx.Popup", centered: true, modal: true, floating: true, components: [
-			{content: info.notConfText}
-		]}
+		{
+			name: "popup",
+			kind: "onyx.Popup",
+			centered: true,
+			modal: true,
+			floating: true,
+			style : "margin: 10px",
+			content: info.notConfText
+		}
 	],
 
 	/**
@@ -191,18 +190,15 @@ enyo.kind({
 	 * (cached) values
 	 *
 	 */
-	//@FIXME: neu setzen
-	mensen : conf.getMensaInfo(),
-	
-	//@FIXME: neu setzen
-	savedMensen : conf.getSavedURLs(),
-
-	//@FIXME: bei Änderung neu setzen
 	displayStudentPrices : conf.displayStudentPrices(),
-	
+
 	menu : [],
 
-	types : [], // conf.savedTypeFilter(), //@FIXME: Speichern
+	cache : {
+		name            : [],
+		mensa           : [],
+		availableMensen : conf.getMensaInfo(),
+	},
 
 	/**
 	 *
@@ -215,7 +211,6 @@ enyo.kind({
 	},
 	rendered: function() {
 		this.inherited(arguments);
-		this.today();
 	},
 	setupRow: function(inSender, inEvent) {
 		var i = inEvent.index, r = this.menu[i];
@@ -229,50 +224,49 @@ enyo.kind({
 			this.$.item.setMenuItem(r);
 		}
 	},
-
 	setupMensaRow: function(inSender, inEvent) {
-		console.log("setupMensaRow")
-		var i = inEvent.index, r = this.mensen[i];
-		inEvent.item.$.toggleItem.setItem(r.active, r.name);
+		var i = inEvent.index, r = this.cache.mensa[i];
+		inEvent.item.$.toggleItem.setItem(r.active, r.name || r.label);
 	},
-
-	setupMensaRow2: function(inSender, inEvent) {
-		console.log("setupMensaRow2")
-		var i = inEvent.index, r = this.savedMensen[i];
-		inEvent.item.$.toggleItem.setItem(r.active, r.label);
+	setupAllMensaRows: function(inSender, inEvent) {
+		var i = inEvent.index, r = this.cache.availableMensen[i];
+		inEvent.item.$.toggleItem.setItem(r.active, r.name || r.label);
 	},
-
 	setupNameRow: function(inSender, inEvent) {
-		var i = inEvent.index, r = this.types[i];
+		var i = inEvent.index, r = this.cache.name[i];
 		inEvent.item.$.toggleItem.setItem(r.active, r.label);
 	},
-	saveAndFilter : function(){
-		console.log("saveAndFilter")
-		// @FIXME
+	changePreserveFilters : function(inSender){
+		storage.setPersistentFilters( inSender.$.toggle.getValue() );
 	},
-	filterfilter : function(){
-		var items = this.$.typeFilter.children;
+	applyFilters : function(){
+		this.setFilter("name").setFilter("mensa").openPage("menu");
+	},
+
+	setFilter : function(type){
+		var items = this.$[type + "Filter"].children;
 		var l = items.length;
 		var filters = [];
 		var itm;
 		var active;
+
 		for( var i = 0; i<l; i++ ){
 			itm = items[i].children[0].children[0];
 			active = itm.children[0].getValue();
 
-			this.types[i].active = active;
-			
+			this.cache[type][i].active = active;
+
 			if( active ){
 				filters.push( itm.children[1].content );
 			}
 		}
 
 		if(filters.length === 0 || filters.length === l){
-			storage.unsetNameFilter();
+			storage.unsetFilter(type);
 		} else {
-			storage.setNameFilter(filters);
+			storage.setFilter(type, filters);
 		}
-		this.openPage("menu");
+		return this;
 	},
 
 	/**
@@ -298,8 +292,6 @@ enyo.kind({
 		location.reload();
 	},
 	loading : function(bool){
-//		showEmptyMessage(false);
-// @FIXME 
 
 		// Timeout, damit nur gezeigt wird wenn wir länger warten müssen
 		var timeout = 100,
@@ -317,9 +309,6 @@ enyo.kind({
 			this.long_timer = setTimeout(function(){ that.showloadingSpinner(true) }, long_timeout);
 		}
 	},
-	showEmptyMessage : function(bool){
-		this.$.emptyMessage.setShowing(bool)
-	},
 	showloadingMessage : function(bool){
 		var msgs = [
 			"Bin dabei...",
@@ -328,12 +317,17 @@ enyo.kind({
 			"wird geladen...",
 			"Eile mit Weile..."
 		];
-		this.$.loadingMessage.content = msgs[ Math.round( Math.random() * (msgs.length-1) ) ];
-		this.$.loadingMessage.render();
+
+		if(bool){
+			this.$.menu.setCount(0);
+			this.$.menu.render();
+			this.$.loadingMessage.content = msgs[ Math.round( Math.random() * (msgs.length-1) ) ];
+			this.$.loadingMessage.render();
+		}
 		this.$.loadingMessage.setShowing(bool)
 	},
 	showloadingSpinner : function(bool){
-//		this.$.spinner.setShowing(bool);
+		this.$.spinner.setShowing(bool);
 	},
 	today : function(caller) {
 		this.display("today");
@@ -353,63 +347,52 @@ enyo.kind({
 		});
 	},
 	display : function(type, callback){
-		console.log("display", type);
-
 		var that = this;
 		this.loading(true);
 
 		setTimeout(function(){
-//			var d = new Date();
 			storage[type](function(json, dateStr, date){
-
-//				console.log("getData " + (new Date() - d));
-//				console.log(json.length);
-				d = new Date();
 				that.menu = json;
 				that.$.menu.setCount(json.length);
 				that.$.menu.render();
-
-//				console.log("displayData " + (new Date() - d));
 
 				that.setHeader(dateToString(dateStr));
 				that.loading(false);
 				if(callback) callback();
 			});
-		}, 10);
+		}, 1);
 	},
 
-	filter : function() {
-		var savedMensen  = conf.getSavedURLs(),
-			that         = this,
-			filterMensen = this.$.filterMensen,
-			mensen = []
+	filter : function(inCaller) {
+		var that = this;
 
-		this.$.preserveFilters.setItem(true, "Filter permanent")
+		this.$.preserveFilters.setItem( storage.getPersistentFilters(), "Filter permanent")
 
-		var l = savedMensen.length;
-		for(var i=0; i<l; i++){
-			mensen.push({label: savedMensen[i], active: true})
-		}
-		console.log ( savedMensen )
+		// Set mensa filter
+		storage.getMensaInfo(function(mensen){
+			var allActive = mensen.filter(function(item){return item.filtered}).length === 0;
 
-		mensen.unshift({label: "Alle", active: true})
-		this.savedMensen = mensen;
-		
-		this.$.mensenFilter.setCount(l);
-
-		storage.getTypes(function(types){
-			var i = 0;
-			var l = types.length;
-
-			that.types = [{label: "Alle", active: true}];
+			that.cache.mensa = [ {label: "Alle", active: allActive} ];
 			
-			for( i = 0; i < l; i++ ){
-				that.types.push({label: types[i], active: true});
-			}
+			mensen.forEach(function(mensa){
+				that.cache.mensa.push({label: mensa.name, active: mensa.filtered || allActive})
+			});
 
-			that.$.typeFilter.setCount(l+1);
+			that.$.mensaFilter.setCount(that.cache.mensa.length);
 		});
 
+		// set name filter
+		storage.getTypeInfo(function(names){
+			var allActive = names.filter(function(item){return item.filtered}).length === 0;
+
+			that.cache.name = [{label: "Alle", active: allActive}];
+
+			names.forEach(function(name){
+				that.cache.name.push({label: name.name, active: name.filtered || allActive});
+			});
+
+			that.$.nameFilter.setCount(that.cache.name.length);
+		});
 		this.openPage("filter");
 	},
 	info : function() {
@@ -419,43 +402,43 @@ enyo.kind({
 		this.openPage("menu");
 	},
 	setPrices : function(me){
+		this.displayStudentPrices = me.selected;
 		conf.setStudentPrices(me.selected)
 	},
 	settings : function() {
-		console.log(this.$.availableMensen, this.mensen.length)
-		this.$.availableMensen.setCount(this.mensen.length);
+		this.$.availableMensen.setCount(this.cache.availableMensen.length);
 		this.openPage("settings");
 	},
-	openPage : function(page){
-		this.$.menu.setShowing( false );
-		this.$.menuHeader.setShowing( false );
+	openPage : function(activePage){
+		var pages = ["settings", "info", "menu", "filter"];
+		var that = this;
+		pages.forEach(function(page){
+			if(page === activePage){
+				that.$[page].setShowing( true );
+				that.$[page + "Header"] && that.$[page + "Header"].setShowing( true ); // @TODO: Remove
+				that.$[page + "Button"].addClass("active");
+			} else {
+				that.$[page].setShowing( false );
+				that.$[page + "Header"] && that.$[page + "Header"].setShowing( false ); // @TODO: Remove
+				that.$[page + "Button"].removeClass("active");
+			}
+		});
 
-		this.$.settings.setShowing( false );
-		this.$.filter.setShowing( false );
-		this.$.info.setShowing( false );
-
-		this.$[page].setShowing( true );
-		this.$[page + "Header"] && this.$[page + "Header"].setShowing( true );
 		this.render();
 	},
 	saveMensen : function(me){
-		var array = [],
-		// @TODO: Buggy - not enyo-like
-			items = document.getElementById("app_availableMensen").getElementsByClassName("enyo-checkbox"),
-			i = 0,
-			item,
-			l = items.length;
-
-		for(i = 0; i < l; i++){
-			item = items[i];
+		var that = this,
+			array = [],
+			items = document.getElementById("app_availableMensen").getElementsByClassName("enyo-checkbox");	// @TODO: Buggy - not enyo-like
+		Array.prototype.forEach.call(items, function(item, index){
 			if(item.checked){
-				array.push(this.mensen[i].name)
+				array.push(that.cache.availableMensen[index].name)
 			}
-		}
+		});
 
 		// Save URLs
 		conf.setURLs(array);
-		this.mensen = conf.getMensaInfo();
+		this.cache.availableMensen = conf.getMensaInfo();
 
 		// Reload Data
 		storage.cleanData();
@@ -465,33 +448,10 @@ enyo.kind({
 		this.openPage("menu");
 	},
 
-	filterByMensa : function( instance ){
-		var value = instance.controls[instance.selected].content;
-
-		if(value === "Alle"){
-			storage.unsetMensaFilter()
-		} else {
-			storage.setMensaFilter( value )
-		}
-
-		this.openPage("menu");
-		this.display("thisDay");
-	},
-	filterByType  : function( instance ){
-		var value = instance.controls[instance.selected].content;
-
-		if(value === "Alle"){
-			storage.unsetNameFilter()
-		} else {
-			storage.setNameFilter( value )
-		}
-
-		this.openPage("menu");
-		this.display("thisDay");
-	},
-
 	showNotConfigured : function(){
-		this.$.popup.show();
+		var popup = this.$.popup;
+		popup.show();
+		popup.applyStyle("left", 0);
 	}
 });
 
@@ -512,7 +472,6 @@ enyo.kind({
 		{name : "mensa" , classes : "mensa" },
 	],
 	setMenuItem: function(item) {
-		
 		this.removeClass("first");
 		this.removeClass("last");
 		if(item.first){
@@ -524,7 +483,7 @@ enyo.kind({
 		this.$.name.setContent ( item.name );
 		this.$.price.setContent( (this.displayStudentPrices ? item.studPrice : item.normalPrice) + "€" );
 		this.$.dish.setContent ( item.dish );
-		this.$.mensa.setContent( item.mensaName );
+		this.$.mensa.setContent( item.mensa );
 	}
 });
 
@@ -552,15 +511,18 @@ enyo.kind({
 	},
 	toggleItemClick : function(inSender){
 		this.$.toggle.setValue( !this.$.toggle.getValue() );
-		
-		if( this.$.label.getContent( ) === "Alle" ){
-			var l = this.parent.parent.children.length;
-			for (var i=1; i<l; i++){
-				this.parent.parent.children[i].children[0].children[0].children[0].setValue( true )
+		var l = this.parent.parent.children.length;
+
+		// @FIXME: Wahnsinn: 
+		try{
+			if( this.$.label.getContent( ) === "Alle" ){
+				for (var i=1; i<l; i++){
+					this.parent.parent.children[i].children[0].children[0].children[0].setValue( true )
+				}
+			} else if( this.parent.parent.children[0].children[0].children[0].children[1].getContent() === "Alle" ){
+				this.parent.parent.children[0].children[0].children[0].children[0].setValue( false )
 			}
-		} else if( this.parent.parent.children[0].children[0].children[0].children[1].getContent() === "Alle" ){
-			this.parent.parent.children[0].children[0].children[0].children[0].setValue( false )
-		}
+		} catch(e) {}
 	}
 });
 
