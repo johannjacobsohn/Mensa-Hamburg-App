@@ -6,10 +6,8 @@ enyo.depends(
   "js/urls.js",
   "js/xhr.js",
   "js/storage.js",
-  "js/nameList.js",
+  "js/filterList.js",
   "js/menuList.js",
-  "js/dateList.js",
-  "js/mensaList.js",
   "js/main.js",
   "css/main.css"
 );

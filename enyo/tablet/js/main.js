@@ -1,4 +1,9 @@
-﻿enyo.kind({
+﻿/*
+ * @TODO: Datumsfilter laden alle 3 Stunden
+ *
+ */
+
+enyo.kind({
 	name: "main",
 	kind: enyo.VFlexBox,
 	components: [
@@ -29,8 +34,9 @@
 						{
 							name: "dateList",
 							flex: 1,
+							type: "date",
 							peekWidth: 100,
-							kind: "dateList"
+							kind: "filterList"
 						}
 					]},
 					{kind: "Toolbar", components: [
@@ -43,8 +49,9 @@
 						{
 							name: "mensaList",
 							flex: 1,
+							type: "mensa",
 							peekWidth: 100,
-							kind: "mensaList"
+							kind: "filterList"
 						}
 					]},
 					{kind: "Toolbar", components: [
@@ -57,8 +64,9 @@
 						{
 							name: "nameList",
 							flex: 1,
+							type: "name",
 							peekWidth: 100,
-							kind: "nameList"
+							kind: "filterList"
 						}
 					]},
 					{kind: "Toolbar", components: [

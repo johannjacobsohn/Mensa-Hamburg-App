@@ -7,17 +7,7 @@
 			{kind: "Repeater", onSetupRow: "listSetupRow"}
 		]}
 	],
-	data : [
-		{
-/*			dish: "Grießflammeri  mit  Kirschkompott ",
-			mensaName: "WIWI",
-			name: "Aus dem Suppentopf und Süßes",
-			normalPrice: "2,20",
-			studPrice: "1,20€",
-			date : ""
-*/		}
-	],
-
+	data : [],
 	create: function() {
 		this.inherited(arguments);
 

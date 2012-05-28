@@ -1,7 +1,9 @@
 ﻿enyo.kind({
-	name: "mensaList",
+	name: "filterList",
 	kind: enyo.VFlexBox,
+	type: "mensa",
 	components: [
+		{kind: "SpinnerLarge", showing: true},
 		{kind: "Scroller", flex: 1, components: [
 			{kind: "Repeater", onSetupRow: "listSetupRow"}
 		]}
@@ -9,23 +11,24 @@
 	data : [],
 	create: function() {
 		this.inherited(arguments);
-		this.data = conf.getSavedURLs();
 
-		this.data.unshift("Alle");
-		this.$.repeater.render();
+		var that = this;
+		storage.getInfo( this.type, function(json){
+			that.$.spinnerLarge.hide();
+			that.data = json;
+			that.data.unshift({ content : "Alle", value: "all", filtered: json.filter(function(i){return i.filtered;}).length===0 });
+			that.$.repeater.render();
+		});
 	},
 	listSetupRow: function(inSender, inIndex) {
 		var row = this.data[inIndex];
 		if (row) {
-			return {kind: "Item", className: (row === "Alle") ? "enyo-held" : "dummy", layoutKind: "HFlexLayout", onclick: "itemClick", components: [
-				{content: row, flex: 1}
+			return {kind: "Item", className: (row.filtered) ? "enyo-held" : "dummy", layoutKind: "HFlexLayout", onclick: "itemClick", components: [
+				{content: row.content, value: row.name, flex: 1}
 			]};
 		}
 	},
-	filterList : [],
 	itemClick : function(element){
-		//t = (new Date()).valueOf();
-
 		var menuList = this.owner.$.menuList;
 		var l = element.parent.children.length;
 		var isAll = element.children[0].content === "Alle";
@@ -47,7 +50,7 @@
 				if( isAll ){
 					child.removeClass("enyo-held");
 				} else {
-					this.filterList.push( child.children[0].content );
+					this.filterList.push( child.children[0].value );
 				}
 			}
 		}
@@ -58,10 +61,11 @@
 		}
 
 		if(isAll){
-			storage.unsetMensaFilter()
+			storage.unsetFilter(this.type);
 		} else {
-			storage.setMensaFilter(this.filterList)
+			storage.setFilter(this.type, this.filterList);
 		}
+
 		storage.getSortedSegmented(function(json){
 			menuList.data = json;
 			menuList.render();
