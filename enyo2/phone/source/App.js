@@ -284,7 +284,7 @@ enyo.kind({
 		location.href = info.appURL;
 	},
 	email : function(me, inEvent){
-		location.href = "mailto:" + info.appEmail;
+		location.href = "mailto:" + info.appEmail + "?subject=Mensa%20Hamburg%20App&body=Moin!" ;
 	},
 	reset : function(inSender, inEvent){
 		data.clear();
