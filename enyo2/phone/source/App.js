@@ -1,4 +1,4 @@
-﻿/*
+﻿﻿/*
  *
  * - @FIXMEs
  * - nicht über die möglichen Tage hinaus
@@ -239,7 +239,7 @@ enyo.kind({
 		storage.setPersistentFilters( inSender.$.toggle.getValue() );
 	},
 	applyFilters : function(){
-		this.setFilter("name").setFilter("mensa").openPage("menu");
+		this.setFilter("name").setFilter("mensa").display("thisDay").openPage("menu");
 	},
 
 	setFilter : function(type){
@@ -360,6 +360,8 @@ enyo.kind({
 				if(callback) callback();
 			});
 		}, 1);
+
+		return this;
 	},
 
 	filter : function(inCaller) {
