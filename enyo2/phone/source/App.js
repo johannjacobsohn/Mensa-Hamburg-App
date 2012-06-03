@@ -110,7 +110,7 @@ enyo.kind({
 					{kind: "onyx.Toolbar", components: [
 						{ content: "Einstellungen" },
 					]},
-					{kind: "Select", style:"padding: 3%; display:block; width: 100%;", onchange: "setPrices", selected: this.displayStudentPrices, components: [
+					{kind: "Select", style:"padding: 3%; display:block; width: 100%;", onchange: "setPrices", selected: conf.displayStudentPrices() ? 0 : 1, components: [
 						{content: "Studentenpreise anzeigen", value: true},
 						{content: "Normale Preise anzeigen", value: false}
 					]},
@@ -190,7 +190,6 @@ enyo.kind({
 	 * (cached) values
 	 *
 	 */
-	displayStudentPrices : conf.displayStudentPrices(),
 
 	menu : [],
 
@@ -402,8 +401,7 @@ enyo.kind({
 		this.openPage("menu");
 	},
 	setPrices : function(me){
-		this.displayStudentPrices = me.selected;
-		conf.setStudentPrices(me.selected)
+		conf.setStudentPrices(me.children[me.selected].value);
 	},
 	settings : function() {
 		this.$.availableMensen.setCount(this.cache.availableMensen.length);
@@ -481,7 +479,7 @@ enyo.kind({
 			this.addClass("last");
 		}
 		this.$.name.setContent ( item.name );
-		this.$.price.setContent( (this.displayStudentPrices ? item.studPrice : item.normalPrice) + "€" );
+		this.$.price.setContent( (conf.displayStudentPrices() ? item.studPrice : item.normalPrice) + "€" );
 		this.$.dish.setContent ( item.dish );
 		this.$.mensa.setContent( item.mensa );
 	}
@@ -525,5 +523,3 @@ enyo.kind({
 		} catch(e) {}
 	}
 });
-
-
