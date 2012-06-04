@@ -39,14 +39,14 @@ function deepCopy(o) {
  *
  * Just a legacy wrapper for formatDate
  * 
- * @depreciated
- * 
  * @param  {string} isoDate  Date in iso format (yyyy-mm-dd)
  * @param  {string} optional language identifier, eg. "de" or "en"
  * @return {string} formated String
  */
 function dateToString(isoDate, lang){
-	return formatDate(new Date(isoDate), lang);
+	var d = isoDate.split("-");
+	return formatDate(new Date( d[0], d[1]-1, d[2] ), lang);
+	// new Date( isoDate )  should be possible too, but fails badly in safari/ios
 }
 
 /**
