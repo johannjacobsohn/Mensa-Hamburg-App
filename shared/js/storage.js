@@ -631,6 +631,7 @@ var storage = (function(){ // its a trap!
 		},
 		/*
 		* list all dates
+		* @TODO: nicht zuverlässig am Sonntag?
 		*/
 		getAvailableDates = function(getNextWeek){
 			var noOfDays = getNextWeek ? 12 : 5,
@@ -646,15 +647,6 @@ var storage = (function(){ // its a trap!
 			}
 
 			return dates;
-		},
-
-		/**
-		 *
-		 * @depreciated
-		 */
-		getMenuByDate = function(date, callback){
-			console.log("getMenuByDate is depreciated");
-			//   @TODO: Broken!
 		},
 		
 		/*
