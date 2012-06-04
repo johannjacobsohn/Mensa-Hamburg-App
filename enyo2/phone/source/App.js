@@ -7,8 +7,35 @@
  * - Ziel: 400 Z inkl. Doku
  * - Unit-Tests
  * - Performancetests
+ * - header iPhone
+ * - manchmal im iPhone nicht korrekt geladen
  *
  */
+
+// startup
+window.addEventListener("load", function(){
+	var mensaApp = new App().renderInto(document.body);
+
+	if(!conf.isConfigured()){
+		mensaApp.settings();
+		mensaApp.showNotConfigured();
+	} else {
+		mensaApp.display("today");
+	}
+
+	enyo.gesture.drag.flick = function(e){
+		var maxXvelo = .5;
+		var maxYVelo = .1;
+		var YVelo = Math.abs(e.yVelocity);
+		var XVelo = e.xVelocity;
+		if(XVelo > maxXvelo && YVelo < maxYVelo){
+			mensaApp.yesterday();
+		} else if(XVelo < -maxXvelo && YVelo < maxYVelo){
+			mensaApp.tomorrow();
+		}
+	};
+
+}, false);
 
 // Should allow touch scrolling on all devices that do not have it natively.
 enyo.Scroller.touchScrolling = !enyo.Scroller.hasTouchScrolling();
@@ -334,15 +361,27 @@ enyo.kind({
 	yesterday : function(caller) {
 		caller = caller || this.$.yesterdayControl;
 		caller.addClass('active');
-		this.display("prevDay", function(){
+//		var that = this;
+		this.display("prevDay", function(dateStr){
 			caller.removeClass('active');
+//			var dates = storage.getAvailableDates(1);
+//			if( dates.indexOf(dateStr) === 0 ){
+//				caller.setShowing(false);
+//			}
+//			that.$.tomorrowControl.setShowing(true);
 		});
 	},
 	tomorrow : function(caller) {
 		caller = caller || this.$.tomorrowControl;
 		caller.addClass('active');
-		this.display("nextDay", function(){
+//		var that = this;
+		this.display("nextDay", function(dateStr){
 			caller.removeClass('active');
+//			var dates = storage.getAvailableDates(1);
+//			if( dates.indexOf(dateStr) + 1 === dates.length ){
+//				caller.setShowing(false);
+//			}
+//			that.$.yesterdayControl.setShowing(true);
 		});
 	},
 	display : function(type, callback){
@@ -355,9 +394,9 @@ enyo.kind({
 				that.$.menu.setCount(json.length);
 				that.$.menu.render();
 
-				that.setHeader(dateToString(dateStr));
+				that.setHeader(formatDate(date));
 				that.loading(false);
-				if(callback) callback();
+				if(callback) callback(dateStr);
 			});
 		}, 1);
 
