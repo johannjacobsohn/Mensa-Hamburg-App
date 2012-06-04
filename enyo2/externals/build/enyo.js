@@ -1175,6 +1175,9 @@ var a = this.getFirstElementByTagName("html");
 a && (a.className += " enyo-document-fit");
 var b = this.getFirstElementByTagName("body");
 b && (b.className += " enyo-body-fit"), enyo.bodyIsFitting = !0;
+},
+getWindowWidth: function() {
+return window.innerWidth ? window.innerWidth : document.body && document.body.offsetWidth ? document.body.offsetWidth : document.compatMode == "CSS1Compat" && document.documentElement && document.documentElement.offsetWidth ? document.documentElement.offsetWidth : 320;
 }
 };
 
@@ -2416,6 +2419,7 @@ sync: function(a) {
 this.scrollBounds = a._getScrollBounds(), this.update(a);
 },
 update: function(a) {
+if (this.showing) {
 var b = this.dimension, c = this.offset, d = this.scrollBounds[this.sizeDimension], e = this.scrollBounds[b], f = 0, g = 0, h = 0;
 if (d >= e) {
 this.hide();
@@ -2426,6 +2430,7 @@ var i = a[this.positionMethod]() - h, j = d - this.cornerSize, k = Math.floor(d 
 k = Math.max(this.minSize, k);
 var l = Math.floor(j * i / e + g);
 l = Math.max(0, Math.min(j - this.minSize, l)), this.needed = k < d, this.needed && this.hasNode() ? (this._pos !== l && (this._pos = l, enyo.dom.transformValue(this, this.translation, l + "px")), this._size !== k && (this._size = k, this.node.style[b] = this.domStyles[b] = k + "px")) : this.hide();
+}
 },
 setShowing: function(a) {
 if (a && a != this.showing && this.scrollBounds[this.sizeDimension] >= this.scrollBounds[this.dimension]) return;

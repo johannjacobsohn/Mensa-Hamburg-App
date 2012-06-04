@@ -921,5 +921,6 @@ body .onyx-icon:active:hover {
 @media all and (max-width: 800px) {
 	.enyo-panels-fit-narrow > * {
 		min-width: 100%;
+		max-width: 100%;
 	}
 }
