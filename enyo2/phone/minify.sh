@@ -16,17 +16,15 @@ rm -r release
 #cp -r build index.html img release
 #cd release
 # lib/onyx/deploy.sh ~/git/mensaApp/enyo2/phone/build/lib/onyx
-mkdir release
-mkdir release/lib
-cp -r -L build index.html img release
+#mkdir release
+mkdir -p release/lib
+cp -r -L build index.html img icon.png splash.png release
 
 lib/onyx/deploy.sh ~/git/mensaApp/enyo2/phone/release/lib/onyx
 
 cp -r -L lib/layout release/lib/
 
-cd release
-
-zip -r ../release.zip .
-
-cd ..
+#cd release
+#zip -r ../release.zip .
+#cd ..
 #	rm -r release

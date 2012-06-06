@@ -1,7 +1,7 @@
 
 // minifier: path aliases
 
-enyo.path.addPaths({onyx: "/home/jjacobsohn/git/mensaApp/enyo2/enyo/tools/../../lib/onyx/", onyx: "/home/jjacobsohn/git/mensaApp/enyo2/enyo/tools/../../lib/onyx/source/", layout: "/home/jjacobsohn/git/mensaApp/enyo2/enyo/tools/../../lib/layout/"});
+enyo.path.addPaths({onyx: "../lib/onyx/", onyx: "../lib/onyx/source/", layout: "/home/jjacobsohn/git/mensaApp/enyo2/externals/enyo/tools/../../lib/layout/"});
 
 // utils.js
 
@@ -20,7 +20,8 @@ return b;
 }
 
 function dateToString(a, b) {
-return formatDate(new Date(a), b);
+var c = a.split("-");
+return formatDate(new Date(c[0], c[1] - 1, c[2]), b);
 }
 
 function formatDate(a, b) {
@@ -166,7 +167,7 @@ return typeof data.get("displayStudentPrices") == "undefined" || data.get("displ
 
 var storage = function() {
 var a = [], b = [], c = !1, e = typeof debug != "undefined" && debug ? new Date(2012, 0, 24) : new Date, f = function() {
-return R(e);
+return Q(e);
 }, g = function() {
 return e.getWeek();
 }, h = [], i = {}, j = [], k = data.get("persistentFilters") || !0, l = function(a) {
@@ -370,29 +371,27 @@ return this;
 }, K = function(a) {
 var b = a ? 12 : 5, c = new Date, e = c.getDate() - c.getDay();
 d = new Date(c.setDate(e)), dates = [];
-for (var f = 0; f < b; f++) d = new Date(d.valueOf() + 864e5), f !== 5 && f !== 6 && dates.push(R(d));
+for (var f = 0; f < b; f++) d = new Date(d.valueOf() + 864e5), f !== 5 && f !== 6 && dates.push(Q(d));
 return dates;
 }, L = function(a, b) {
-console.log("getMenuByDate is depreciated");
+b = typeof b == "undefined" ? !0 : b, P(e, b, a);
 }, M = function(a, b) {
-b = typeof b == "undefined" ? !0 : b, Q(e, b, a);
+e = typeof debug != "undefined" && debug ? new Date(2012, 0, 24) : new Date, b = typeof b == "undefined" ? !0 : b, e.getDay() === 6 ? e.setDate(e.getDate() + 2) : e.getDay() === 0 && e.setDate(e.getDate() + 1), P(e, b, a);
 }, N = function(a, b) {
-e = typeof debug != "undefined" && debug ? new Date(2012, 0, 24) : new Date, b = typeof b == "undefined" ? !0 : b, e.getDay() === 6 ? e.setDate(e.getDate() + 2) : e.getDay() === 0 && e.setDate(e.getDate() + 1), Q(e, b, a);
+var b = typeof b == "undefined" ? !0 : b, c = e.getDay();
+c === 5 ? e.setDate(e.getDate() + 3) : e.setDate(e.getDate() + 1), P(e, b, a);
 }, O = function(a, b) {
 var b = typeof b == "undefined" ? !0 : b, c = e.getDay();
-c === 5 ? e.setDate(e.getDate() + 3) : e.setDate(e.getDate() + 1), Q(e, b, a);
-}, P = function(a, b) {
-var b = typeof b == "undefined" ? !0 : b, c = e.getDay();
-c === 1 ? e.setDate(e.getDate() - 3) : e.setDate(e.getDate() - 1), Q(e, b, a);
-}, Q = function(a, b, c) {
-t("date", R(a)), b ? w(function(b) {
-c(b, R(a), a);
+c === 1 ? e.setDate(e.getDate() - 3) : e.setDate(e.getDate() - 1), P(e, b, a);
+}, P = function(a, b, c) {
+t("date", Q(a)), b ? w(function(b) {
+c(b, Q(a), a);
 }) : s(function(b) {
-c(b, R(a), a);
+c(b, Q(a), a);
 });
-}, R = function(a) {
+}, Q = function(a) {
 return a = new Date(a.valueOf()), a.getFullYear() + "-" + (a.getMonth() + 1) + "-" + a.getDate();
-}, S = function(a) {
+}, R = function(a) {
 return a = a.split("-"), new Date(a[0], a[1] - 1, a[2]);
 };
 return C(), q(), E(), {
@@ -430,10 +429,10 @@ getPersistentFilters: m,
 getWeekMenu: y,
 getSortedSegmented: w,
 filter: s,
-thisDay: M,
-nextDay: O,
-prevDay: P,
-today: N
+thisDay: L,
+nextDay: N,
+prevDay: O,
+today: M
 };
 }();
 
@@ -506,7 +505,15 @@ e.readyState === 4 && (e.status === 200 ? c(e.responseText) : typeof d == "funct
 
 // App.js
 
-enyo.Scroller.touchScrolling = !enyo.Scroller.hasTouchScrolling(), enyo.kind({
+window.addEventListener("load", function() {
+var a = (new App).renderInto(document.body);
+setTimeout(function() {
+a.render();
+}, 1), conf.isConfigured() ? a.display("today") : (a.settings(), a.showNotConfigured()), enyo.gesture.drag.flick = function(b) {
+var c = .5, d = .1, e = Math.abs(b.yVelocity), f = b.xVelocity;
+f > c && e < d ? a.yesterday() : f < -c && e < d && a.tomorrow();
+};
+}, !1), enyo.Scroller.touchScrolling = !enyo.Scroller.hasTouchScrolling(), enyo.kind({
 name: "App",
 kind: "Control",
 components: [ {
@@ -821,22 +828,20 @@ today: function(a) {
 this.display("today");
 },
 yesterday: function(a) {
-a = a || this.$.yesterdayControl, a.addClass("active"), this.display("prevDay", function() {
+a = a || this.$.yesterdayControl, a.addClass("active"), this.display("prevDay", function(b) {
 a.removeClass("active");
 });
 },
 tomorrow: function(a) {
 a = a || this.$.tomorrowControl, a.addClass("active"), this.display("nextDay", function(b) {
 a.removeClass("active");
-var c = storage.getAvailableDates(1);
-c.indexOf(b) === c.length + 1 && a.setShowing(!1);
 });
 },
 display: function(a, b) {
 var c = this;
 return this.loading(!0), setTimeout(function() {
 storage[a](function(a, d, e) {
-c.menu = a, c.$.menu.setCount(a.length), c.$.menu.render(), c.setHeader(dateToString(d)), c.loading(!1), b && b(d);
+c.menu = a, c.$.menu.setCount(a.length), c.$.menu.render(), c.setHeader(formatDate(e)), c.loading(!1), b && b(d);
 });
 }, 1), this;
 },
@@ -2418,7 +2423,7 @@ c = d, d = e;
 c != this.fromIndex && (this.fraction = 1 - this.fraction), this.fromIndex = c, this.toIndex = d;
 },
 refresh: function() {
-this.startTransition(), this.fraction = 1, this.stepTransition(), this.finishTransition();
+this.$.animator.isAnimating() && this.$.animator.stop(), this.startTransition(), this.fraction = 1, this.stepTransition(), this.finishTransition();
 },
 startTransition: function() {
 this.fromIndex = this.fromIndex != null ? this.fromIndex : this.lastIndex || 0, this.toIndex = this.toIndex != null ? this.toIndex : this.index, this.layout && this.layout.start(), this.fireTransitionStart();
@@ -2458,7 +2463,7 @@ return b;
 },
 statics: {
 isScreenNarrow: function() {
-return window.matchMedia && window.matchMedia("all and (max-width: 800px)").matches;
+return enyo.dom.getWindowWidth() <= 800;
 },
 lerp: function(a, b, c) {
 var d = [];

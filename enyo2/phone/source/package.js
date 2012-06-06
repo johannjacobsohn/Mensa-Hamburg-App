@@ -8,6 +8,6 @@
 	"xhr.js",
 	"app.css",
 	"App.js",
-	"$lib/onyx",
+	"../lib/onyx", /* $lib geht nicht?! */
 	"$lib/layout"
 );

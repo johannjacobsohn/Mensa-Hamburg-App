@@ -125,7 +125,7 @@ body .onyx-icon:active:hover {
 }
 
 
-/* /home/jjacobsohn/git/mensaApp/enyo2/enyo/tools/../../lib/onyx/source/css/onyx.css */
+/* ../lib/onyx/source/css/onyx.css */
 
 .onyx {
 	color: #333333;
@@ -147,7 +147,7 @@ body .onyx-icon:active:hover {
 	background-color: #C4E3FE;
 }
 
-/* /home/jjacobsohn/git/mensaApp/enyo2/enyo/tools/../../lib/onyx/source/css/Icon.css */
+/* ../lib/onyx/source/css/Icon.css */
 
 .onyx-icon {
 	width: 32px;
@@ -162,7 +162,7 @@ body .onyx-icon:active:hover {
 }
 
 
-/* /home/jjacobsohn/git/mensaApp/enyo2/enyo/tools/../../lib/onyx/source/css/Button.css */
+/* ../lib/onyx/source/css/Button.css */
 
 .onyx-button {
 	outline: 0;
@@ -195,7 +195,7 @@ body .onyx-icon:active:hover {
 	 	background-color: #E1E1E1;
 	*/
 	/**/
-	background: #E1E1E1 url(../../lib/onyx/images/gradient.png) repeat-x bottom;
+	background: #E1E1E1 url(../lib/onyx/images/gradient.png) repeat-x bottom;
 	/**/
 	text-overflow: ellipsis;
 	/* the following cause arcane problems on IE */
@@ -212,14 +212,14 @@ body .onyx-icon:active:hover {
 	the effect is as if .onyx-button.active doesn't exist
 */
 .onyx-button.active {
-	background-image: url(../../lib/onyx/images/gradient-invert.png);
+	background-image: url(../lib/onyx/images/gradient-invert.png);
 	background-position: top;
 	border-top: 1px solid rgba(15, 15, 15, 0.6);
 	box-shadow: inset 0px 1px 0px rgba(0,0,0,0.1);
 }
 
 .onyx-button:active:hover:not([disabled]) {
-	background-image: url(../../lib/onyx/images/gradient-invert.png);
+	background-image: url(../lib/onyx/images/gradient-invert.png);
 	background-position: top;
 	border-top: 1px solid rgba(15, 15, 15, 0.6);
 	box-shadow: inset 0px 1px 0px rgba(0,0,0,0.1);
@@ -251,13 +251,13 @@ body .onyx-icon:active:hover {
 }
 
 
-/* /home/jjacobsohn/git/mensaApp/enyo2/enyo/tools/../../lib/onyx/source/css/Checkbox.css */
+/* ../lib/onyx/source/css/Checkbox.css */
 
 .onyx-checkbox {
 	cursor: pointer;
 	height: 32px;
 	width: 32px;
-	background: url(../../lib/onyx/images/checkbox.png) no-repeat; 
+	background: url(../lib/onyx/images/checkbox.png) no-repeat; 
 	/* reset for ? */
 	margin: 0px;
 	/* these entries cause toggle-button and checkbox to line up properly*/
@@ -274,16 +274,16 @@ body .onyx-icon:active:hover {
 }
 
 
-/* /home/jjacobsohn/git/mensaApp/enyo2/enyo/tools/../../lib/onyx/source/css/Grabber.css */
+/* ../lib/onyx/source/css/Grabber.css */
 
 .onyx-grabber {
-	background: url(../../lib/onyx/images/grabbutton.png) no-repeat center;
+	background: url(../lib/onyx/images/grabbutton.png) no-repeat center;
 	width: 23px;
 	height: 27px;
 }
 
 
-/* /home/jjacobsohn/git/mensaApp/enyo2/enyo/tools/../../lib/onyx/source/css/Popup.css */
+/* ../lib/onyx/source/css/Popup.css */
 
 .onyx-popup {
 	font-size: 16px;
@@ -292,14 +292,14 @@ body .onyx-icon:active:hover {
 	border-radius: 8px;
 	padding: 6px;
 	color: white;
-	background: #4C4C4C url(../../lib/onyx/images/gradient.png) repeat-x 0 bottom;
+	background: #4C4C4C url(../lib/onyx/images/gradient.png) repeat-x 0 bottom;
 }
 
 .onyx-popup-decorator {
 	position: relative;
 }
 
-/* /home/jjacobsohn/git/mensaApp/enyo2/enyo/tools/../../lib/onyx/source/css/Groupbox.css */
+/* ../lib/onyx/source/css/Groupbox.css */
 
 .onyx-groupbox {
 }
@@ -341,7 +341,7 @@ body .onyx-icon:active:hover {
 	/**/
 	background-color: #343434;
 	border: none;
-	background: #4c4c4c url(../../lib/onyx/images/gradient.png) repeat-x 0 10px;
+	background: #4c4c4c url(../lib/onyx/images/gradient.png) repeat-x 0 10px;
 }
 
 .onyx-groupbox .onyx-input-decorator {
@@ -367,7 +367,7 @@ body .onyx-icon:active:hover {
 	border-radius: 4px;
 }
 
-/* /home/jjacobsohn/git/mensaApp/enyo2/enyo/tools/../../lib/onyx/source/css/Input.css */
+/* ../lib/onyx/source/css/Input.css */
 
 .onyx-input-decorator {
 	padding: 6px 8px 10px 8px;
@@ -412,7 +412,7 @@ body .onyx-icon:active:hover {
 }
 
 
-/* /home/jjacobsohn/git/mensaApp/enyo2/enyo/tools/../../lib/onyx/source/css/TextArea.css */
+/* ../lib/onyx/source/css/TextArea.css */
 
 .onyx-input-decorator > textarea {
 	/* reset */
@@ -445,7 +445,7 @@ body .onyx-icon:active:hover {
 }
 
 
-/* /home/jjacobsohn/git/mensaApp/enyo2/enyo/tools/../../lib/onyx/source/css/RichText.css */
+/* ../lib/onyx/source/css/RichText.css */
 
 .onyx-input-decorator > .onyx-richtext {
 	/* reset */
@@ -472,7 +472,7 @@ body .onyx-icon:active:hover {
 }
 
 
-/* /home/jjacobsohn/git/mensaApp/enyo2/enyo/tools/../../lib/onyx/source/css/RadioButton.css */
+/* ../lib/onyx/source/css/RadioButton.css */
 
 .onyx-radiobutton {
 	padding: 8px 12px;
@@ -483,7 +483,7 @@ body .onyx-icon:active:hover {
 	text-shadow: 0 1px 1px rgba(0,0,0,0.2);
 	text-align: center;
 	/**/
-	background: #E7E7E7 url(../../lib/onyx/images/gradient.png) repeat-x bottom;
+	background: #E7E7E7 url(../lib/onyx/images/gradient.png) repeat-x bottom;
 	/* IE8 */
 	border: 1px solid #333;
 	border: 1px solid rgba(15, 15, 15, 0.2);
@@ -505,13 +505,13 @@ body .onyx-icon:active:hover {
 
 .onyx-radiobutton.active {
 	color: White;
-	background: #0091F2 url(../../lib/onyx/images/gradient-invert.png) repeat-x top;
+	background: #0091F2 url(../lib/onyx/images/gradient-invert.png) repeat-x top;
 	border-top: 1px solid rgba(15, 15, 15, 0.6);
 	box-shadow: inset 1px 2px 2px rgba(0, 0, 0, 0.2);
 }
 
 
-/* /home/jjacobsohn/git/mensaApp/enyo2/enyo/tools/../../lib/onyx/source/css/TabButton.css */
+/* ../lib/onyx/source/css/TabButton.css */
 
 .onyx-radiobutton.onyx-tabbutton {
 	padding: 8px 34px;
@@ -520,7 +520,7 @@ body .onyx-icon:active:hover {
 }
 
 
-/* /home/jjacobsohn/git/mensaApp/enyo2/enyo/tools/../../lib/onyx/source/css/ToggleButton.css */
+/* ../lib/onyx/source/css/ToggleButton.css */
 
 .onyx-toggle-button {
 	display: inline-block;
@@ -532,7 +532,7 @@ body .onyx-icon:active:hover {
 	/* */
 	border-radius: 3px;
 	box-shadow: inset 0px 1px 3px rgba(0,0,0,0.4);
-	background: #8BBA3D url(../../lib/onyx/images/gradient-invert.png) repeat-x bottom;
+	background: #8BBA3D url(../lib/onyx/images/gradient-invert.png) repeat-x bottom;
 	background-size: auto 100%;
 	/* label */
 	color: white;
@@ -551,7 +551,7 @@ body .onyx-icon:active:hover {
 	height: 30px;
 	margin: 1px;
 	border-radius: 3px;
-	background: #F6F6F6 url(../../lib/onyx/images/gradient.png) repeat-x;
+	background: #F6F6F6 url(../lib/onyx/images/gradient.png) repeat-x;
 	background-size: auto 100%;
 }
 
@@ -587,7 +587,7 @@ body .onyx-icon:active:hover {
 }
 
 
-/* /home/jjacobsohn/git/mensaApp/enyo2/enyo/tools/../../lib/onyx/source/css/Toolbar.css */
+/* ../lib/onyx/source/css/Toolbar.css */
 
 .onyx-toolbar {
 	/*
@@ -599,7 +599,7 @@ body .onyx-icon:active:hover {
 	padding: 9px 8px 10px 8px;
 	/**/
 	border: 1px solid #3A3A3A;
-	background: #4C4C4C url(../../lib/onyx/images/gradient.png) repeat-x 0 bottom;
+	background: #4C4C4C url(../lib/onyx/images/gradient.png) repeat-x 0 bottom;
 	color: white;
 	/**/
 	white-space: nowrap;
@@ -652,21 +652,21 @@ body .onyx-icon:active:hover {
 }
 
 
-/* /home/jjacobsohn/git/mensaApp/enyo2/enyo/tools/../../lib/onyx/source/css/ProgressBar.css */
+/* ../lib/onyx/source/css/ProgressBar.css */
 
 .onyx-progress-bar {
 	margin: 8px;
 	height: 8px;
 	border: 1px solid rgba(15, 15, 15, 0.2);
 	border-radius: 3px;
-	background: #B8B8B8 url(../../lib/onyx/images/gradient-invert.png) repeat-x;
+	background: #B8B8B8 url(../lib/onyx/images/gradient-invert.png) repeat-x;
 	background-size: auto 100%;
 }
 
 .onyx-progress-bar-bar {
 	height: 100%;
 	border-radius: 3px;
-	background: #58ABEF url(../../lib/onyx/images/gradient.png) repeat-x;
+	background: #58ABEF url(../lib/onyx/images/gradient.png) repeat-x;
 	background-size: auto 100%;
 }
 
@@ -724,7 +724,7 @@ body .onyx-icon:active:hover {
 }
 
 
-/* /home/jjacobsohn/git/mensaApp/enyo2/enyo/tools/../../lib/onyx/source/css/ProgressButton.css */
+/* ../lib/onyx/source/css/ProgressButton.css */
 
 .onyx-progress-button {
 	position: relative;
@@ -760,7 +760,7 @@ body .onyx-icon:active:hover {
 }
 
 
-/* /home/jjacobsohn/git/mensaApp/enyo2/enyo/tools/../../lib/onyx/source/css/Slider.css */
+/* ../lib/onyx/source/css/Slider.css */
 
 .onyx-slider {
 	position: relative;
@@ -778,7 +778,7 @@ body .onyx-icon:active:hover {
 	position: relative;
 	height: 40px;
 	width: 40px;
-	background: url(../../lib/onyx/images/slider-handle.png) left top no-repeat;
+	background: url(../lib/onyx/images/slider-handle.png) left top no-repeat;
 	margin: -23px -20px;
 }
 
@@ -787,7 +787,7 @@ body .onyx-icon:active:hover {
 }
 
 
-/* /home/jjacobsohn/git/mensaApp/enyo2/enyo/tools/../../lib/layout/fittable/source/FittableLayout.css */
+/* /home/jjacobsohn/git/mensaApp/enyo2/externals/enyo/tools/../../lib/layout/fittable/source/FittableLayout.css */
 
 .enyo-fittable-rows-layout {
 	position: relative;
@@ -859,7 +859,7 @@ body .onyx-icon:active:hover {
 	margin-bottom: 0 !important;
 }
 
-/* /home/jjacobsohn/git/mensaApp/enyo2/enyo/tools/../../lib/layout/list/source/List.css */
+/* /home/jjacobsohn/git/mensaApp/enyo2/externals/enyo/tools/../../lib/layout/list/source/List.css */
 
 .enyo-list {
 	position: relative;
@@ -877,7 +877,7 @@ body .onyx-icon:active:hover {
 	right: 0;
 }
 
-/* /home/jjacobsohn/git/mensaApp/enyo2/enyo/tools/../../lib/layout/panels/source/arrangers/Arranger.css */
+/* /home/jjacobsohn/git/mensaApp/enyo2/externals/enyo/tools/../../lib/layout/panels/source/arrangers/Arranger.css */
 
 .enyo-arranger {
 	position: relative;
@@ -910,7 +910,7 @@ body .onyx-icon:active:hover {
 }
 
 
-/* /home/jjacobsohn/git/mensaApp/enyo2/enyo/tools/../../lib/layout/panels/source/Panels.css */
+/* /home/jjacobsohn/git/mensaApp/enyo2/externals/enyo/tools/../../lib/layout/panels/source/Panels.css */
 
 .enyo-panels {
 }
@@ -924,3 +924,4 @@ body .onyx-icon:active:hover {
 		max-width: 100%;
 	}
 }
+
