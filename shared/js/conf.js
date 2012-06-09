@@ -1,4 +1,4 @@
-/*
+/**
  * URLs speichern und lesen
  *
  */
@@ -16,6 +16,11 @@
 			for(item in urls.mensenWeek) array.push(item);
 			return array;
 		},
+		/**
+		 * mensen setzen
+		 * @param {array} urls ein Array an Mensennamen
+		 * @return {void}
+		 */
 		setURLs : function(urls){
 			return data.save("urls", JSON.stringify(urls));
 		},
@@ -30,6 +35,7 @@
 			var json = [];
 			var a = this.getURLs();
 			var b = this.getSavedURLs();
+			var i = 0;
 			for(i=0; i < a.length; i++){
 				json.push({
 					"name"   : a[i],
@@ -44,7 +50,7 @@
 		},
 
 		displayStudentPrices : function(){
-			return (typeof data.get("displayStudentPrices") === "undefined" ||  data.get("displayStudentPrices") === null || data.get("displayStudentPrices") === "1")
+			return (typeof data.get("displayStudentPrices") === "undefined" ||  data.get("displayStudentPrices") === null || data.get("displayStudentPrices") === "1");
 		}
 	};
 })();
