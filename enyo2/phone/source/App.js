@@ -6,7 +6,6 @@
  * - Dokumentation
  * - Strings auslagern
  * - Ziel: 400 Z inkl. Doku
- * - Unit-Tests
  * - Performancetests
  * - header iPhone
  * - manchmal im iPhone nicht korrekt geladen
@@ -21,12 +20,15 @@ window.addEventListener("load", function(){
 		mensaApp.settings();
 		mensaApp.showNotConfigured();
 	} else {
+		setTimeout(function(){
+			mensaApp.render();
+		}, 1);
 		mensaApp.display("today");
 	}
 
 	enyo.gesture.drag.flick = function(e){
 		var maxXvelo = .5;
-		var maxYVelo = .1;
+		var maxYVelo = .3;
 		var YVelo = Math.abs(e.yVelocity);
 		var XVelo = e.xVelocity;
 		if(XVelo > maxXvelo && YVelo < maxYVelo){
@@ -562,6 +564,8 @@ enyo.kind({
 			} else if( this.parent.parent.children[0].children[0].children[0].children[1].getContent() === "Alle" ){
 				this.parent.parent.children[0].children[0].children[0].children[0].setValue( false )
 			}
-		} catch(e) {}
+		} catch(e) {
+			console.log("catch")
+		}
 	}
 });
