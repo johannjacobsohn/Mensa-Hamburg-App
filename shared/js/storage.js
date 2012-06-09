@@ -18,14 +18,10 @@
  * } 
  *
  *
- * @TODO: DateFilter
  *
  *
  *
- *
- *
- *
- * @module storage
+ * @namespace storage
  *
  * 
  */ 
@@ -34,8 +30,7 @@ var storage = (function(){ // its a trap!
 		filteredWeekMenu = [], // Cache
 		isFiltered       = false,
 		date = typeof debug !== "undefined" && debug ? new Date(2012, 0, 24) : new Date(), //now
-		getDateStr = function(){ return dateToDateString(date) },
-		week = function(){ return date.getWeek() },
+		week = function(){ return date.getWeek(); },
 		lock = [],
 		loadedMensen = {},
 		menuCallbackQueue = [],
@@ -46,14 +41,14 @@ var storage = (function(){ // its a trap!
 		 */
 		 
 		// Flag if filters should be remembered
-		persistentFilters = data.get("persistentFilters") || true,
+		persistentFilters = data.get("persistentFilters") || "1",
 		
 		setPersistentFilters = function(save){
-			persistentFilters = save;
+			persistentFilters = save ? "1" : "0";
 			data.set("persistentFilters", persistentFilters);
 		},
 		getPersistentFilters = function(){
-			return persistentFilters;
+			return persistentFilters === "1";
 		},
 
 		filterProperties = {},
@@ -86,11 +81,12 @@ var storage = (function(){ // its a trap!
 					}
 
 					// filter filteredWeekMenu
+					var filterByProp = function(item){
+						return filterValues[prop].indexOf( item[prop] ) !== -1;
+					};
 					for( prop in filterProperties ){
 						if( filterProperties.hasOwnProperty(prop) ){
-							filteredWeekMenu = filteredWeekMenu.filter( function(item){
-								return filterValues[prop].indexOf( item[prop] ) !== -1;
-							} );
+							filteredWeekMenu = filteredWeekMenu.filter( filterByProp );
 						}
 					}
 					isFiltered = true;
@@ -141,27 +137,27 @@ var storage = (function(){ // its a trap!
 					    nameA = a.mensa.toLowerCase(),
 					    nameB = b.mensa.toLowerCase(),
 					    dateA = a.date.split("-"),
-					    dateB = b.date.split("-")
+					    dateB = b.date.split("-");
 					if (nameA < nameB){
 						mensaWeight = -10;
 					} else if (nameA > nameB) {
 						mensaWeight =  10;
 					}
 
-					dateWeight = parseInt(dateA[0]) * 100
-					             + parseInt(dateA[1]) * 10
-					             + parseInt(dateA[2])
-					             - parseInt(dateB[0])*100
-					             - parseInt(dateB[1])*10
-					             - parseInt(dateB[2]);
+					dateWeight = parseInt(dateA[0], 10) * 100
+					           + parseInt(dateA[1], 10) * 10
+					           + parseInt(dateA[2], 10)
+					           - parseInt(dateB[0], 10) * 100
+					           - parseInt(dateB[1], 10) * 10
+					           - parseInt(dateB[2], 10);
 
 					return mensaWeight + dateWeight * 100;
 				});
 
-				var isMensaFilterSet = typeof filterValues["mensa"] !== "undefined";
-				var filteredByMensenLength = isMensaFilterSet && filterValues["mensa"].length || 0;
+				var isMensaFilterSet = typeof filterValues.mensa !== "undefined";
+				var filteredByMensenLength = isMensaFilterSet && filterValues.mensa.length || 0;
 
-				var isDateFilterSet = typeof filterValues["date"] !== "undefined" && filterValues["date"].length === 1;
+				var isDateFilterSet = typeof filterValues.date !== "undefined" && filterValues.date.length === 1;
 
 				var segmented = [],
 					mensa = "",
@@ -202,8 +198,6 @@ var storage = (function(){ // its a trap!
 						if( segmented.length > 0 ){
 							segmented[segmented.length-1].last = true;
 						}
-						first = true;
-
 						segmented.push({
 							header    : sorted[i].mensa,
 							type      : "header",
@@ -211,14 +205,16 @@ var storage = (function(){ // its a trap!
 						});
 					}
 					sorted[i].type  = "item";
-					sorted[i].first = first;
+					sorted[i].first = (mensa != sorted[i].mensa && savedMensenExist);
 					sorted[i].last  = false;
 					segmented.push(sorted[i]);
 					
 					mensa = sorted[i].mensa;
 					date = sorted[i].date;
 				}
-
+				if(segmented.length > 0) {
+					segmented[segmented.length - 1].last = true
+				}
 				callback(segmented);
 			});
 		},
@@ -249,13 +245,13 @@ var storage = (function(){ // its a trap!
 			});
 
 			// cleanup loadedMensen
+			var filterByMensaAndWeek = function(item){
+				return (mensa === item.mensa && week == item.week); // intentionally week comparison, since week can be a number or a string
+			};
 			for(mensa in loadedMensen){
 				for(week in loadedMensen[mensa]){
-					mensaLength = weekMenu.filter(function(item){
-						return (mensa === item.mensa && week == item.week); // intentionally week comparison, since week can be a number or a string
-					}).length;
-
-					loadedMensen[mensa][week].loaded = mensaLength > 0
+					mensaLength = weekMenu.filter(filterByMensaAndWeek).length;
+					loadedMensen[mensa][week].loaded = mensaLength > 0;
 				}
 			}
 
@@ -461,7 +457,7 @@ var storage = (function(){ // its a trap!
 						// Parse out dish
 						dish = p[k].innerText;
 						dish = dish.replace(/&nbsp;/g, "").trim();
-						dish = dish.replace(/\(([0-9.]+,?)*\)/g, ""); //remove additives
+						dish = dish.replace(/\(([0-9.]+,?[\s]*)*\)/g, ""); //remove additives
 
 						// Figure out date
 						date = new Date(startdate.valueOf() + (i) * 24 * 60 * 60 * 1000);
@@ -645,7 +641,6 @@ var storage = (function(){ // its a trap!
 					dates.push( dateToDateString(d) );
 				}
 			}
-
 			return dates;
 		},
 		
@@ -672,9 +667,16 @@ var storage = (function(){ // its a trap!
 
 			day(date, sortedSegmented, callback);
 		},
-		/*
-		* convinient method to get the next Day
-		*/
+		/**
+		 * get next day's menu
+		 * 
+		 * @memberof storage
+		 * 
+		 *  
+		 * @param  {Function} callback        todo
+		 * @param  {bool}     sortedSegmented todo
+		 * @return {object}   this                  todo
+		 */
 		nextDay = function(callback, sortedSegmented){
 			var sortedSegmented = typeof sortedSegmented === "undefined" ? true : sortedSegmented,
 			    thisDay = date.getDay();
@@ -687,6 +689,7 @@ var storage = (function(){ // its a trap!
 			}
 
 			day(date, sortedSegmented, callback);
+			return this;
 		},
 
 		/*
