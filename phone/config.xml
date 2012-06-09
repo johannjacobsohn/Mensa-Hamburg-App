@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 	<widget xmlns = "http://www.w3.org/ns/widgets"
 		xmlns:gap = "http://phonegap.com/ns/1.0"
-		id        = "jjacobsohn.mensaApp.phone"
+		id        = "jjacobsohn.mensaApp.android"
 		versionCode="10" 
 		version   = "2.0.0">
 
@@ -51,9 +51,9 @@
 	<gap:splash src="img/splash/ios/Default-Landscape-1024x768.png " width="1024" height="768" />
 	<gap:splash src="img/splash/ios/Default-Portrait-768x1024.png"   width="768" height="1024" />
 
-	<gap:splash src="img/splash/android/ldpi-480x320.png" gap:platform="android" gap:density="ldpi" />
-	<gap:splash src="img/splash/android/mdpi-960x640.png" gap:platform="android" gap:density="mdpi" />
-	<gap:splash src="img/splash/android/hdpi-1024x768.png" gap:platform="android" gap:density="hdpi" />
+	<gap:splash src="img/splash/android/ldpi-320x480.png" gap:platform="android" gap:density="ldpi" />
+	<gap:splash src="img/splash/android/mdpi-640x960.png" gap:platform="android" gap:density="mdpi" />
+	<gap:splash src="img/splash/android/hdpi-768x1024.png" gap:platform="android" gap:density="hdpi" />
 
 	<gap:splash src="img/splash/bb/splash.png" gap:platform="blackberry" />
 
