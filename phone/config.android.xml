@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 	<widget xmlns = "http://www.w3.org/ns/widgets"
 		xmlns:gap = "http://phonegap.com/ns/1.0"
-		id        = "jjacobsohn.mensaapp.ios.ipad.MensaHamburgAppPhone"
+		id        = "jjacobsohn.mensaApp.android"
 		versionCode="10" 
 		version   = "2.0.0">
 
-	<name>Mensa Hamburg</name>
+	<name>Mensa Hamburg Phone</name>
 
 	<description>
 		Wann gibt es welches Essen in welcher Mensa? Eine App von Studenten für Studenten.
