@@ -36,7 +36,7 @@
 				]}
 			]},
 			{kind: "Button", className: "enyo-button-affirmative", caption: $L("Speichern"), onclick: "saveConf"},
-			{kind: "Button", className: "enyo-button-negative", caption: $L("App Zurücksetzen"), onclick: "reset"},
+			{kind: "Button", className: "enyo-button-negative", caption: $L("App zurücksetzen"), onclick: "reset"},
 		]},
 
 		{kind: "ModalDialog", name: "about", caption: info.appName, components:[
