@@ -1,0 +1,1 @@
+"In order to save your changes, all iPhone/iPod touch screenshots must be a .jpeg, .jpg, .tif, .tiff, or .png file that is 960x640, 960x600, 640x960 or 640x920 pixels, at least 72 DPI, and in the RGB color space."
