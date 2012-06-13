@@ -15,7 +15,7 @@
 	displayStudentPrices : conf.displayStudentPrices(),
 	load : function(){
 		var that = this;
-		this.$.spinnerLarge.hide();
+		this.$.spinnerLarge.show();
 		storage.getSortedSegmented(function(json){
 			that.$.spinnerLarge.hide();
 			that.data = json;
