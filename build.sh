@@ -5,15 +5,66 @@
 #
 
 set -u
-set -x
+# set -x
 
-# @TODO: unit tests laufen lassen
+build=$1
+phongap_pwd=$2
 
-# von phonegap build phone-packages produzieren lassen
-cd phone
-./build.sh
-cd ..
-curl -u johann.jacobsohn@directbox.com -X PUT -F file=@phone/release-phone.zip https://build.phonegap.com/api/v1/apps/131163
+# AppIDs:
+declare -A ids
+ids[phone]=131163
+ids[phoneAndroid]=136804
+ids[tablet]=137859
+ids[tabletAndroid]=137860
+
+#########
+# Unit #
+#########
+if [ $build == "unit" ] || [ $build = "all" ]; then
+	cd tests
+#	./run-testserver.sh
+	./run-tests.sh
+	cd ..
+fi;
+
+
+#########
+# Phone #
+#########
+if [ $build == "phone" ] || [ $build = "all" ]; then
+	cd phone
+	./build.sh
+	cd ..
+	# phone
+	curl -u johann.jacobsohn@directbox.com -X PUT -F file=@phone/release-phone.zip https://build.phonegap.com/api/v1/apps/${ids[phone]}
+	# android-phone
+#	curl -u johann.jacobsohn@directbox.com -X PUT -F file=@phone/release-phone.android.zip https://build.phonegap.com/api/v1/apps/${ids[phoneAndroid]}
+fi;
+
+##########
+# Tablet #
+##########
+if [ $build = "tablet" ] || [ $build = "all" ]; then
+	cd tablet
+	./build.sh
+	cd ..
+	curl -u johann.jacobsohn@directbox.com -X PUT -F file=@tablet/release-tablet.zip https://build.phonegap.com/api/v1/apps/${ids[tablet]}
+	curl -u johann.jacobsohn@directbox.com -X PUT -F file=@tablet/release-tablet.android.zip https://build.phonegap.com/api/v1/apps/${ids[tabletAndroid]}
+fi;
+
+#########
+# AppUp #
+#########
+if [ $build = "appup" ] || [ $build = "all" ]; then
+echo "todo"
+fi;
+
+###########
+# Widgets #
+###########
+
+
+
 
 
 exit;
