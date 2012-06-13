@@ -107,7 +107,7 @@ enyo.kind({
 					]}
 				]},
 				{kind: "Button", className: "enyo-button-affirmative", caption: $L("Speichern"), onclick: "saveConf"},
-				{kind: "Button", className: "enyo-button-negative", caption: $L("App Zurücksetzen"), onclick: "reset"}
+				{kind: "Button", className: "enyo-button-negative", caption: $L("App zurücksetzen"), onclick: "reset"}
 			]}
 		]}
 	],
@@ -150,6 +150,7 @@ enyo.kind({
 	},
 	saveConf: function(inSender, inEvent) {
 		var array = [], i, controls = inSender.parent.children[0].children[1].children[1].children[0].children[0].children;
+		// @TODO: eleganter?
 		for(i=0; i<controls.length; i++){
 			if(controls[i].children[1].state){
 				array.push(controls[i].children[0].content)
@@ -162,30 +163,11 @@ enyo.kind({
 		// Reload Data
 		storage.cleanData();
 		
-		//Refresh views
-		// MensaList:
-		var mensaList = this.owner.$.main.$.mensaList;
-		mensaList.data = array;
-		mensaList.data.unshift("Alle");
-		mensaList.$.repeater.render();
-
-		// NameList:
-		var nameList = this.owner.$.main.$.nameList;
-		nameList.$.spinnerLarge.show();
-		storage.getTypes(function(json){
-			nameList.$.spinnerLarge.hide();
-			nameList.data = json;
-			nameList.data.unshift("Alle");
-			nameList.$.repeater.render();
-		});
-		// MenuList:
-		var menuList = this.owner.$.main.$.menuList;
-		menuList.$.spinnerLarge.show();
-		storage.getSortedSegmented(function(json){
-			menuList.$.spinnerLarge.hide();
-			menuList.data = json;
-			menuList.render();
-		});
+		//Refresh
+		this.owner.$.main.$.mensaList.load(); // Mensa
+		this.owner.$.main.$.nameList.load();  // Names/Types
+		this.owner.$.main.$.menuList.load();  // Menu
+		
 		this.closePopup(inSender, inEvent)
 	},
 

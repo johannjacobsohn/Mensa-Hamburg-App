@@ -10,16 +10,18 @@
 	data : [],
 	create: function() {
 		this.inherited(arguments);
-
+		this.load();
+	},
+	displayStudentPrices : conf.displayStudentPrices(),
+	load : function(){
 		var that = this;
+		this.$.spinnerLarge.hide();
 		storage.getSortedSegmented(function(json){
 			that.$.spinnerLarge.hide();
 			that.data = json;
 			that.$.repeater.render();
 		});
 	},
-	displayStudentPrices : conf.displayStudentPrices(),
-	
 	listSetupRow: function(inSender, inIndex) {
 		var row = this.data[inIndex];
 		if (row) {

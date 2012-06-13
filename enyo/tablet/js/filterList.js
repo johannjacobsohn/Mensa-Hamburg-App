@@ -11,8 +11,11 @@
 	data : [],
 	create: function() {
 		this.inherited(arguments);
-
+		this.load();
+	},
+	load : function(){
 		var that = this;
+		this.$.spinnerLarge.show();
 		storage.getInfo( this.type, function(json){
 			that.$.spinnerLarge.hide();
 			that.data = json;
