@@ -1,9 +1,8 @@
 #!/bin/sh
 
-# TODO: Minify
-#cd source/
-#./minify.sh
-#cd ..
+cd source/
+./minify.sh
+cd ..
 
 mkdir temp
 
