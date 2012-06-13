@@ -100,7 +100,13 @@ var storage = (function(){ // its a trap!
 			isFiltered = false;
 			if(typeof value === "string") value = [value];
 
-//			console.log(persistentFilters, filterProperties, filterValues)
+			// if we change the date filter we need to change the date as well,
+			// so next week data for the next week get picked up
+			// @TODO: Rethink...
+			if(prop === "date"){
+				date = dateStringToDate( value.sort()[ value.length - 1 ] );
+			}
+
 			filterProperties[prop] = prop;
 			filterValues[prop] = value;
 
@@ -165,7 +171,7 @@ var storage = (function(){ // its a trap!
 					i = 0,
 					l = sorted.length,
 					first = false,
-					savedMensenExist = (conf.getSavedURLs()).length > 1;
+					savedMensenExist = (conf.getSavedURLs()).length > 1 || true; // FIXME
 
 				/*
 				 * wenn nur eine Mensa gewählt ist sollte diese als erstes in den Headern stehen
@@ -179,7 +185,7 @@ var storage = (function(){ // its a trap!
 				}
 
 				for( i = 0; i < l; i++ ){
-					first = false;
+					first = i === 0;
 					if(date != sorted[i].date && !isDateFilterSet){
 						if( segmented.length > 0 ) {// wenn Header dann dieses und nächsten Eintrag als "First" bzw. "Last" kennzeichnen
 							segmented[segmented.length - 1].last = true;
@@ -192,12 +198,13 @@ var storage = (function(){ // its a trap!
 							headerType : "date"
 						});
 					}
-
 					if(mensa != sorted[i].mensa && (!isMensaFilterSet || filteredByMensenLength !== 1) && savedMensenExist){
 						// wenn Header dann dieses und nächsten Eintrag als "First" bzw. "Last" kennzeichnen
 						if( segmented.length > 0 ){
 							segmented[segmented.length-1].last = true;
 						}
+						first = true;
+						
 						segmented.push({
 							header    : sorted[i].mensa,
 							type      : "header",
@@ -205,7 +212,7 @@ var storage = (function(){ // its a trap!
 						});
 					}
 					sorted[i].type  = "item";
-					sorted[i].first = (mensa != sorted[i].mensa && savedMensenExist);
+					sorted[i].first = first; //(mensa != sorted[i].mensa && savedMensenExist);
 					sorted[i].last  = false;
 					segmented.push(sorted[i]);
 					
