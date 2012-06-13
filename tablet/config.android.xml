@@ -5,7 +5,7 @@
 		versionCode="10" 
 		version   = "1.1.0">
 
-	<name>Mensa Hamburg HD</name>
+	<name>Mensa HH</name>
 
 	<description>
 		Wann gibt es welches Essen in welcher Mensa? Eine App von Studenten für Studenten.
@@ -17,8 +17,8 @@
 
 	<!-- please note that default means both landscape and portrait are enabled. If you want to use each platform's default settings (usually portrait-only), just remove this tag from your config.xml
 	-->
-	<preference name="orientation" value="portrait" />
-	<preference name="target-device" value="handset" />
+	<preference name="orientation" value="default" />
+	<preference name="target-device" value="tablet" />
 	<!--
 		target-device with possible values handset, tablet, or universal
 			example: <preference name="target-device" value="universal" />
@@ -48,16 +48,12 @@
 	<gap:splash src="splash.png" />
 	<gap:splash src="img/splash/ios/Default-320x480.png"             width="320" height="480" />
 	<gap:splash src="img/splash/ios/Default_at_2x-640x960.png"       width="640" height="960" />
-	<gap:splash src="img/splash/ios/Default-Landscape-1024x768.png " width="1024" height="768" />
+	<gap:splash src="img/splash/ios/Default-Landscape-1024x768.png" width="1024" height="768" />
 	<gap:splash src="img/splash/ios/Default-Portrait-768x1024.png"   width="768" height="1024" />
 
 	<gap:splash src="img/splash/android/ldpi-320x480.png" gap:platform="android" gap:density="ldpi" />
 	<gap:splash src="img/splash/android/mdpi-640x960.png" gap:platform="android" gap:density="mdpi" />
 	<gap:splash src="img/splash/android/hdpi-768x1024.png" gap:platform="android" gap:density="hdpi" />
-
-	<gap:splash src="img/splash/bb/splash.png" gap:platform="blackberry" />
-
-	<gap:splash src="img/splash/winphone/splash-480x800.jpg " gap:platform="winphone" />
 
 	<!-- If you do not want any permissions to be added to your app, add the
 		following tag to your config.xml; you will still have the INTERNET
