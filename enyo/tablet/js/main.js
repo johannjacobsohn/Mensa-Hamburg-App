@@ -73,7 +73,7 @@ enyo.kind({
 						{kind: "GrabButton"}
 					]}
 			]},
-			{name: "right", kind:"SlidingView", flex: 1, components: [
+			{name: "right", kind:"SlidingView", flex: 1, peekWidth: 150, components: [
 					{kind: "Header", content:"Speisekarte"},
 					{kind: "Scroller", flex: 1, components: [
 						{
