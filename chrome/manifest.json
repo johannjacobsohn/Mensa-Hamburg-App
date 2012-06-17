@@ -1,0 +1,20 @@
+{
+	"name": "Mensa Hamburg",
+	"version": "1.1.0",
+	"manifest_version": 2,
+	"app": {
+		"launch": {
+		  "local_path": "index.html"
+		}
+	},
+	"description": "Dies ist eine App von Studenten für Studenten und sie ist Open Source! Dein Feedback ist immer Willkommen!",
+	"icons": {
+		"16"  : "icon-16.png",
+		"48"  : "icon-48.png",
+		"128" : "icon-128.png"
+	},
+	"homepage_url": "http://johannjacobsohn.github.com/Mensa-Hamburg-App/",
+	"offline_enabled": true,
+	"omnibox": { "keyword": "mensa" },
+	"permissions": [ "http://speiseplan.studierendenwerk-hamburg.de/*" ]
+}

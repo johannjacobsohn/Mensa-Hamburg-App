@@ -3,6 +3,15 @@
  *
  */
 
+
+/*
+ * Bootstrap
+ */
+window.addEventListener("load", function(){
+	var app = new main().renderInto(document.body);
+	if(!conf.isConfigured()) app.$.conf.openAtCenter();
+});
+
 enyo.kind({
 	name: "main",
 	kind: enyo.VFlexBox,
@@ -170,14 +179,8 @@ enyo.kind({
 		
 		this.closePopup(inSender, inEvent)
 	},
-
 	create: function() {
 		this.inherited(arguments);
 		this.data = conf.getURLs();
-		var confPopup = this.$.conf;
-		window.addEventListener("load", function(){
-			if(!conf.isConfigured()) confPopup.openAtCenter();
-		}, false);
 	}
 });
-
