@@ -1,20 +1,22 @@
 Bugs/Features:
 - Global
 -- Mehrsprachigkeit
--- Besseres Icon
 - Backend
 -- Unittests
--- JSDocs
 -- silent update der Daten der nächsten Woche?
 -- performancemessungen
-- Enyo1/Phone
--- Speichern der Settings
+- Enyo2/Phone
+-- "Alle" richtig setzen abhängig von den gesetzten Filtern
+-- "Trennlinien nach den Mensanamen"
 -- Swipen
-- Enyo1/Tablet
--- automatisch nachladen
+-- Mehr Filter
 - Enyo1/Phone
+-- Wartung
 -- Header nicht korrekt wenn man auf anderem Tag ist und Mensen ändert
 -- Default-Header "Header"
+- Enyo1/Tablet
+-- automatisch nachladen
+-- Panels optional
 - Mojo
 -- Warteindikator wenn initial geladen wird
 - jquery mobile
@@ -51,11 +53,11 @@ Frontends:
 -- mojo (Phone)                      - Done
 -- Enyo 1 (Tablet)                   - Done
 - iOS
--- Enyo/phonegap          - Tablet   - Done
--- Enyo/phonegap          - Phone    - Done
+-- Enyo1/phonegap          - Tablet   - Done
+-- Enyo2/phonegap          - Phone    - Done
 - Android
--- Enyo/phonegap          - Tablet   - Done
--- Enyo/phonegap          - Phone    - Done
+-- Enyo1/phonegap          - Tablet   - Done
+-- Enyo2/phonegap          - Phone    - Done
 - Symbian (Nokia)
 -- S40                    - Phone    - In Progress
 -- Symbian^3              - Phone    - TODO
@@ -70,15 +72,15 @@ Frontends:
 - Desktop
 -- MacOS Desktop Widget              - in Progress
 -- Win7 Desktop Gadget               - in Progress
--- Enyo/ChromeApp                    - in Progress
+-- Enyo/ChromeApp                    - Done
 
 - Einstellen in
 x- github
 xx App Catalog      (webOS)
-x- Market Place     (Android)
+xx Market Place     (Android)
 x- App World        (Rim)
 xx App Store        (iOS)
--- Chrome App Store (Google)
+-x Chrome App Store (Google)
 -- Windows Phone Marketplace (Microsoft)
 
 später?
