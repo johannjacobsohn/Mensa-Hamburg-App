@@ -1,30 +1,16 @@
 /**
  *
  *
+ * Storage
  *
  *
  *
  *
  *
- * Internal data format
- * ====================
- *
- * loadedMensen{
- *     mensa1 : {
- *         week1 : {},
- *         week2 : {...}
- *     },
- *     mensa2 : {...}
- * } 
- *
- *
- *
- *
- *
- * @namespace storage
+ * @class storage
  *
  * 
- */ 
+ */
 var storage = (function(){ // its a trap!
 	var weekMenu         = [], // Cache
 		filteredWeekMenu = [], // Cache
@@ -32,6 +18,16 @@ var storage = (function(){ // its a trap!
 		date = typeof debug !== "undefined" && debug ? new Date(2012, 0, 24) : new Date(), //now
 		week = function(){ return date.getWeek(); },
 		lock = [],
+		/**
+		 *
+		 * 	loadedMensen{
+		 * 	    mensa1 : {
+		 * 	        week1 : {},
+		 * 	        week2 : {...}
+		 * 	    },
+		 * 	    mensa2 : {...}
+		 * 	}
+		 */
 		loadedMensen = {},
 		menuCallbackQueue = [],
 
@@ -42,18 +38,35 @@ var storage = (function(){ // its a trap!
 		 
 		// Flag if filters should be remembered
 		persistentFilters = data.get("persistentFilters") || "1",
-		
+
+		/**
+		 * Make Filters persistent
+		 *
+		 * @method setPersistentFilters
+		 * @param {Boolean} switch if filters should be persistent
+		 */
 		setPersistentFilters = function(save){
 			persistentFilters = save ? "1" : "0";
 			data.set("persistentFilters", persistentFilters);
 		},
+		/**
+		 * Find out if filters are persistent
+		 *
+		 * @method getPersistentFilters
+		 * @return {Boolean} switch if filters are persistent
+		 */
 		getPersistentFilters = function(){
 			return persistentFilters === "1";
 		},
-
 		filterProperties = {},
 		filterValues = {},
 
+		/**
+		 * Get filter setting from storage and populate properties
+		 *
+		 * @method {String} loadFilters
+		 * @private
+		 */
 		loadFilters = function(){
 			/// @TODO
 			if( persistentFilters ){
@@ -61,15 +74,23 @@ var storage = (function(){ // its a trap!
 				filterValues     = JSON.parse( data.get("filterValues")     || "{}" );
 			}
 		},
-
+		/**
+		 * Save filter settings
+		 *
+		 * @method saveFilters
+		 */
 		saveFilters = function(){
 			if( persistentFilters ){
 				data.set("filterProperties", JSON.stringify(filterProperties) );
 				data.set("filterValues",     JSON.stringify(filterValues)     );
 			}
 		},
-
-		// do the filtering
+		/**
+		 * do the filtering
+		 * 
+		 * @method filter
+		 * @param {Function} callback with filtered menu
+		 */
 		filter = function(callback){
 			getWeekMenu(function(){
 				var i = 0, prop;
@@ -95,7 +116,16 @@ var storage = (function(){ // its a trap!
 				callback(filteredWeekMenu);
 			});
 		},
-
+		/**
+		 * Set an arbitrary filter by supplying both property and expected value(s)
+		 *
+		 * @method setFilter
+		 * @example
+		 * 	setFilter("price", "2,50");
+		 * 	setFilter("price", ["2,50", "2,00"])
+		 * @param {String} Property; the filtered property becomes the name of the filter
+		 * @param {String} {Array} Valid value string or array of valid values
+		 * */
 		setFilter = function(prop, value){
 			isFiltered = false;
 			if(typeof value === "string") value = [value];
@@ -112,17 +142,24 @@ var storage = (function(){ // its a trap!
 
 			saveFilters();
 		},
-
+		/**
+		 * Delete Filter
+		 *
+		 * 
+		 * @method unsetFilter
+		 * @param {String} Name of Filter
+		 */
 		unsetFilter = function(type){
 			isFiltered = false;
 			delete filterProperties[type];
 			delete filterValues[type];
 			saveFilters();
 		},
-
-		/*
-		* 
-		*/
+		/**
+		 * Clear all filters
+		 *
+		 * @method unsetFilters
+		 */
 		unsetFilters = function(){
 			isFiltered = false;
 			filterLength = {};
@@ -130,10 +167,14 @@ var storage = (function(){ // its a trap!
 			
 			saveFilters();
 		},
-
 		/**
+		 * Get a segmented and sorted JSON representation of the current menu,
+		 * suitable for easy displaying
 		 *
 		 * @TODO: streamline
+		 *
+		 * @method getSortedSegmented
+		 * @param {Function} callback with the menu supplied as an argument
 		 */
 		getSortedSegmented = function(callback){
 			filter(function(json){
@@ -225,10 +266,10 @@ var storage = (function(){ // its a trap!
 				callback(segmented);
 			});
 		},
-
 		/**
 		 * Find and delete Data of urls that are not saved
 		 *
+		 * @method cleanData
 		 * @param void
 		 * @return this
 		 */
@@ -270,15 +311,13 @@ var storage = (function(){ // its a trap!
 
 			return this;
 		},
-		
 		/**
+		 * Retrieve menu data (for a given week)
 		 *
-		 * get weekmenu
-		 *
-		 * retrieves menu data for a given date
-		 * 
-		 * @param function
-		 * @return this
+		 * @method getWeekMenu
+		 * @chainable
+		 * @param {Function} callback
+		 * @param {Integer} optional Weeknumber
 		 */
 		getWeekMenu = function(callback, week){
 			var mensenArr = conf.getSavedURLs(),
@@ -349,19 +388,17 @@ var storage = (function(){ // its a trap!
 
 			runMenuCallbacks();
 		},
-
 		/**
-		 * parseMensaHTML
-		 *
 		 * parses retrieved html from the mensa pages and returns retreaved data
 		 *
-		 * @param  {string} html
-		 * @param  {string} mensa
-		 * @param  {int}    week
-		 * @return {object} fetched dishes
+		 * @private
+		 * @method parseMensaHTML
+		 * @param  {String}  html
+		 * @param  {String}  mensa
+		 * @param  {Integer} week
+		 * @return {Object}  fetched dishes
 		 */
 		parseMensaHTML = function(html, mensa, week){
-
 			var tds, trs, dish, dishName, date, dateString, obj,
 				properties = [],
 				additives = [],
@@ -487,7 +524,13 @@ var storage = (function(){ // its a trap!
 				}
 			}
 		},
-
+		/**
+		 * Try to run callback queue
+		 * 
+		 * @method runMenuCallbacks
+		 * @private
+		 * @return {Boolean} Callbacks have been called
+		 */
 		runMenuCallbacks = function(){
 			var fkt;
 			// only execute callback queue if all locks are released
@@ -505,12 +548,21 @@ var storage = (function(){ // its a trap!
 				return false;
 			}
 		},
-
+		/**
+		 * Save Menu to disk
+		 * 
+		 * @method cache
+		 * @private
+		 */
 		cache = function(){
 			data.save("menu", JSON.stringify(weekMenu) );
 			data.save("loadedMensen", JSON.stringify(loadedMensen) );
 		},
-
+		/**
+		 * Get Menu from disk
+		 *
+		 * @method loadCachedData
+		 */
 		loadCachedData = function(){
 			try {
 				weekMenu = JSON.parse( data.get("menu") ) || [];
@@ -523,12 +575,21 @@ var storage = (function(){ // its a trap!
 				loadedMensen = {}
 			}
 		},
-
+		/**
+		 * clear cache
+		 *
+		 * @method clearCache
+		 */
 		clearCache = function(){
 			data.remove("menu");
 			data.remove("loadedMensen");
 		},
-
+		/**
+		 * clean up old data from cache
+		 *
+		 * @method cleanUpOldData
+		 * @private
+		 */
 		cleanUpOldData = function(){
 			var week = (new Date()).getWeek(), day = "";
 			weekMenu = weekMenu.filter(function(item){
@@ -537,10 +598,12 @@ var storage = (function(){ // its a trap!
 
 			cache();
 		},
-
-		/*
-		* list all Types
+		/**
+		* list all Types/Names
+		* 
+		* @method getTypes
 		* @depreciated
+		* @param {Function} callback
 		*/
 		getTypes = function(callback){
 			getWeekMenu(function(){
@@ -557,9 +620,11 @@ var storage = (function(){ // its a trap!
 				callback(typesArr);
 			});
 		},
-
-		/*
-		* list all Types
+		/**
+		* get Informations about all Types
+		*
+		* @method getTypeInfo
+		* @param {Function} callback
 		*/
 		getTypeInfo = function(callback){
 			getWeekMenu(function(){
@@ -580,10 +645,12 @@ var storage = (function(){ // its a trap!
 				callback(typesArr);
 			});
 		},
-
-		/*
-		* list all Mensen
-		*/
+		/**
+		 * getMensaInfo
+		 *
+		 * @method getMensaInfo
+		 * @param {Function} callback
+		 */
 		getMensaInfo = function(callback){
 			var mensen = conf.getMensaInfo();
 			var l = mensen.length;
@@ -601,7 +668,12 @@ var storage = (function(){ // its a trap!
 			}
 			callback(activeMensen);
 		},
-
+		/**
+		 * getDateInfo
+		 *
+		 * @method getDateInfo
+		 * @param {Function} callback
+		 */
 		getDateInfo = function(callback){
 			var dates = getAvailableDates(true);
 			var l = dates.length;
@@ -614,7 +686,13 @@ var storage = (function(){ // its a trap!
 			}
 			callback (dates);
 		},
-
+		/**
+		 * get information
+		 *
+		 * @method getInfo
+		 * @param {String} type
+		 * @param {Function} callback
+		 */
 		getInfo = function(type, callback){
 			switch(type){
 				case "date" : {
@@ -632,10 +710,14 @@ var storage = (function(){ // its a trap!
 			}
 			return this;
 		},
-		/*
-		* list all dates
-		* @TODO: nicht zuverlässig am Sonntag?
-		*/
+		/**
+		 * list all dates
+		 * @TODO: doesn't work on Sunday?
+		 *
+		 * @method getAvailableDates
+		 * @param {Boolean} getNextWeek
+		 * @return {Array} dates
+		 */
 		getAvailableDates = function(getNextWeek){
 			var noOfDays = getNextWeek ? 12 : 5,
 			    today = new Date(),
@@ -650,18 +732,25 @@ var storage = (function(){ // its a trap!
 			}
 			return dates;
 		},
-		
-		/*
-		* convinient method to get this days' menu
-		*/
+		/**
+		 * Get this day's menu
+		 *
+		 * @method thisDay
+		 * @param callback {Function}
+		 * @param sortedSegmented {Boolean}
+		 */
 		thisDay = function(callback, sortedSegmented){
 			sortedSegmented = typeof sortedSegmented === "undefined" ? true : sortedSegmented;
 
 			day(date, sortedSegmented, callback);
 		},
-		/*
-		* convinient method to get today menu
-		*/
+		/**
+		 * Get todays menu
+		 *
+		 * @method today
+		 * @param callback {Function}
+		 * @param sortedSegmented {Boolean}
+		 */
 		today = function(callback, sortedSegmented){
 			date = typeof debug !== "undefined" && debug ? new Date(2012, 0, 24) : new Date(); //now
 			sortedSegmented = typeof sortedSegmented === "undefined" ? true : sortedSegmented;
@@ -676,13 +765,11 @@ var storage = (function(){ // its a trap!
 		},
 		/**
 		 * get next day's menu
-		 * 
-		 * @memberof storage
-		 * 
-		 *  
-		 * @param  {Function} callback        todo
-		 * @param  {bool}     sortedSegmented todo
-		 * @return {object}   this                  todo
+		 *
+		 * @method nextDay
+		 * @param  {Function} callback         
+		 * @param  {bool}     sortedSegmented  
+		 * @return {object}   this             
 		 */
 		nextDay = function(callback, sortedSegmented){
 			var sortedSegmented = typeof sortedSegmented === "undefined" ? true : sortedSegmented,
@@ -699,9 +786,13 @@ var storage = (function(){ // its a trap!
 			return this;
 		},
 
-		/*
-		* convinient method to get the next Day
-		*/
+		/**
+		 * Get menu of previous date
+		 *
+		 * @method prevDay
+		 * @param callback {Function}
+		 * @param sortedSegmented {Boolean}
+		 */
 		prevDay = function(callback, sortedSegmented){
 			var sortedSegmented = typeof sortedSegmented === "undefined" ? true : sortedSegmented,
 //			    oldDate = date,
@@ -724,8 +815,13 @@ var storage = (function(){ // its a trap!
 		},
 
 		/**
-		 *
+		 * Get menu for a specific date
+		 * 
+		 * @method day
 		 * @private
+		 * @param date {Object}
+		 * @param sortedSegmented {Boolean}
+		 * @param callback {Function}
 		 */
 		day = function(date, sortedSegmented, callback){
 			setFilter("date", dateToDateString(date));
@@ -742,11 +838,27 @@ var storage = (function(){ // its a trap!
 		},
 
 		// Helpers
+		/**
+		 * convert date to datestring
+		 *
+		 * @private
+		 * @method dateToDateString
+		 * @param {Object} Date
+		 * @return {String} Datestring
+		 */
 		dateToDateString = function(date){
 			date = new Date(date.valueOf());
 			return date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getDate();
 		},
 
+		/**
+		 * convert datestring to date object
+		 *
+		 * @private
+		 * @method dateStringToDate
+		 * @param {String} dateString
+		 * @return {Object} date
+		 */
 		dateStringToDate = function(dateString){
 			dateString = dateString.split("-");
 			return new Date(dateString[0], dateString[1]-1 ,dateString[2]);
@@ -768,7 +880,6 @@ var storage = (function(){ // its a trap!
 		clearCache : clearCache,
 		cleanData  : cleanData,
 
-
 		getInfo      : getInfo,
 		getTypeInfo  : getTypeInfo,
 		getMensaInfo : getMensaInfo,
@@ -781,12 +892,61 @@ var storage = (function(){ // its a trap!
 		setFilter        : setFilter,
 		unsetFilter      : unsetFilter,
 		unsetFilters     : unsetFilters,
+
 		// shortcuts and legacy
+		/**
+		 * set mensa filter
+		 * 
+		 * Depreciated, use setFilter("mensa", val) instead.
+		 *
+		 * @depreciated
+		 * @method setMensaFilter
+		 */
 		setMensaFilter   : function(val){   setFilter("mensa", val); },
+		/**
+		 * unset mensa filter
+		 *
+		 * Depreciated, use unsetFilter("mensa", val) instead.
+		 *
+		 * @depreciated
+		 * @method unsetMensaFilter
+		 */
 		unsetMensaFilter : function(){      unsetFilter("mensa"); },
+		/**
+		 * set name filter
+		 *
+		 * Depreciated, use setFilter("name", val) instead.
+		 *
+		 * @depreciated
+		 * @method setNameFilter
+		 */
 		setNameFilter    : function(val){   setFilter("name", val);  },
+		/**
+		 * unset name filter
+		 *
+		 * Depreciated, use unsetFilter("name", val) instead.
+		 *
+		 * @depreciated
+		 * @method unsetNameFilter
+		 */
 		unsetNameFilter  : function(){      unsetFilter("name");  },
+		/**
+		 * set date filter
+		 *
+		 * Depreciated, use setFilter("date", val) instead.
+		 *
+		 * @depreciated
+		 * @method setDateFilter
+		 */
 		setDateFilter    : function(val){   setFilter("date", val);  },
+		/**
+		 * unset date filter
+		 *
+		 * Depreciated, use unsetFilter("date", val) instead.
+		 *
+		 * @depreciated
+		 * @method unsetDateFilter
+		 */
 		unsetDateFilter  : function(){      unsetFilter("date");  },
 
 		setPersistentFilters : setPersistentFilters,

@@ -1,0 +1,8 @@
+{
+    "name": "MensaAppAPI",
+    "description": "API",
+    "version": "0.0.1",
+    "options": {
+        "outdir": "./apidocs"
+    }
+}
