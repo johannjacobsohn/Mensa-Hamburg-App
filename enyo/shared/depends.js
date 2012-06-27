@@ -6,7 +6,7 @@ enyo.depends(
   "js/urls.js",
   "js/xhr.js",
   "js/storage.js",
-  "js/filterList.js",
+  "js/filterPanel.js",
   "js/menuList.js",
   "js/main.js",
   "css/main.css"

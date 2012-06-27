@@ -1,15 +1,9 @@
 ﻿/*
- * @TODO: Datumsfilter laden alle 3 Stunden
- *
- */
-
-
-/*
  * Bootstrap
  */
 window.addEventListener("load", function(){
-	var app = new main().renderInto(document.body);
-	if(!conf.isConfigured()) app.$.conf.openAtCenter();
+	app = new main().renderInto(document.body);
+	if(!conf.isConfigured()) app.openConfig();
 });
 
 enyo.kind({
@@ -37,65 +31,25 @@ enyo.kind({
 			subscribe : true
 		},
 		{name: "slidingPane", kind: "SlidingPane", flex: 1, components: [
-			{name: "left", width: "160px", kind:"SlidingView", components: [
-					{kind: "Header", content:"Tage"},
-					{kind: "Scroller", flex: 1, components: [
-						{
-							name: "dateList",
-							flex: 1,
-							type: "date",
-							peekWidth: 100,
-							kind: "filterList"
-						}
-					]},
-					{kind: "Toolbar", components: [
-						{kind: "GrabButton"}
-					]}
-			]},
-			{name: "mensalistpanel", width: "160px", kind:"SlidingView", peekWidth: 50, components: [
-					{kind: "Header", content:"Mensen"},
-					{kind: "Scroller", flex: 1, components: [
-						{
-							name: "mensaList",
-							flex: 1,
-							type: "mensa",
-							peekWidth: 100,
-							kind: "filterList"
-						}
-					]},
-					{kind: "Toolbar", components: [
-						{kind: "GrabButton"}
-					]}
-			]},
-			{name: "middle2", width: "160px", kind:"SlidingView", peekWidth: 100, components: [
-					{kind: "Header", content:"Gerichte"},
-					{kind: "Scroller", flex: 1, components: [
-						{
-							name: "nameList",
-							flex: 1,
-							type: "name",
-							peekWidth: 100,
-							kind: "filterList"
-						}
-					]},
-					{kind: "Toolbar", components: [
-						{kind: "GrabButton"}
-					]}
-			]},
+
+			{name: "datePanel"           , type: "date",  kind:"filterPanel", title: "Tag" },
+			{name: "mensaPanel" , type: "mensa", kind:"filterPanel", title: "Mensa" },
+			{name: "namePanel"        , type: "name",  kind:"filterPanel", title: "Gericht" },
+
 			{name: "right", kind:"SlidingView", flex: 1, peekWidth: 150, components: [
-					{kind: "Header", content:"Speisekarte"},
+					{kind: "Header", components : [
+						{content:"Speisekarte",  flex: 1}
+					]},
 					{kind: "Scroller", flex: 1, components: [
 						{
 							name: "menuList",
-							flex: 1,
-							peekWidth: 100,
 							kind: "menuList"
 						}
 					]},
 					{kind: "Toolbar", components: [
 						{kind: "GrabButton"},
 						{content: "Mensa Hamburg", onclick: "openAbout"},
-						{icon: "images/Gear.png", onclick: "closePopup", onclick: "openConfig"}
+						{icon: "images/Gear.png", onclick: "openConfig"}
 					]}
 			]},
 			/* Scrollable */
@@ -151,7 +105,8 @@ enyo.kind({
 		location.reload();
 	},
 	closePopup : function(inSender, inEvent){
-		inSender.parent.parent.parent.close();
+		app.$.about.close();
+		app.$.conf.close();
 	},
 	changeStudentPrice : function(instance, value){
 		conf.setStudentPrices(value);
@@ -173,14 +128,21 @@ enyo.kind({
 		storage.cleanData();
 		
 		//Refresh
-		this.owner.$.main.$.mensaList.load(); // Mensa
-		this.owner.$.main.$.nameList.load();  // Names/Types
+		this.owner.$.main.$.mensaPanel.load(); // Mensa
+		this.owner.$.main.$.namePanel.load();  // Names/Types
+
 		this.owner.$.main.$.menuList.load();  // Menu
-		
+
 		this.closePopup(inSender, inEvent)
 	},
 	create: function() {
 		this.inherited(arguments);
 		this.data = conf.getURLs();
+		var that = this;
+
+		// Reload date filter every three hours
+		setInterval(function(){
+			that.owner.$.main.$.datePanel.load();
+		}, 3 * 3600 * 1000);
 	}
 });
