@@ -31,14 +31,13 @@ enyo.kind({
 			subscribe : true
 		},
 		{name: "slidingPane", kind: "SlidingPane", flex: 1, components: [
+			{name: "datePanel"  , type: "date",  kind:"filterPanel", title: "Tag" },
+			{name: "mensaPanel" , type: "mensa", kind:"filterPanel", title: "Mensa", peekWidth: 50 },
+			{name: "namePanel"  , type: "name",  kind:"filterPanel", title: "Gericht", peekWidth: 100 },
 
-			{name: "datePanel"           , type: "date",  kind:"filterPanel", title: "Tag" },
-			{name: "mensaPanel" , type: "mensa", kind:"filterPanel", title: "Mensa" },
-			{name: "namePanel"        , type: "name",  kind:"filterPanel", title: "Gericht" },
-
-			{name: "right", kind:"SlidingView", flex: 1, peekWidth: 150, components: [
+			{name: "right", kind:"SlidingView", peekWidth: 150, components: [
 					{kind: "Header", components : [
-						{content:"Speisekarte",  flex: 1}
+						{content: "Speisekarte",  flex: 1}
 					]},
 					{kind: "Scroller", flex: 1, components: [
 						{

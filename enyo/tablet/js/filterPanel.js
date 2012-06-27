@@ -1,26 +1,25 @@
-﻿enyo.kind({
+﻿/*
+ *
+ *
+ *
+ */
+enyo.kind({
 	name: "filterPanel",
-	kind: enyo.VFlexBox,
-	type: "mensa",
-	components: [{
-		name: "panel",
-		width: "160px",
-		kind:"SlidingView",
-		peekWidth: 100,
-		flex: 1,
-		components: [
-			{kind: "Header", components : [
-				{content: this.title, name : "title",  flex: 1}
-			]},
-			{kind: "SpinnerLarge", showing: true},
-			{kind: "Scroller", flex: 1, components: [
-				{kind: "Repeater",flex: 1,onSetupRow: "listSetupRow"}
-			]},
-			{kind: "Toolbar", components: [
-				{kind: "GrabButton"}
-			]}
-		]
-	}],
+	kind: "SlidingView",
+	type: "",
+	width: "160px",
+	components: [
+		{kind: "Header", components : [
+			{content: this.title, name : "title",  flex: 1}
+		]},
+		{kind: "SpinnerLarge", showing: true},
+		{kind: "Scroller", flex: 1, components: [
+			{kind: "Repeater",flex: 1,onSetupRow: "listSetupRow"}
+		]},
+		{kind: "Toolbar", components: [
+			{kind: "GrabButton"}
+		]}
+	],
 	data : [],
 	create: function() {
 		this.inherited(arguments);
