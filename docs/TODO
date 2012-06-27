@@ -1,3 +1,46 @@
+Planed:
+=======
+
+Core 1.0
+- filter by properties (with|w/o)
+- filter by additives (with|w/o)
+- 100% test coverage
+- silent update of data
+- performance regression tests ?
+- mensa is closed
+- events (onMenuChange)
+
+Phone 2.1:
+- new app icon
+- Separator Kind
+- swipe days
+- fix "all"
+- filter by properties (ohne/mit)
+- filter by additives (ohne/mit)
+
+Tablet: 2.0
+- new app icon
+- Enyo2
+- automatically reload dates (setTimeout!)
+- make panels optional
+- filter by properties (with|w/o)
+- filter by additives (with|w/o)
+
+Mojo 1.5
+- Wait indicator at initial loading
+- permanent filters
+- filter by properties (with|w/o)
+- filter by additives (with|w/o)
+
+Next + 1:
+- multiple languages
+- notifications to user?
+- link mensa to map application?
+- mensaIsClosed functionality
+- nodejs server
+- Release Dashboard Widget ?
+- Release Desktop Gadget ?
+
 Bugs/Features:
 - Global
 -- Mehrsprachigkeit
@@ -14,7 +57,7 @@ Bugs/Features:
 -- Wartung
 -- Header nicht korrekt wenn man auf anderem Tag ist und Mensen ändert
 -- Default-Header "Header"
-- Enyo1/Tablet
+- Enyo2/Tablet
 -- automatisch nachladen
 -- Panels optional
 - Mojo
