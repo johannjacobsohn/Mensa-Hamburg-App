@@ -6,6 +6,7 @@
  *
  * @class data
  */
+/*jshint smarttabs:true browser:true */
 var data = (function(){
 	var version = "3", // we might want to trigger a reload of cached data (if the)
 
@@ -60,7 +61,7 @@ var data = (function(){
 	clear = function(){
 		cache = {};
 		return localStorage.clear();
-	}
+	};
 
 	// setup
 	if( get("version") !== version ){
@@ -76,9 +77,3 @@ var data = (function(){
 		clear  : clear
 	};
 })();
-
-
-
-/** Neue Testmethode */
-data.test = function(){};
-

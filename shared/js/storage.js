@@ -11,22 +11,24 @@
  *
  * 
  */
+/*jshint smarttabs:true, browser:true, forin:true, noarg:true, curly:true, eqeqeq:true*/
+/*global data:false, conf:false, urls:false, isEmpty:true, xhr:false, console:true, dateToString:false */
 var storage = (function(){ // its a trap!
+	"use strict";
 	var weekMenu         = [], // Cache
 		filteredWeekMenu = [], // Cache
 		isFiltered       = false,
-		date = typeof debug !== "undefined" && debug ? new Date(2012, 0, 24) : new Date(), //now
+		date = new Date(), //now
 		week = function(){ return date.getWeek(); },
 		lock = [],
 		/**
-		 *
-		 * 	loadedMensen{
-		 * 	    mensa1 : {
-		 * 	        week1 : {},
-		 * 	        week2 : {...}
-		 * 	    },
-		 * 	    mensa2 : {...}
-		 * 	}
+		 *     loadedMensen{
+		 *         mensa1 : {
+		 *             week1 : {},
+		 *             week2 : {...}
+		 *         },
+		 *         mensa2 : {...}
+		 *     }
 		 */
 		loadedMensen = {},
 		menuCallbackQueue = [],
@@ -93,11 +95,11 @@ var storage = (function(){ // its a trap!
 		 */
 		filter = function(callback){
 			getWeekMenu(function(){
-				var i = 0, prop;
+				var i = 0;
 				if(!isFiltered) { // skip if already filtered
 					// copy weekMenu to filteredWeekMenu
 					filteredWeekMenu = [];
-					for(i=0; i < weekMenu.length; i++){
+					for(i = 0; i < weekMenu.length; i++){
 						filteredWeekMenu.push(weekMenu[i]);
 					}
 
@@ -105,7 +107,7 @@ var storage = (function(){ // its a trap!
 					var filterByProp = function(item){
 						return filterValues[prop].indexOf( item[prop] ) !== -1;
 					};
-					for( prop in filterProperties ){
+					for( var prop in filterProperties ){
 						if( filterProperties.hasOwnProperty(prop) ){
 							filteredWeekMenu = filteredWeekMenu.filter( filterByProp );
 						}
@@ -121,14 +123,14 @@ var storage = (function(){ // its a trap!
 		 *
 		 * @method setFilter
 		 * @example
-		 * 	setFilter("price", "2,50");
-		 * 	setFilter("price", ["2,50", "2,00"])
+		 *     setFilter("price", "2,50");
+		 *     setFilter("price", ["2,50", "2,00"])
 		 * @param {String} Property; the filtered property becomes the name of the filter
 		 * @param {String} {Array} Valid value string or array of valid values
 		 * */
 		setFilter = function(prop, value){
 			isFiltered = false;
-			if(typeof value === "string") value = [value];
+			value = (typeof value === "string")  ? [value] : value;
 
 			// if we change the date filter we need to change the date as well,
 			// so next week data for the next week get picked up
@@ -158,12 +160,13 @@ var storage = (function(){ // its a trap!
 		/**
 		 * Clear all filters
 		 *
+		 * @TODO: probably broken
 		 * @method unsetFilters
 		 */
 		unsetFilters = function(){
 			isFiltered = false;
-			filterLength = {};
-			filters = {};
+			filterProperties = {};
+			filterValues = {};
 			
 			saveFilters();
 		},
@@ -191,12 +194,12 @@ var storage = (function(){ // its a trap!
 						mensaWeight =  10;
 					}
 
-					dateWeight = parseInt(dateA[0], 10) * 100
-					           + parseInt(dateA[1], 10) * 10
-					           + parseInt(dateA[2], 10)
-					           - parseInt(dateB[0], 10) * 100
-					           - parseInt(dateB[1], 10) * 10
-					           - parseInt(dateB[2], 10);
+					dateWeight = parseInt(dateA[0], 10) * 100 +
+					           parseInt(dateA[1], 10) * 10 +
+					           parseInt(dateA[2], 10) -
+					           parseInt(dateB[0], 10) * 100 -
+					           parseInt(dateB[1], 10) * 10 -
+					           parseInt(dateB[2], 10);
 
 					return mensaWeight + dateWeight * 100;
 				});
@@ -227,7 +230,7 @@ var storage = (function(){ // its a trap!
 
 				for( i = 0; i < l; i++ ){
 					first = i === 0;
-					if(date != sorted[i].date && !isDateFilterSet){
+					if(date !== sorted[i].date && !isDateFilterSet){
 						if( segmented.length > 0 ) {// wenn Header dann dieses und nächsten Eintrag als "First" bzw. "Last" kennzeichnen
 							segmented[segmented.length - 1].last = true;
 						}
@@ -239,7 +242,7 @@ var storage = (function(){ // its a trap!
 							headerType : "date"
 						});
 					}
-					if(mensa != sorted[i].mensa && (!isMensaFilterSet || filteredByMensenLength !== 1) && savedMensenExist){
+					if(mensa !== sorted[i].mensa && (!isMensaFilterSet || filteredByMensenLength !== 1) && savedMensenExist){
 						// wenn Header dann dieses und nächsten Eintrag als "First" bzw. "Last" kennzeichnen
 						if( segmented.length > 0 ){
 							segmented[segmented.length-1].last = true;
@@ -261,7 +264,7 @@ var storage = (function(){ // its a trap!
 					date = sorted[i].date;
 				}
 				if(segmented.length > 0) {
-					segmented[segmented.length - 1].last = true
+					segmented[segmented.length - 1].last = true;
 				}
 				callback(segmented);
 			});
@@ -276,8 +279,6 @@ var storage = (function(){ // its a trap!
 		cleanData = function(){
 			var validUrls   = conf.getSavedURLs(),
 				day         = "",
-				mensa       = "",
-				week        = 0,
 				mensaLength = 0;
 
 			// Make sure we load the cache before we cleanup and save an empty menu
@@ -293,13 +294,18 @@ var storage = (function(){ // its a trap!
 			});
 
 			// cleanup loadedMensen
+			// @TODO: probably broken
 			var filterByMensaAndWeek = function(item){
-				return (mensa === item.mensa && week == item.week); // intentionally week comparison, since week can be a number or a string
+				return (mensa === item.mensa && parseInt(week, 10) === item.week);
 			};
-			for(mensa in loadedMensen){
-				for(week in loadedMensen[mensa]){
-					mensaLength = weekMenu.filter(filterByMensaAndWeek).length;
-					loadedMensen[mensa][week].loaded = mensaLength > 0;
+			for(var mensa in loadedMensen){
+				if( loadedMensen.hasOwnProperty(mensa) ){
+					for(var week in loadedMensen[mensa]){
+						if(loadedMensen[mensa].hasOwnProperty(week)){
+							mensaLength = weekMenu.filter(filterByMensaAndWeek).length;
+							loadedMensen[mensa][week].loaded = mensaLength > 0;
+						}
+					}
 				}
 			}
 
@@ -324,11 +330,11 @@ var storage = (function(){ // its a trap!
 			    mensa = "",
 			    now = new Date(),
 			    thisWeek = now.getWeek(),  // get this week's number
-			    week = week || date.getWeek(), // get Week from date
-				url = "";
+			    url = "";
+			week = week || date.getWeek(); // get Week from date
 
 			// enqueue the callback to be executed when everything has been loaded
-			if(callback) { menuCallbackQueue.push(callback);}
+			if(callback) { menuCallbackQueue.push(callback); }
 
 			for(var m = 0; m<mensenArr.length; m++){
 				mensa = mensenArr[m];
@@ -344,46 +350,44 @@ var storage = (function(){ // its a trap!
 					lock[mensa] = true;
 
 					// load and parse URL with correct week number
-					if(typeof debug !== "undefined" && debug){
-						url = urls.mock[mensa].replace(/{{week}}/, week);
-					} else {
-						url = urls.mensenWeek[mensa].replace(/{{week}}/, week);
-					}
+					url = urls.mensenWeek[mensa].replace(/\{\{week\}\}/, week);
 
 					// Trigger AJAX-Call
-					xhr.get(url, function(resp, additional_args){
-						// parse HTML
-						var day = "", oldWeekMenuLength = weekMenu.length, newWeekMenuLength = 0;
-
-						parseMensaHTML(resp, additional_args.mensa, additional_args.week);
-
-						// mark as cached only if new dishes where found
-						newWeekMenuLength = weekMenu.length;
-
-						if(oldWeekMenuLength < newWeekMenuLength){
-							loadedMensen[additional_args.mensa][additional_args.week] = true;
-						}
-
-						// release lock
-						delete lock[additional_args.mensa];
-						
-						// try to run callbacks
-						runMenuCallbacks();
-					}, function(resp, additional_args){
-						console.error("xhr error");
-
-						// release lock
-						delete lock[additional_args.mensa];
-
-						// try to run callbacks
-						runMenuCallbacks();
-					},
-					{
+					xhr.get(url, success, error, {
 						mensa : mensa,
 						week : week
-					}
-					);
+					});
 				}
+			}
+
+			function success(resp, additional_args){
+				// parse HTML
+				var day = "", oldWeekMenuLength = weekMenu.length, newWeekMenuLength = 0;
+
+				parseMensaHTML(resp, additional_args.mensa, additional_args.week);
+
+				// mark as cached only if new dishes where found
+				newWeekMenuLength = weekMenu.length;
+
+				if(oldWeekMenuLength < newWeekMenuLength){
+					loadedMensen[additional_args.mensa][additional_args.week] = true;
+				}
+
+				// release lock
+				delete lock[additional_args.mensa];
+				
+				// try to run callbacks
+				runMenuCallbacks();
+			}
+
+			function error(resp, additional_args){
+				console.error("xhr error");
+
+				// release lock
+				delete lock[additional_args.mensa];
+
+				// try to run callbacks
+				runMenuCallbacks();
 			}
 
 			runMenuCallbacks();
@@ -402,9 +406,17 @@ var storage = (function(){ // its a trap!
 			var tds, trs, dish, dishName, date, dateString, obj,
 				properties = [],
 				additives = [],
+				l = 0,
 				imgs,
 				spans,
-				tempDiv = document.createElement('div');
+				tempDiv = document.createElement('div'),
+				p,
+				priceEl,
+				price,
+				studPrice,
+				normalPrice,
+				ths,
+				tempObj;
 
 			tempDiv.innerHTML = html.replace(/src="(.)*?"/g, '').replace(/<script(.|\s)*?\/script>/g, '');
 			try{
@@ -452,7 +464,7 @@ var storage = (function(){ // its a trap!
 						} else {
 							var t = p[k].getElementsByTagName("*");
 							var tl = t.length;
-							for(var l=0; l < tl; l++){
+							for(l = 0; l < tl; l++){
 								if(t[l].className === "price"){
 									priceEl = t[l];
 									break;
@@ -466,7 +478,7 @@ var storage = (function(){ // its a trap!
 							// try to match the price with a regexp
 							price = p[k].innerText.match(/[0-9]+,[0-9][0-9]/g) || ["0", "0"];
 							price = price.length === 2 ? price : ["0", "0"];
-							p[k].innerHTML = p[k].innerHTML.replace(/[0-9]+,[0-9][0-9]/g,"")// remove Price from String
+							p[k].innerHTML = p[k].innerHTML.replace(/[0-9]+,[0-9][0-9]/g,""); // remove Price from String
 						}
 						studPrice = price[0].replace(/[^0-9,]/g,"");
 						normalPrice = price[1].replace(/[^0-9,]/g,"");
@@ -479,8 +491,10 @@ var storage = (function(){ // its a trap!
 							tempObj[imgs[l].title] = imgs[l].title;
 						}
 						
-						for ( key in tempObj ) {
-							properties.push({ name : key });
+						for ( var key in tempObj ) {
+							if( tempObj.hasOwnProperty(key) ){
+								properties.push({ name : key });
+							}
 						}
 
 						// Parse Additives
@@ -495,7 +509,9 @@ var storage = (function(){ // its a trap!
 						}
 						
 						for ( key in tempObj ) {
-							additives.push({ name : key });
+							if( tempObj.hasOwnProperty(key) ){
+								additives.push({ name : key });
+							}
 						}
 
 						// Parse out dish
@@ -567,12 +583,12 @@ var storage = (function(){ // its a trap!
 			try {
 				weekMenu = JSON.parse( data.get("menu") ) || [];
 			} catch (e) {
-				weekMenu = []
+				weekMenu = [];
 			}
 			try {
 				loadedMensen = JSON.parse( data.get("loadedMensen") ) || {};
 			} catch (e) {
-				loadedMensen = {}
+				loadedMensen = {};
 			}
 		},
 		/**
@@ -638,7 +654,7 @@ var storage = (function(){ // its a trap!
 						typesArr.push({
 							content  : type,
 							name     : type,
-							filtered : typeof filterProperties["name"] !== "undefined" && filterValues["name"].indexOf( type ) !== -1
+							filtered : typeof filterProperties.name !== "undefined" && filterValues.name.indexOf( type ) !== -1
 						});
 					}
 				}
@@ -658,8 +674,8 @@ var storage = (function(){ // its a trap!
 			var activeMensen = [];
 			for( i=0; i < l; i++ ){
 				if( mensen[i].active ) {
-					mensen[i].filtered = typeof filterProperties["mensa"] !== "undefined"
-						&& filterValues["mensa"].indexOf( mensen[i].name ) !== -1;
+					mensen[i].filtered = typeof filterProperties.mensa !== "undefined" &&
+						filterValues.mensa.indexOf( mensen[i].name ) !== -1;
 
 					mensen[i].content = mensen[i].name;
 					activeMensen.push(mensen[i]);
@@ -679,10 +695,10 @@ var storage = (function(){ // its a trap!
 			var l = dates.length;
 			while( l-- ){
 				dates[l] = {
-					filtered : typeof filterProperties["date"] !== "undefined" && filterValues["date"].indexOf( dates[l] ) !== -1,
+					filtered : typeof filterProperties.date !== "undefined" && filterValues.date.indexOf( dates[l] ) !== -1,
 					name     : dates[l],
 					content  : dateToString(dates[l])
-				}
+				};
 			}
 			callback (dates);
 		},
@@ -694,19 +710,12 @@ var storage = (function(){ // its a trap!
 		 * @param {Function} callback
 		 */
 		getInfo = function(type, callback){
-			switch(type){
-				case "date" : {
-					getDateInfo(callback);
-					break;
-				}
-				case "mensa" : {
-					getMensaInfo(callback);
-					break;
-				}
-				case "name" : {
-					getTypeInfo(callback);
-					break;
-				}
+			if(type === "date"){
+				getDateInfo(callback);
+			} else if(type === "mensa") {
+				getMensaInfo(callback);
+			} else if(type === "name") {
+				getTypeInfo(callback);
 			}
 			return this;
 		},
@@ -721,7 +730,7 @@ var storage = (function(){ // its a trap!
 		getAvailableDates = function(getNextWeek){
 			var noOfDays = getNextWeek ? 12 : 5,
 			    today = new Date(),
-			    monday = today.getDate() - today.getDay()
+			    monday = today.getDate() - today.getDay(),
 			    d    = new Date ( today.setDate( monday ) ),
 			    dates = [];
 			for(var i = 0; i < noOfDays; i++){
@@ -752,7 +761,7 @@ var storage = (function(){ // its a trap!
 		 * @param sortedSegmented {Boolean}
 		 */
 		today = function(callback, sortedSegmented){
-			date = typeof debug !== "undefined" && debug ? new Date(2012, 0, 24) : new Date(); //now
+			date = new Date(); //now
 			sortedSegmented = typeof sortedSegmented === "undefined" ? true : sortedSegmented;
 
 			if ( date.getDay() === 6 ){ // Saturday
@@ -772,8 +781,8 @@ var storage = (function(){ // its a trap!
 		 * @return {object}   this             
 		 */
 		nextDay = function(callback, sortedSegmented){
-			var sortedSegmented = typeof sortedSegmented === "undefined" ? true : sortedSegmented,
-			    thisDay = date.getDay();
+			var thisDay = date.getDay();
+			sortedSegmented = typeof sortedSegmented === "undefined" ? true : sortedSegmented;
 
 			// skip Weekends
 			if ( thisDay === 5 ) {
@@ -794,9 +803,9 @@ var storage = (function(){ // its a trap!
 		 * @param sortedSegmented {Boolean}
 		 */
 		prevDay = function(callback, sortedSegmented){
-			var sortedSegmented = typeof sortedSegmented === "undefined" ? true : sortedSegmented,
 //			    oldDate = date,
-			    thisDay = date.getDay();
+			var thisDay = date.getDay();
+			sortedSegmented = typeof sortedSegmented === "undefined" ? true : sortedSegmented;
 			    
 			// skip Weekends
 			if ( thisDay === 1 ) {
@@ -862,7 +871,7 @@ var storage = (function(){ // its a trap!
 		dateStringToDate = function(dateString){
 			dateString = dateString.split("-");
 			return new Date(dateString[0], dateString[1]-1 ,dateString[2]);
-		}
+		};
 
 
 		// init
@@ -960,5 +969,5 @@ var storage = (function(){ // its a trap!
 		nextDay : nextDay,
 		prevDay : prevDay,
 		today   : today
-	}
+	};
 })();

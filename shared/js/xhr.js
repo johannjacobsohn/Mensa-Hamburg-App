@@ -4,7 +4,7 @@
  *
  * @class xhr
  */
-
+/*jshint smarttabs:true browser:true */
 (function(){
 	xhr = {
 		/**

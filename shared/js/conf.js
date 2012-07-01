@@ -3,6 +3,7 @@
  *
  * @class conf
  */
+ /*jshint smarttabs:true browser:true */
 (function(){
 	conf = {
 		/**

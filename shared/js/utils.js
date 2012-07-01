@@ -1,15 +1,17 @@
+/*jshint smarttabs:true browser:true */
+
 // http://syn.ac/tech/19/get-the-weeknumber-with-javascript/
 Date.prototype.getWeek = function() {
 	var determinedate = new Date();
 	determinedate.setFullYear(this.getFullYear(), this.getMonth(), this.getDate());
 	var D = determinedate.getDay();
-	if(D == 0) D = 7;
+	if(D === 0) D = 7;
 	determinedate.setDate(determinedate.getDate() + (4 - D));
 	var YN = determinedate.getFullYear();
 	var ZBDoCY = Math.floor((determinedate.getTime() - new Date(YN, 0, 1, -6)) / 86400000);
 	var WN = 1 + Math.floor(ZBDoCY / 7);
 	return WN;
-}
+};
 
 function isEmpty(obj) {
 	for(var prop in obj) {
@@ -79,7 +81,7 @@ function formatDate(date, lang){
 		dateFormats = {
 			"de" : dayNames[lang][date.getDay()] + ", " + date.getDate() + "." + (date.getMonth() + 1) + ".",
 			"en" : dayNames[lang][date.getDay()] + ", " + date.getDate() + "." + (date.getMonth() + 1) + "."
-		}
+		};
 
 	return dateDiff >= -1 && dateDiff <= 1 ? dayStrings[lang][dateDiff] : dateFormats[lang];
 }
@@ -111,14 +113,14 @@ if (!Array.prototype.indexOf) {
 			if (this[i] === obj) { return i; }
 		}
 		return -1;
-	}
+	};
 }
 
 //http://blog.stevenlevithan.com/archives/faster-trim-javascript
 if (!String.prototype.trim) {
 	String.prototype.trim = function() {
 		return this.replace(/^\s\s*/, '').replace(/\s\s*$/, '');
-	}
+	};
 }
 
 

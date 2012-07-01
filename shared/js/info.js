@@ -3,6 +3,7 @@
  * 
  * @class info
  */
+/*jshint smarttabs:true browser:true */
 info = {
 	appName  : "Mensa-Hamburg App",
 	appDesc  : "Dies ist eine App von Studenten für Studenten und sie ist Open Source!\n Dein Feedback ist immer Willkommen!",
@@ -11,4 +12,4 @@ info = {
 
 	notConfTitle : "Noch nicht konfiguriert",
 	notConfText : "Uh, scheinbar ist hier noch nichts konfiguriert, daher werden *keine* Mensen geladen... Du musst welche aktivieren um etwas zu sehen."
-}
+};
