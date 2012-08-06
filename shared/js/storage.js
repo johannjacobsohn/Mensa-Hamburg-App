@@ -62,7 +62,8 @@ var storage = (function(){ // its a trap!
 		},
 		filterProperties = {},
 		filterValues = {},
-
+		filterCompareType = {},
+		
 		/**
 		 * Get filter setting from storage and populate properties
 		 *
@@ -72,8 +73,9 @@ var storage = (function(){ // its a trap!
 		loadFilters = function(){
 			/// @TODO
 			if( persistentFilters ){
-				filterProperties = JSON.parse( data.get("filterProperties") || "{}" );
-				filterValues     = JSON.parse( data.get("filterValues")     || "{}" );
+				filterProperties  = JSON.parse( data.get("filterProperties")  || "{}" );
+				filterValues      = JSON.parse( data.get("filterValues")      || "{}" );
+				filterCompareType = JSON.parse( data.get("filterCompareType") || "{}" );
 			}
 		},
 		/**
@@ -83,13 +85,19 @@ var storage = (function(){ // its a trap!
 		 */
 		saveFilters = function(){
 			if( persistentFilters ){
-				data.set("filterProperties", JSON.stringify(filterProperties) );
-				data.set("filterValues",     JSON.stringify(filterValues)     );
+				data.set("filterProperties",  JSON.stringify(filterProperties)  );
+				data.set("filterValues",      JSON.stringify(filterValues)      );
+				data.set("filterCompareType", JSON.stringify(filterCompareType) );
 			}
 		},
 		/**
 		 * do the filtering
-		 * 
+		 *
+		 *
+		 * filterName
+		 * filterValues
+		 * filterCompareType  => includes/excludes
+		 *
 		 * @method filter
 		 * @param {Function} callback with filtered menu
 		 */
@@ -104,8 +112,54 @@ var storage = (function(){ // its a trap!
 					}
 
 					// filter filteredWeekMenu
+					// @TODO: rework
 					var filterByProp = function(item){
-						return filterValues[prop].indexOf( item[prop] ) !== -1;
+						/* if property is string THEN
+						 *     return true if
+						 *     - includes prop AND should include prop
+						 *       OR
+						 *     - does not include prop AND should not include prop
+						 *
+						 * else if property is array
+						 *     return false if
+						 *     - includes prop in array AND should not include prop
+						 *       OR
+						 *     - does not include prop in array AND should include prop
+						 *
+						 *
+						 *
+						 * if one excluding property is set, return false, else return true
+						 * if one including property is set, return true, else return false
+						 */
+
+						var a = true;
+						var b = true;
+						
+						if(typeof item[prop] === "string") {
+							for(var i = 0; i<filterValues[prop].length; i++){
+								a = filterValues[prop][i].type === "include";
+								b = filterValues[prop][i].value.indexOf( item[prop] ) !== -1;
+								if (a && b || !a && !b){
+									return true
+								}
+							}
+						} else {
+							// split filtervalues in includes and excludes
+							var includes = [];
+							var excludes = [];
+							filterValues[prop].filter(function(item){ return item.type === "include"} ).map(function(item){ includes.push(item.value) });
+							filterValues[prop].filter(function(item){ return item.type === "exclude"} ).map(function(item){ excludes.push(item.value) });
+							var inc = include(includes, item[prop]);
+							var exc = !include(excludes, item[prop]);
+							if(includes.length === 0){
+								return exc
+							}
+							if(excludes.length === 0){
+								return inc
+							}
+							return inc && exc;
+						}
+						return false;
 					};
 					for( var prop in filterProperties ){
 						if( filterProperties.hasOwnProperty(prop) ){
@@ -118,29 +172,47 @@ var storage = (function(){ // its a trap!
 				callback(filteredWeekMenu);
 			});
 		},
+		
+		/* return if on element of array a is in array b*/
+		include = function(a,b) {
+			for (var i = 0; i < a.length; i++){
+				if( b.indexOf(a[i]) != -1 ){
+					return true
+				}
+			}
+			return false
+		},
+
 		/**
 		 * Set an arbitrary filter by supplying both property and expected value(s)
 		 *
 		 * @method setFilter
 		 * @example
 		 *     setFilter("price", "2,50");
-		 *     setFilter("price", ["2,50", "2,00"])
+		 *     setFilter("price", ["2,50", "2,00"]);
+		 *     setFilter("price", [{value: "2,50", type: "include"}, {"2,00", type: "include"}]);
 		 * @param {String} Property; the filtered property becomes the name of the filter
 		 * @param {String} {Array} Valid value string or array of valid values
+		 * @param {String} Type of comparison, either include or exclude
 		 * */
 		setFilter = function(prop, value){
 			isFiltered = false;
-			value = (typeof value === "string")  ? [value] : value;
+			value = (typeof value === "string")  ? [ { value: value, type: "include" } ] : value;
 
+			if(typeof value[0] === "string"){
+				for (var i=0; i<value.length; i++ ){
+					value[i] = { value: value[i], type: "include" };
+				}
+			}
 			// if we change the date filter we need to change the date as well,
-			// so next week data for the next week get picked up
+			// so next week data for the next week gets picked up
 			// @TODO: Rethink...
 			if(prop === "date"){
-				date = dateStringToDate( value.sort()[ value.length - 1 ] );
+				date = dateStringToDate( value.sort()[ value.length - 1 ].value );
 			}
 
-			filterProperties[prop] = prop;
-			filterValues[prop] = value;
+			filterProperties[prop]  = prop;
+			filterValues[prop]      = value;
 
 			saveFilters();
 		},
@@ -155,6 +227,7 @@ var storage = (function(){ // its a trap!
 			isFiltered = false;
 			delete filterProperties[type];
 			delete filterValues[type];
+			delete filterCompareType[type];
 			saveFilters();
 		},
 		/**
@@ -167,6 +240,7 @@ var storage = (function(){ // its a trap!
 			isFiltered = false;
 			filterProperties = {};
 			filterValues = {};
+			filterCompareType = {};
 			
 			saveFilters();
 		},
@@ -362,7 +436,7 @@ var storage = (function(){ // its a trap!
 
 			function success(resp, additional_args){
 				// parse HTML
-				var day = "", oldWeekMenuLength = weekMenu.length, newWeekMenuLength = 0;
+				var oldWeekMenuLength = weekMenu.length, newWeekMenuLength = 0;
 
 				parseMensaHTML(resp, additional_args.mensa, additional_args.week);
 
@@ -493,7 +567,7 @@ var storage = (function(){ // its a trap!
 						
 						for ( var key in tempObj ) {
 							if( tempObj.hasOwnProperty(key) ){
-								properties.push({ name : key });
+								properties.push(key);
 							}
 						}
 
@@ -510,7 +584,7 @@ var storage = (function(){ // its a trap!
 						
 						for ( key in tempObj ) {
 							if( tempObj.hasOwnProperty(key) ){
-								additives.push({ name : key });
+								additives.push(key);
 							}
 						}
 
@@ -551,9 +625,9 @@ var storage = (function(){ // its a trap!
 			var fkt;
 			// only execute callback queue if all locks are released
 			if(isEmpty(lock)){
-				while (menuCallbackQueue.length>0){
+				while (menuCallbackQueue.length > 0){
 					fkt = menuCallbackQueue.pop();
-					fkt(filteredWeekMenu);
+					fkt( filteredWeekMenu );
 				}
 
 				// sync cache
@@ -662,6 +736,61 @@ var storage = (function(){ // its a trap!
 			});
 		},
 		/**
+		* getPropertiesInfo
+		*
+		* @method getPropertiesInfo
+		* @param {Function} callback
+		*/
+		getPropertiesInfo = function(callback){
+			getWeekMenu(function(){
+				var property, properties = {}, propertiesArr = [], l = weekMenu.length;
+				while ( l-- ){
+					for(var i = 0; i<weekMenu[l].properties.length; i++){
+						properties[weekMenu[l].properties[i]] = true;
+					}
+				}
+
+				for(property in properties){
+					if( properties.hasOwnProperty(property) ){
+						propertiesArr.push({
+							content  : property,
+							name     : properties,
+							filtered : typeof filterProperties.name !== "undefined" && filterValues.name.indexOf( property ) !== -1
+						});
+					}
+				}
+				callback(propertiesArr);
+			});
+		},
+		/**
+		* getAdditivesInfo
+		* 
+		* @TODO: merge with getPropertiesInfo and possibly getTypeInfo getTypeInfo
+		* @method getAdditivesInfo
+		* @param {Function} callback
+		*/
+		getAdditivesInfo = function(callback){
+			getWeekMenu(function(){
+				var property, properties = {}, propertiesArr = [], l = weekMenu.length;
+				while ( l-- ){
+					for(var i = 0; i<weekMenu[l]["additives"].length; i++){
+						properties[weekMenu[l]["additives"][i]] = true;
+					}
+				}
+
+				for(property in properties){
+					if( properties.hasOwnProperty(property) ){
+						propertiesArr.push({
+							content  : property,
+							name     : properties,
+							filtered : typeof filterProperties.name !== "undefined" && filterValues.name.indexOf( property ) !== -1
+						});
+					}
+				}
+				callback(propertiesArr);
+			});
+		},
+		/**
 		 * getMensaInfo
 		 *
 		 * @method getMensaInfo
@@ -705,6 +834,7 @@ var storage = (function(){ // its a trap!
 		/**
 		 * get information
 		 *
+		 * @chainable
 		 * @method getInfo
 		 * @param {String} type
 		 * @param {Function} callback
@@ -716,6 +846,10 @@ var storage = (function(){ // its a trap!
 				getMensaInfo(callback);
 			} else if(type === "name") {
 				getTypeInfo(callback);
+			} else if(type === "additives") {
+				getAdditivesInfo(callback);
+			} else if(type === "properties") {
+				getPropertiesInfo(callback);
 			}
 			return this;
 		},
@@ -893,6 +1027,8 @@ var storage = (function(){ // its a trap!
 		getTypeInfo  : getTypeInfo,
 		getMensaInfo : getMensaInfo,
 		getDateInfo  : getDateInfo,
+		getPropertiesInfo : getPropertiesInfo,
+		getAdditivesInfo : getAdditivesInfo,
 
 		// DEPRECIATED:
 		getTypes          : getTypes,
