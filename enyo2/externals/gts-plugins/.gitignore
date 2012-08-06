@@ -1,0 +1,5 @@
+#ignore thumbs.db
+thumbs.db
+
+#ignore workspace
+*.sublime-workspace
