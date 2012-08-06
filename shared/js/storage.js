@@ -896,6 +896,7 @@ var storage = (function(){ // its a trap!
 		 */
 		today = function(callback, sortedSegmented){
 			date = new Date(); //now
+			date.setHours(0); date.setMinutes(0); date.setSeconds(0);  date.setMilliseconds(0);
 			sortedSegmented = typeof sortedSegmented === "undefined" ? true : sortedSegmented;
 
 			if ( date.getDay() === 6 ){ // Saturday
@@ -984,7 +985,6 @@ var storage = (function(){ // its a trap!
 		/**
 		 * convert date to datestring
 		 *
-		 * @private
 		 * @method dateToDateString
 		 * @param {Object} Date
 		 * @return {String} Datestring
@@ -997,12 +997,12 @@ var storage = (function(){ // its a trap!
 		/**
 		 * convert datestring to date object
 		 *
-		 * @private
 		 * @method dateStringToDate
 		 * @param {String} dateString
 		 * @return {Object} date
 		 */
 		dateStringToDate = function(dateString){
+			console.log(dateString)
 			dateString = dateString.split("-");
 			return new Date(dateString[0], dateString[1]-1 ,dateString[2]);
 		};
@@ -1104,6 +1104,10 @@ var storage = (function(){ // its a trap!
 		thisDay : thisDay,
 		nextDay : nextDay,
 		prevDay : prevDay,
-		today   : today
+		today   : today,
+		
+		// Helpers:
+		dateToDateString : dateToDateString,
+		dateStringToDate : dateStringToDate
 	};
 })();
