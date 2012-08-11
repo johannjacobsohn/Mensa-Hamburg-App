@@ -1,0 +1,637 @@
+Z����/** 
+ * Static conf file for urls to load data from
+ *
+ * @class urls
+*/
+/*jshint smarttabs:true browser:true */
+(function(){
+	var baselink = "http://speiseplan.studierendenwerk-hamburg.de/index.php/de/";
+	urls = {
+		mensenWeek : {
+			"Alexanderstrasse"      : baselink + "660/2012/{{week}}/",
+			"Armgartstrasse"        : baselink + "590/2012/{{week}}/",
+			"Averhoffstrasse"       : baselink + "650/2012/{{week}}/",
+			"Bergedorf"             : baselink + "520/2012/{{week}}/",
+			"Berliner Tor"          : baselink + "530/2012/{{week}}/",
+			"Botanischer Garten"    : baselink + "560/2012/{{week}}/",
+			"Bucerius Law School"   : baselink + "410/2012/{{week}}/",
+			"Campus"                : baselink + "340/2012/{{week}}/",
+			"City Nord"             : baselink + "550/2012/{{week}}/",
+			"Finkenau"              : baselink + "620/2012/{{week}}/",
+			"Geomatikum"            : baselink + "540/2012/{{week}}/",
+			"Harburg"               : baselink + "570/2012/{{week}}/",
+			"Jungiusstrasse"        : baselink + "610/2012/{{week}}/",
+			"Philosophenturm"       : baselink + "350/2012/{{week}}/",
+			"Stellingen"            : baselink + "580/2012/{{week}}/",
+			"Studierendenhaus"      : baselink + "310/2012/{{week}}/"
+		}
+	};
+
+	mensen = [
+		{
+			name: "Alexanderstrasse",
+			url:  baselink + "660/2012/{{week}}/",
+			address: "Alexanderstraße 1, 20099 Hamburg",
+			open: "Montag - Donnerstag: 07:45 - 18:00 Uhr, Freitag: 07:45 - 16:00 Uhr",
+			misc: "Vom 23.07.2012-07.09.2012 geschlossen"
+		},
+		{
+			name: "Armgartstrasse",
+			url:  baselink + "590/2012/{{week}}/",
+			address: "Armgartstraße 24, 22087 Hamburg",
+			open: "Montag - Donnerstag: 09:00 - 15:00 Uhr; Freitag: 09:00 - 14:30 Uhr",
+			misc: "Vom 16.07.2012-14.09.2012 geschlossen"
+		},
+		{
+			name: "Averhoffstrasse",
+			url:  baselink + "650/2012/{{week}}/",
+			address: "Averhoffstraße 38, 22085 Hamburg",
+			open: "Montag - Donnerstag: 09:00 - 16:15 Uhr; Freitag: 09:00 - 14:00 Uhr",
+			misc: "Vom 16.07.2012-28.09.2012 geschlossen"
+		},
+		{
+			name: "Bergedorf",
+			url:  baselink + "520/2012/{{week}}/",
+			address: "Lohbrügger Kirchstraße 65, 21033 Hamburg",
+			open: "Montag - Donnerstag: 11:15 - 15:00 Uhr; Freitag: 11:15 - 14:30 Uhr"
+		},
+		{
+			name: "Berliner Tor",
+			url:  baselink + "530/2012/{{week}}/",
+			address: "Berliner Tor 7, 20099 Hamburg",
+			open: "Montag - Freitag: 11:15 - 14:30 Uhr"
+		},
+		{
+			name: "Botanischer Garten",
+			url:  baselink + "560/2012/{{week}}/",
+			address: "Ohnhorstraße 18, 22609 Hamburg",
+			open: "Montag - Donnerstag: 11:00 - 15:00 Uhr, Freitag: 11:00 - 14:30 Uhr",
+			misc: "Vom 16.07.2012-10.08.2012 geschlossen"
+		},
+		{
+			name: "Bucerius Law School",
+			url:  baselink + "410/2012/{{week}}/",
+			address: "Jungiusstraße 6, 20355 Hamburg",
+			open: "Montag - Freitag: 11:30 - 14:00 Uhr"
+		},
+		{
+			name: "Campus",
+			url:  baselink + "340/2012/{{week}}/",
+			address: "Von-Melle-Park 5, 20146 Hamburg",
+			open: "Montag - Donnerstag: 10:00 - 16:00 Uhr; Freitag: 10:00 - 15:30 Uhr"
+		},
+		{
+			name: "City Nord",
+			url:  baselink + "550/2012/{{week}}/",
+			address: "Hebebrandstraße 1, 22297 Hamburg",
+			open: "Montag - Donnerstag: 08:00 - 15:00 Uhr; Freitag: 08:00 - 14:30 Uhr",
+			misc: "Vom 23.07.2012-24.08.2012 geschlossen"
+		},
+		{
+			name: "Finkenau",
+			url:  baselink + "620/2012/{{week}}/",
+			address: "Finkenau 35, 22081 Hamburg",
+			open: "Montag - Freitag: 08:00 - 18:00 Uhr",
+			misc: "Vom 13.08.2012-31.08.2012 geschlossen"
+		},
+		{
+			name: "Geomatikum",
+			url:  baselink + "540/2012/{{week}}/",
+			address: "Bundesstraße 55, 20146 Hamburg",
+			open: "Montag - Donnerstag: 11:15 - 15:00 Uhr; Freitag: 11:15 - 14:30 Uhr"
+		},
+		{
+			name: "Harburg",
+			url:  baselink + "570/2012/{{week}}/",
+			address: "Denickestraße 22, 21073 Hamburg",
+			open: "Montag - Freitag: 07:45 - 18:00 Uhr"
+		},
+		{
+			name: "Jungiusstrasse",
+			url:  baselink + "610/2012/{{week}}/",
+			address: "Jungiusstraße 9, 20355 Hamburg",
+			open: "Montag - Freitag: 10:00- 16:30 Uhr",
+			misc: "Vom 16.07.2012-31.08.2012 geschlossen"
+		},
+		{
+			name: "Philosophenturm",
+			url:  baselink + "350/2012/{{week}}/",
+			address: "Von-Melle-Park 6, 20146 Hamburg",
+			open: "Montag - Freitag: 08:00 - 19:00 Uhr, Samstag: 08:00 - 14:30 Uhr",
+			misc: "Vom 23.07.2012-25.08.2012 geschlossen"
+		},
+		{
+			name: "Stellingen",
+			url:  baselink + "580/2012/{{week}}/",
+			address: "Vogt-Kölln-Straße 30, 22527 Hamburg",
+			open: "Montag - Donnerstag: 08:00 - 15:00 Uhr; Freitag: 08:00 - 14:30 Uhr",
+			misc: "Vom 23.07.2012-24.08.2012 geschlossen"
+		},
+		{
+			name: "Studierendenhaus",
+			url:  baselink + "310/2012/{{week}}/",
+			address: "Von-Melle-Park 2, 20146 Hamburg",
+			open: "Montag - Donnerstag: 11:00 - 15:00 Uhr, Freitag: 11:00 - 14:30 Uhr"
+		}
+	];
+})();
+(function(window) {
+
+var formatFailedStep = function(step) {
+
+  var stack = step.trace.stack;
+  var message = step.message;
+  if (stack) {
+    // remove the trailing dot
+    var firstLine = stack.substring(0, stack.indexOf('\n') - 1);
+    if (message && message.indexOf(firstLine) == -1) {
+      stack = message + '\n' + stack;
+    }
+
+    // remove jasmine stack entries
+    return stack.replace(/\n.+jasmine\.js\?\d*\:.+(?=(\n|$))/g, '');
+  }
+
+  return message;
+};
+
+var indexOf = function(collection, item) {
+  if (collection.indexOf) return collection.indexOf(item);
+
+  for (var i = 0, ii = collection.length; i < ii; i++) {
+    if (collection[i] === item) return i;
+  }
+
+  return -1;
+};
+
+
+/**
+ * Very simple reporter for jasmine
+ */
+var TestacularReporter = function(tc) {
+
+  var failedIds = [];
+
+  this.reportRunnerStarting = function(runner) {
+    tc.info({total: runner.specs().length});
+  };
+
+  this.reportRunnerResults = function(runner) {
+    tc.store('jasmine.lastFailedIds', failedIds);
+    tc.complete();
+  };
+
+  this.reportSuiteResults = function(suite) {
+  };
+
+  this.reportSpecStarting = function(spec) {
+    spec.results_.time = new Date().getTime();
+  };
+
+  this.reportSpecResults = function(spec) {
+    var result = {
+      id: spec.id,
+      description: spec.description,
+      suite: [],
+      success: spec.results_.failedCount === 0,
+      skipped: spec.results_.skipped,
+      time: spec.results_.skipped ? 0 : new Date().getTime() - spec.results_.time,
+      log: []
+    };
+
+    var suitePointer = spec.suite;
+    while (suitePointer) {
+      result.suite.unshift(suitePointer.description);
+      suitePointer = suitePointer.parentSuite;
+    }
+
+    if (!result.success) {
+      var steps = spec.results_.items_;
+      for (var i = 0; i < steps.length; i++) {
+        if (!steps[i].passed_) {
+          result.log.push(formatFailedStep(steps[i]));
+        }
+      }
+
+      failedIds.push(result.id);
+    }
+
+    tc.result(result);
+  };
+
+  this.log = function() {};
+};
+
+
+var createStartFn = function(tc, jasmineEnv) {
+  return function(config) {
+    // we pass jasmineEnv during testing
+    // in production we ask for it lazily, so that adapter can be loaded even before jasmine
+    jasmineEnv = jasmineEnv || window.jasmine.getEnv();
+
+    var currentSpecsCount = jasmineEnv.nextSpecId_;
+    var lastCount = tc.store('jasmine.lastCount');
+    var lastFailedIds = tc.store('jasmine.lastFailedIds');
+
+    tc.store('jasmine.lastCount', currentSpecsCount);
+    tc.store('jasmine.lastFailedIds', []);
+
+    // filter only last failed specs
+    if (lastCount === currentSpecsCount && // still same number of specs
+        lastFailedIds.length > 0 &&        // at least one fail last run
+        !jasmineEnv.exclusive_) {          // no exclusive mode (iit, ddesc)
+
+      jasmineEnv.specFilter = function(spec) {
+        return indexOf(lastFailedIds, spec.id) !== -1;
+      };
+    }
+
+
+
+    jasmineEnv.addReporter(new TestacularReporter(tc));
+    jasmineEnv.execute();
+  };
+};
+
+
+var createDumpFn = function(tc, serialize) {
+  return function() {
+
+    var args = Array.prototype.slice.call(arguments, 0);
+
+    if (serialize) {
+      for (var i = 0; i < args.length; i++) {
+        args[i] = serialize(args[i]);
+      }
+    }
+
+    tc.info({dump: args});
+  };
+};
+
+
+window.__testacular__.start = createStartFn(window.__testacular__);
+window.dump = createDumpFn(window.__testacular__, function(value) {
+  return window.angular && window.angular.mock && window.angular.mock.dump(value) || value;
+});
+
+})(window);
+/**
+ * Handle configuration
+ *
+ * @class conf
+ */
+ /*jshint smarttabs:true browser:true */
+(function(){
+	conf = {
+		/**
+		 * get all active mensen
+		 * 
+		 * @method getURLs
+		 * @return {Array} an Array of mensa names
+		 */
+		getSavedURLs : function(){
+			try {
+				return JSON.parse(data.get("urls")) || [];
+			} catch (e) {
+				return [];
+			}
+		},
+		/**
+		 * get all known mensen
+		 * 
+		 * @method getURLs
+		 * @return {Array} an Array of mensa names
+		 */
+		getURLs : function(){
+			var array = [], item = "";
+			for(item in urls.mensenWeek) array.push(item);
+			return array;
+		},
+		/**
+		 * set active mensen
+		 * @method setURLs
+		 * @param {Array} urls ein Array an Mensennamen
+		 * @return {Boolean} success
+		 */
+		setURLs : function(urls){
+			return data.save("urls", JSON.stringify(urls));
+		},
+		/**
+		 * Find out if app has been configured
+		 * 
+		 * @method isConfigured
+		 * @param {Array} names of mensen
+		 */
+		isConfigured : function(urls){
+			try{
+				return typeof localStorage.getItem("urls") === "string";
+			} catch(e) {
+				return false;
+			}
+		},
+		/**
+		 * Get a list of all mensa names and status
+		 * depreciated, use storage.getMensaInfo
+		 * 
+		 * @depreciated
+		 * @method getMensaInfo
+		 * @return {JSON} json
+		 */
+		getMensaInfo : function(){
+			if(console && console.warn) { console.warn( "conf.getMensaInfo is depreciated" ); }
+			return storage.getMensaInfo();
+			var json = [];
+			var a = this.getURLs();
+			var b = this.getSavedURLs();
+			var i = 0;
+			for(i=0; i < a.length; i++){
+				json.push({
+					"name"   : a[i],
+					"active" : b.indexOf(a[i]) != -1
+				});
+			}
+			return json;
+		},
+		/**
+		 * Set setStudentPrices
+		 *
+		 * @method setStudentPrices
+		 * @param {Boolean} state
+		 * @return {Boolean} success
+		 */
+		setStudentPrices : function(state){
+			return data.save("displayStudentPrices", state ? "1" : "0");
+		},
+		/**
+		 * get displayStudentPrices
+		 *
+		 * @method displayStudentPrices
+		 * @return {Boolean} state
+		 */
+		displayStudentPrices : function(){
+			return (typeof data.get("displayStudentPrices") === "undefined" ||  data.get("displayStudentPrices") === null || data.get("displayStudentPrices") === "1");
+		}
+	};
+})();
+/*jshint smarttabs:true browser:true */
+
+// http://syn.ac/tech/19/get-the-weeknumber-with-javascript/
+Date.prototype.getWeek = function() {
+	var determinedate = new Date();
+	determinedate.setFullYear(this.getFullYear(), this.getMonth(), this.getDate());
+	var D = determinedate.getDay();
+	if(D === 0) D = 7;
+	determinedate.setDate(determinedate.getDate() + (4 - D));
+	var YN = determinedate.getFullYear();
+	var ZBDoCY = Math.floor((determinedate.getTime() - new Date(YN, 0, 1, -6)) / 86400000);
+	var WN = 1 + Math.floor(ZBDoCY / 7);
+	return WN;
+};
+
+function isEmpty(obj) {
+	for(var prop in obj) {
+		if(obj.hasOwnProperty(prop)){
+			return false;
+		}
+	}
+	return true;
+}
+
+//http://james.padolsey.com/javascript/deep-copying-of-objects-and-arrays/
+function deepCopy(o) {
+    var copy = o,k;
+ 
+    if (o && typeof o === 'object') {
+        copy = Object.prototype.toString.call(o) === '[object Array]' ? [] : {};
+        for (k in o) {
+            copy[k] = deepCopy(o[k]);
+        }
+    }
+ 
+    return copy;
+}
+
+/**
+ * Create a nicely formated string representation of any given Date <br/>
+ *
+ * Just a legacy wrapper for formatDate
+ * 
+ * @param  {string} isoDate  Date in iso format (yyyy-mm-dd)
+ * @param  {string} optional language identifier, eg. "de" or "en"
+ * @return {string} formated String
+ */
+function dateToString(isoDate, lang){
+	var d = isoDate.split("-");
+	return formatDate(new Date( d[0], d[1]-1, d[2] ), lang);
+	// new Date( isoDate )  should be possible too, but fails badly in safari/ios
+}
+
+/**
+ * Create a nicely formated string representation of any given Date
+ *
+ * @param  {object} date object
+ * @param  {string} optional language identifier, eg. "de" or "en"
+ * @return {string} formated String
+ */
+function formatDate(date, lang){
+	var lang = lang || "de",
+		millisecondsInDay = 60 * 60 * 24 * 1000,
+		dateDiff = daysBetween(new Date(), date),
+		dayStrings = {
+			de : {
+				"-1" : "Gestern",
+				"0"  : "Heute",
+				"1"  : "Morgen"
+			},
+			en : {
+				"-1" : "Yesterday",
+				"0"  : "Today",
+				"1"  : "Tomorrow"
+			}
+		},
+		dayNames  = {
+			"de" : ["Sonntag", "Montag", "Dienstag", "Mittwoch" , "Donnerstag", "Freitag", "Sonnabend"],
+			"en" : ["Sunday" , "Monday", "Tuesday" , "Wednesday", "Thursday"  , "Friday" , "Saturday"]
+		},
+		dateFormats = {
+			"de" : dayNames[lang][date.getDay()] + ", " + date.getDate() + "." + (date.getMonth() + 1) + ".",
+			"en" : dayNames[lang][date.getDay()] + ", " + date.getDate() + "." + (date.getMonth() + 1) + "."
+		};
+
+	return dateDiff >= -1 && dateDiff <= 1 ? dayStrings[lang][dateDiff] : dateFormats[lang];
+}
+
+/*
+ * http://stackoverflow.com/questions/1036742/date-difference-in-javascript-ignoring-time-of-day
+ */
+function daysBetween(first, second) {
+	// Copy date parts of the timestamps, discarding the time parts.
+	var one = new Date(first.getFullYear(), first.getMonth(), first.getDate());
+	var two = new Date(second.getFullYear(), second.getMonth(), second.getDate());
+
+	// Do the math.
+	var millisecondsPerDay = 1000 * 60 * 60 * 24;
+	var millisBetween = two.getTime() - one.getTime();
+	var days = millisBetween / millisecondsPerDay;
+
+	// Round down.
+	return Math.floor(days);
+}
+
+
+/*
+http://stackoverflow.com/questions/1744310/how-to-fix-array-indexof-in-javascript-for-ie-browsers
+*/
+if (!Array.prototype.indexOf) {
+	Array.prototype.indexOf = function(obj, start) {
+		for (var i = (start || 0), j = this.length; i < j; i++) {
+			if (this[i] === obj) { return i; }
+		}
+		return -1;
+	};
+}
+
+//http://blog.stevenlevithan.com/archives/faster-trim-javascript
+if (!String.prototype.trim) {
+	String.prototype.trim = function() {
+		return this.replace(/^\s\s*/, '').replace(/\s\s*$/, '');
+	};
+}
+
+
+// https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/array/foreach
+// Production steps of ECMA-262, Edition 5, 15.4.4.18  
+// Reference: http://es5.github.com/#x15.4.4.18  
+if ( !Array.prototype.forEach ) {  
+  
+  Array.prototype.forEach = function( callback, thisArg ) {  
+  
+	var T, k;  
+  
+	if ( this == null ) {  
+	  throw new TypeError( "this is null or not defined" );  
+	}  
+  
+	// 1. Let O be the result of calling ToObject passing the |this| value as the argument.  
+	var O = Object(this);  
+  
+	// 2. Let lenValue be the result of calling the Get internal method of O with the argument "length".  
+	// 3. Let len be ToUint32(lenValue).  
+	var len = O.length >>> 0; // Hack to convert O.length to a UInt32  
+  
+	// 4. If IsCallable(callback) is false, throw a TypeError exception.  
+	// See: http://es5.github.com/#x9.11  
+	if ( {}.toString.call(callback) != "[object Function]" ) {  
+	  throw new TypeError( callback + " is not a function" );  
+	}  
+  
+	// 5. If thisArg was supplied, let T be thisArg; else let T be undefined.  
+	if ( thisArg ) {  
+	  T = thisArg;  
+	}  
+  
+	// 6. Let k be 0  
+	k = 0;  
+  
+	// 7. Repeat, while k < len  
+	while( k < len ) {  
+  
+	  var kValue;  
+  
+	  // a. Let Pk be ToString(k).  
+	  //   This is implicit for LHS operands of the in operator  
+	  // b. Let kPresent be the result of calling the HasProperty internal method of O with argument Pk.  
+	  //   This step can be combined with c  
+	  // c. If kPresent is true, then  
+	  if ( k in O ) {  
+  
+		// i. Let kValue be the result of calling the Get internal method of O with argument Pk.  
+		kValue = O[ k ];  
+  
+		// ii. Call the Call internal method of callback with T as the this value and  
+		// argument list containing kValue, k, and O.  
+		callback.call( T, kValue, k, O );  
+	  }  
+	  // d. Increase k by 1.  
+	  k++;  
+	}  
+	// 8. return undefined  
+  };  
+}  
+
+// https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/array/map
+// Production steps of ECMA-262, Edition 5, 15.4.4.19  
+// Reference: http://es5.github.com/#x15.4.4.19  
+if (!Array.prototype.map) {  
+  Array.prototype.map = function(callback, thisArg) {  
+  
+	var T, A, k;  
+  
+	if (this == null) {  
+	  throw new TypeError(" this is null or not defined");  
+	}  
+  
+	// 1. Let O be the result of calling ToObject passing the |this| value as the argument.  
+	var O = Object(this);  
+  
+	// 2. Let lenValue be the result of calling the Get internal method of O with the argument "length".  
+	// 3. Let len be ToUint32(lenValue).  
+	var len = O.length >>> 0;  
+  
+	// 4. If IsCallable(callback) is false, throw a TypeError exception.  
+	// See: http://es5.github.com/#x9.11  
+	if ({}.toString.call(callback) != "[object Function]") {  
+	  throw new TypeError(callback + " is not a function");  
+	}  
+  
+	// 5. If thisArg was supplied, let T be thisArg; else let T be undefined.  
+	if (thisArg) {  
+	  T = thisArg;  
+	}  
+  
+	// 6. Let A be a new array created as if by the expression new Array(len) where Array is  
+	// the standard built-in constructor with that name and len is the value of len.  
+	A = new Array(len);  
+  
+	// 7. Let k be 0  
+	k = 0;  
+  
+	// 8. Repeat, while k < len  
+	while(k < len) {  
+  
+	  var kValue, mappedValue;  
+  
+	  // a. Let Pk be ToString(k).  
+	  //   This is implicit for LHS operands of the in operator  
+	  // b. Let kPresent be the result of calling the HasProperty internal method of O with argument Pk.  
+	  //   This step can be combined with c  
+	  // c. If kPresent is true, then  
+	  if (k in O) {  
+  
+		// i. Let kValue be the result of calling the Get internal method of O with argument Pk.  
+		kValue = O[ k ];  
+  
+		// ii. Let mappedValue be the result of calling the Call internal method of callback  
+		// with T as the this value and argument list containing kValue, k, and O.  
+		mappedValue = callback.call(T, kValue, k, O);  
+  
+		// iii. Call the DefineOwnProperty internal method of A with arguments  
+		// Pk, Property Descriptor {Value: mappedValue, Writable: true, Enumerable: true, Configurable: true},  
+		// and false.  
+  
+		// In browsers that support Object.defineProperty, use the following:  
+		// Object.defineProperty(A, Pk, { value: mappedValue, writable: true, enumerable: true, configurable: true });  
+  
+		// For best browser support, use the following:  
+		A[ k ] = mappedValue;  
+	  }  
+	  // d. Increase k by 1.  
+	  k++;  
+	}  
+  
+	// 9. return A  
+	return A;  
+  };        
+}  

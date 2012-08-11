@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<preferences>
+  <section id="ui">
+    <value id="name" xml:space="preserve">Media Player</value>
+  </section>
+  <section id="wuid-299a94c4-159a-0fe8-07c5-dd4e159a4b0b">
+    <value id="network_access" xml:space="preserve">24</value>
+  </section>
+</preferences>

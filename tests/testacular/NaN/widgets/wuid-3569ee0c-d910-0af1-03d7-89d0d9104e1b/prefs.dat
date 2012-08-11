@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<preferences>
+  <section id="ui">
+    <value id="name" xml:space="preserve">Messenger</value>
+  </section>
+  <section id="wuid-3569ee0c-d910-0af1-03d7-89d0d9104e1b">
+    <value id="network_access" xml:space="preserve">16</value>
+  </section>
+</preferences>
