@@ -396,14 +396,13 @@ var storage = (function(){ // its a trap!
 		 *
 		 * @method getWeekMenu
 		 * @chainable
-		 * @param {Function} callback
-		 * @param {Integer} optional Weeknumber
+		 * @param {Function} optional callback
+		 * @param {Integer}  optional Weeknumber, defaults to this week
 		 */
 		getWeekMenu = function(callback, week){
 			var mensenArr = conf.getSavedURLs(),
 			    mensa = "",
-			    now = new Date(),
-			    thisWeek = now.getWeek(),  // get this week's number
+			    thisWeek = (new Date()).getWeek(),  // get this week's number
 			    url = "";
 			week = week || date.getWeek(); // get Week from date
 
@@ -416,8 +415,7 @@ var storage = (function(){ // its a trap!
 				// skip loading if this mensa has been already loaded, its currently loading or date is not this or next week -> there won't be any data on the server
 				// @TODO: think of better way to do this
 
-				if(!loadedMensen[mensa][week] && typeof lock[mensa] === "undefined" && ( week === thisWeek || week === thisWeek + 1 ) ){
-
+				if( !loadedMensen[mensa][week] && !lock[mensa] && ( week === thisWeek || week === thisWeek + 1 ) ){
 					isFiltered = false;
 
 					// lock execution of callback queue to prevent race conditions
@@ -622,12 +620,14 @@ var storage = (function(){ // its a trap!
 		 * @return {Boolean} Callbacks have been called
 		 */
 		runMenuCallbacks = function(){
-			var fkt;
 			// only execute callback queue if all locks are released
 			if(isEmpty(lock)){
+				if(filteredWeekMenu.length === 0){
+					filteredWeekMenu = weekMenu;
+				}
+
 				while (menuCallbackQueue.length > 0){
-					fkt = menuCallbackQueue.pop();
-					fkt( filteredWeekMenu );
+					( menuCallbackQueue.pop() )( filteredWeekMenu );
 				}
 
 				// sync cache
@@ -797,21 +797,21 @@ var storage = (function(){ // its a trap!
 		 * @param {Function} callback
 		 */
 		getMensaInfo = function(callback){
-			var mensen = conf.getMensaInfo();
-			var l = mensen.length;
+			var mensen = urls.mensen;
+			var a = urls.mensen;
+			var b = conf.getSavedURLs();
 			var i = 0;
-			var activeMensen = [];
-			for( i=0; i < l; i++ ){
-				if( mensen[i].active ) {
-					mensen[i].filtered = typeof filterProperties.mensa !== "undefined" &&
-						filterValues.mensa.indexOf( mensen[i].name ) !== -1;
-
-					mensen[i].content = mensen[i].name;
-					activeMensen.push(mensen[i]);
-					
-				}
+			for(i = 0; i < mensen.length; i++){
+				mensen[i].active   = b.indexOf(  a[i].name  ) != -1;
+				mensen[i].filtered = typeof filterProperties.mensa !== "undefined" && filterValues.mensa.indexOf( mensen[i].name ) !== -1;
 			}
-			callback(activeMensen);
+
+			// since mensa information is inherently synchronious (its
+			// read from a static config file) we can directly return
+			// the result, but in keeping with getDateInfo et. al. we
+			// call a callback
+			if(callback) { callback(mensen); }
+			return mensen;
 		},
 		/**
 		 * getDateInfo

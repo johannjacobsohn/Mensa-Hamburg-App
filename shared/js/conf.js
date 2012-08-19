@@ -25,9 +25,12 @@
 		 * @method getURLs
 		 * @return {Array} an Array of mensa names
 		 */
-		getURLs : function(){
+		getURLs: function(){
 			var array = [], item = "";
-			for(item in urls.mensenWeek) array.push(item);
+			urls.mensen.forEach(function( item ){
+				array.push( item.name );
+			});
+//			for(item in urls.mensenWeek){ array.push(item.name); }
 			return array;
 		},
 		/**
@@ -54,11 +57,16 @@
 		},
 		/**
 		 * Get a list of all mensa names and status
+		 * depreciated, use storage.getMensaInfo
 		 * 
+		 * @depreciated
 		 * @method getMensaInfo
 		 * @return {JSON} json
 		 */
 		getMensaInfo : function(){
+			if(console && console.warn) { console.warn( "conf.getMensaInfo is depreciated" ); }
+			return storage.getMensaInfo();
+/*
 			var json = [];
 			var a = this.getURLs();
 			var b = this.getSavedURLs();
@@ -70,6 +78,7 @@
 				});
 			}
 			return json;
+*/
 		},
 		/**
 		 * Set setStudentPrices
