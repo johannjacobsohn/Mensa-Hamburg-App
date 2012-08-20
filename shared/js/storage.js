@@ -962,7 +962,6 @@ var storage = (function(){ // its a trap!
 		 * Get menu for a specific date
 		 * 
 		 * @method day
-		 * @private
 		 * @param date {Object}
 		 * @param sortedSegmented {Boolean}
 		 * @param callback {Function}
@@ -1105,7 +1104,8 @@ var storage = (function(){ // its a trap!
 		nextDay : nextDay,
 		prevDay : prevDay,
 		today   : today,
-		
+		day     : day,
+
 		// Helpers:
 		dateToDateString : dateToDateString,
 		dateStringToDate : dateStringToDate
