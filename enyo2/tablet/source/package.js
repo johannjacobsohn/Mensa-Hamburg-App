@@ -15,6 +15,7 @@
 
 	/* Kinds */
 	"kinds/menuItem", /* submodule */
+	"kinds/Divider",
 
 
 	/* app */

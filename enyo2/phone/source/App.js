@@ -1,16 +1,10 @@
 ﻿/*
- *
- *
  * - @FIXMEs
- * - nicht über die möglichen Tage hinaus
  * - Dokumentation
  * - Strings auslagern
- * - Ziel: 400 Z inkl. Doku
  * - Performancetests
  * - header iPhone
  * - manchmal im iPhone nicht korrekt geladen
- * - Trennlinien nach Mensanamen
- *
  */
 
 // Should allow touch scrolling on all devices that do not have it natively.
@@ -24,32 +18,11 @@ if(enyo.platform.webos) {
 window.addEventListener("load", function(){
 	var mensaApp = new App().renderInto(document.body);
 
-ma = mensaApp;
-
 	if(!conf.isConfigured()){
 		enyo.Signals.send("onRequestOpen", { page: "settings" })
-		
-		mensaApp.settings();
+
 		mensaApp.showNotConfigured();
-	} else {
-//		setTimeout(function(){
-//			mensaApp.render();
-//		}, 1);
-//		mensaApp.display("today");
 	}
-/*
-	enyo.gesture.drag.flick = function(e){
-		var maxXvelo = .5;
-		var maxYVelo = .3;
-		var YVelo = Math.abs(e.yVelocity);
-		var XVelo = e.xVelocity;
-		if(XVelo > maxXvelo && YVelo < maxYVelo){
-			mensaApp.yesterday();
-		} else if(XVelo < -maxXvelo && YVelo < maxYVelo){
-			mensaApp.tomorrow();
-		}
-	};
-*/
 }, false);
 
 

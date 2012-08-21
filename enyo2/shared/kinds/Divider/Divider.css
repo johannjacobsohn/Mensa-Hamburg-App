@@ -1,0 +1,23 @@
+
+
+.caption{
+	margin: 0 4px;
+	color: #3A8BCB;
+}
+
+.before-caption,
+.after-caption{
+	height: 3px;
+	border-top: 1px solid #4987c0;
+	background: #5aa6ec;
+	border-bottom: 1px solid #e0e0e0;
+	margin-top: 8px;
+}
+
+.before-caption{
+	border-radius:  3px 0 0 3px;
+	width: 16px;
+}
+.after-caption{
+	border-radius:  0 3px 3px 0;
+}

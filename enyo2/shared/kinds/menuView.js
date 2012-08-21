@@ -14,6 +14,7 @@ enyo.kind({
 		{name: "loadingMessage", classes: "loading-message", content: "Wird geladen...", showing: false},
 
 		{ name: "carousel", kind: "newness.Carousel", onGetLeft: "getLeft", onGetRight: "getRight", onTransitionFinish: "transitionFinish", style: "height: 100%;"},
+		{ kind: enyo.Signals, onGoToToday: "today"}
 	],
 	index: 1,
 	menu : [],
@@ -117,6 +118,7 @@ enyo.kind({
 	}
 });
 
+
 /**
  * Menulist
  * 
@@ -129,12 +131,12 @@ enyo.kind({
 	components: [
 		{kind: "onyx.Toolbar", name:"menuHeader", components: [
 			{kind: "FittableColumns", style:"width: 100%; margin: 0px", components: [
-				{content: "", name: "header", fit: true, ontap: "today", style:"text-align: center;"}
+				{content: "", name: "header", fit: true, ontap: "today", style:"text-align: center;"} //@TODO -> CSS!
 			]}
 		]},
 		{
 			kind: "Scroller",
-			style: "border-left: 1px solid rgba(255, 255, 255, 0.5); border-right: 1px solid rgba(0, 0, 0, 0.2);",
+			style: "border-left: 1px solid rgba(255, 255, 255, 0.5); border-right: 1px solid rgba(0, 0, 0, 0.2);", //@TODO -> CSS!
 			fit: true,
 			classes: "enyo-unselectable preventDragTap",
 			components: [{
@@ -142,7 +144,7 @@ enyo.kind({
 				onSetupItem: "setupRow",
 				name: "menu",
 				components: [
-					{name: "divider", classes: "divider"},
+					{name: "divider", classes: "divider", kind: "Divider"},
 					{kind: "menuItem", classes: "item enyo-border-box"}
 				]}
 			],
@@ -152,7 +154,7 @@ enyo.kind({
 		var i = inEvent.index, r = this.menu[i], item = inEvent.item.$.menuItem, divider = inEvent.item.$.divider;
 		if(r.type === "header"){
 			item.destroy();
-			divider.setContent( r.header );
+			divider.setCaption( r.header );
 		} else {
 			divider.destroy();
 			item.setMenuItem(r);
@@ -167,22 +169,18 @@ enyo.kind({
 		this.$.header.setContent( formatDate( this.date ) );
 		this.$.header.render();
 	},
+	today: function(){
+		enyo.Signals.send("onGoToToday");
+	},
 	load: function(){
 		var type = "day"
 		var that = this;
-//		this.loading(true);
 
-//console.log(new Date(this.date));
-		var dateString = storage.dateToDateString(this.date)
-		console.log(dateString);
-		storage.setDateFilter(dateString);
 		storage[type](this.date, true, function(json, dateStr){
 			that.menu = json;
 			that.$.menu.setCount(json.length);
-//			that.setHeader(formatDate(date));
-//			that.loading(false);
 		});
-	
+
 		return this;
 	},
 });

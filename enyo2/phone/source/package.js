@@ -14,6 +14,7 @@
 	"Carousels",
 	"kinds/ToggleBar",
 	"kinds/SelectorBar",
+	"kinds/Divider",
 	
 	
 	/* Kinds */
