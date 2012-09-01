@@ -14,5 +14,9 @@
     {
         "scenes": "config",
         "source": "app/assistants/config-assistant.js"
+    },
+    {
+        "scenes": "filter",
+        "source": "app/assistants/filter-assistant.js"
     }
 ]

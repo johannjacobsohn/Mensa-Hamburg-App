@@ -2,4 +2,17 @@
 	<span class="name">#{name}</span>
 	<span class="dish">#{dish}</span>
 	<span class="price">#{price}€</span>
+	<span class="mensa">#{mensa}</span>
+
+	<div name="drawer" class="details" x-mojo-element="Drawer">
+		<div class="additives">
+			<strong>Zusatzstoffe</strong>
+			<ul>#{-additivesString}</ul>
+		</div>
+		<div class="properties">
+			<strong>Eigenschaften</strong>
+			<ul>#{-propertiesString}</ul>
+		</div>
+	</div>
+
 </div>

@@ -5,7 +5,6 @@ function ConfigAssistant() {
 	   that needs the scene controller should be done in the setup function below. */
 }
 
-
 ConfigAssistant.prototype.activate = function(event) {
 	/* put in event handlers here that should only be in effect when this scene is active. For
 	   example, key handlers that are observing the document */
@@ -34,6 +33,7 @@ ConfigAssistant.prototype.setup = function() {
 	mensaTogglemodels = {};
 	var mensen = conf.getMensaInfo(),
 		html = "";
+	/* @TODO: WTF? */
 	for(i=0; i<mensen.length; i++){
 		html = '<div class="palm-row">' +
 			'<div x-mojo-element="ToggleButton" id="mensa' + i + '" class="mensaToggle"  name="mensa' + i + '"></div>' +

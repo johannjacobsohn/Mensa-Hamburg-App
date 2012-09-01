@@ -3,13 +3,15 @@
 	position: relative;
 }
 
-.name{
+.name, .mensa{
 	color: #bbb;
 	font-size: 80%;
+	margin: 0 5px;
 }
 
 .dish{
 	display: block;
+	margin: 0 5px;
 }
 
 .price{
@@ -33,4 +35,14 @@
 	font-weight: bold;
 	float: left;
 	width: 100%;
+}
+
+
+
+.properties, .additives{
+	width: 46%;
+	padding: 2%;
+	font-size: 14px;
+	display: inline-block;
+	vertical-align: top;
 }
