@@ -754,7 +754,7 @@ var storage = (function(){ // its a trap!
 					if( properties.hasOwnProperty(property) ){
 						propertiesArr.push({
 							content  : property,
-							name     : properties,
+							name     : property,
 							filtered : typeof filterProperties.name !== "undefined" && filterValues.name.indexOf( property ) !== -1
 						});
 					}
@@ -782,7 +782,7 @@ var storage = (function(){ // its a trap!
 					if( properties.hasOwnProperty(property) ){
 						propertiesArr.push({
 							content  : property,
-							name     : properties,
+							name     : property,
 							filtered : typeof filterProperties.name !== "undefined" && filterValues.name.indexOf( property ) !== -1
 						});
 					}
