@@ -1,25 +1,22 @@
 <div id="main" class="palm-hasheader">
-	<div data-role="page" id="config" data-add-back-btn="true" class="palm-body-text">
-
-		<div class="palm-hasheader">
-			<div class="palm-header">
-				Config
+	<div class="palm-header">Einstellungen</div>
+	<div class="palm-body-text" style="margin: 0;">
+		<div class="palm-group">
+			<div class="palm-group-title">Optionen</div>
+			<div class="palm-list">
+				<div class="palm-row first">
+					<div x-mojo-element="ListSelector" id="studPrices" class="listselectorClass"  name="studPrices"></div>
+				</div>
+				<div class="palm-row last">
+					<div x-mojo-element="ListSelector" id="permanentFilters" class="listselectorClass"  name="permanentFilters"></div>
+				</div>
 			</div>
 		</div>
 
-		<div data-role="content">
-
-			<div class="palm-group">
-				<div class="palm-group-title">Optionen</div>
-					Zeige
-					<div x-mojo-element="ListSelector" id="studPrices" class="listselectorClass"  name="studPrices"></div>
-			</div>
-
-			<div class="palm-group">
-				<div class="palm-group-title">Mensen</div>
-				Je weniger Mensen gewählt sind desto weniger muss geladen werden und desto schneller läuft die Anwendung
-				<div id="config-content"></div>
-			</div>
+		<div class="palm-group">
+			<div class="palm-group-title">Mensen</div>
+			<div style="margin-bottom: 1em;">Je weniger Mensen gewählt sind desto weniger muss geladen werden und desto schneller läuft die Anwendung</div>
+			<div class="palm-list" id="mensen" x-mojo-element='List'></div>
 		</div>
 	</div>
 </div>

@@ -21,7 +21,54 @@ FilterAssistant.prototype.cleanup = function(event) {
 };
 
 FilterAssistant.prototype.setup = function() {
+	// get list data async
+	var that = this;
+
+	function abcd(name){
+		storage.getInfo(name, function(items){
+			console.log(name + ": " + items.length)
+
+			if(name === "mensa"){
+				items = items.filter(function(item){ return item.active; })
+			}
+			
+			items.map(function(item){ item.value = item.filtered; })
+
+			console.log(items[0].name)
+			that[name] = items;
+			that.controller.setupWidget("filter-" + name,
+				{
+					itemTemplate: "filter/filter-item"
+				}, 
+				{"items": that[name]} // Modell
+			);
+
+			Mojo.Event.listen(document.getElementById("filter-" + name), Mojo.Event.propertyChange, that.listPropertyChangeHandler.bind(this));
+		});
+	}
+
+//	this.controller.setupWidget('filterToggleButton', { trueLabel: "Mit", falseLabel: "Egal" });
+	this.controller.setupWidget('filterRadioButton', { choices: [
+		{label: "Ohne", value: -1},
+		{label: "Egal", value: 0},
+		{label: "Mit", value: 1}
+	]});
 
 
+
+	abcd("name");
+	abcd("mensa");
+	abcd("properties");
+	abcd("additives");
 };
+
+
+FilterAssistant.prototype.listPropertyChangeHandler = function(event){
+	var newValue = event.model.value;
+	var name = event.model.name;
+
+	console.log(name + " " + newValue);
+	console.log( JSON.stringify(event) )
+}
+
 

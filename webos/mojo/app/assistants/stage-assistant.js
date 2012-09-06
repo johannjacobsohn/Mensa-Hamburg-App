@@ -9,7 +9,7 @@ StageAssistant.prototype.handleCommand = function(event) {
 	var activeScene = Mojo.Controller.stageController.activeScene();
 
 	if(event.type == Mojo.Event.command) {
-		console.log(MenuAssistant)
+//		console.log(MenuAssistant)
 //		for( item in MenuAssistant ){
 //			console.log(item)
 //		}

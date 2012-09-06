@@ -14,6 +14,8 @@ MenuAssistant.prototype.activate = function(event) {
 	// Rerender Menu
 	this.controller = Mojo.Controller.stageController.activeScene();
 	
+	console.log( conf.getSavedURLs() );
+	
 	this.controller.get('spinner').mojo.start();
 	storage.today( MenuAssistant.fetch, false);
 
@@ -49,6 +51,7 @@ MenuAssistant.prototype.cleanup = function(event) {
 };
 
 MenuAssistant.prototype.setup = function() {
+
 	// render app menu
 	this.controller.setupWidget(Mojo.Menu.appMenu, {omitDefaultItems:true}, {
 		items: [
@@ -208,6 +211,7 @@ MenuAssistant.today = function(){
 
 MenuAssistant.fetch = function(json, dateString, date){
 	json = json || [];
+	console.log(json)
 	
 	console.log((+new Date() - d) + "loaded");
 	d = +new Date();
@@ -227,7 +231,7 @@ MenuAssistant.fetch = function(json, dateString, date){
 
 	activeScene.setWidgetModel("menu", {"items": json});
 	console.log(+new Date() - d);
-
+console.log(json)
 	if(date){
 		headerMenu.items[0].items[1].label = formatDate(date)
 		activeScene.modelChanged(headerMenu, this);

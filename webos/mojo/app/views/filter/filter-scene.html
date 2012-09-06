@@ -1,25 +1,21 @@
 <div id="main" class="palm-hasheader">
-	<div data-role="page" id="config" data-add-back-btn="true" class="palm-body-text">
-
-		<div class="palm-hasheader">
-			<div class="palm-header">
-				Filtern
-			</div>
+	<div class="palm-header">Filtern</div>
+	<div class="palm-body-text" style="margin: 0;">
+		<div class="palm-group">
+			<div class="palm-group-title">Nach Gericht filtern</div>
+			<div class="palm-list" id="filter-name" x-mojo-element='List'></div>
 		</div>
-
-		<div data-role="content">
-
-			<div class="palm-group">
-				<div class="palm-group-title">Optionen</div>
-					Zeige Filter
-					<div x-mojo-element="ListSelector" id="studPrices" class="listselectorClass"  name="studPrices"></div>
-			</div>
-
-			<div class="palm-group">
-				<div class="palm-group-title">Mensen</div>
-				Je weniger Mensen gewählt sind desto weniger muss geladen werden und desto schneller läuft die Anwendung
-				<div id="config-content"></div>
-			</div>
+		<div class="palm-group">
+			<div class="palm-group-title">Nach Mensa filtern</div>
+			<div class="palm-list" id="filter-mensa" x-mojo-element='List'></div>
+		</div>
+		<div class="palm-group">
+			<div class="palm-group-title">Nach Zusatzstoffen filtern</div>
+			<div class="palm-list" id="filter-additives" x-mojo-element='List'></div>
+		</div>
+		<div class="palm-group">
+			<div class="palm-group-title">Nach Eigenschaften filtern</div>
+			<div class="palm-list" id="filter-properties" x-mojo-element='List'></div>
 		</div>
 	</div>
 </div>

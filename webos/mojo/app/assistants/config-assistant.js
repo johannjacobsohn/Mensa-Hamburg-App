@@ -18,38 +18,50 @@ ConfigAssistant.prototype.deactivate = function(event) {
 ConfigAssistant.prototype.cleanup = function(event) {
 	/* this function should do any cleanup needed before the scene is destroyed as 
 	   a result of being popped off the scene stack */
-	var arr = [], mensa = "";
-	for(mensa in mensaTogglemodels){
-		if(mensaTogglemodels[mensa].value) arr.push(mensa);
-	}
+};
+
+ConfigAssistant.prototype.listPropertyChangeHandler = function(event){
+	var newValue = event.model.value;
+	var name = event.model.name;
+
+	// change values in this.mensen and change back
+	this.mensen.filter(function(item){ return item.name === name })[0].value = newValue;
+	
+
+	var arr = [];
+	this.mensen.map(function(item){ if(item.value) arr.push(item.name) });
+//	for(mensa in this.mensen){
+//		if( this.mensen.hasOwnProperty( mensa ) && this.mensen[mensa].value ){
+//			arr.push(mensa.name);
+//		}
+//	}
 
 	conf.setURLs(arr);
 
 	// cleanup Data
 	storage.cleanData();
-};
+}
 
 ConfigAssistant.prototype.setup = function() {
-	mensaTogglemodels = {};
-	var mensen = conf.getMensaInfo(),
-		html = "";
-	/* @TODO: WTF? */
-	for(i=0; i<mensen.length; i++){
-		html = '<div class="palm-row">' +
-			'<div x-mojo-element="ToggleButton" id="mensa' + i + '" class="mensaToggle"  name="mensa' + i + '"></div>' +
-				mensen[i].name +
-		'</div>';
-		document.getElementById("config-content").innerHTML += html;
-		this.controller.setupWidget("mensa" + i,
-		  this.attributes = {
-			  trueValue: true,
-			  falseValue: false
-		  },
-		  mensaTogglemodels[mensen[i].name] = {
-			  value: mensen[i].active,
-		  }
-		);
-	}
+console.log( conf.getSavedURLs() );
+
+	this.mensen = storage.getMensaInfo();
+	this.mensen.map(function(item){
+		item.value = item.active;
+	});
+console.log( this.mensen );
+	
+	// get list data async
+	this.controller.setupWidget("mensen",
+		{
+			itemTemplate: "config/mensa-item"
+		}, 
+		{"items": this.mensen} // Modell
+	);
+
+	this.controller.setupWidget('mensaToggleButton', { trueLabel: "An", falseLabel: "Aus" });
+
+	Mojo.Event.listen(document.getElementById("mensen"), Mojo.Event.propertyChange, this.listPropertyChangeHandler.bind(this));
 
 	this.controller.setupWidget("studPrices",
 		this.attributes = {
@@ -64,5 +76,20 @@ ConfigAssistant.prototype.setup = function() {
 	);
 	Mojo.Event.listen(this.controller.get("studPrices"), Mojo.Event.propertyChange, function(o){
 		conf.setStudentPrices(o.value === "1");
+	});
+	
+	this.controller.setupWidget("permanentFilters",
+		this.attributes = {
+			choices: [
+				{label: "Filter merken", value: 1},
+				{label: "Filter beim Starten zurücksetzen", value: 0}
+			]
+		},
+		this.model = {
+			value: 0 + storage.getPersistentFilters()
+		}
+	);
+	Mojo.Event.listen(this.controller.get("permanentFilters"), Mojo.Event.propertyChange, function(o){
+		conf.setPersistentFilters(o.value === "1");
 	});
 };
