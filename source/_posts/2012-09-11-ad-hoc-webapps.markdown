@@ -6,10 +6,8 @@ comments: true
 categories: Code Test Blödsinn
 ---
 
+{% blockquote Johann Jacobsohn, Gerade eben %}
 Webapps zu bauen war immer schon schwierig, heute wird es schwieriger.
-
-{% blockquote Douglas Adams, The Hichhikers Guide to the Galaxy %}
-Flying is learning how to throw yourself at the ground and miss.
 {% endblockquote %}
 
 <!-- more -->
