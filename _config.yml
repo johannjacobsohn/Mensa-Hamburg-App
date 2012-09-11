@@ -2,10 +2,10 @@
 #      Main Configs       #
 # ----------------------- #
 
-url: http://johannjacobsohn.github.com
+url: http://johannjacobsohn.github.com/sm
 title: dev@satzmedia
-subtitle: A blogging framework for hackers.
-author: Your Name
+subtitle: Zeugs bei Satzmedia
+author: Satzmedia
 simple_search: http://google.com/search
 description:
 
@@ -26,6 +26,7 @@ email:
 # ----------------------- #
 
 # If publishing to a subdirectory as in http://site.com/project set 'root: /project'
+# /sm
 root: /
 permalink: /blog/:year/:month/:day/:title/
 source: source
@@ -67,9 +68,9 @@ github_skip_forks: true
 twitter_user:
 twitter_tweet_count: 4
 twitter_show_replies: false
-twitter_follow_button: true
+twitter_follow_button: false
 twitter_show_follower_count: false
-twitter_tweet_button: true
+twitter_tweet_button: false
 
 # Google +1
 google_plus_one: false
