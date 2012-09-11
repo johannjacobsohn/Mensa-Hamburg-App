@@ -6,7 +6,7 @@ comments: true
 categories: 
 ---
 
-{% img right http://placekitten.com/300/500 150 250 Place Kitten #3 %}
+{% img left http://placekitten.com/320/250 Place Kitten #2 %}
 
 Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
 eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
