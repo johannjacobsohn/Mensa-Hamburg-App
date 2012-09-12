@@ -1,4 +1,7 @@
-
+#menu{
+	/* this is nessasary to have for flick gestures an empty pages: */
+	min-height: 300px;
+}
 .palm-row{
 	padding: 4px 0 10px 0;
 	position: relative;
@@ -7,7 +10,9 @@
 .name, .mensa{
 	color: #bbb;
 	font-size: 80%;
-	margin: 0 5px;
+}
+.name{
+	margin-left: 5px;
 }
 
 .dish{
@@ -45,6 +50,12 @@
 	display: inline-block;
 	vertical-align: top;
 }
+.properties li, .additives li,
+.properties ul, .additives ul{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
 
 .filterCheckboxLabel{
 	font-size: 60%;
@@ -53,7 +64,7 @@
 	margin-left: -8px;
 }
 
-.checkboxxx{
+.checkbox-wrapper{
 	float:right;
 /* 	font-size: 80%; */
 }
