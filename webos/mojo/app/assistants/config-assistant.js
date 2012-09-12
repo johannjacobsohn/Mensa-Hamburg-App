@@ -13,6 +13,9 @@ ConfigAssistant.prototype.activate = function(event) {
 ConfigAssistant.prototype.deactivate = function(event) {
 	/* remove any event handlers you added in activate and do any other cleanup that should happen before
 	   this scene is popped or another scene is pushed on top */
+
+	// cleanup Data
+	storage.cleanData();
 };
 
 ConfigAssistant.prototype.cleanup = function(event) {
@@ -20,46 +23,31 @@ ConfigAssistant.prototype.cleanup = function(event) {
 	   a result of being popped off the scene stack */
 };
 
-ConfigAssistant.prototype.listPropertyChangeHandler = function(event){
-	var newValue = event.model.value;
-	var name = event.model.name;
-
-	// change values in this.mensen and change back
-	this.mensen.filter(function(item){ return item.name === name })[0].value = newValue;
-	
-
-	var arr = [];
-	this.mensen.map(function(item){ if(item.value) arr.push(item.name) });
-//	for(mensa in this.mensen){
-//		if( this.mensen.hasOwnProperty( mensa ) && this.mensen[mensa].value ){
-//			arr.push(mensa.name);
-//		}
-//	}
-
-	conf.setURLs(arr);
-
-	// cleanup Data
-	storage.cleanData();
-}
-
 ConfigAssistant.prototype.setup = function() {
-console.log( conf.getSavedURLs() );
-
 	this.mensen = storage.getMensaInfo();
-	this.mensen.map(function(item){
-		item.value = item.active;
+
+	// render app menu
+	this.controller.setupWidget(Mojo.Menu.appMenu, {omitDefaultItems:true}, {
+		items: [
+			{ label: "Menu",           command : "menu" },
+			{ label: "Einstellungen",  command : "config", disabled: true },
+			{ label: "Filtern",        command : "filter" },
+			{ label: "Über diese App", command : "about"  }
+			{ label: "Zurücksetzen",   command : "reset"  },
+		]
 	});
-console.log( this.mensen );
-	
+
 	// get list data async
 	this.controller.setupWidget("mensen",
-		{
-			itemTemplate: "config/mensa-item"
-		}, 
-		{"items": this.mensen} // Modell
+		{ itemTemplate: "config/mensa-item" }, 
+		{ items: this.mensen} // Modell
 	);
 
-	this.controller.setupWidget('mensaToggleButton', { trueLabel: "An", falseLabel: "Aus" });
+	this.controller.setupWidget('mensaToggleButton', {
+		trueLabel: "An",
+		falseLabel: "Aus",
+		modelProperty : "active"
+	});
 
 	Mojo.Event.listen(document.getElementById("mensen"), Mojo.Event.propertyChange, this.listPropertyChangeHandler.bind(this));
 
@@ -93,3 +81,22 @@ console.log( this.mensen );
 		conf.setPersistentFilters(o.value === "1");
 	});
 };
+
+ConfigAssistant.prototype.listPropertyChangeHandler = function(event){
+	var newValue = event.model.active;
+	var name = event.model.name;
+	var arr = [];
+
+	// change values in this.mensen and change back
+	this.mensen.filter(function(item){ return item.name === name })[0].active = newValue;
+
+	this.mensen.map(function(item){
+		if(item.active) {
+			arr.push(item.name);
+		}
+	});
+
+	// set config
+	conf.setURLs(arr);
+}
+
