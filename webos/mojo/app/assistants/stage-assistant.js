@@ -2,6 +2,8 @@ function StageAssistant() {
 	/* this is the creator function for your stage assistant object */
 }
 StageAssistant.prototype.setup = function() {
+//	window.PalmSystem.setWindowOrientation('free');
+
 	this.controller.pushScene("menu");
 };
 // handle menu commands
@@ -9,19 +11,10 @@ StageAssistant.prototype.handleCommand = function(event) {
 	var activeScene = Mojo.Controller.stageController.activeScene();
 
 	if(event.type == Mojo.Event.command) {
-//		console.log(MenuAssistant)
-//		for( item in MenuAssistant ){
-//			console.log(item)
-//		}
-		
-//		for( item in StageAssistant ){
-//			console.log(item)
-//		}
-		
-		if( event.command === "prevDay" || event.command === "nextDay" || event.command === "today" ){
-			MenuAssistant.load( event.command );
-		} else if(event.command === "config" || event.command === "filter"){
+		if(event.command === "config" || event.command === "filter"){
 			this.controller.pushScene( event.command );
+		} else if(event.command === "menu"){
+			this.controller.popScenesTo("menu"); 
 		} else if(event.command === "reset"){
 			data.clear();
 			location.reload();
