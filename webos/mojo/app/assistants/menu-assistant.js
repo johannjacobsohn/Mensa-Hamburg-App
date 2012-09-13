@@ -53,8 +53,8 @@ MenuAssistant.prototype.setup = function() {
 			{ label: "Menu",           command : "menu", disabled: true   },
 			{ label: "Konfigurieren",  command : "config" },
 			{ label: "Filtern",        command : "filter" },
-			{ label: "Über diese App", command : "about"  }
-			{ label: "Zurücksetzen",   command : "reset"  },
+			{ label: "Über diese App", command : "about"  },
+			{ label: "Zurücksetzen",   command : "reset"  }
 		]
 	});
 

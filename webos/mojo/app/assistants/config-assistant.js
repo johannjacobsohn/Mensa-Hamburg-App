@@ -32,8 +32,8 @@ ConfigAssistant.prototype.setup = function() {
 			{ label: "Menu",           command : "menu" },
 			{ label: "Einstellungen",  command : "config", disabled: true },
 			{ label: "Filtern",        command : "filter" },
-			{ label: "Über diese App", command : "about"  }
-			{ label: "Zurücksetzen",   command : "reset"  },
+			{ label: "Über diese App", command : "about"  },
+			{ label: "Zurücksetzen",   command : "reset"  }
 		]
 	});
 
@@ -90,7 +90,7 @@ ConfigAssistant.prototype.listPropertyChangeHandler = function(event){
 	// change values in this.mensen and change back
 	this.mensen.filter(function(item){ return item.name === name })[0].active = newValue;
 
-	this.mensen.map(function(item){
+	this.mensen.forEach(function(item){
 		if(item.active) {
 			arr.push(item.name);
 		}
