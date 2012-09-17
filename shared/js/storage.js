@@ -214,6 +214,8 @@ var storage = (function(){ // its a trap!
 			filterProperties[prop]  = prop;
 			filterValues[prop]      = value;
 
+			console.log( filterValues[prop] )
+
 			saveFilters();
 		},
 		/**
@@ -735,27 +737,24 @@ var storage = (function(){ // its a trap!
 				callback(typesArr);
 			});
 		},
-		/**
-		* getPropertiesInfo
-		*
-		* @method getPropertiesInfo
-		* @param {Function} callback
-		*/
-		getPropertiesInfo = function(callback){
+	
+		getDetails = function(type, callback){
 			getWeekMenu(function(){
 				var property, properties = {}, propertiesArr = [], l = weekMenu.length;
 				while ( l-- ){
-					for(var i = 0; i<weekMenu[l].properties.length; i++){
-						properties[weekMenu[l].properties[i]] = true;
+					for(var i = 0; i<weekMenu[l][type].length; i++){
+						properties[weekMenu[l][type][i]] = true;
 					}
 				}
 
 				for(property in properties){
 					if( properties.hasOwnProperty(property) ){
 						propertiesArr.push({
-							content  : property,
-							name     : property,
-							filtered : typeof filterProperties.name !== "undefined" && filterValues.name.indexOf( property ) !== -1
+							content    : property,
+							name       : property,
+							filtered   : typeof filterProperties.name !== "undefined" && filterValues.name.indexOf( property ) !== -1,
+							filterType : (typeof filterProperties.name !== "undefined" && filterValues.name.indexOf( property ) !== -1) ,
+							filter     : filterValues[type] ? filterValues[type].filter(function(item){ return item.value === property })[0] : []
 						});
 					}
 				}
@@ -763,32 +762,22 @@ var storage = (function(){ // its a trap!
 			});
 		},
 		/**
+		* getPropertiesInfo
+		*
+		* @method getPropertiesInfo
+		* @param {Function} callback
+		*/
+		getPropertiesInfo = function(callback){
+			getDetails("properties", callback);
+		},
+		/**
 		* getAdditivesInfo
 		* 
-		* @TODO: merge with getPropertiesInfo and possibly getTypeInfo getTypeInfo
 		* @method getAdditivesInfo
 		* @param {Function} callback
 		*/
 		getAdditivesInfo = function(callback){
-			getWeekMenu(function(){
-				var property, properties = {}, propertiesArr = [], l = weekMenu.length;
-				while ( l-- ){
-					for(var i = 0; i<weekMenu[l]["additives"].length; i++){
-						properties[weekMenu[l]["additives"][i]] = true;
-					}
-				}
-
-				for(property in properties){
-					if( properties.hasOwnProperty(property) ){
-						propertiesArr.push({
-							content  : property,
-							name     : property,
-							filtered : typeof filterProperties.name !== "undefined" && filterValues.name.indexOf( property ) !== -1
-						});
-					}
-				}
-				callback(propertiesArr);
-			});
+			getDetails("additives", callback);
 		},
 		/**
 		 * getMensaInfo
@@ -798,13 +787,13 @@ var storage = (function(){ // its a trap!
 		 */
 		getMensaInfo = function(callback){
 			var mensen = urls.mensen;
-			var a = urls.mensen;
 			var b = conf.getSavedURLs();
-			var i = 0;
-			for(i = 0; i < mensen.length; i++){
-				mensen[i].active   = b.indexOf(  a[i].name  ) != -1;
-				mensen[i].filtered = typeof filterProperties.mensa !== "undefined" && filterValues.mensa.indexOf( mensen[i].name ) !== -1;
-			}
+			mensen.forEach(function(mensa, i){
+				mensa.content  = mensa.name; // for compability to the other filters
+				mensa.active   = b.indexOf( mensa.name ) != -1; // mark mensen which are active 
+				mensa.filtered = typeof filterValues.mensa !== "undefined" && filterValues.mensa.some(function(item){ return item.value === mensa.name });
+				mensa.filter   = filterValues.mensa ? filterValues.mensa.filter(function(item){ return item.value === mensa.name })[0] : [];
+			});
 
 			// since mensa information is inherently synchronious (its
 			// read from a static config file) we can directly return
