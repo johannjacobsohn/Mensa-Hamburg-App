@@ -1,9 +1,9 @@
 /*
  * @TODO:
  * - Cleanup
- * - finish filters
  * - prevent navigating to non-existent dates
  *   e.g. storage.nextDayExists()
+ * - prevent initial loading of sunday and saturday on weekends
  * - target 150 lines
  * - set window orientation free
  */
@@ -21,11 +21,21 @@ MenuAssistant.prototype.activate = function(event) {
 	// Rerender Menu
 	this.controller.get('spinner').mojo.start();
 	storage.thisDay( this.fetch.bind(this), false);
+
+	/* periodically set header as to pick up date changes */
+	this.headerReloadTimeout = 1000 * 3600 * 3; // every 3h ought to be enough
+	this.timeout = setTimeout( this.reloadHeader.bind(this), this.headerReloadTimeout ); 
 };
+
+MenuAssistant.prototype.reloadHeader = function(event) {
+	this.setHeader();
+	this.timeout = setTimeout( this.reloadHeader.bind(this), this.headerReloadTimeout ); // rinse, repeat
+}
 
 MenuAssistant.prototype.deactivate = function(event) {
 	/* remove any event handlers you added in activate and do any other cleanup that should happen before
 	   this scene is popped or another scene is pushed on top */
+	clearTimeout( this.timeout );
 };
 
 MenuAssistant.prototype.cleanup = function(event) {
@@ -160,6 +170,11 @@ MenuAssistant.prototype.fetch = function(json, dateString, date){
 	this.controller.modelChanged( this.items, this);
 
 	// update header
-	this.headerMenu.items[0].items[1].label = formatDate(date);
+	this.date = date;
+	this.setHeader();
+}
+
+MenuAssistant.prototype.setHeader = function(){
+	this.headerMenu.items[0].items[1].label = formatDate(this.date);
 	this.controller.modelChanged( this.headerMenu, this);
 }
