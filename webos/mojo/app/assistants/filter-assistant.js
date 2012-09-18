@@ -98,9 +98,9 @@ FilterAssistant.prototype.listPropertyChangeHandler = function(event){
 	}
 
 	this.modelP[type].items.forEach(function(item){
-		if( item.with ){
+		if( item.with || item.woInvers ){
 			filters.push( { value: item.name, type: "include" } )
-		} else if( item.wo ){
+		} else if( item.wo || item.withInvers ){
 			filters.push( { value: item.name, type: "exclude" } )
 		}
 	});
