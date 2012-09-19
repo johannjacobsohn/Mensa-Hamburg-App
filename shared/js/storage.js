@@ -91,6 +91,65 @@ var storage = (function(){ // its a trap!
 			}
 		},
 		/**
+		 * filter function
+		 * 
+		 * @TODO: needs optimization!
+		 * 
+		 * @private
+		 * @method filterByProp
+		 * 
+		 * @param item
+		 * @return bool
+		 */
+		filterByProp = function(prop, item){
+			/* if property is string THEN
+			 *     return true if
+			 *     - includes prop AND should include prop
+			 *       OR
+			 *     - does not include prop AND should not include prop
+			 *
+			 * else if property is array
+			 *     return false if
+			 *     - includes prop in array AND should not include prop
+			 *       OR
+			 *     - does not include prop in array AND should include prop
+			 *
+			 *
+			 *
+			 * if one excluding property is set, return false, else return true
+			 * if one including property is set, return true, else return false
+			 */
+
+			var a = true;
+			var b = true;
+			
+			if(typeof item[prop] === "string") {
+				for(var i = 0; i<filterValues[prop].length; i++){
+					a = filterValues[prop][i].type === "include";
+					b = filterValues[prop][i].value.indexOf( item[prop] ) !== -1;
+					if (a && b || !a && !b){
+						return true
+					}
+				}
+			} else {
+				// split filtervalues in includes and excludes
+				var includes = [];
+				var excludes = [];
+				filterValues[prop].filter(function(item){ return item.type === "include"} ).forEach(function(item){ includes.push(item.value) });
+				filterValues[prop].filter(function(item){ return item.type === "exclude"} ).forEach(function(item){ excludes.push(item.value) });
+				var inc =  include(includes, item[prop]);
+				var exc = !include(excludes, item[prop]);
+				if(includes.length === 0){
+					return exc
+				}
+				if(excludes.length === 0){
+					return inc
+				}
+				return inc && exc;
+			}
+			return false;
+		},
+		/**
 		 * do the filtering
 		 *
 		 *
@@ -108,62 +167,13 @@ var storage = (function(){ // its a trap!
 					// copy weekMenu to filteredWeekMenu
 					filteredWeekMenu = [];
 					for(i = 0; i < weekMenu.length; i++){
-						filteredWeekMenu.push(weekMenu[i]);
+						filteredWeekMenu.push( weekMenu[i] );
 					}
 
 					// filter filteredWeekMenu
-					// @TODO: rework
-					var filterByProp = function(item){
-						/* if property is string THEN
-						 *     return true if
-						 *     - includes prop AND should include prop
-						 *       OR
-						 *     - does not include prop AND should not include prop
-						 *
-						 * else if property is array
-						 *     return false if
-						 *     - includes prop in array AND should not include prop
-						 *       OR
-						 *     - does not include prop in array AND should include prop
-						 *
-						 *
-						 *
-						 * if one excluding property is set, return false, else return true
-						 * if one including property is set, return true, else return false
-						 */
-
-						var a = true;
-						var b = true;
-						
-						if(typeof item[prop] === "string") {
-							for(var i = 0; i<filterValues[prop].length; i++){
-								a = filterValues[prop][i].type === "include";
-								b = filterValues[prop][i].value.indexOf( item[prop] ) !== -1;
-								if (a && b || !a && !b){
-									return true
-								}
-							}
-						} else {
-							// split filtervalues in includes and excludes
-							var includes = [];
-							var excludes = [];
-							filterValues[prop].filter(function(item){ return item.type === "include"} ).map(function(item){ includes.push(item.value) });
-							filterValues[prop].filter(function(item){ return item.type === "exclude"} ).map(function(item){ excludes.push(item.value) });
-							var inc = include(includes, item[prop]);
-							var exc = !include(excludes, item[prop]);
-							if(includes.length === 0){
-								return exc
-							}
-							if(excludes.length === 0){
-								return inc
-							}
-							return inc && exc;
-						}
-						return false;
-					};
 					for( var prop in filterProperties ){
 						if( filterProperties.hasOwnProperty(prop) ){
-							filteredWeekMenu = filteredWeekMenu.filter( filterByProp );
+							filteredWeekMenu = filteredWeekMenu.filter( filterByProp.bind(this, prop) );
 						}
 					}
 					isFiltered = true;
@@ -173,7 +183,17 @@ var storage = (function(){ // its a trap!
 			});
 		},
 		
-		/* return if on element of array a is in array b*/
+		/**
+		 * return if one element of array a is in array b
+		 * http://jsperf.com/of-an-array-is-in-another-array/2
+		 * 
+		 * @private
+		 * @method include
+		 * 
+		 * @param Array a
+		 * @param Array b
+		 * @return 
+		 */
 		include = function(a,b) {
 			for (var i = 0; i < a.length; i++){
 				if( b.indexOf(a[i]) != -1 ){
@@ -449,7 +469,7 @@ var storage = (function(){ // its a trap!
 
 				// release lock
 				delete lock[additional_args.mensa];
-				
+
 				// try to run callbacks
 				runMenuCallbacks();
 			}
@@ -873,6 +893,13 @@ var storage = (function(){ // its a trap!
 		 */
 		thisDay = function(callback, sortedSegmented){
 			sortedSegmented = typeof sortedSegmented === "undefined" ? true : sortedSegmented;
+			date.setHours(0); date.setMinutes(0); date.setSeconds(0);  date.setMilliseconds(0);
+
+			if ( date.getDay() === 6 ){ // Saturday
+				date.setDate( date.getDate() + 2 );
+			} else if ( date.getDay() === 0 ){ // Sunday
+				date.setDate( date.getDate() + 1 );
+			}
 
 			day(date, sortedSegmented, callback);
 		},
