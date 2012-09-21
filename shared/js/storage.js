@@ -98,10 +98,11 @@ var storage = (function(){ // its a trap!
 		 * @private
 		 * @method filterByProp
 		 * 
+		 * @param prop
 		 * @param item
 		 * @return bool
 		 */
-		filterByProp = function(prop, item){
+		filterByProp = function(prop, includes, excludes, item){
 			/* if property is string THEN
 			 *     return true if
 			 *     - includes prop AND should include prop
@@ -132,11 +133,7 @@ var storage = (function(){ // its a trap!
 					}
 				}
 			} else {
-				// split filtervalues in includes and excludes
-				var includes = [];
-				var excludes = [];
-				filterValues[prop].filter(function(item){ return item.type === "include"} ).forEach(function(item){ includes.push(item.value) });
-				filterValues[prop].filter(function(item){ return item.type === "exclude"} ).forEach(function(item){ excludes.push(item.value) });
+				//find out if one of the properties is in or excluded
 				var inc =  include(includes, item[prop]);
 				var exc = !include(excludes, item[prop]);
 				if(includes.length === 0){
@@ -162,7 +159,7 @@ var storage = (function(){ // its a trap!
 		 */
 		filter = function(callback){
 			getWeekMenu(function(){
-				var i = 0;
+				var i = 0, includes = [], excludes = [];
 				if(!isFiltered) { // skip if already filtered
 					// copy weekMenu to filteredWeekMenu
 					filteredWeekMenu = [];
@@ -173,7 +170,11 @@ var storage = (function(){ // its a trap!
 					// filter filteredWeekMenu
 					for( var prop in filterProperties ){
 						if( filterProperties.hasOwnProperty(prop) ){
-							filteredWeekMenu = filteredWeekMenu.filter( filterByProp.bind(this, prop) );
+							// split filtervalues in includes and excludes
+							includes = filterValues[prop].filter(function(item){ return item.type === "include"} ).map(function(item){ return item.value });
+							excludes = filterValues[prop].filter(function(item){ return item.type === "exclude"} ).map(function(item){ return item.value });
+
+							filteredWeekMenu = filteredWeekMenu.filter( filterByProp.bind(this, prop, includes, excludes) );
 						}
 					}
 					isFiltered = true;
@@ -234,7 +235,7 @@ var storage = (function(){ // its a trap!
 			filterProperties[prop]  = prop;
 			filterValues[prop]      = value;
 
-			console.log( filterValues[prop] )
+//			console.log( filterValues[prop] )
 
 			saveFilters();
 		},
@@ -757,7 +758,13 @@ var storage = (function(){ // its a trap!
 				callback(typesArr);
 			});
 		},
-	
+		/**
+		 * 
+		 * @method getDetails
+		 * @private
+		 * @param type
+		 * @param callback 
+		 */
 		getDetails = function(type, callback){
 			getWeekMenu(function(){
 				var property, properties = {}, propertiesArr = [], l = weekMenu.length;
