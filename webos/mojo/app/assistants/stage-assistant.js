@@ -1,8 +1,10 @@
 function StageAssistant() {
 	/* this is the creator function for your stage assistant object */
+	 
+	
 }
 StageAssistant.prototype.setup = function() {
-//	window.PalmSystem.setWindowOrientation('free');
+	window.PalmSystem.setWindowOrientation('free');
 
 	this.controller.pushScene("menu");
 };
@@ -14,7 +16,7 @@ StageAssistant.prototype.handleCommand = function(event) {
 		if(event.command === "config" || event.command === "filter"){
 			this.controller.pushScene( event.command );
 		} else if(event.command === "menu"){
-			this.controller.popScenesTo("menu"); 
+			this.controller.popScenesTo( event.command ); 
 		} else if(event.command === "reset"){
 			data.clear();
 			location.reload();
