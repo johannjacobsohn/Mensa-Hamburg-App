@@ -1,11 +1,8 @@
 /*
  * @TODO:
  * - Cleanup
- * - prevent navigating to non-existent dates
- *   e.g. storage.nextDayExists()
  * - prevent initial loading of sunday and saturday on weekends
  * - target 150 lines
- * - set window orientation free
  */
 function MenuAssistant() {
 	/* this is the creator function for your scene assistant object. It will be passed all the 
@@ -180,6 +177,9 @@ MenuAssistant.prototype.fetch = function(json, dateString, date){
 }
 
 MenuAssistant.prototype.setHeader = function(){
+	this.headerMenu.items[1].items[0].disabled = !storage.isPrevDayAvailable();
+	this.headerMenu.items[1].items[2].disabled = !storage.isNextDayAvailable();
+
 	this.headerMenu.items[1].items[1].label = formatDate(this.date);
 	this.controller.modelChanged( this.headerMenu, this);
 }

@@ -824,8 +824,8 @@ var storage = (function(){ // its a trap!
 
 			// since mensa information is inherently synchronious (its
 			// read from a static config file) we can directly return
-			// the result, but in keeping with getDateInfo et. al. we
-			// call a callback
+			// the result, but in keeping with getTypeInfo et. al. we
+			// call a callback as well
 			if(callback) { callback(mensen); }
 			return mensen;
 		},
@@ -871,7 +871,7 @@ var storage = (function(){ // its a trap!
 		},
 		/**
 		 * list all dates
-		 * @TODO: doesn't work on Sunday?
+		 * @fixme: doesn't work on Sunday?
 		 *
 		 * @method getAvailableDates
 		 * @param {Boolean} getNextWeek
@@ -961,22 +961,14 @@ var storage = (function(){ // its a trap!
 		 * @param sortedSegmented {Boolean}
 		 */
 		prevDay = function(callback, sortedSegmented){
-//			    oldDate = date,
 			var thisDay = date.getDay();
 			sortedSegmented = typeof sortedSegmented === "undefined" ? true : sortedSegmented;
-			    
 			// skip Weekends
 			if ( thisDay === 1 ) {
 				date.setDate( date.getDate() - 3 );
 			} else {
 				date.setDate( date.getDate() - 1 );
 			}
-
-			// reject if new date is not available
-			// @FIXME
-//			if ( getAvailableDates.indexOf( dateToDateString(date) ) === "-1" ){
-//				date = oldDate; //! @TEST: Pass by reference?! 
-//			}
 
 			day(date, sortedSegmented, callback);
 		},
@@ -1002,6 +994,46 @@ var storage = (function(){ // its a trap!
 				});
 			}
 		},
+		/**
+		 * Find out if the previous day is available
+		 * 
+		 * @method isPrevDayAvailable
+		 * @param void
+		 * @return bool 
+		 */
+		isPrevDayAvailable = function(){
+			var testDate = new Date(date.valueOf()),
+			    thisDay = date.getDay();
+
+			// skip Weekends
+			if ( thisDay === 1 ) {
+				testDate.setDate( testDate.getDate() - 3 );
+			} else {
+				testDate.setDate( testDate.getDate() - 1 );
+			}
+
+			return (getAvailableDates(true)).indexOf( dateToDateString( testDate ) ) !== -1;
+		},
+		/**
+		 * Find out if the previous day is available
+		 * 
+		 * @method isPrevDayAvailable
+		 * @param void
+		 * @return bool 
+		 */
+		isNextDayAvailable = function(){
+			var testDate = new Date( date.valueOf() ),
+			    thisDay = date.getDay();
+			
+			// skip Weekends
+			if ( thisDay === 5 ) {
+				testDate.setDate( date.getDate() + 3 );
+			} else {
+				testDate.setDate( date.getDate() + 1 );
+			}
+
+			return (getAvailableDates(true)).indexOf( dateToDateString( testDate ) ) !== -1;
+		},
 
 		// Helpers
 		/**
@@ -1013,7 +1045,7 @@ var storage = (function(){ // its a trap!
 		 */
 		dateToDateString = function(date){
 			date = new Date(date.valueOf());
-			return date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getDate();
+			return date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
 		},
 
 		/**
@@ -1050,10 +1082,9 @@ var storage = (function(){ // its a trap!
 		getMensaInfo : getMensaInfo,
 		getDateInfo  : getDateInfo,
 		getPropertiesInfo : getPropertiesInfo,
-		getAdditivesInfo : getAdditivesInfo,
+		getAdditivesInfo  : getAdditivesInfo,
 
-		// DEPRECIATED:
-		getTypes          : getTypes,
+		getTypes          : getTypes, // DEPRECIATED
 		getAvailableDates : getAvailableDates,
 
 		setFilter        : setFilter,
@@ -1123,6 +1154,8 @@ var storage = (function(){ // its a trap!
 		getSortedSegmented : getSortedSegmented,
 		filter             : filter,
 
+		isNextDayAvailable: isNextDayAvailable,
+		isPrevDayAvailable: isPrevDayAvailable,
 		thisDay : thisDay,
 		nextDay : nextDay,
 		prevDay : prevDay,
