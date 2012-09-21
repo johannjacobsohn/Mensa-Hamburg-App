@@ -96,13 +96,17 @@ MenuAssistant.prototype.setup = function() {
 		{ spacerHeight: 0, menuClass:'no-fade' },
 		this.headerMenu = {
 			visible: true,
-			items: [{
-				items: [
-					{ label: $L('Yesterday'), icon  : "back"   , command: 'prevDay' },
-					{ label: "Heute"        , width : 200      , command: 'today'     },
-					{ label: $L('Refresh')  , icon  :'forward' , command: 'nextDay'  }
-				]
-			}]
+			items: [
+				{}, // <-- helps to center the menu
+				{
+					items: [
+						{ label: $L('Yesterday'), icon  : "back"   , command: 'prevDay' },
+						{ label: "Heute"        , width : 200      , command: 'today'   },
+						{ label: $L('Refresh')  , icon  :'forward' , command: 'nextDay' }
+					]
+				},
+				{} // <-- helps to center the menu
+			]
 		}
 	);
 
@@ -121,6 +125,8 @@ MenuAssistant.prototype.setup = function() {
 
 //	this.controller.instantiateChildWidgets(menu);
 	this.controller.listen('menu', Mojo.Event.listTap, this.handleTap.bind(this));
+	
+	// Data is fetched in activate...
 };
 
 MenuAssistant.prototype.handleTap = function(event){
@@ -157,12 +163,11 @@ MenuAssistant.prototype.fetch = function(json, dateString, date){
 	// stop wait indicator
 	this.controller.get('spinner').mojo.stop();
 
-	// Preise unterscheiden
+	// Set price
 	// @TODO: move in storage
 	var studentPrices = conf.displayStudentPrices();
 	for(var i=0; i<json.length; i++){
 		json[i].price = studentPrices ? json[i].studPrice : json[i].normalPrice;
-//		json[i].open  = false;
 	}
 
 	// update menu
@@ -175,6 +180,6 @@ MenuAssistant.prototype.fetch = function(json, dateString, date){
 }
 
 MenuAssistant.prototype.setHeader = function(){
-	this.headerMenu.items[0].items[1].label = formatDate(this.date);
+	this.headerMenu.items[1].items[1].label = formatDate(this.date);
 	this.controller.modelChanged( this.headerMenu, this);
 }
