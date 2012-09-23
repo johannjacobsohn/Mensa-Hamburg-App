@@ -21,7 +21,7 @@ FilterAssistant.prototype.cleanup = function(event) {
 };
 
 FilterAssistant.prototype.setup = function() {
-	this.modelP = {};
+	this.model = {};
 
 	// render app menu
 	this.controller.setupWidget(Mojo.Menu.appMenu, {omitDefaultItems:true}, {
@@ -55,7 +55,7 @@ FilterAssistant.prototype.setup = function() {
 FilterAssistant.prototype.filterList = function(name, type){
 	this.controller.setupWidget("filter-" + name,
 		{ itemTemplate : "filter/filter-item-" + type },
-		this.modelP[name] = { items: [] } // Modell
+		this.model[name] = { items: [] } // Modell
 	);
 
 	// listen for Event
@@ -81,8 +81,8 @@ FilterAssistant.prototype.updateFilterList = function( name, items ){
 		item.i = i;
 	});
 
-	this.modelP[name].items = items;
-	this.controller.modelChanged( this.modelP[name] );
+	this.model[name].items = items;
+	this.controller.modelChanged( this.model[name] );
 }
 
 FilterAssistant.prototype.listPropertyChangeHandler = function(event){
@@ -92,12 +92,12 @@ FilterAssistant.prototype.listPropertyChangeHandler = function(event){
 
 	// toggle between checkboxes - there can be only one active
 	if( event.property === "with" && event.value === true ){
-		this.modelP[type].items[event.model.i].wo = false;
+		this.model[type].items[event.model.i].wo = false;
 	} else if( event.property === "wo" && event.value === false ){
-		this.modelP[type].items[event.model.i].with = false
+		this.model[type].items[event.model.i].with = false
 	}
 
-	this.modelP[type].items.forEach(function(item){
+	this.model[type].items.forEach(function(item){
 		if( item.with || item.woInvers ){
 			filters.push( { value: item.name, type: "include" } )
 		} else if( item.wo || item.withInvers ){
@@ -106,10 +106,7 @@ FilterAssistant.prototype.listPropertyChangeHandler = function(event){
 	});
 	
 	// reload model
-	this.controller.modelChanged( this.modelP[type] );
-	
-//	console.log( "set " + type )
-//	console.log( JSON.stringify(filters) )
+	this.controller.modelChanged( this.model[type] );
 
 	storage.setFilter(type, filters);
 }
