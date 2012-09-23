@@ -1,8 +1,4 @@
 /*
- * @TODO:
- * - Cleanup
- * - prevent initial loading of sunday and saturday on weekends
- * - target 150 lines
  */
 function MenuAssistant() {
 	/* this is the creator function for your scene assistant object. It will be passed all the 
@@ -21,7 +17,7 @@ MenuAssistant.prototype.activate = function(event) {
 
 	/* periodically set header as to pick up date changes */
 	this.headerReloadTimeout = 1000 * 3600 * 3; // every 3h ought to be enough
-	this.timeout = setTimeout( this.reloadHeader.bind(this), this.headerReloadTimeout ); 
+	this.timeout = setTimeout( this.reloadHeader.bind(this), this.headerReloadTimeout );
 };
 
 MenuAssistant.prototype.reloadHeader = function(event) {
@@ -45,9 +41,9 @@ MenuAssistant.prototype.handleFlick = function(event) {
 	var x = event.velocity.x;
 	var y = event.velocity.y;
 	if(Math.abs(x) > Math.abs(y)){
-		if( x > minXVel ){
+		if( x > minXVel && storage.isPrevDayAvailable() ){
 			this.load("prevDay");
-		} else if ( x < -minXVel ){
+		} else if ( x < -minXVel && storage.isNextDayAvailable() ) {
 			this.load("nextDay");
 		}
 	}
