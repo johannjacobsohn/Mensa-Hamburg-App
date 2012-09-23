@@ -21,6 +21,7 @@ var storage = (function(){ // its a trap!
 		date = new Date(), //now
 		week = function(){ return date.getWeek(); },
 		lock = [],
+		dataHasChanged = false,
 		/**
 		 *     loadedMensen{
 		 *         mensa1 : {
@@ -32,6 +33,62 @@ var storage = (function(){ // its a trap!
 		 */
 		loadedMensen = {},
 		menuCallbackQueue = [],
+
+		/*
+		 * Events:
+		 */
+		 
+		/*
+		* All subscriptions to all defined events
+		*/
+		subscriptions = {
+			update : [] // triggers once menu data has been updated
+		},
+		/**
+		 * Subscripe to an event
+		 * 
+		 * eg. 
+		 *   storage.on( "update", callback );
+		 *
+		 * @method on
+		 * @param {{string}} type
+		 * @param {{fkt}} callback
+		 * @return this
+		 */
+		on = function(type, fkt) {
+			if( subscriptions[type] ) {
+
+				// add subscription just once
+				if(  !subscriptions[type].some(function(item){ return item.toString() === fkt.toString }) ){
+					subscriptions[type].push( fkt );
+				}
+			} else {
+				console.warn("event '" + type +"' does not exist");
+			}
+			return this;
+		},
+		/**
+		 * trigger an event
+		 * 
+		 * fire( "update" );
+		 *
+		 * @method fire
+		 * @private
+		 * @param {string} type
+		 * @param  args Weitere Argumente an die Abonnenten
+		 * @return this
+		 */
+		fire = function(type, args) {
+			var i = 0;
+			if(subscriptions[type]){
+				for(i=0; i < subscriptions[type].length; i++){
+					subscriptions[type][i](args);
+				}
+			} else {
+				console.warn("event '" + type +"' does not exist");
+			}
+			return this;
+		},
 
 		/*
 		 * Filters
@@ -468,6 +525,7 @@ var storage = (function(){ // its a trap!
 
 				if(oldWeekMenuLength < newWeekMenuLength){
 					loadedMensen[additional_args.mensa][additional_args.week] = true;
+					dataHasChanged = true;
 				}
 
 				// release lock
@@ -655,9 +713,16 @@ var storage = (function(){ // its a trap!
 					( menuCallbackQueue.pop() )( filteredWeekMenu );
 				}
 
-				// sync cache
-				cache();
+				// do stuff if data has changed
+				if(dataHasChanged){
+					// sync cache
+					cache();
 
+					// trigger update event
+					fire( "update" );
+
+					dataHasChanged = false;
+				}
 				return true;
 			} else {
 				return false;
@@ -1170,6 +1235,9 @@ var storage = (function(){ // its a trap!
 		prevDay : prevDay,
 		today   : today,
 		day     : day,
+
+		// events:
+		on: on,
 
 		// Helpers:
 		dateToDateString : dateToDateString,
