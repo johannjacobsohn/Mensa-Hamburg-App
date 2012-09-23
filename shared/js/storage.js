@@ -235,8 +235,6 @@ var storage = (function(){ // its a trap!
 			filterProperties[prop]  = prop;
 			filterValues[prop]      = value;
 
-//			console.log( filterValues[prop] )
-
 			saveFilters();
 		},
 		/**
@@ -369,6 +367,9 @@ var storage = (function(){ // its a trap!
 		/**
 		 * Find and delete Data of urls that are not saved
 		 *
+		 * @TODO: Just clean if execcive data exits
+		 * @TODO: write tests
+		 * 
 		 * @method cleanData
 		 * @param void
 		 * @return this
@@ -392,6 +393,7 @@ var storage = (function(){ // its a trap!
 
 			// cleanup loadedMensen
 			// @TODO: probably broken
+			// @TODO: cleanup
 			var filterByMensaAndWeek = function(item){
 				return (mensa === item.mensa && parseInt(week, 10) === item.week);
 			};
@@ -673,6 +675,8 @@ var storage = (function(){ // its a trap!
 		},
 		/**
 		 * Get Menu from disk
+		 * 
+		 * @TODO: only load from cached if not already loaded
 		 *
 		 * @method loadCachedData
 		 */
@@ -734,7 +738,7 @@ var storage = (function(){ // its a trap!
 			});
 		},
 		/**
-		* get Informations about all Types
+		* get Informations about all Types/Names
 		*
 		* @method getTypeInfo
 		* @param {Function} callback
@@ -1056,42 +1060,44 @@ var storage = (function(){ // its a trap!
 		 * @return {Object} date
 		 */
 		dateStringToDate = function(dateString){
-			console.log(dateString)
 			dateString = dateString.split("-");
 			return new Date(dateString[0], dateString[1]-1 ,dateString[2]);
 		};
 
-
-		// init
+		////////////////////////////////////////////////
+		// init                                       //
+		////////////////////////////////////////////////
 
 		// populate loadedMensen and weekMenu from cache
 		loadCachedData();
 
-		// reset saved Filters
+		// load saved Filters
 		loadFilters();
 
 		// remove old data for performance
 		cleanUpOldData();
 
 	return {
+		// cache control:
 		clearCache : clearCache,
 		cleanData  : cleanData,
 
+		// additional 	information:
 		getInfo      : getInfo,
 		getTypeInfo  : getTypeInfo,
 		getMensaInfo : getMensaInfo,
 		getDateInfo  : getDateInfo,
 		getPropertiesInfo : getPropertiesInfo,
 		getAdditivesInfo  : getAdditivesInfo,
-
 		getTypes          : getTypes, // DEPRECIATED
 		getAvailableDates : getAvailableDates,
 
+		// filters:
 		setFilter        : setFilter,
 		unsetFilter      : unsetFilter,
 		unsetFilters     : unsetFilters,
 
-		// shortcuts and legacy
+		// shortcuts and legacy:
 		/**
 		 * set mensa filter
 		 * 
@@ -1147,13 +1153,16 @@ var storage = (function(){ // its a trap!
 		 */
 		unsetDateFilter  : function(){      unsetFilter("date");  },
 
+		// permanent filters:
 		setPersistentFilters : setPersistentFilters,
 		getPersistentFilters : getPersistentFilters,
 
+		// data retrieval:
 		getWeekMenu        : getWeekMenu,
 		getSortedSegmented : getSortedSegmented,
 		filter             : filter,
 
+		// day based navigation:
 		isNextDayAvailable: isNextDayAvailable,
 		isPrevDayAvailable: isPrevDayAvailable,
 		thisDay : thisDay,
