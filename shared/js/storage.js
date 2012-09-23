@@ -474,7 +474,7 @@ var storage = (function(){ // its a trap!
 			return this;
 		},
 		/**
-		 * Retrieve menu data (for a given week)
+		 * Get menu data (for a given week)
 		 *
 		 * @method getWeekMenu
 		 * @chainable
@@ -482,26 +482,43 @@ var storage = (function(){ // its a trap!
 		 * @param {Integer}  optional Weeknumber, defaults to this week
 		 */
 		getWeekMenu = function(callback, week){
+			week = week || date.getWeek(); // get Week from date
+			var allLoaded = ( conf.getSavedURLs() ).some(function( item ){ return typeof loadedMensen[item] !== "undefined" && typeof loadedMensen[item][week] !== "undefined"; })
+
+			if ( allLoaded ) { // avoid running through the whole callback stack if all mensen are already loaded
+				callback( weekMenu );
+			} else {
+				// enqueue the callback to be executed when everything has been loaded
+				menuCallbackQueue.push(callback);
+				retrieveData( week );
+			}
+			return this;
+		},
+		/**
+		 * Retrieve menu data (for a given week)
+		 *
+		 * @method retrieveData
+		 * @param {Integer}  optional Weeknumber, defaults to this week
+		 * @param {bool} force loading of data, even if already loaded
+		 */
+		retrieveData = function(week, force){
 			var mensenArr = conf.getSavedURLs(),
 			    mensa = "",
 			    thisWeek = (new Date()).getWeek(),  // get this week's number
 			    url = "";
 			week = week || date.getWeek(); // get Week from date
 
-			// enqueue the callback to be executed when everything has been loaded
-			if(callback) { menuCallbackQueue.push(callback); }
-
 			for(var m = 0; m<mensenArr.length; m++){
 				mensa = mensenArr[m];
 				loadedMensen[mensa] = loadedMensen[mensa] || {};
-				// skip loading if this mensa has been already loaded, its currently loading or date is not this or next week -> there won't be any data on the server
-				// @TODO: think of better way to do this
 
-				if( !loadedMensen[mensa][week] && !lock[mensa] && ( week === thisWeek || week === thisWeek + 1 ) ){
+				// skip loading if this mensa has been already loaded, its currently loading or date is not this or next week -> there won't be any data on the server
+				// load anyway if forced to
+				if( ((!loadedMensen[mensa][week] || force) && !lock[mensa + week] && ( week === thisWeek || week === thisWeek + 1 )) ){
 					isFiltered = false;
 
 					// lock execution of callback queue to prevent race conditions
-					lock[mensa] = true;
+					lock[mensa + week] = true;
 
 					// load and parse URL with correct week number
 					url = urls.mensenWeek[mensa].replace(/\{\{week\}\}/, week);
@@ -515,21 +532,25 @@ var storage = (function(){ // its a trap!
 			}
 
 			function success(resp, additional_args){
+				var mensa = additional_args.mensa;
+				var week = additional_args.week;
+				
 				// parse HTML
-				var oldWeekMenuLength = weekMenu.length, newWeekMenuLength = 0;
-
-				parseMensaHTML(resp, additional_args.mensa, additional_args.week);
+				var newWeekMenu = parseMensaHTML(resp, mensa, week);
 
 				// mark as cached only if new dishes where found
-				newWeekMenuLength = weekMenu.length;
+				// data has changed!
+				if( newWeekMenu.length > 0 ){
+					// splice menu together
+					weekMenu = weekMenu.filter(function( item ){ return !(item.week === week && item.mensa === mensa) });
+					weekMenu = weekMenu.concat( newWeekMenu ); 
 
-				if(oldWeekMenuLength < newWeekMenuLength){
-					loadedMensen[additional_args.mensa][additional_args.week] = true;
+					loadedMensen[mensa][week] = true;
 					dataHasChanged = true;
 				}
 
 				// release lock
-				delete lock[additional_args.mensa];
+				delete lock[additional_args.mensa+additional_args.week];
 
 				// try to run callbacks
 				runMenuCallbacks();
@@ -539,7 +560,7 @@ var storage = (function(){ // its a trap!
 				console.error("xhr error");
 
 				// release lock
-				delete lock[additional_args.mensa];
+				delete lock[additional_args.mensa+additional_args.week];
 
 				// try to run callbacks
 				runMenuCallbacks();
@@ -555,7 +576,7 @@ var storage = (function(){ // its a trap!
 		 * @param  {String}  html
 		 * @param  {String}  mensa
 		 * @param  {Integer} week
-		 * @return {Object}  fetched dishes
+		 * @return {Array}   fetched dishes
 		 */
 		parseMensaHTML = function(html, mensa, week){
 			var tds, trs, dish, dishName, date, dateString, obj,
@@ -571,7 +592,8 @@ var storage = (function(){ // its a trap!
 				studPrice,
 				normalPrice,
 				ths,
-				tempObj;
+				tempObj,
+				weekMenu = [];
 
 			tempDiv.innerHTML = html.replace(/src="(.)*?"/g, '').replace(/<script(.|\s)*?\/script>/g, '');
 			try{
@@ -694,6 +716,7 @@ var storage = (function(){ // its a trap!
 					}
 				}
 			}
+			return weekMenu;
 		},
 		/**
 		 * Try to run callback queue
@@ -1104,6 +1127,38 @@ var storage = (function(){ // its a trap!
 			return (getAvailableDates(true)).indexOf( dateToDateString( testDate ) ) !== -1;
 		},
 
+		/**
+		 * manually trigger update of data
+		 * 
+		 * @method update
+		 * @param void
+		 * @return void
+		 */
+		update = function(){
+			var week = (new Date()).getWeek();
+			console.log( week + 1)
+			retrieveData(week    , true);
+			retrieveData(week + 1, true);
+		},
+
+		/**
+		 *  periodically check for new data on the server
+		 * 
+		 * @method checkForData
+		 * @param void
+		 * @return void
+		 */
+		lasttimechecked = new Date(),
+		checkForData = function(){
+			var now = new Date(),
+			    checkInterval = 3600 * 24 * 1000; // check every day
+			if( now - lasttimechecked > checkInterval ){
+				update();
+				lasttimechecked = now;
+			}
+			setTimeout(checkForData, 3600 * 1000); // try again in an hour
+		},
+
 		// Helpers
 		/**
 		 * convert date to datestring
@@ -1141,6 +1196,9 @@ var storage = (function(){ // its a trap!
 
 		// remove old data for performance
 		cleanUpOldData();
+
+		// periodically (every day) check data
+		checkForData();
 
 	return {
 		// cache control:
@@ -1238,6 +1296,8 @@ var storage = (function(){ // its a trap!
 
 		// events:
 		on: on,
+		
+		update : update,
 
 		// Helpers:
 		dateToDateString : dateToDateString,
