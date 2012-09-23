@@ -963,7 +963,6 @@ var storage = (function(){ // its a trap!
 		},
 		/**
 		 * list all dates
-		 * @fixme: doesn't work on Sunday?
 		 *
 		 * @method getAvailableDates
 		 * @param {Boolean} getNextWeek
@@ -972,13 +971,14 @@ var storage = (function(){ // its a trap!
 		getAvailableDates = function(getNextWeek){
 			var noOfDays = getNextWeek ? 12 : 5,
 			    today = new Date(),
-			    monday = today.getDate() - today.getDay(),
-			    d    = new Date ( today.setDate( monday ) ),
+			    monday = today.getDate() - (today.getDay() + 6)%7,
+			    d = new Date ( today.setDate( monday ) ),
+			    b,
 			    dates = [];
 			for(var i = 0; i < noOfDays; i++){
-				d = new Date ( d.valueOf() + 60 * 60 * 24 * 1000 );
+				b = new Date ( d.valueOf() + i * 60 * 60 * 24 * 1000 );
 				if(i !== 5 && i !== 6) {
-					dates.push( dateToDateString(d) );
+					dates.push( dateToDateString(b) );
 				}
 			}
 			return dates;
