@@ -78,7 +78,7 @@ ConfigAssistant.prototype.setup = function() {
 		}
 	);
 	Mojo.Event.listen(this.controller.get("permanentFilters"), Mojo.Event.propertyChange, function(o){
-		conf.setPersistentFilters(o.value === "1");
+		storage.setPersistentFilters(o.value === "1");
 	});
 };
 
