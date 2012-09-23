@@ -1168,7 +1168,6 @@ var storage = (function(){ // its a trap!
 		 * @return {String} Datestring
 		 */
 		dateToDateString = function(date){
-			date = new Date(date.valueOf());
 			return date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
 		},
 
