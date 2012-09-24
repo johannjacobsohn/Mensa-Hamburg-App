@@ -970,15 +970,13 @@ var storage = (function(){ // its a trap!
 		 */
 		getAvailableDates = function(getNextWeek){
 			var noOfDays = getNextWeek ? 12 : 5,
-			    today = new Date(),
-			    monday = today.getDate() - (today.getDay() + 6)%7,
-			    d = new Date ( today.setDate( monday ) ),
-			    b,
+			    d = new Date(),
+			    monday = d.setDate(d.getDate() - (d.getDay() + 6)%7),
 			    dates = [];
 			for(var i = 0; i < noOfDays; i++){
-				b = new Date ( d.valueOf() + i * 60 * 60 * 24 * 1000 );
 				if(i !== 5 && i !== 6) {
-					dates.push( dateToDateString(b) );
+					d = new Date(monday.valueOf() + i * 3600 * 24 * 1000);
+					dates.push( dateToDateString( d ) );
 				}
 			}
 			return dates;
