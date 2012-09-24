@@ -843,7 +843,8 @@ var storage = (function(){ // its a trap!
 						typesArr.push({
 							content  : type,
 							name     : type,
-							filtered : typeof filterProperties.name !== "undefined" && filterValues.name.indexOf( type ) !== -1
+							filtered : typeof filterValues.name !== "undefined" && filterValues.name.some(function(item){ return item.value === type }),
+							filter   : filterValues.name ? filterValues.name.filter(function(item){ return item.value === type })[0] : []
 						});
 					}
 				}

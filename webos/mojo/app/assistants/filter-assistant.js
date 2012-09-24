@@ -74,11 +74,12 @@ FilterAssistant.prototype.updateFilterList = function( name, items ){
 	}
 
 	items.forEach(function(item, i){
-		item.with = item.filter && item.filter.type === "include";
-		item.wo    = item.filter && item.filter.type === "exclude";
-		item.woInvers  = !item.wo
+		console.log(JSON.stringify(item));
+		item.with       = item.filter && item.filter.type === "include";
+		item.wo         = item.filter && item.filter.type === "exclude";
+		item.woInvers   = !item.wo;
 		item.filterType = name;
-		item.i = i;
+		item.i          = i;
 	});
 
 	this.model[name].items = items;
@@ -93,18 +94,17 @@ FilterAssistant.prototype.listPropertyChangeHandler = function(event){
 	// toggle between checkboxes - there can be only one active
 	if( event.property === "with" && event.value === true ){
 		this.model[type].items[event.model.i].wo = false;
-	} else if( event.property === "wo" && event.value === false ){
+	} else if( (event.property === "wo" ||  event.property === "woInvers") && event.value === false ){
 		this.model[type].items[event.model.i].with = false
 	}
 
 	this.model[type].items.forEach(function(item){
 		if( item.with || item.woInvers ){
 			filters.push( { value: item.name, type: "include" } )
-		} else if( item.wo || item.withInvers ){
+		} else if( item.wo || item.withInvers || item.woInvers === false ){
 			filters.push( { value: item.name, type: "exclude" } )
 		}
 	});
-	
 	// reload model
 	this.controller.modelChanged( this.model[type] );
 
