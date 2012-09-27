@@ -40,15 +40,21 @@ FilterAssistant.prototype.setup = function() {
 	this.filterList("additives", "trippel");
 	
 	this.controller.setupWidget('wo', { 
-		modelProperty : "wo"
+		modelProperty : "wo",
+		trueValue: "exclude",
+		falseValue: "ignore"
 	});
 	this.controller.setupWidget('with', { 
-		modelProperty : "with"
+		modelProperty : "with",
+		trueValue: "include",
+		falseValue: "ignore"
 	});
 	this.controller.setupWidget('filterToggleButton', { 
-		modelProperty : "woInvers",
+		modelProperty : "toggle",
 		trueLabel: "Mit",
-		falseLabel: "Ohne" 
+		falseLabel: "Ohne",
+		trueValue: "include",
+		falseValue: "exclude"
 	});
 };
 
@@ -74,10 +80,11 @@ FilterAssistant.prototype.updateFilterList = function( name, items ){
 	}
 
 	items.forEach(function(item, i){
-		console.log(JSON.stringify(item));
-		item.with       = item.filter && item.filter.type === "include";
-		item.wo         = item.filter && item.filter.type === "exclude";
-		item.woInvers   = !item.wo;
+		item.with       =  item.filter && item.filter.type === "include" ? "include" : "ignore";
+		item.wo          =   item.filter && item.filter.type === "exclude" ? "exclude" : "ignore";
+		if(name === "mensa" || name === "name" ){
+			item.toggle = (item.filter && item.filter.type === "include") || !item.filter || !item.filter.type  ? "include" : "exclude"; //!item.wo;
+		}
 		item.filterType = name;
 		item.i          = i;
 	});
@@ -92,21 +99,22 @@ FilterAssistant.prototype.listPropertyChangeHandler = function(event){
 	var filters = [];
 
 	// toggle between checkboxes - there can be only one active
-	if( event.property === "with" && event.value === true ){
-		this.model[type].items[event.model.i].wo = false;
-	} else if( (event.property === "wo" ||  event.property === "woInvers") && event.value === false ){
-		this.model[type].items[event.model.i].with = false
+	if( event.value ===  "include" ){
+		this.model[type].items[event.model.i].wo = "ignore";
+	} else if( event.value ===  "exclude" ){
+		this.model[type].items[event.model.i].with = "ignore";
 	}
 
 	this.model[type].items.forEach(function(item){
-		if( item.with || item.woInvers ){
+		if( item.with === "include" || item.toggle === "include" ){
 			filters.push( { value: item.name, type: "include" } )
-		} else if( item.wo || item.withInvers || item.woInvers === false ){
+		} else if( item.wo === "exclude" || item.toggle === "exclude"  ){
 			filters.push( { value: item.name, type: "exclude" } )
 		}
 	});
 	// reload model
 	this.controller.modelChanged( this.model[type] );
 
+	// set filter
 	storage.setFilter(type, filters);
 }

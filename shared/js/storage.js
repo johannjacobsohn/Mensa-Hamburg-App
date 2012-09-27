@@ -119,7 +119,6 @@ var storage = (function(){ // its a trap!
 		},
 		filterProperties = {},
 		filterValues = {},
-		filterCompareType = {},
 		
 		/**
 		 * Get filter setting from storage and populate properties
@@ -128,11 +127,9 @@ var storage = (function(){ // its a trap!
 		 * @private
 		 */
 		loadFilters = function(){
-			/// @TODO
-			if( persistentFilters ){
+			if( persistentFilters === "1" ){
 				filterProperties  = JSON.parse( data.get("filterProperties")  || "{}" );
 				filterValues      = JSON.parse( data.get("filterValues")      || "{}" );
-				filterCompareType = JSON.parse( data.get("filterCompareType") || "{}" );
 			}
 		},
 		/**
@@ -141,10 +138,9 @@ var storage = (function(){ // its a trap!
 		 * @method saveFilters
 		 */
 		saveFilters = function(){
-			if( persistentFilters ){
+			if( persistentFilters === "1" ){
 				data.set("filterProperties",  JSON.stringify(filterProperties)  );
 				data.set("filterValues",      JSON.stringify(filterValues)      );
-				data.set("filterCompareType", JSON.stringify(filterCompareType) );
 			}
 		},
 		/**
@@ -182,17 +178,20 @@ var storage = (function(){ // its a trap!
 			var b = true;
 			
 			if(typeof item[prop] === "string") {
+				return filterValues[prop].some(function(i){ return i.value === item[prop] && i.type === "include"; })
+				
 				for(var i = 0; i<filterValues[prop].length; i++){
 					a = filterValues[prop][i].type === "include";
-					b = filterValues[prop][i].value.indexOf( item[prop] ) !== -1;
+					b = filterValues[prop].some(function(i){ return i.value === item[prop]; });
+
 					if (a && b || !a && !b){
 						return true
 					}
 				}
 			} else {
-				//find out if one of the properties is in or excluded
-				var inc =  include(includes, item[prop]);
-				var exc = !include(excludes, item[prop]);
+				//find out if one of the properties is either in- or excluded
+				var inc =  includeAll(includes, item[prop]);
+				var exc =  exclude(excludes, item[prop]);
 				if(includes.length === 0){
 					return exc
 				}
@@ -209,7 +208,6 @@ var storage = (function(){ // its a trap!
 		 *
 		 * filterName
 		 * filterValues
-		 * filterCompareType  => includes/excludes
 		 *
 		 * @method filter
 		 * @param {Function} callback with filtered menu
@@ -252,13 +250,32 @@ var storage = (function(){ // its a trap!
 		 * @param Array b
 		 * @return 
 		 */
-		include = function(a,b) {
+		exclude = function(a,b) {
 			for (var i = 0; i < a.length; i++){
-				if( b.indexOf(a[i]) != -1 ){
-					return true
+				if( b.indexOf(a[i]) !== -1 ){
+					return false
 				}
 			}
-			return false
+			return true
+		},
+		
+		/**
+		 * return if every element of array a is in array b
+		 * 
+		 * @private
+		 * @method include
+		 * 
+		 * @param Array a
+		 * @param Array b
+		 * @return 
+		 */
+		includeAll = function(a,b) {
+			for (var i = 0; i < a.length; i++){
+				if( b.indexOf(a[i]) === -1 ){
+					return false
+				}
+			}
+			return true
 		},
 
 		/**
@@ -305,7 +322,6 @@ var storage = (function(){ // its a trap!
 			isFiltered = false;
 			delete filterProperties[type];
 			delete filterValues[type];
-			delete filterCompareType[type];
 			saveFilters();
 		},
 		/**
@@ -318,7 +334,6 @@ var storage = (function(){ // its a trap!
 			isFiltered = false;
 			filterProperties = {};
 			filterValues = {};
-			filterCompareType = {};
 			
 			saveFilters();
 		},
@@ -1135,7 +1150,6 @@ var storage = (function(){ // its a trap!
 		 */
 		update = function(){
 			var week = (new Date()).getWeek();
-			console.log( week + 1)
 			retrieveData(week    , true);
 			retrieveData(week + 1, true);
 		},
