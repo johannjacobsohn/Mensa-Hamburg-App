@@ -56,12 +56,11 @@ MenuAssistant.prototype.setup = function() {
 			{ label: "Menu",           command : "menu", disabled: true   },
 			{ label: "Konfigurieren",  command : "config" },
 			{ label: "Filtern",        command : "filter" },
-			{ label: "Über diese App", command : "about"  },
+			{ label: "Über diese App", command : "info"  },
 			{ label: "Zurücksetzen",   command : "reset"  }
 		]
 	});
 
-	//
 	if(!conf.isConfigured()){
 		this.controller.showAlertDialog({
 			onChoose: function(value) {

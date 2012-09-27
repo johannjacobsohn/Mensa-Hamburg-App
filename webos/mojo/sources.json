@@ -18,5 +18,9 @@
     {
         "scenes": "filter",
         "source": "app/assistants/filter-assistant.js"
+    },
+    {
+        "scenes": "info",
+        "source": "app/assistants/info-assistant.js"
     }
 ]

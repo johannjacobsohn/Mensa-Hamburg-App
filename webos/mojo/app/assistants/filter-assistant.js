@@ -29,7 +29,7 @@ FilterAssistant.prototype.setup = function() {
 			{ label: "Menu",           command : "menu" },
 			{ label: "Konfigurieren",  command : "config"},
 			{ label: "Filtern",        command : "filter", disabled: true  },
-			{ label: "Über diese App", command : "about"  },
+			{ label: "Über diese App", command : "info"  },
 			{ label: "Zurücksetzen",   command : "reset"  }
 		]
 	});
