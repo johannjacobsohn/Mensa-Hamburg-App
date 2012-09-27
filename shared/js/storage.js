@@ -439,7 +439,7 @@ var storage = (function(){ // its a trap!
 		/**
 		 * Find and delete Data of urls that are not saved
 		 *
-		 * @TODO: Just clean if execcive data exits
+		 * @TODO: Just clean if execcive data exits (no need to do all the work when there is really nothing to do)
 		 * @TODO: write tests
 		 * 
 		 * @method cleanData
@@ -464,23 +464,21 @@ var storage = (function(){ // its a trap!
 			});
 
 			// cleanup loadedMensen
-			// @TODO: probably broken
 			// @TODO: cleanup
-			var filterByMensaAndWeek = function(item){
-				return (mensa === item.mensa && parseInt(week, 10) === item.week);
-			};
 			for(var mensa in loadedMensen){
 				if( loadedMensen.hasOwnProperty(mensa) ){
 					for(var week in loadedMensen[mensa]){
 						if(loadedMensen[mensa].hasOwnProperty(week)){
-							mensaLength = weekMenu.filter(filterByMensaAndWeek).length;
-							loadedMensen[mensa][week].loaded = mensaLength > 0;
+							loadedMensen[mensa][week] = weekMenu.some(function(item){
+								return (mensa === item.mensa && parseInt(week, 10) === item.week);
+							});
 						}
 					}
 				}
 			}
 
-			// unset MensaFilter
+			// unset MensaFilter to prevent an inconsistent state where
+			// we are filtering by a mensa which doesn't exist anymore
 			unsetFilter("mensa");
 
 			// sync cache
@@ -498,7 +496,9 @@ var storage = (function(){ // its a trap!
 		 */
 		getWeekMenu = function(callback, week){
 			week = week || date.getWeek(); // get Week from date
-			var allLoaded = ( conf.getSavedURLs() ).some(function( item ){ return typeof loadedMensen[item] !== "undefined" && typeof loadedMensen[item][week] !== "undefined"; })
+			var allLoaded = ( conf.getSavedURLs() ).every(function( item ){
+				return typeof loadedMensen[item] !== "undefined" && !loadedMensen[item][week];
+			});
 
 			if ( allLoaded ) { // avoid running through the whole callback stack if all mensen are already loaded
 				callback( weekMenu );
