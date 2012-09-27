@@ -708,9 +708,10 @@ var storage = (function(){ // its a trap!
 
 						// Parse out dish
 						dish = p[k].innerText;
-						dish = dish.replace(/&nbsp;/g, "").trim();
+						dish = dish.replace(/&nbsp;/g, ""); // remove hard whitespace
 						dish = dish.replace(/\(([0-9.]+,?[\s]*)*\)/g, ""); //remove additives
-
+						dish = dish.replace(/[\s]+,[\s]*/g, ", "); // fix ugly comma placement, eg. "a ,b"
+						dish = dish.replace(/[\s]+/g, " ").trim(); // remove exessive whitespaces
 						// Figure out date
 						date = new Date(startdate.valueOf() + (i) * 24 * 60 * 60 * 1000);
 						dateString = date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getDate();
