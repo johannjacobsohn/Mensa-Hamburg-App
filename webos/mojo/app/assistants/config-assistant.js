@@ -70,7 +70,7 @@ ConfigAssistant.prototype.setup = function() {
 		this.attributes = {
 			choices: [
 				{label: "Filter merken", value: 1},
-				{label: "Filter beim Starten zurücksetzen", value: 0}
+				{label: "Filter beim Starten vergessen", value: 0}
 			]
 		},
 		this.model = {
@@ -80,6 +80,24 @@ ConfigAssistant.prototype.setup = function() {
 	Mojo.Event.listen(this.controller.get("permanentFilters"), Mojo.Event.propertyChange, function(o){
 		storage.setPersistentFilters(o.value === "1");
 	});
+
+	this.controller.setupWidget("freeOrientation",
+		this.attributes = {
+			choices: [
+				{label: "App nur im Portraitmodus", value: "up"},
+				{label: "Freie Orientierung", value: "free"}
+			]
+		},
+		this.model = {
+			value: data.get( "freeOrientation" ) || "up"
+		}
+	);
+	Mojo.Event.listen(this.controller.get("freeOrientation"), Mojo.Event.propertyChange, function(o){
+		data.set( "freeOrientation", o.value);
+		window.PalmSystem.setWindowOrientation( o.value );
+	});
+
+
 };
 
 ConfigAssistant.prototype.listPropertyChangeHandler = function(event){

@@ -2,7 +2,7 @@ function StageAssistant() {
 	/* this is the creator function for your stage assistant object */
 }
 StageAssistant.prototype.setup = function() {
-	window.PalmSystem.setWindowOrientation('free');
+	window.PalmSystem.setWindowOrientation(data.get("freeOrientation") || "up");
 	this.controller.pushScene("menu");
 };
 // handle menu commands
