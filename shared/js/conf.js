@@ -6,6 +6,12 @@
  /*jshint smarttabs:true browser:true */
 (function(){
 	conf = {
+		/** @property majorVersion */
+		majorVersion: 2,
+		/** @property minorVersion */
+		minorVersion: 1,
+		/** @property versionHasChanged */
+		versionHasChanged: false,
 		/**
 		 * get all active mensen
 		 * 
@@ -50,7 +56,7 @@
 		 */
 		isConfigured : function(urls){
 			try{
-				return typeof localStorage.getItem("urls") === "string";
+				return typeof data.get("urls") === "string";
 			} catch(e) {
 				return false;
 			}
@@ -100,4 +106,18 @@
 			return (typeof data.get("displayStudentPrices") === "undefined" ||  data.get("displayStudentPrices") === null || data.get("displayStudentPrices") === "1");
 		}
 	};
+	
+	// version has changed if majorversion or minorversion differ from
+	// saved value and there is no saved menu (it could be a fresh install otherwise)
+	if( (data.get("majorversion") != conf.majorVersion || data.get("minorversion") != conf.minorVersion) && !data.get("menu") ){
+		conf.versionHasChanged = true;
+	}
+
+	// ☢ nuke all saved data if version has changed
+	if( data.get("majorversion") != conf.majorVersion ){
+		data.clear();
+	}
+
+	data.set("majorversion", conf.majorVersion);
+	data.set("minorversion", conf.minorVersion);
 })();

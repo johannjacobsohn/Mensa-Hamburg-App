@@ -8,7 +8,7 @@
  */
 /*jshint smarttabs:true browser:true */
 var data = (function(){
-	var version = "3", // we might want to trigger a reload of cached data (if the)
+	"use strict"
 
 	cache = {},
 
@@ -63,12 +63,6 @@ var data = (function(){
 		return localStorage.clear();
 	};
 
-	// setup
-	if( get("version") !== version ){
-		clear();
-		set("version", version);
-	}
-	
 	return {
 		save   : set,
 		set    : set,
