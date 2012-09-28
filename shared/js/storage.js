@@ -497,7 +497,7 @@ var storage = (function(){ // its a trap!
 		getWeekMenu = function(callback, week){
 			week = week || date.getWeek(); // get Week from date
 			var allLoaded = ( conf.getSavedURLs() ).every(function( item ){
-				return typeof loadedMensen[item] !== "undefined" && !loadedMensen[item][week];
+				return typeof loadedMensen[item] !== "undefined" && !!loadedMensen[item][week];
 			});
 
 			if ( allLoaded ) { // avoid running through the whole callback stack if all mensen are already loaded
