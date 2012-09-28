@@ -57,7 +57,7 @@ body > header {
 		content: " ";
 		width: 144px;
 		height: 6em;
-		background: url(/images/173x173_.png) no-repeat right center;
+		background: url(../images/173x173_.png) no-repeat right center;
 		background-size: contain;
 		color: transparent;	
 		text-shadow: none;
@@ -94,7 +94,6 @@ body > header {
 	padding: 0;
 	width: 90px;
 	height: 30px;
-	background: url(/images/icon_male-180.png) no-repeat 0 top;
 }
 .testimonials::before{
 	background: transparent;
@@ -112,7 +111,6 @@ body > header {
 }
 .testimonials blockquote{
 	opacity: 0;
-	background : url(../img/icon_male-180.png) no-repeat 10px top;
 	margin: 0;
 	padding: 10px;
 	position: absolute;
