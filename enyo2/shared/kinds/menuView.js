@@ -23,7 +23,7 @@ enyo.kind({
 	dateIsAvailable: function(index){
 		var date = new Date( this.date + index * 1000 * 60 * 60 * 24 );
 		var d = storage.dateToDateString( date );
-		console.log(this.availableDates, index, this.availableDates.indexOf( d ))
+//		console.log(this.availableDates, index, this.availableDates.indexOf( d ))
 		return this.availableDates.indexOf( d ) !== -1;
 		return index < 3 && index > -3;
 	},

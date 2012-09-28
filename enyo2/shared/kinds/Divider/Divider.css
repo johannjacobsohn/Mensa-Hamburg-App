@@ -1,3 +1,13 @@
+.divider{
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	font-weight: bold;
+	font-size: 12pt;
+	color: #3A8BCB;
+	-webkit-box-flex: .1;
+	text-shadow: 1px 1px 1px #eee;
+}
 
 
 .caption{

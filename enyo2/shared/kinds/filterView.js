@@ -18,37 +18,26 @@ enyo.kind({
 				]}
 			]},
 			{kind: "Scroller", fit: true, components: [
-				{kind: "filterNROBERT", title: "Nach Gericht filtern", type: "name"},
-				{kind: "filterNROBERT", title: "Nach Zusatzstoffen filtern", type: "additives"},
-				{kind: "filterNROBERT", title: "Nach Eigenschaften filtern", type: "properties"},
-				{kind: "filterNROBERT", title: "Nach Mensen filtern", type: "mensa"},
+				{kind: "filterNROBERT", name:"nameFilter", title: "Nach Gericht filtern", type: "name"},
+				{kind: "filterNROBERT", name:"additivesFilter", title: "Nach Zusatzstoffen filtern", type: "additives"},
+				{kind: "filterNROBERT", name:"propertiesFilter", title: "Nach Eigenschaften filtern", type: "properties"},
+				{kind: "filterNROBERT", name:"mensaFilter", title: "Nach Mensen filtern", type: "mensa"},
 			]},
 			{kind: "onyx.Button", content: "Filtern", style:"width: 100%;", classes: "onyx-affirmative", onclick: "applyFilters"},
 		],
 	applyFilters : function(){
-		this.setFilter("name").setFilter("mensa").display("thisDay").openPage("menu");
+		this.setFilter("name").setFilter("mensa").setFilter("properties").setFilter("additives");
 	},
 	setFilter : function(type){
-		var items = this.$[type + "Filter"].children;
-		var l = items.length;
-		var filters = [];
-		var itm;
-		var active;
-
-		for( var i = 0; i<l; i++ ){
-			itm = items[i].children[0].children[0];
-			active = itm.children[0].getValue();
-
-			this.cache[type][i].active = active;
-
-			if( active ){
-				filters.push( itm.children[1].content );
-			}
-		}
-
-		if(filters.length === 0 || filters.length === l){
+		console.log(type + "Filter", this.$, this.$[type + "Filter"])
+		var filters = this.$[type + "Filter"].getStatus();
+		// filters need to be in this form:
+		// [{value: "a", type: "include"}, {"b", type: "include"}]
+console.log(filters)
+		if( filters.length === 0 ){
 			storage.unsetFilter(type);
 		} else {
+			
 			storage.setFilter(type, filters);
 		}
 		return this;
@@ -69,15 +58,38 @@ enyo.kind({
 	label: "",
 	components: [
 		{ content: "", name: "label", fit: true },
-		{ kind: "onyx.PickerDecorator", name: "picker",  style: "width: 100px", components: [
+
+{kind: "Toggle3Button", onContent: "foo", offContent: "bar", neutralContent: "baz", onChange: "buttonToggle"}
+/*		{ kind: "onyx.PickerDecorator", name: "picker",  style: "width: 100px", components: [
 			{ name: "pickerButton" },
 			{kind: "onyx.Picker", components: [
 				{content: "Egal", active: true},
 				{content: "Ja"},
 				{content: "Nein"}
-			]}
+			], onChange: "change"}
 		]}
-	],
+*/	],
+	change: function(inSender, inEvent){
+		var state;
+		var that = this;
+		setTimeout( function(){
+			if( typeof inEvent.index === "undefined" ) return;
+			console.log( "index", inEvent.selected )
+			
+			if( inEvent.selected.content === "Ja" ){
+				state = "include";
+			} else if( inEvent.selected.content === "Nein" ){
+				state = "exclude";
+			} else{
+				state = "none";
+			}
+
+			that.bubble( "onChange", { 
+				content : that.label,
+				state   : state
+			});
+		}, 10);
+	},
 	ontap: "tap",
 	tap: function(inSender, inEvent){
 		this.$.pickerButton.tap()
@@ -102,6 +114,26 @@ enyo.kind({
 			]}
 		]}
 	],
+	handlers: {
+		"onChange" : "changed"
+	},
+	filteredBy : {},
+	changed: function(inSender, inEvent){
+		"use strict";
+		var type = inEvent.state,    // include, exclude, none
+		    value = inEvent.content;  //
+		if( typeof value === "undefined"  || typeof type === "undefined"  ) return
+		type !== "none" && console.log(type, value)
+
+		if( type === "none" ){
+			delete this.filteredBy[value];
+		} else {
+			this.filteredBy[value] = type;
+		}
+
+type !== "none" && console.log(this.filteredBy)
+		return true;
+	},
 	activate: function() {
 		"use strict";
 		this.$.drawer.setOpen(!this.$.drawer.open);
@@ -118,9 +150,24 @@ enyo.kind({
 		"use strict";
 		var that = this;
 		storage.getInfo(this.type, function(values){
+			console.log(values)
 			that.cache = values;
 			that.$.repeater.setCount(values.length);
 		});
+	},
+	getStatus: function(){
+		"use strict";
+		var filter = [], value;
+		// filters need to be returned in this form:
+		// [{value: "a", type: "include"}, {"b", type: "include"}]
+		console.log("this.filteredBy", this.filteredBy)
+		for( value in this.filteredBy ){
+			if( this.filteredBy.hasOwnProperty(value) ){
+				filter.push( { value: value, type: this.filteredBy[value] } );
+			}
+		}
+console.log("getStatus", filter)
+		return filter;
 	},
 	create: function(){
 		this.inherited( arguments );

@@ -40,60 +40,6 @@ body {
 	overflow: auto;
 	-webkit-overflow-scrolling: touch;
 }
-.item {
-	padding: 10px;
-/*
-	border-bottom: 1px solid #0e0e0e;
-*/
-	cursor: pointer;
-	border-top: 1px solid rgba(255, 255, 255, 0.5);
-	border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-	text-shadow: 1px 1px 1px #eee;
-	overflow: auto;
-}
-.item.first {
-	border-top: none;
-}
-.item.last {
-	border-bottom: none;
-}
-/*
-.item {
-	padding: 10px;
-	border-bottom: 1px solid #0e0e0e;
-	cursor: pointer;
-}
-.item.last {
-	border-bottom: none;
-}
-
-enyo-list-page> div:nth-child(odd) {
-	background-color: #424242;
-}
-*/
-.dish{
-	color: #000;
-	font-size: 18px;
-}
-.mensa,
-.name {
-	color: #666;
-	font-size: .8em;
-}
-.price {
-	float: right;
-}
-
-.divider{
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	font-weight: bold;
-	font-size: 12pt;
-	color: #3A8BCB;
-	-webkit-box-flex: .1;
-	text-shadow: 1px 1px 1px #eee;
-}
 
 .loading-message,
 .empty-message{
@@ -116,12 +62,10 @@ body .onyx-icon:active:hover {
 	background-position: center -32px;
 }
 
+.navButton{
+	min-width: 25%;
+}
 
 .selected{
 	background: red;
-}
-
-.navButton{
-	width: 25%;
-	height: 32px;
 }

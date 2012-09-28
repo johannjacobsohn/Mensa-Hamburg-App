@@ -13,8 +13,14 @@ enyo.kind({
 		{name : "price",  classes : "price"},
 		{name : "mensa" , classes : "mensa" },
 		{name : "moreInfo", kind: "FittableColumns", showing: false, components: [
-			{kind: "Repeater", name: "additives", style: "width: 50%;",  onSetupItem: "setupItemAdditives", components: [ {name:"item"} ] },
-			{kind: "Repeater", name: "properties", style: "width: 50%;", onSetupItem: "setupItemProperties", components: [ {name:"item"} ] }
+			{classes: "additives", components: [
+				{content: "Zusatzstoffe"},
+				{kind: "Repeater", name: "additives", onSetupItem: "setupItemAdditives", components: [ {name:"item"} ] }
+			]},
+			{classes: "properties", components: [
+				{content: "Eigenschaften"},
+				{kind: "Repeater", name: "properties", onSetupItem: "setupItemProperties", components: [ {name:"item"} ] }
+			]},
 		]},
 	],
 	tap: function(){

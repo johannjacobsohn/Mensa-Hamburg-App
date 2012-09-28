@@ -15,6 +15,7 @@
 	"kinds/ToggleBar",
 	"kinds/SelectorBar",
 	"kinds/Divider",
+	"kinds/Toggle3Button",
 	
 	
 	/* Kinds */
@@ -23,7 +24,7 @@
 	"kinds/infoView.js",
 	"kinds/filterView.js",
 	"kinds/toggleItem.js",
-	"menuItem.js",
+	"kinds/menuItem",
 
 	"App.js"
 );

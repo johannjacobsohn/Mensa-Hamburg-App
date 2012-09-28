@@ -45,11 +45,22 @@ enyo.kind({
 			},
 
 			{kind: "onyx.Toolbar", name: "toolbar", components: [
-				{kind: "onyx.IconButton", name: "menuButton",     src: "img/menu.png",     ontap: "openView", target: "menu"    , style: "width: 25%", classes: "navButton active"},
-				{kind: "onyx.IconButton", name: "settingsButton", src: "img/settings.png", ontap: "openView", target: "settings", style: "width: 25%", classes: "navButton"},
-				{kind: "onyx.IconButton", name: "filterButton",   src: "img/filter.png",   ontap: "openView", target: "filter"  , style: "width: 25%", classes: "navButton"},
-				{kind: "onyx.IconButton", name: "infoButton",     src: "img/info.png",     ontap: "openView", target: "info"    , style: "width: 25%", classes: "navButton"}
-			]}
+				{kind: "FittableColumns",  classes: "enyo-center", style: "width: 100%; margin-left: 0;", components: [
+					{ontap: "openView", classes: "navButton", target: "menu", components: [
+						{kind: "onyx.IconButton", name: "menuButton",     src: "img/menu.png", classes: "active" },
+					]},
+					{ontap: "openView", classes: "navButton", target: "settings", components: [
+						{kind: "onyx.IconButton", name: "settingsButton", src: "img/settings.png" },
+					]},
+					{ontap: "openView", classes: "navButton", target: "filter", components: [
+						{kind: "onyx.IconButton", name: "filterButton",   src: "img/filter.png"   },
+					]},
+					{ontap: "openView", classes: "navButton", target: "info", components: [
+						{kind: "onyx.IconButton", name: "infoButton",     src: "img/info.png"     }
+					]}
+					
+				]}
+			]},
 		]},
 		{
 			name: "popup",
@@ -77,14 +88,13 @@ enyo.kind({
 		active.addClass("active");
 	},
 	openView: function(inSender, inEvent){
-		this.setActiveButton(inEvent.originator);
-		this.openPage(inEvent.originator.target);
+		this.setActiveButton( inSender.children[0] );
+		this.openPage(inSender.target);
 	},
 	pages : [ "menu", "settings", "filter", "info"],
 	openPage : function(activePage){
 		var index = this.pages.indexOf(activePage);
 		this.$.panels.setIndex(index);
-		console.log(this.$, activePage)
 		this.$[activePage].load();
 	},
 	showNotConfigured : function(){

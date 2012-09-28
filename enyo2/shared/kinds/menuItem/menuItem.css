@@ -11,27 +11,13 @@
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
-}
 .item.first {
 	border-top: none;
 }
 .item.last {
 	border-bottom: none;
 }
-/*
-.item {
-	padding: 10px;
-	border-bottom: 1px solid #0e0e0e;
-	cursor: pointer;
-}
-.item.last {
-	border-bottom: none;
-}
 
-enyo-list-page> div:nth-child(odd) {
-	background-color: #424242;
-}
-*/
 .dish{
 	color: #000;
 	font-size: 18px;
@@ -45,3 +31,11 @@ enyo-list-page> div:nth-child(odd) {
 	float: right;
 }
 
+.additives,
+.properties{
+	font-size: .9em;
+}
+.additives{
+}
+.properties{
+}
