@@ -11,7 +11,7 @@ StageAssistant.prototype.setup = function() {
 				activeScene.showAlertDialog({
 					onChoose: function(value) {
 						if(value === "goto"){
-							location.href = "http://johannjacobsohn.github.com/Mensa-Hamburg-App/blog/2012/neue-version-fur-hp-palm-telefone/";
+							location.href = "http://johannjacobsohn.github.com/Mensa-Hamburg-App/blog/2012/neue-version-fur-hp-slash-palm-telefone/";
 						}
 					},
 					title   : info.onUpdateTitel,

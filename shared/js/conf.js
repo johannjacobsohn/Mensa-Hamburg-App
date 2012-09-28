@@ -109,11 +109,11 @@
 	
 	// version has changed if majorversion or minorversion differ from
 	// saved value and there is no saved menu (it could be a fresh install otherwise)
-	if( (data.get("majorversion") != conf.majorVersion || data.get("minorversion") != conf.minorVersion) && !data.get("menu") ){
+	if( (data.get("majorversion") != conf.majorVersion || data.get("minorversion") != conf.minorVersion) && !!data.get("menu") ){
 		conf.versionHasChanged = true;
 	}
 
-	// ☢ nuke all saved data if version has changed
+	// ☢ nuke all saved data if major version has changed
 	if( data.get("majorversion") != conf.majorVersion ){
 		data.clear();
 	}
