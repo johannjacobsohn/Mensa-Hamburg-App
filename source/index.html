@@ -3,6 +3,18 @@ layout: default
 ---
 
 <div class="blog-index">
+	<section class="about quicklink">
+		<h1>Was ist hier los?</h1>
+		<p>Worum gehts? Mensa-Was?</p>
+		<a href="/info/" rel="full-article">{{ site.excerpt_link }}</a>
+	</section>
+
+	<section class="all-versions quicklink">
+		<h1>Welche Versionen gibt es?</h1>
+		<p>Überblick über alle Versionen</p>
+		<a href="/alle-versionen/" rel="full-article">{{ site.excerpt_link }}</a>
+	</section>
+
   {% assign index = true %}
   {% for post in paginator.posts %}
   {% assign content = post.content %}

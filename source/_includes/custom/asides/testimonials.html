@@ -1,0 +1,82 @@
+
+<section id="testimonials" class="testimonials">
+
+	<blockquote class="active webos phone">
+		<p>Endlich</p>
+		<cite>Sergej S</cite>
+	</blockquote>
+	
+	<blockquote class="webos phone">
+		<p>Endlich! Ich warte schon seit 2 Jahren auf so eine App für WebOS. Vielen Dank, funktioniert wunderbar (: nun nach dem update auch endlich perfekt für den pre3!</p>
+		<cite>Malte A</cite>
+	</blockquote>
+
+	<blockquote class="webos phone">
+		<p>Sehr schön!</p>
+		<cite>Max T</cite>
+	</blockquote>
+
+	<blockquote class="android phone">
+		<p><strong>Super</strong> Endlich wieder eine brauchbare app für die hamburger mensen. Das scrollen sollte noch flüssiger werden!</p>
+	</blockquote>
+
+	<blockquote class="ios phone">
+		<p><strong>Gut und macht was sie soll</strong> Eigentlich ist die App Top, macht genau das was sie soll. Nur beim scrollen ruckelt die App noch recht stark, bitte an den gewohnten leichtgang von iOS anpassen :)</p>
+		<cite>JanP.</cite>
+	</blockquote>
+
+	<blockquote class="webos phone">
+		<p>Super App, vielen Dank! Allerdings fehlt die Mensa in der Hfbk, die nicht vom Studentenwerk betrieben wird.</p>
+		<cite>Björn S</cite>
+	</blockquote>
+
+	<blockquote>
+		<p>Super gut!! Vielen dank dafür!</p>
+		<cite>Anna J</cite>
+	</blockquote>
+
+	<blockquote class="ios ipad">
+		<p>Genau so eine App habe ich mir lange Zeit für Hamburg und das iPad gewünscht. Super wäre jetzt noch die Angabe, um welches Essen es sich handelt, damit man sich in der Mensa gleich mit anstellen kann.</p>
+		<cite>Dennis E</cite>
+	</blockquote>
+
+	<blockquote class="blackberry playbook">
+		<p>Perfekt!</p>
+	</blockquote>
+
+	<blockquote>
+		<p>Die app ist schon mal viel besser als die andere bereits existierende Mensa-APP die es gibt!</p>
+	</blockquote>
+
+	<blockquote class="ios iphone">
+		<p>
+			<strong>Super app!</strong>
+			Viel besser als die andere Mensa app!Übersichtlich gehalten, alle wichtigen Informationen sind zu sehen!
+		</p>
+		<cite>DonJar</cite>
+	</blockquote>
+</section>
+
+
+
+<script type="text/javascript">
+;(function(doc){
+	// testimonials
+	var el = doc.getElementById("testimonials");
+	var testimonials = el.getElementsByTagName("blockquote"),
+	testimonialsLength = testimonials.length,
+	periode = 10E3,
+	cycleTestimonials = function(){
+		// remove Class
+		var active = el.getElementsByClassName("active")[0];
+		active.className = active.className.replace("active", "");
+	
+		// add Class
+		var rand = Math.round( Math.random() * (testimonialsLength - 1) )
+		testimonials[ rand ].className += " active";
+		setTimeout(cycleTestimonials, periode);
+	};
+	
+	setTimeout(cycleTestimonials, periode);
+})(document);
+</script>
