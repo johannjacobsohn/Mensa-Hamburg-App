@@ -10,7 +10,7 @@
 var data = (function(){
 	"use strict"
 
-	cache = {},
+	var cache = {},
 
 	/**
 	 * Get Item

@@ -2,40 +2,46 @@ describe("storage", function(){
 	var server;
 	
 	beforeEach(function () {
-		localStorage.clear();
-		server = sinon.fakeServer.create();
-		server.respondWith( mensaHTML );
+//		localStorage.clear();
+//		server = sinon.fakeServer.create();
+		server = { respond: function(){} }
+//		server.respondWith( mensaHTML );
 		conf.setURLs( conf.getURLs() );
 	});
 
 	afterEach(function () {
-		localStorage.clear();
-		server.restore();
-	});
-
-	it( "has working today-Method" , function(){
-		storage.today(function(menu, dateStr, date){
-			expect( menu.length ).toBeGreaterThan(0);
-		});
-		server.respond();
+//		localStorage.clear();
+//		server.restore();
 	});
 
 	it( "has working getWeekMenu-Method" , function(){
-		storage.getWeekMenu(function(menu){
-			expect( menu.length ).toBeGreaterThan(0);
-			console.log(menu)
+		runs(function () {
+			storage.getWeekMenu(function(menu){
+				this.m = menu;
+				console.log(this, this.m)
+			}.bind(this));
 		});
-		server.respond();
+		waits(2000);
+		runs(function () {
+			console.log(this, this.m)
+			expect( this.m.length ).toBeGreaterThan(0);
+		});
+//		server.respond();
 	});
 
 	it( "lets you include one additive" , function(){
+		var m;
 		storage.setFilter('additives', [{value: 'Antioxidationsmittel', type: 'include'}])
 		storage.filter(function(filteredWeekMenu){
-			var m = filteredWeekMenu.filter(function(item){
+			m = filteredWeekMenu;
+		});
+		waits(500);
+		runs(function () {
+			n = m.filter(function(item){
 				return item.additives.indexOf( 'Antioxidationsmittel' ) === -1;
 			});
-			expect( filteredWeekMenu.length ).toBeGreaterThan(0);
-			expect( m.length ).toBe(0);
+			expect( m.length ).toBeGreaterThan(0);
+			expect( n.length ).toBe(0);
 		});
 		server.respond();
 	});
@@ -111,7 +117,7 @@ describe("storage", function(){
 			expect( today ).toBe( dateString );
 			expect( todayDate.valueOf() ).toBe( date.valueOf() );
 
-			expect( menu.filter(function( item ){ console.log(today, item.date); return item.date !== today;  } ).length ).toBe(0);
+			expect( menu.filter(function( item ){ return item.date !== today;  } ).length ).toBe(0);
 			
 			// save Menu for later
 			cache.todaysMenu = menu;

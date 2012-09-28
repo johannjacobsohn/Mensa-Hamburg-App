@@ -1,15 +1,12 @@
 
 describe( "conf", function(){
-	beforeEach(function() {
-		localStorage.clear();
-	});
+	beforeEach(function() {});
 
-	afterEach(function() {
-		localStorage.clear();
-	});
+	afterEach(function() {});
 	
 	it( "allows setting of urls and reading them" , function (){
 		var urls = ["Geomatikum", "Campus"]; 
+		data.clear();
 		expect( conf.isConfigured() ).toBe( false );
 		conf.setURLs( urls );
 		expect( conf.isConfigured() ).toBe( true );
