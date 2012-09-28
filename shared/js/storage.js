@@ -11,8 +11,6 @@
  *
  * 
  */
-/*jshint smarttabs:true, browser:true, forin:true, noarg:true, curly:true, eqeqeq:true*/
-/*global data:false, conf:false, urls:false, isEmpty:true, xhr:false, console:true, dateToString:false */
 var storage = (function(){ // its a trap!
 	"use strict";
 	var weekMenu         = [], // Cache
@@ -59,7 +57,7 @@ var storage = (function(){ // its a trap!
 			if( subscriptions[type] ) {
 
 				// add subscription just once
-				if(  !subscriptions[type].some(function(item){ return item.toString() === fkt.toString }) ){
+				if(  !subscriptions[type].some(function(item){ return item.toString() === fkt.toString; }) ){
 					subscriptions[type].push( fkt );
 				}
 			} else {
@@ -178,25 +176,18 @@ var storage = (function(){ // its a trap!
 			var b = true;
 			
 			if(typeof item[prop] === "string") {
-				return filterValues[prop].some(function(i){ return i.value === item[prop] && i.type === "include"; })
-				
-				for(var i = 0; i<filterValues[prop].length; i++){
-					a = filterValues[prop][i].type === "include";
-					b = filterValues[prop].some(function(i){ return i.value === item[prop]; });
-
-					if (a && b || !a && !b){
-						return true
-					}
-				}
+				return filterValues[prop].some(function(i){
+					return i.value === item[prop] && i.type === "include";
+				});
 			} else {
 				//find out if one of the properties is either in- or excluded
 				var inc =  includeAll(includes, item[prop]);
 				var exc =  exclude(excludes, item[prop]);
 				if(includes.length === 0){
-					return exc
+					return exc;
 				}
 				if(excludes.length === 0){
-					return inc
+					return inc;
 				}
 				return inc && exc;
 			}
@@ -223,11 +214,14 @@ var storage = (function(){ // its a trap!
 					}
 
 					// filter filteredWeekMenu
+					var isInclude = function(item){ return item.type === "include"; };
+					var isExclude = function(item){ return item.type === "exclude"; };
+					var returnValue = function(item){ return item.value; };
 					for( var prop in filterProperties ){
 						if( filterProperties.hasOwnProperty(prop) ){
 							// split filtervalues in includes and excludes
-							includes = filterValues[prop].filter(function(item){ return item.type === "include"} ).map(function(item){ return item.value });
-							excludes = filterValues[prop].filter(function(item){ return item.type === "exclude"} ).map(function(item){ return item.value });
+							includes = filterValues[prop].filter( isInclude ).map( returnValue );
+							excludes = filterValues[prop].filter( isExclude ).map( returnValue );
 
 							filteredWeekMenu = filteredWeekMenu.filter( filterByProp.bind(this, prop, includes, excludes) );
 						}
@@ -253,10 +247,10 @@ var storage = (function(){ // its a trap!
 		exclude = function(a,b) {
 			for (var i = 0; i < a.length; i++){
 				if( b.indexOf(a[i]) !== -1 ){
-					return false
+					return false;
 				}
 			}
-			return true
+			return true;
 		},
 		
 		/**
@@ -272,10 +266,10 @@ var storage = (function(){ // its a trap!
 		includeAll = function(a,b) {
 			for (var i = 0; i < a.length; i++){
 				if( b.indexOf(a[i]) === -1 ){
-					return false
+					return false;
 				}
 			}
-			return true
+			return true;
 		},
 
 		/**
@@ -557,7 +551,7 @@ var storage = (function(){ // its a trap!
 				// data has changed!
 				if( newWeekMenu.length > 0 ){
 					// splice menu together
-					weekMenu = weekMenu.filter(function( item ){ return !(item.week === week && item.mensa === mensa) });
+					weekMenu = weekMenu.filter(function( item ){ return !(item.week === week && item.mensa === mensa); });
 					weekMenu = weekMenu.concat( newWeekMenu ); 
 
 					loadedMensen[mensa][week] = true;
@@ -859,8 +853,8 @@ var storage = (function(){ // its a trap!
 						typesArr.push({
 							content  : type,
 							name     : type,
-							filtered : typeof filterValues.name !== "undefined" && filterValues.name.some(function(item){ return item.value === type }),
-							filter   : filterValues.name ? filterValues.name.filter(function(item){ return item.value === type })[0] : []
+							filtered : typeof filterValues.name !== "undefined" && filterValues.name.some(function(item){ return item.value === type; }),
+							filter   : filterValues.name ? filterValues.name.filter(function(item){ return item.value === type; })[0] : []
 						});
 					}
 				}
@@ -890,7 +884,7 @@ var storage = (function(){ // its a trap!
 							name       : property,
 							filtered   : typeof filterProperties.name !== "undefined" && filterValues.name.indexOf( property ) !== -1,
 							filterType : (typeof filterProperties.name !== "undefined" && filterValues.name.indexOf( property ) !== -1) ,
-							filter     : filterValues[type] ? filterValues[type].filter(function(item){ return item.value === property })[0] : []
+							filter     : filterValues[type] ? filterValues[type].filter(function(item){ return item.value === property; })[0] : []
 						});
 					}
 				}
@@ -926,9 +920,9 @@ var storage = (function(){ // its a trap!
 			var b = conf.getSavedURLs();
 			mensen.forEach(function(mensa, i){
 				mensa.content  = mensa.name; // for compability to the other filters
-				mensa.active   = b.indexOf( mensa.name ) != -1; // mark mensen which are active 
-				mensa.filtered = typeof filterValues.mensa !== "undefined" && filterValues.mensa.some(function(item){ return item.value === mensa.name });
-				mensa.filter   = filterValues.mensa ? filterValues.mensa.filter(function(item){ return item.value === mensa.name })[0] : [];
+				mensa.active   = b.indexOf( mensa.name ) !== -1; // mark mensen which are active 
+				mensa.filtered = typeof filterValues.mensa !== "undefined" && filterValues.mensa.some(function(item){ return item.value === mensa.name; });
+				mensa.filter   = filterValues.mensa ? filterValues.mensa.filter(function(item){ return item.value === mensa.name; })[0] : [];
 			});
 
 			// since mensa information is inherently synchronious (its
@@ -1218,7 +1212,7 @@ var storage = (function(){ // its a trap!
 		clearCache : clearCache,
 		cleanData  : cleanData,
 
-		// additional 	information:
+		// additional information:
 		getInfo      : getInfo,
 		getTypeInfo  : getTypeInfo,
 		getMensaInfo : getMensaInfo,

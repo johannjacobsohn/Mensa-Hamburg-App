@@ -96,8 +96,6 @@ ConfigAssistant.prototype.setup = function() {
 		data.set( "freeOrientation", o.value);
 		window.PalmSystem.setWindowOrientation( o.value );
 	});
-
-
 };
 
 ConfigAssistant.prototype.listPropertyChangeHandler = function(event){
@@ -106,7 +104,7 @@ ConfigAssistant.prototype.listPropertyChangeHandler = function(event){
 	var arr = [];
 
 	// change values in this.mensen and change back
-	this.mensen.filter(function(item){ return item.name === name })[0].active = newValue;
+	this.mensen.filter(function(item){ return item.name === name; })[0].active = newValue;
 
 	this.mensen.forEach(function(item){
 		if(item.active) {
@@ -116,5 +114,4 @@ ConfigAssistant.prototype.listPropertyChangeHandler = function(event){
 
 	// set config
 	conf.setURLs(arr);
-}
-
+};

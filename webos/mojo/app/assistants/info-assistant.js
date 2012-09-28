@@ -61,6 +61,6 @@ InfoAssistant.prototype.setup = function() {
 		});
 	}.bind(this)); 
 	Mojo.Event.listen(this.controller.get("more-info"), Mojo.Event.tap, function(){
-		location.href = info.appURL 
+		location.href = info.appURL;
 	}); 
 };

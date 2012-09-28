@@ -3,7 +3,6 @@
  *
  * @class urls
 */
-/*jshint smarttabs:true browser:true */
 (function(){
 	var baselink = "http://speiseplan.studierendenwerk-hamburg.de/index.php/de/";
 	urls = {
@@ -133,5 +132,5 @@
 				open: "Montag - Donnerstag: 11:00 - 15:00 Uhr, Freitag: 11:00 - 14:30 Uhr"
 			}
 		]
-	}
+	};
 })();

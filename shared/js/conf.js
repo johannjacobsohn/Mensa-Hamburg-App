@@ -3,7 +3,6 @@
  *
  * @class conf
  */
- /*jshint smarttabs:true browser:true */
 (function(){
 	conf = {
 		/** @property majorVersion */
@@ -36,7 +35,6 @@
 			urls.mensen.forEach(function( item ){
 				array.push( item.name );
 			});
-//			for(item in urls.mensenWeek){ array.push(item.name); }
 			return array;
 		},
 		/**
@@ -72,19 +70,6 @@
 		getMensaInfo : function(){
 			if(console && console.warn) { console.warn( "conf.getMensaInfo is depreciated" ); }
 			return storage.getMensaInfo();
-/*
-			var json = [];
-			var a = this.getURLs();
-			var b = this.getSavedURLs();
-			var i = 0;
-			for(i=0; i < a.length; i++){
-				json.push({
-					"name"   : a[i],
-					"active" : b.indexOf(a[i]) != -1
-				});
-			}
-			return json;
-*/
 		},
 		/**
 		 * Set setStudentPrices
@@ -117,7 +102,9 @@
 	if( data.get("majorversion") != conf.majorVersion ){
 		var savedMensen = data.get("urls");
 		data.clear();
-		if(savedMensen) data.set("urls", savedMensen);
+		if( savedMensen ){ 
+			data.set("urls", savedMensen);
+		}
 	}
 
 	data.set("majorversion", conf.majorVersion);

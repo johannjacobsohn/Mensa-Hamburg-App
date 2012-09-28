@@ -45,7 +45,7 @@ FilterAssistant.prototype.setup = function() {
 		falseValue: "ignore"
 	});
 	this.controller.setupWidget('with', { 
-		modelProperty : "with",
+		modelProperty : "w",
 		trueValue: "include",
 		falseValue: "ignore"
 	});
@@ -71,27 +71,27 @@ FilterAssistant.prototype.filterList = function(name, type){
 
 	// load data
 	storage.getInfo( name, this.updateFilterList.bind(this, name) );
-}
+};
 
 FilterAssistant.prototype.updateFilterList = function( name, items ){
 	// only show active mensen
 	if(name === "mensa"){
-		items = items.filter(function(item){ return item.active; })
+		items = items.filter(function(item){ return item.active; });
 	}
 
 	items.forEach(function(item, i){
-		item.with       =  item.filter && item.filter.type === "include" ? "include" : "ignore";
-		item.wo          =   item.filter && item.filter.type === "exclude" ? "exclude" : "ignore";
+		item.w          =  item.filter && item.filter.type === "include" ? "include" : "ignore";
+		item.wo         =  item.filter && item.filter.type === "exclude" ? "exclude" : "ignore";
+		item.filterType = name;
+		item.i          = i;
 		if(name === "mensa" || name === "name" ){
 			item.toggle = (item.filter && item.filter.type === "include") || !item.filter || !item.filter.type  ? "include" : "exclude"; //!item.wo;
 		}
-		item.filterType = name;
-		item.i          = i;
 	});
 
 	this.model[name].items = items;
 	this.controller.modelChanged( this.model[name] );
-}
+};
 
 FilterAssistant.prototype.listPropertyChangeHandler = function(event){
 	var name    = event.model.name;
@@ -102,14 +102,14 @@ FilterAssistant.prototype.listPropertyChangeHandler = function(event){
 	if( event.value ===  "include" ){
 		this.model[type].items[event.model.i].wo = "ignore";
 	} else if( event.value ===  "exclude" ){
-		this.model[type].items[event.model.i].with = "ignore";
+		this.model[type].items[event.model.i].w = "ignore";
 	}
 
 	this.model[type].items.forEach(function(item){
-		if( item.with === "include" || item.toggle === "include" ){
-			filters.push( { value: item.name, type: "include" } )
+		if( item.w === "include" || item.toggle === "include" ){
+			filters.push( { value: item.name, type: "include" } );
 		} else if( item.wo === "exclude" || item.toggle === "exclude"  ){
-			filters.push( { value: item.name, type: "exclude" } )
+			filters.push( { value: item.name, type: "exclude" } );
 		}
 	});
 	// reload model
@@ -117,4 +117,4 @@ FilterAssistant.prototype.listPropertyChangeHandler = function(event){
 
 	// set filter
 	storage.setFilter(type, filters);
-}
+};

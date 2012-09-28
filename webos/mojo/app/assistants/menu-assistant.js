@@ -22,7 +22,7 @@ MenuAssistant.prototype.activate = function(event) {
 MenuAssistant.prototype.reloadHeader = function(event) {
 	this.setHeader();
 	this.timeout = setTimeout( this.reloadHeader.bind(this), this.headerReloadTimeout ); // rinse, repeat
-}
+};
 
 MenuAssistant.prototype.deactivate = function(event) {
 	/* remove any event handlers you added in activate and do any other cleanup that should happen before
@@ -46,7 +46,7 @@ MenuAssistant.prototype.handleFlick = function(event) {
 			this.load("nextDay");
 		}
 	}
-}
+};
 
 MenuAssistant.prototype.setup = function() {
 	// render app menu
@@ -139,13 +139,13 @@ MenuAssistant.prototype.handleTap = function(event){
 	}
 	this.controller.modelChanged( this.items );
 //	this.mojo.invalidateItems(0);
-}
+};
 
 MenuAssistant.prototype.handleCommand = function(event) {
 	if( event.command === "prevDay" || event.command === "nextDay" || event.command === "today" ){
 		this.load( event.command );
 	}
-} 
+};
 
 MenuAssistant.prototype.load = function(type){
 	this.controller.get('spinner').mojo.start();
@@ -174,7 +174,7 @@ MenuAssistant.prototype.fetch = function(json, dateString, date){
 	// update header
 	this.date = date;
 	this.setHeader();
-}
+};
 
 MenuAssistant.prototype.setHeader = function(){
 	this.headerMenu.items[1].items[0].disabled = !storage.isPrevDayAvailable();
@@ -182,4 +182,4 @@ MenuAssistant.prototype.setHeader = function(){
 
 	this.headerMenu.items[1].items[1].label = formatDate(this.date);
 	this.controller.modelChanged( this.headerMenu, this);
-}
+};

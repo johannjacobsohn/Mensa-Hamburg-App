@@ -3,7 +3,6 @@
  * 
  * @class info
  */
-/*jshint smarttabs:true browser:true */
 info = {
 	appVersion : 1, // to be changed on every (major) release 
 	appName    : "Mensa-Hamburg App",
@@ -15,5 +14,5 @@ info = {
 	onUpdateText  : "Yay, Du hast eine neue Version der Mensa App! Für mehr Informationen gibt es eine Seite mit einer Übersicht über die letzten Änderungen und weiteren Informationen:",
 
 	notConfTitle : "Noch nicht konfiguriert",
-	notConfText  : "Uh, scheinbar ist hier noch nichts konfiguriert, daher werden *keine* Mensen geladen... Du musst welche aktivieren um etwas zu sehen.",
+	notConfText  : "Uh, scheinbar ist hier noch nichts konfiguriert, daher werden *keine* Mensen geladen... Du musst welche aktivieren um etwas zu sehen."
 };

@@ -6,9 +6,8 @@
  *
  * @class data
  */
-/*jshint smarttabs:true browser:true */
 var data = (function(){
-	"use strict"
+	"use strict";
 
 	var cache = {},
 

@@ -28,7 +28,7 @@ StageAssistant.prototype.setup = function() {
 StageAssistant.prototype.handleCommand = function(event) {
 	var activeScene = Mojo.Controller.stageController.activeScene();
 
-	if(event.type == Mojo.Event.command) {
+	if(event.type === Mojo.Event.command) {
 		if(event.command === "config" || event.command === "filter" || event.command === "info"){
 			this.controller.pushScene( event.command );
 		} else if(event.command === "menu"){

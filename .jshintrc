@@ -1,0 +1,28 @@
+{
+	"predef": [
+		"xhr",
+		"data",
+		"conf",
+		"urls",
+		"info",
+		"storage",
+		"isEmpty",
+		"formatDate",
+		"xhr",
+		"dateToString",
+		
+		// mojo
+		"Mojo",
+		"$L"
+	],
+	"browser"   : true,
+	"white"     : false,
+	"smarttabs" : true,
+	"eqeqeq"    : true,
+	"curly"     : true,
+	"forin"     : true,
+	"undef"     : true,
+	"bitwise"   : true,
+	"noarg"     : true
+}
+
