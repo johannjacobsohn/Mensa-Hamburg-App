@@ -115,7 +115,9 @@
 
 	// ☢ nuke all saved data if major version has changed
 	if( data.get("majorversion") != conf.majorVersion ){
+		var savedMensen = data.get("urls");
 		data.clear();
+		if(savedMensen) data.set("urls", savedMensen);
 	}
 
 	data.set("majorversion", conf.majorVersion);
