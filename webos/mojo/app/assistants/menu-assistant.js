@@ -12,8 +12,7 @@ MenuAssistant.prototype.activate = function(event) {
 	   example, key handlers that are observing the document */
 
 	// Rerender Menu
-	this.controller.get('spinner').mojo.start();
-	storage.thisDay( this.fetch.bind(this), false);
+	this.load( "thisDay" );
 
 	/* periodically set header as to pick up date changes */
 	this.headerReloadTimeout = 1000 * 3600 * 3; // every 3h ought to be enough
@@ -114,6 +113,8 @@ MenuAssistant.prototype.setup = function() {
 	}, 
 	this.items = {"items": []} // Modell
 	);
+	
+	this.menu = this.controller.get("menu");
 
 //	this.controller.instantiateChildWidgets(menu);
 	this.controller.listen('menu', Mojo.Event.listTap, this.handleTap.bind(this));
@@ -137,19 +138,22 @@ MenuAssistant.prototype.handleTap = function(event){
 		}
 	}
 	this.controller.modelChanged( this.items );
-//	$('menu').mojo.noticeUpdatedItems(0);
 //	this.mojo.invalidateItems(0);
 }
-
-MenuAssistant.prototype.load = function(type){
-	storage[type]( this.fetch.bind(this), false);
-};
 
 MenuAssistant.prototype.handleCommand = function(event) {
 	if( event.command === "prevDay" || event.command === "nextDay" || event.command === "today" ){
 		this.load( event.command );
 	}
 } 
+
+MenuAssistant.prototype.load = function(type){
+	this.controller.get('spinner').mojo.start();
+	this.menu.style.display = "none";
+	this.menu.mojo.revealItem(0, false);
+
+	storage[type]( this.fetch.bind(this), false);
+};
 
 MenuAssistant.prototype.fetch = function(json, dateString, date){
 	// stop wait indicator
@@ -165,6 +169,7 @@ MenuAssistant.prototype.fetch = function(json, dateString, date){
 	// update menu
 	this.items.items = json;
 	this.controller.modelChanged( this.items, this);
+	this.menu.style.display = "block";
 
 	// update header
 	this.date = date;
