@@ -47,16 +47,16 @@ enyo.kind({
 			{kind: "onyx.Toolbar", name: "toolbar", components: [
 				{kind: "FittableColumns",  classes: "enyo-center", style: "width: 100%; margin-left: 0;", components: [
 					{ontap: "openView", classes: "navButton", target: "menu", components: [
-						{kind: "onyx.IconButton", name: "menuButton",     src: "img/menu.png", classes: "active" },
+						{kind: "onyx.IconButton", name: "menuButton",     src: "assets/menu.png", classes: "active" },
 					]},
 					{ontap: "openView", classes: "navButton", target: "settings", components: [
-						{kind: "onyx.IconButton", name: "settingsButton", src: "img/settings.png" },
+						{kind: "onyx.IconButton", name: "settingsButton", src: "assets/settings.png" },
 					]},
 					{ontap: "openView", classes: "navButton", target: "filter", components: [
-						{kind: "onyx.IconButton", name: "filterButton",   src: "img/filter.png"   },
+						{kind: "onyx.IconButton", name: "filterButton",   src: "assets/filter.png"   },
 					]},
 					{ontap: "openView", classes: "navButton", target: "info", components: [
-						{kind: "onyx.IconButton", name: "infoButton",     src: "img/info.png"     }
+						{kind: "onyx.IconButton", name: "infoButton",     src: "assets/info.png"     }
 					]}
 					
 				]}

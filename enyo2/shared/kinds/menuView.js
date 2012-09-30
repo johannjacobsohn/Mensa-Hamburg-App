@@ -7,10 +7,10 @@ enyo.kind({
 	name: "menuView",
 	fit: true,
 	components: [
-		{kind: "onyx.IconButton", style: "height: 32px;", src: "img/menu-icon-back.png", ontap: "yesterday", name: "yesterdayControl", style: "position: absolute;left:0;z-index: 10;"},
-		{kind: "onyx.IconButton", style:"height: 32px;", src: "img/menu-icon-forward.png", ontap: "tomorrow", name: "tomorrowControl", style: "position: absolute;right:0;z-index: 10;"},
+		{kind: "onyx.IconButton", style: "height: 32px;", src: "assets/menu-icon-back.png", ontap: "yesterday", name: "yesterdayControl", style: "position: absolute;left:0;z-index: 10;"},
+		{kind: "onyx.IconButton", style:"height: 32px;", src: "assets/menu-icon-forward.png", ontap: "tomorrow", name: "tomorrowControl", style: "position: absolute;right:0;z-index: 10;"},
 
-		{name: "spinner", tag: "img", src: "img/spinner.gif", showing: false, classes: "search-spinner"},
+		{name: "spinner", tag: "img", src: "assets/spinner.gif", showing: false, classes: "search-spinner"},
 		{name: "loadingMessage", classes: "loading-message", content: "Wird geladen...", showing: false},
 
 		{ name: "carousel", kind: "newness.Carousel", onGetLeft: "getLeft", onGetRight: "getRight", onTransitionFinish: "transitionFinish", style: "height: 100%;"},
