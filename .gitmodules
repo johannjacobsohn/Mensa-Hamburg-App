@@ -19,3 +19,6 @@
 [submodule "enyo2/externals/Newness-Labs"]
 	path = enyo2/externals/Newness-Labs
 	url = https://github.com/Newness/Labs.git
+[submodule "enyo2/p"]
+	path = enyo2/p
+	url = https://github.com/enyojs/bootplate.git
