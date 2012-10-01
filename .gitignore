@@ -1,1 +1,4 @@
 keys
+
+android-phone/gen/*
+android-phone/bin/*
