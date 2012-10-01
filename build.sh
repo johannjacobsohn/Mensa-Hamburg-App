@@ -5,7 +5,7 @@
 #
 
 set -u
-# set -x
+set -x
 
 build=$1
 phongap_pwd=$2
@@ -13,7 +13,7 @@ phongap_pwd=$2
 # AppIDs:
 declare -A ids
 ids[phone]=131163
-ids[phoneAndroid]=136804
+# ids[phoneAndroid]=136804
 ids[tablet]=137859
 ids[tabletAndroid]=137860
 
@@ -41,14 +41,16 @@ if [ $build == "phone" ] || [ $build == "phone-ios" ] || [ $build == "phone-andr
 	fi;
 	# android-phone
 	if [ $build == "phone-android" ] || [ $build == "phone" ] || [ $build = "all" ]; then
-		curl -u johann.jacobsohn@directbox.com -X PUT -F file=@phone/release-phone.android.zip https://build.phonegap.com/api/v1/apps/${ids[phoneAndroid]}
+		cd android-phone
+		./build.sh
+		cd ..
 	fi;
 fi;
 
 ##########
 # Tablet #
 ##########
-if [ $build = "tablet" ] || [ $build == "tablet-ios" ] || [ $build == "tablet-android" ] || [ $build = "all" ]; then
+if [ $build == "tablet" ] || [ $build == "tablet-ios" ] || [ $build == "tablet-android" ] || [ $build = "all" ]; then
 	cd tablet
 	./build.sh
 	cd ..
@@ -81,10 +83,10 @@ fi;
 # Google Chrome #
 #################
 if [ $build = "chrome-release" ] || [ $build = "chrome" ] || [ $build = "all" ]; then
-	google-chrome --pack-extension=chrome --pack-extension-key=/home/jjacobsohn/Desktop/mensa/release/chrome.pem
+	google-chrome --pack-extension=chrome --pack-extension-key=keys/chrome.pem
 fi;
 if [ $build = "chrome-test" ] || [ $build = "chrome" ] || [ $build = "all" ]; then
-	google-chrome --pack-extension=chrome --pack-extension-key=/home/jjacobsohn/Desktop/mensa/release/chrome.pem
+	google-chrome --pack-extension=chrome --pack-extension-key=keys/chrome.pem
 fi;
 
 exit;
