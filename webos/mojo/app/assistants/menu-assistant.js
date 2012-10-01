@@ -168,8 +168,8 @@ MenuAssistant.prototype.fetch = function(json, dateString, date){
 
 	// update menu
 	this.items.items = json;
-	this.controller.modelChanged( this.items, this);
 	this.menu.style.display = "block";
+	this.controller.modelChanged( this.items, this);
 
 	// update header
 	this.date = date;
