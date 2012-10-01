@@ -4,7 +4,7 @@
   <title><![CDATA[Category: mojo | Mensa Hamburg App]]></title>
   <link href="http://johannjacobsohn.github.com/Mensa-Hamburg-App/blog/categories/mojo/atom.xml" rel="self"/>
   <link href="http://johannjacobsohn.github.com/Mensa-Hamburg-App/"/>
-  <updated>2012-09-28T12:51:39+02:00</updated>
+  <updated>2012-10-01T08:58:26+02:00</updated>
   <id>http://johannjacobsohn.github.com/Mensa-Hamburg-App/</id>
   <author>
     <name><![CDATA[Johann Jacobsohn]]></name>
@@ -25,7 +25,7 @@ bringen wie <a href="http://johannjacobsohn.github.com/Mensa-Hamburg-App/alle-ve
 
 <!-- more -->
 
-<p>Dies ist jetzt die Version 1.5.0 und damit ein ziemlicher Sprung von 1.0.6</p>
+<p>Dies ist jetzt die Version 1.5.0 und damit ein ziemlicher Sprung von 1.0.5.</p>
 
 <h2 id="neues-app-icon">Neues App-Icon</h2>
 <figure class="right">
@@ -60,7 +60,7 @@ Zusatzstoffe auszuschließen oder nur bestimmte Arten von Gerichten zu sehen
 
 <p>Damit sind dann auch komplexere Zusammenhänge, wie “Vegan, aber ohne
 Konservierungsstoffe” oder “Nicht Vegetarisch, aber ohne Schwein” oder 
-“Vegetarisch, aber nicht aus dem Wok” möglich.</p>
+“Vegetarisch und aus dem Wok” möglich.</p>
 
 <p>Filter bleiben jetzt zudem auch bei Neustart der App erhalten, so dass
 gute Filter nur einmal eingestellt werden müssen und dann immer erhalten bleiben.</p>
@@ -92,11 +92,27 @@ Eigenschaften und Zusatzstoffe aufgelistet.</p>
 
 <ul>
   <li>Dauerhafte Filter: Filter bleiben jetzt auch beim Schließen und Neustarten der App erhalten. Diese Option kann in den Einstellungen abgeschaltet werden;</li>
-  <li>Die App hat eine Optionen um die freie Orientierung zu erlauben. Bisher war es nur möglich, die App im “Portrait-Modus” zu verwenden, jetzt geht auch der Landschaftsmodus</li>
+  <li>Die App hat eine Optionen um die freie Orientierung zu erlauben. Bisher war es nur möglich, die App im “Portrait-Modus” zu verwenden, jetzt geht auch der Landschaftsmodus;</li>
   <li>Aufräumarbeiten im Code;</li>
-  <li>verbesserte Wischbewegung um zwischen den Tagen zu wechseln.</li>
+  <li>verbesserte Wischbewegung um zwischen den Tagen zu wechseln;</li>
+  <li>beim Aktualisieren der App werden nicht mehr alle Einstellungen gelöscht;</li>
+  <li>in den Einstellungen werden zusätzlich zu den Mensanamen auch deren Adressen angezeigt;</li>
+  <li>bei Datumsänderungen (wenn die App lange offen bleibt) wird der angezeigte Tag aktualisiert, so dass er immer aktuell bleibt.</li>
 </ul>
 
+<h2 id="mitmachen">Mitmachen</h2>
+<p>In diese Version sind einige Anregungen und Vorschläge von Nutzern
+eingeflossen. Vielleicht hast Du ja auch eine Idee, wie die App für Dich
+besser funktionieren würde? Schreib eine Email an die Entwickler unter
+<a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#109;&#101;&#110;&#115;&#097;&#045;&#104;&#097;&#109;&#098;&#117;&#114;&#103;&#045;&#097;&#112;&#112;&#064;&#100;&#105;&#114;&#101;&#099;&#116;&#098;&#111;&#120;&#046;&#099;&#111;&#109;">&#109;&#101;&#110;&#115;&#097;&#045;&#104;&#097;&#109;&#098;&#117;&#114;&#103;&#045;&#097;&#112;&#112;&#064;&#100;&#105;&#114;&#101;&#099;&#116;&#098;&#111;&#120;&#046;&#099;&#111;&#109;</a> oder hinterlasse einen Kommentar<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>!</p>
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+      <p>Wenn Du Deinen Namen nicht angeben möchtest kannst Du einfach einen ausgedachten Namen und eine EMailadresse wie test@example.net verwenden.<a href="#fnref:1" rel="reference">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
 ]]></content>
   </entry>
   
