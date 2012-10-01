@@ -13,7 +13,7 @@ bringen wie <a href="/alle-versionen">die anderen</a>.
 
 <!-- more -->
 
-Dies ist jetzt die Version 1.5.0 und damit ein ziemlicher Sprung von 1.0.6
+Dies ist jetzt die Version 1.5.0 und damit ein ziemlicher Sprung von 1.0.5.
 
 Neues App-Icon
 ---
@@ -50,7 +50,7 @@ Zusatzstoffe auszuschließen oder nur bestimmte Arten von Gerichten zu sehen
 
 Damit sind dann auch komplexere Zusammenhänge, wie "Vegan, aber ohne
 Konservierungsstoffe" oder "Nicht Vegetarisch, aber ohne Schwein" oder 
-"Vegetarisch, aber nicht aus dem Wok" möglich.
+"Vegetarisch und aus dem Wok" möglich.
 
 Filter bleiben jetzt zudem auch bei Neustart der App erhalten, so dass
 gute Filter nur einmal eingestellt werden müssen und dann immer erhalten bleiben.
@@ -77,7 +77,7 @@ Nachladen von Daten im Hintergrund
 
 {% pullquote %}
 Kennst Du das? Manchmal ändern sich die Speisepläne der Mensa, und Dein Telefon merkt es nicht? 
-Dieses Problem gehört jetzt der Vergangenheit an, den jetzt werden die {"Daten in regelmäßigen 
+Dieses Problem gehört jetzt der Vergangenheit an, den {"jetzt werden die Daten in regelmäßigen 
 Abständen geprüft"} und gegebenenfalls korrigiert.
 {% endpullquote %}
 
@@ -92,7 +92,19 @@ Weitere Änderungen
 ---
 
 - Dauerhafte Filter: Filter bleiben jetzt auch beim Schließen und Neustarten der App erhalten. Diese Option kann in den Einstellungen abgeschaltet werden;
-- Die App hat eine Optionen um die freie Orientierung zu erlauben. Bisher war es nur möglich, die App im "Portrait-Modus" zu verwenden, jetzt geht auch der Landschaftsmodus
+- Die App hat eine Optionen um die freie Orientierung zu erlauben. Bisher war es nur möglich, die App im "Portrait-Modus" zu verwenden, jetzt geht auch der Landschaftsmodus;
 - Aufräumarbeiten im Code;
-- verbesserte Wischbewegung um zwischen den Tagen zu wechseln.
+- verbesserte Wischbewegung um zwischen den Tagen zu wechseln;
+- beim Aktualisieren der App werden nicht mehr alle Einstellungen gelöscht;
+- in den Einstellungen werden zusätzlich zu den Mensanamen auch deren Adressen angezeigt;
+- bei Datumsänderungen (wenn die App lange offen bleibt) wird der angezeigte Tag aktualisiert, so dass er immer aktuell bleibt.
 
+Mitmachen
+---
+In diese Version sind einige Anregungen und Vorschläge von Nutzern
+eingeflossen. Vielleicht hast Du ja auch eine Idee, wie die App für Dich
+besser funktionieren würde? Schreib eine Email an die Entwickler unter
+<mensa-hamburg-app@directbox.com> oder hinterlasse einen Kommentar![^1]
+
+[^1]: Wenn Du Deinen Namen nicht angeben möchtest kannst Du einfach einen ausgedachten Namen und eine EMailadresse wie test@example.net verwenden.
+ 
