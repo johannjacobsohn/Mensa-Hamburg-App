@@ -549,7 +549,7 @@ var storage = (function(){ // its a trap!
 
 				// mark as cached only if new dishes where found
 				// data has changed!
-				if( newWeekMenu.length > 0 ){
+				if( newWeekMenu && newWeekMenu.length > 0 ){
 					// splice menu together
 					weekMenu = weekMenu.filter(function( item ){ return !(item.week === week && item.mensa === mensa); });
 					weekMenu = weekMenu.concat( newWeekMenu ); 
@@ -608,7 +608,8 @@ var storage = (function(){ // its a trap!
 			try{
 				trs = tempDiv.getElementsByTagName("table")[0].getElementsByTagName("tr");
 			} catch(e){
-				return;
+				if( console && console.log ) console.log("return: tr not found for " + mensa + " on week " + week);
+				return [];
 			}
 			// extract and parse date field
 			var datefield = trs[0].getElementsByTagName("th")[0].innerHTML.split("<br>")[1];
