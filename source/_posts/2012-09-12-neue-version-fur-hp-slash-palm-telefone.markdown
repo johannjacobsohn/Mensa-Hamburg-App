@@ -3,17 +3,17 @@ layout: post
 title: "Neue Version für HP/Palm-Telefone"
 date: 2012-09-28 19:39
 comments: true
-categories: palm hp phone update mojo
+categories: palm hp phone update mojo mojo-1.5
 ---
 
-Es gibt wieder ein Update für HP/Palm Pre, Pre3, Veer und Pixi! Nach dem die
-HP/Palm-App bei der letzten Runde Update leer ausgegangen ist (sorry!) gibt es 
-jetzt einen ganzen Schwung Verbesserungen, welche diese Version auf die gleiche Stand
-bringen wie <a href="/alle-versionen">die anderen</a>.
+Es gibt wieder ein Update für HP/Palm Prē, Prē Plus, Prē 2, Pre³, Veer und Pixi!
+Nach dem die HP/Palm-App bei der letzten Runde Updates leer ausgegangen ist (sorry!)
+gibt es jetzt einen ganzen Schwung Verbesserungen, welche diese Version auf die
+gleiche Stand bringen wie [die anderen](/alle-versionen)
 
 <!-- more -->
 
-Dies ist jetzt die Version 1.5.0 und damit ein ziemlicher Sprung von 1.0.5.
+Dies ist jetzt die Version 1.5.1 und damit ein ziemlicher Sprung von 1.0.5.
 
 Neues App-Icon
 ---
