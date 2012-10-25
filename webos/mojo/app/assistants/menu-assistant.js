@@ -137,8 +137,9 @@ MenuAssistant.prototype.handleTap = function(event){
 			event.item.additivesString += "<li>" + event.item.additives[i] + "</li>";
 		}
 	}
-	this.controller.modelChanged( this.items );
-//	this.mojo.invalidateItems(0);
+	// invalidate list elements (= rerender list items);
+	// to avoid duplicate dividers invalidate surrounding items as well
+	this.menu.mojo.invalidateItems(event.index-2, 5);
 };
 
 MenuAssistant.prototype.handleCommand = function(event) {
