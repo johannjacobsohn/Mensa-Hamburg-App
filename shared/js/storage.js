@@ -1157,9 +1157,9 @@ var storage = (function(){ // its a trap!
 		 * @param void
 		 * @return void
 		 */
-		lasttimechecked = new Date(),
+		lasttimechecked = 0,
 		checkForData = function(){
-			var now = new Date(),
+			var now = +new Date(),
 			    checkInterval = 3600 * 24 * 1000; // check every day
 			if( now - lasttimechecked > checkInterval ){
 				update();
