@@ -6,7 +6,9 @@ comments: true
 categories: palm hp phone update mojo mojo-1.5
 ---
 
-Nach dem größeren 1.5-Release gibt es jetzt ein kleines Bugfix-Release.
+Nach dem größeren [1.5-Release](/blog/2012/neue-version-fur-hp-slash-palm-telefone/)
+gibt es jetzt ein kleines Bugfix-Release.
+
 Behoben wurden
 - ein Problem mit der Anzeige der Details am Ende des Menus, wobei Teile des Bildschirms weiß wurden,
 - Daten werden tatsächlich im Hintergrund aktuell gehalten,
