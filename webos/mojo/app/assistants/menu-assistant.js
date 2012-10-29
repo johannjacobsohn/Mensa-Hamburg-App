@@ -15,7 +15,7 @@ MenuAssistant.prototype.activate = function(event) {
 	this.load( "thisDay" );
 
 	/* periodically set header as to pick up date changes */
-	this.headerReloadTimeout = 1000 * 3600 * 3; // every 3h ought to be enough
+	this.headerReloadTimeout = 1000 * 60 * 10; // every ten minutes ought to be enough
 	this.timeout = setTimeout( this.reloadHeader.bind(this), this.headerReloadTimeout );
 };
 
