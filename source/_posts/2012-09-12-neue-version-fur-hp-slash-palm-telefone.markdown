@@ -9,7 +9,7 @@ categories: palm hp phone update mojo mojo-1.5
 Es gibt wieder ein Update für HP/Palm Prē, Prē Plus, Prē 2, Pre³, Veer und Pixi!
 Nach dem die HP/Palm-App bei der letzten Runde Updates leer ausgegangen ist (sorry!)
 gibt es jetzt einen ganzen Schwung Verbesserungen, welche diese Version auf die
-gleiche Stand bringen wie [die anderen](/alle-versionen)
+gleiche Stand bringen wie [die anderen](/alle-versionen).
 
 <!-- more -->
 
@@ -106,5 +106,5 @@ eingeflossen. Vielleicht hast Du ja auch eine Idee, wie die App für Dich
 besser funktionieren würde? Schreib eine Email an die Entwickler unter
 <mensa-hamburg-app@directbox.com> oder hinterlasse einen Kommentar![^1]
 
-[^1]: Wenn Du Deinen Namen nicht angeben möchtest kannst Du einfach einen ausgedachten Namen und eine EMailadresse wie test@example.net verwenden.
+[^1]: Wenn Du Deinen Namen nicht angeben möchtest kannst Du einfach einen ausgedachten Namen und eine Emailadresse wie test@example.net verwenden.
  
