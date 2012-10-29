@@ -15,8 +15,11 @@ Es gibt sie in drei Ausführungen:
 
 - Tablet für iPad, Android Tablets, HP Touchpad und das RIM Playbook
 - Phone fürs iPhone und alle Android Smartphones
-- webos-phone für die Smartphones von HP/Palm: Veer, Pixi, Palm Pre und Pre^3
+- webos-phone für die Smartphones von HP/Palm: Prē, Prē Plus, Prē 2, Pre³, Veer und Pixi
 
 Die Mensa Hamburg App steht in keiner Beziehung zum Studentenwerk Hamburg.
 
+Die Mensa Hamburg App wird von der [Satzmedia GmbH][satzmedia] unterstützt.
+
 [github]: https://github.com/johannjacobsohn/Mensa-Hamburg-App
+[satzmedia]: http://satzmedia.de
