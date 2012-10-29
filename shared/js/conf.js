@@ -8,7 +8,7 @@
 		/** @property majorVersion */
 		majorVersion: 2,
 		/** @property minorVersion */
-		minorVersion: 1,
+		minorVersion: 2,
 		/** @property versionHasChanged */
 		versionHasChanged: false,
 		/**
