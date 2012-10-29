@@ -4,7 +4,7 @@
   <title><![CDATA[Category: phone | Mensa Hamburg App]]></title>
   <link href="http://johannjacobsohn.github.com/Mensa-Hamburg-App/blog/categories/phone/atom.xml" rel="self"/>
   <link href="http://johannjacobsohn.github.com/Mensa-Hamburg-App/"/>
-  <updated>2012-10-29T16:48:43+01:00</updated>
+  <updated>2012-10-29T16:55:42+01:00</updated>
   <id>http://johannjacobsohn.github.com/Mensa-Hamburg-App/</id>
   <author>
     <name><![CDATA[Johann Jacobsohn]]></name>
@@ -21,10 +21,13 @@
     <content type="html"><![CDATA[<p>Nach dem größeren <a href="/blog/2012/neue-version-fur-hp-slash-palm-telefone/">1.5-Release</a>
 gibt es jetzt ein kleines Bugfix-Release.</p>
 
-<p>Behoben wurden
-- ein Problem mit der Anzeige der Details am Ende des Menus, wobei Teile des Bildschirms weiß wurden,
-- Daten werden tatsächlich im Hintergrund aktuell gehalten,
-- Header wird jetzt öfter aktualisiert um das richtige Datum zu zeigen.</p>
+<p>Behoben wurden</p>
+
+<ul>
+  <li>ein Problem mit der Anzeige der Details am Ende des Menus, wobei Teile des Bildschirms weiß wurden,</li>
+  <li>Daten werden tatsächlich im Hintergrund aktuell gehalten,</li>
+  <li>Header wird jetzt öfter aktualisiert um das richtige Datum zu zeigen.</li>
+</ul>
 ]]></content>
   </entry>
   
