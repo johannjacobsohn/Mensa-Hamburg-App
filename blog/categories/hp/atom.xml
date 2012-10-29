@@ -4,7 +4,7 @@
   <title><![CDATA[Category: hp | Mensa Hamburg App]]></title>
   <link href="http://johannjacobsohn.github.com/Mensa-Hamburg-App/blog/categories/hp/atom.xml" rel="self"/>
   <link href="http://johannjacobsohn.github.com/Mensa-Hamburg-App/"/>
-  <updated>2012-10-24T21:46:13+02:00</updated>
+  <updated>2012-10-29T16:36:53+01:00</updated>
   <id>http://johannjacobsohn.github.com/Mensa-Hamburg-App/</id>
   <author>
     <name><![CDATA[Johann Jacobsohn]]></name>
@@ -14,6 +14,19 @@
 
   
   <entry>
+    <title type="html"><![CDATA[Bugfixes für HP/Palm-Telefone (1.5.2)]]></title>
+    <link href="http://johannjacobsohn.github.com/Mensa-Hamburg-App/blog/2012/bugfixes-fur-fur-hp-slash-palm-telefone-1-dot-5-2/"/>
+    <updated>2012-10-24T22:25:00+02:00</updated>
+    <id>http://johannjacobsohn.github.com/Mensa-Hamburg-App/blog/2012/bugfixes-fur-fur-hp-slash-palm-telefone-1-dot-5-2</id>
+    <content type="html"><![CDATA[<p>Nach dem größeren 1.5-Release gibt es jetzt ein kleines Bugfix-Release.
+Behoben wurden
+- ein Problem mit der Anzeige der Details am Ende des Menus, wobei Teile des Bildschirms weiß wurden,
+- Daten werden tatsächlich im Hintergrund aktuell gehalten,
+- Header wird jetzt öfter aktualisiert um das richtige Datum zu zeigen.</p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Neue Version für HP/Palm-Telefone]]></title>
     <link href="http://johannjacobsohn.github.com/Mensa-Hamburg-App/blog/2012/neue-version-fur-hp-slash-palm-telefone/"/>
     <updated>2012-09-28T19:39:00+02:00</updated>
@@ -21,7 +34,7 @@
     <content type="html"><![CDATA[<p>Es gibt wieder ein Update für HP/Palm Prē, Prē Plus, Prē 2, Pre³, Veer und Pixi!
 Nach dem die HP/Palm-App bei der letzten Runde Updates leer ausgegangen ist (sorry!)
 gibt es jetzt einen ganzen Schwung Verbesserungen, welche diese Version auf die
-gleiche Stand bringen wie <a href="/alle-versionen">die anderen</a></p>
+gleiche Stand bringen wie <a href="/alle-versionen">die anderen</a>.</p>
 
 <!-- more -->
 
@@ -109,7 +122,7 @@ besser funktionieren würde? Schreib eine Email an die Entwickler unter
 <div class="footnotes">
   <ol>
     <li id="fn:1">
-      <p>Wenn Du Deinen Namen nicht angeben möchtest kannst Du einfach einen ausgedachten Namen und eine EMailadresse wie test@example.net verwenden.<a href="#fnref:1" rel="reference">&#8617;</a></p>
+      <p>Wenn Du Deinen Namen nicht angeben möchtest kannst Du einfach einen ausgedachten Namen und eine Emailadresse wie test@example.net verwenden.<a href="#fnref:1" rel="reference">&#8617;</a></p>
     </li>
   </ol>
 </div>
