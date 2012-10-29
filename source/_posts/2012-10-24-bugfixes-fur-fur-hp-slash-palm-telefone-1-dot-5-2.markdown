@@ -10,6 +10,7 @@ Nach dem größeren [1.5-Release](/blog/2012/neue-version-fur-hp-slash-palm-tele
 gibt es jetzt ein kleines Bugfix-Release.
 
 Behoben wurden
+
 - ein Problem mit der Anzeige der Details am Ende des Menus, wobei Teile des Bildschirms weiß wurden,
 - Daten werden tatsächlich im Hintergrund aktuell gehalten,
 - Header wird jetzt öfter aktualisiert um das richtige Datum zu zeigen.
