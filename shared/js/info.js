@@ -4,7 +4,6 @@
  * @class info
  */
 info = {
-	appVersion : 1, // to be changed on every (major) release 
 	appName    : "Mensa-Hamburg App",
 	appDesc    : "Dies ist eine Open Source App (auf github) für viele Betriebssysteme von Studenten für Studenten!\n Hast Du einen Fehler gefunden oder Verbesserungsvorschläge? Schreib an die Entwickler oder schau auf die Projektseite. Dein Feedback ist immer Willkommen!",
 	appURL     : "http://johannjacobsohn.github.com/Mensa-Hamburg-App/",
