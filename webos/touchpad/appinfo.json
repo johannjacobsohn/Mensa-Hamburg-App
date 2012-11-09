@@ -1,10 +1,10 @@
 {
   "id"         : "jjacobsohn.mensaapp.enyo",
-  "version"    : "1.1.1",
+  "version"    : "2.0.0",
   "vendor"     : "jjacobsohn",
   "type"       : "web",
   "main"       : "index.html",
-  "title"      : "Mensa Hamburg App",
+  "title"      : "Mensa Hamburg",
   "uiRevision" : "2",
   "icon"       : "icon.png"
 }
