@@ -14,12 +14,16 @@ enyo.kind({
 			components : [
 				// @FIXME
 				{ style:"margin: 1em;", content: info.appDesc },
-				{kind: "onyx.Button", content: "Zur Projektseite", style:"width: 100%; margin-bottom: .5em", onclick: "moreInfo"},
-				{kind: "onyx.Button", content: "Email schreiben", style:"width: 100%; margin-bottom: .5em", onclick: "email"},
-				{kind: "onyx.Button", content: "App zurücksetzen", style:"width: 100%; margin-bottom: .5em", classes: "onyx-negative", onclick: "reset"},
+				{kind: "onyx.Button", content: "Zur Projektseite", style:"width: 95%; margin: .5em auto; display: block;", onclick: "moreInfo"},
+				{kind: "onyx.Button", content: "Email an die Entwickler schreiben", style:"width: 95%; margin: .5em auto; display: block;", onclick: "email"},
+				{kind: "onyx.Button", content: "☢ App zurücksetzen ☢", style:"width: 95%; margin: .5em auto; display: block;", classes: "onyx-negative", onclick: "reset"},
+				{kind: "onyx.Button", content: "Schließen", style:"width: 95%; margin: .5em auto; display: block;", classes: "onyx-affirmative", onclick: "close"}
 			]
 		}
 	],
+	close: function(){
+		this.bubble("onCloseMe");
+	},
 	moreInfo : function(me, inEvent){
 		location.href = info.appURL;
 	},
@@ -30,8 +34,5 @@ enyo.kind({
 		data.clear();
 		location.reload();
 	},
-//	create : function(){
-//		this.inherited(arguments);
-//	},
 	load: function(){}
 });

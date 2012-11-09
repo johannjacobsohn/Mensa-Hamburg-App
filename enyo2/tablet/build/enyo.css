@@ -3,12 +3,8 @@
 
 /* things we always want */
 body {
-	font-family: 'Helvetica Neue', 'Nimbus Sans L', Arial, sans-serif;
-}
-
-/* allow hw-accelerated scrolling on platforms that support it */
-body.webkitOverflowScrolling {
 	-webkit-overflow-scrolling: touch;
+	font-family: 'Helvetica Neue', 'Nimbus Sans L', Arial, sans-serif;
 }
 
 /* for apps */

@@ -1,58 +1,46 @@
-/**
- *
- *
- * @kind filterPanel
- */
 enyo.kind({
 	name : "menuPanel",
 	kind: "FittableRows",
+	classes: "panel",
 	components: [
-		{kind: "onyx.Toolbar", name : "title"},
-		
-		{name: "spinner", components: [
-			{kind: "onyx.Spinner", classes: "onyx-light"}
-		], style: "text-align:center", showing: false},
-
-		{kind: "Scroller",
-			fit: true,
-			components: [
-				{kind: "Repeater", name: "list", classes: "enyo-unselectable preventDragTap", onSetupItem: "setupItem", components: [
-					{name: "item", kind: "menuItem"}
-				]}
-			]
-		},
+		{kind: "onyx.Toolbar", name : "title", content: "Menü"},
+		{kind: "menuList", fit:true},
 		{kind: "onyx.Toolbar", components: [
-			{kind: "onyx.Grabber"}
+			{kind: "onyx.Grabber"},
+//			{kind: "onyx.Button", content: "Einstellungen", ontap: "openSettings"},
+//			{kind: "onyx.Button", content: "Info",          ontap: "openInfo"    },	
+			{classes: "menu-button", ontap: "openSettings", kind: "onyx.IconButton", src: "assets/settings.png" },
+			{classes: "menu-button", ontap: "openInfo", kind: "onyx.IconButton", src: "assets/info.png"   },
+			{classes: "menu-button", ontap: "openPanels", kind: "onyx.IconButton", src: "assets/filter.png"   }
 		]},
+		{kind: enyo.Signals, onFilterChange: "load", onDisplayPricesChange: "load", onSettingsChange: "load"}
 	],
-	data : [],
-	type : "",
+	openPanels: function(){
+		enyo.Signals.send("onChangePanels");
+	},
+	openSettings: function(){
+		enyo.Signals.send("onRequestSettings");
+	},
+	openInfo: function(){
+		enyo.Signals.send("onRequestInfo");
+	},
 	create : function(){
-		this.inherited(arguments); // @TODO: understand what this actually does
+		this.inherited(arguments);
 		this.load();
-		this.$.title.setContent(this.title);
 	},
 	load : function(){
-		var that = this;
-		this.$.spinner.show();
+		this.$.menuList.loading(true);
+//		console.time("get");
 		storage.getSortedSegmented(function(json){
-			that.$.spinner.hide();
-			that.data = json;
-			that.$.list.setCount(json.length);
-			that.reflow();
-		});
-	},
-	setupItem: function(inSender, inEvent) {
-		var i = inEvent.index, r = this.data[i], item = inEvent.item.$.item;
-		item.setMenuItem(r);
+//			console.timeEnd("get");
+			this.$.menuList.loading(false);
+			this.$.menuList.menu = json;
+//			console.time("list");
+			this.$.menuList.load();
+//			console.timeEnd("list");
+//			console.time("reflow");
+			this.reflow();
+//			console.timeEnd("reflow");
+		}.bind(this));
 	}
 });
-
-
-
-
-/**
- * kind für Einstellungen
- * 
- */
-// {name: "item", kind: "GTS.ToggleBar", label: "Mensaname", sublabel:"Immanuelstieg 6, 20539 Hamburg", classes: "item enyo-border-box", ontap: "itemTap"}

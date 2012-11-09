@@ -5,81 +5,59 @@
 enyo.kind({
 	name: "settingsView",
 	kind: "FittableRows",
+	style: "height: 100%;",
 	components: [
 		{kind: "onyx.Toolbar", content: "Einstellungen" },
-		{kind: "settingsList", fit: true}
-	],
-	load: function(){
-		this.$.settingsList.load();
-	},
-	create : function(){
-		this.inherited(arguments);
-	}
-});
 
-
-enyo.kind({
-	name: "settingsMensaItem",
-	content: "Item"
-});
-
-enyo.kind({
-	name: "settingsList",
-	kind: "FittableRows",
-	components: [
-		{kind: "Scroller", fit: true, components: [
-			{kind: "onyx.PickerDecorator", components: [
-				{},
-				{kind: "onyx.Picker",  components: [
-					{content: "Studentenpreise anzeigen", active: true},
-					{content: "Normale Preise anzeigen", active: false}
-				]}
-			]},
+		{kind: "GTS.SelectorBar", style: "background: #eee", label: "Preise", choices: [{content: "Studentenpreise anzeigen", value: true},{content: "Normale Preise anzeigen", value: false}], name:"price", onChange: "changePrice"},
+		{kind: "Scroller", fit: true, components: [	
 			{name: "mensaList", kind: "Repeater", classes: "enyo-unselectable preventDragTap", onSetupItem: "setupRow", components: [
-				{kind: "GTS.ToggleBar", label: "jes", name:"toggleItem", classes: "item enyo-border-box", onChange: "changeMensa"}
+				{kind: "GTS.ToggleBar", label: "yes", name:"toggleItem", classes: "item enyo-border-box", onChange: "changeMensa"}
 			]}
 		]},
 		{kind: "onyx.Button", content: "Speichern", style:"width: 100%;", classes: "onyx-affirmative", ontap: "saveMensen"}
 	],
+	changePrice: function(inSender, inEvent){
+		conf.setStudentPrices( inEvent.selected.value );
+		enyo.Signals.send("onDisplayPricesChange");
+		return true;
+	},
 	changeMensa: function(inSender, inEvent){
-		var o = inEvent.originator;
-		this.savedMensen = this.savedMensen.filter(function(item){ return o.l !== item; });
-		if( inEvent.value && o.label){
-			this.savedMensen.push( o.label );
+		var label = inEvent.originator.label;
+		this.savedMensen = this.savedMensen.filter(function(item){ return label !== item; });
+		if( inEvent.value && label){
+			this.savedMensen.push( label );
 		}
 		return true;
 	},
 	setupRow: function(inSender, inEvent) {
-		var i = inEvent.index, r = this.availableMensen[i];
-		console.log(this.mensaInfo[i].active)
-		inEvent.item.$.toggleItem.label = r.name;
-		inEvent.item.$.toggleItem.value = this.mensaInfo[i].active;
-		inEvent.item.$.toggleItem.sublabel = r.address;
-		inEvent.item.$.toggleItem.render();
+		var i = inEvent.index, r = this.availableMensen[i], item = inEvent.item.$.toggleItem;
+		item.label    = r.name;
+		item.value    = r.active;
+		item.sublabel = r.address;
 	},
-	saveMensen : function(me){
+	saveMensen : function(){
 		// Save URLs
 		conf.setURLs(this.savedMensen);
-		this.availableMensen = conf.getMensaInfo();
 
 		// Reload Data
 		storage.cleanData();
 
-		enyo.Signals.send("onRequestMenu");
+		// send signal that we're done here
+		enyo.Signals.send("onSettingsChange");
 	},
 	/**
 	 * (cached) values
 	 */
 	savedMensen     : conf.getSavedURLs(),
-	mensaInfo     : conf.getMensaInfo(),
-	availableMensen : urls.mensen,
-	setPrices : function(me){
-		conf.setStudentPrices(me.children[me.selected].value);
-	},
-	load: function(){ },
-	create : function(){
-		this.inherited(arguments);
-		this.$.mensaList.setCount(this.availableMensen.length);
+	availableMensen : storage.getMensaInfo(),
+	loaded: false,
+	load: function(){
+		if(!this.loaded){
+			this.loaded = true;
+			this.$.mensaList.setCount(this.availableMensen.length);
+			this.$.price.setValue( conf.displayStudentPrices() );
+		}
 	}
 });
 

@@ -7,8 +7,8 @@
 	color: #3A8BCB;
 	-webkit-box-flex: .1;
 	text-shadow: 1px 1px 1px #eee;
+	width: 100%;
 }
-
 
 .caption{
 	margin: 0 4px;
@@ -30,4 +30,5 @@
 }
 .after-caption{
 	border-radius:  0 3px 3px 0;
+	width: 100%;
 }

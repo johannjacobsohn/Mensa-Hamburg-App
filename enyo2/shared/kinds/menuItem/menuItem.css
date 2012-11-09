@@ -34,8 +34,16 @@
 .additives,
 .properties{
 	font-size: .9em;
+	width: 49%;
+	padding: 5px;
 }
 .additives{
+	border-right: 1px solid rgba(0, 0, 0, 0.2);
+	text-align: right;
 }
 .properties{
+	border-left: 1px solid rgba(255, 255, 255, 0.5);
+}
+.details-header{
+	font-weight: bold;
 }

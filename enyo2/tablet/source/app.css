@@ -1,33 +1,9 @@
-
 body {
 	font-family: Prelude, Prelude Medium, Segoe UI, Arial, Helvetica, Sans-Serif;
 	font-size: 16px;
-
 	color: #333;
 	background-color: #d8d8d8;
-/*	#333
-	text-shadow: 1px 1px 1px #000;
-	color: #afafaf;
-	background-color: #323232;
-*/
 }
-
-
-
-/*
-	size those pesky elements like inputs, textareas, iframes, etc.
-	in tempermental browsers (ff, ie)
- */
-.enyo-view-fit {
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	-webkit-box-sizing: border-box;
-	margin: 0;
-}
-
 .search-spinner {
 	margin: auto;
 	display: block;
@@ -36,21 +12,6 @@ body {
 	margin-left: -12px;
 	margin-top: 150px;
 }
-.simple-scroller {
-	overflow: auto;
-	-webkit-overflow-scrolling: touch;
-}
-.divider{
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	font-weight: bold;
-	font-size: 12pt;
-	color: #3A8BCB;
-	-webkit-box-flex: .1;
-	text-shadow: 1px 1px 1px #eee;
-}
-
 .loading-message,
 .empty-message{
 	color: #666;
@@ -73,6 +34,70 @@ body .onyx-icon:active:hover {
 }
 
 
-.selected{
-	background: red;
+.include{
+	b-ackground: green;
 }
+.exclude{
+	b-ackground: red;
+}
+
+.panel{
+	min-width: 15%;
+	width: 180px;
+}
+.flyout,
+.panel{
+	background-color: #D8D8D8;
+}
+
+.panel:before, .flyout:before {
+	content: ".";
+	color: transparent;
+	position: absolute;
+	z-index: 2;
+	height: 100%;
+	width: 20px;
+	left: -20px;
+	background: url(../assets/shadow.png) repeat-y;
+	background-size: 20px 2px;
+	pointer-events: none;
+}
+
+.filter-qantifier{
+	font-size: 0.7em;
+	line-height: 0.9;
+	text-align: center;
+	border: 1px solid gray;
+	border-radius: 4px;
+	box-shadow: inset 1px 1px 2px #999;
+	padding: 4px;
+	float: left;
+	width: 25%;
+	margin-right: 5%;
+}
+.filter-content{
+	float: left;
+	width: 70%;
+}
+
+.popup-header{
+	font-size: 1.2em;
+	text-align: center;
+}
+.popup-content{
+	padding: .5em 0;
+}
+
+.onyx-popup .onyx-button{
+	width: 100%;
+	margin-top: .5em;
+}
+
+.onyx-popup .gts-ToggleBar {
+	padding: 8px;
+}
+
+.menu-button{
+	margin: 0.5em;
+}
+

@@ -7,25 +7,26 @@
 	"urls.js",
 	"xhr.js",
 	"storage.js",
-
+	
 	/* libs  */
 	"$lib/onyx",
 	"$lib/layout",
-	"$lib/ToggleBar",
-	"$lib/SelectorBar",
-	"$lib/Carousels",
+	"Carousels",
 
 	/* Shared with Phone */
-	"kinds/menuItem",
+	"kinds/ToggleBar",
+	"kinds/SelectorBar",
 	"kinds/Divider",
+	"Toggle3Button",	
+	"kinds/menuList.js",
+	"kinds/menuView.js",
 	"kinds/settingsView.js",
 	"kinds/infoView.js",
-	"kinds/menuList.js",
+	"kinds/filterView.js",
+	"kinds/toggleItem.js",
+	"kinds/menuItem",
 
 	/*app*/
-	"menuView.js",
-	"filterView.js",
-	"Toggle3Button",	
 	"app.css",
 	"App.js"
 );

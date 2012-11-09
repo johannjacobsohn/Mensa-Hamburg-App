@@ -1,27 +1,32 @@
 ﻿enyo.depends(
 	/* core */
-	"utils.js",
-	"info.js",
-	"data.js",
-	"conf.js",
-	"storage.js",
-	"urls.js",
-	"xhr.js",
+	"core/utils.js",
+	"core/info.js",
+	"core/data.js",
+	"core/conf.js",
+	"core/urls.js",
+	"core/xhr.js",
+	"core/storage.js",
 
 	/* libs  */
-	"../lib/onyx", /* $lib geht nicht?! */
+	"$lib/onyx",
 	"$lib/layout",
-	"../lib/ToggleBar", /* submodule */
+	"$lib/ToggleBar",
+	"$lib/SelectorBar",
+	"PeekCollapsingArranger.js",
 
-	/* Kinds */
-	"kinds/menuItem", /* submodule */
+	/* Shared with Phone */
+	"kinds/menuItem",
 	"kinds/Divider",
-
+	"kinds/settingsView.js",
+	"kinds/infoView.js",
+	"kinds/menuList.js",
 
 	/* app */
 	"filterPanel.js",
 	"menuPanel.js",
 	"flyout.js",
+	"main.js",
 	"app.css",
 	"App.js"
 );

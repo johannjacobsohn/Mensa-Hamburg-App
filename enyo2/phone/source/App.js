@@ -20,11 +20,9 @@ window.addEventListener("load", function(){
 
 	if(!conf.isConfigured()){
 		enyo.Signals.send("onRequestOpen", { page: "settings" })
-
 		mensaApp.showNotConfigured();
 	}
 }, false);
-
 
 enyo.kind({
 	name: "App",
@@ -91,7 +89,7 @@ enyo.kind({
 		this.setActiveButton( inSender.children[0] );
 		this.openPage(inSender.target);
 	},
-	pages : [ "menu", "settings", "filter", "info"],
+	pages : [ "menu", "settings", "filter", "info" ],
 	openPage : function(activePage){
 		var index = this.pages.indexOf(activePage);
 		this.$.panels.setIndex(index);

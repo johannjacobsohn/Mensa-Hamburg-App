@@ -12,7 +12,24 @@ body {
 */
 }
 
+.header{
+	padding: 0!important;
+	position: absolute;
+	b-ackground-color:  transparent!important;
+	background-image: linear-gradient(bottom, rgba(216, 207, 0, 1) 11%, rgba(255, 249, 156, 1) 56%, rgba(255,255,188, 1) 78%);/* -webkit-linear-gradiant(bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.9)); */
+	left: 4px;
+	right: 4px;
+	z-index: 3;
+	top: 4px;
+	border-radius: 16px;
+}
+.onyx-toolbar{
+	padding: 0!important;
+}
 
+.enyo-list-page > :first-child{
+	padding-top: 38px;
+}
 
 /*
 	size those pesky elements like inputs, textareas, iframes, etc.
