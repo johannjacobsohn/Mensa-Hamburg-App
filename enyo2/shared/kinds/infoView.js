@@ -16,7 +16,7 @@ enyo.kind({
 				{ style:"margin: 1em;", content: info.appDesc },
 				{kind: "onyx.Button", content: "Zur Projektseite", style:"width: 95%; margin: .5em auto; display: block;", onclick: "moreInfo"},
 				{kind: "onyx.Button", content: "Email an die Entwickler schreiben", style:"width: 95%; margin: .5em auto; display: block;", onclick: "email"},
-				{kind: "onyx.Button", content: "☢ App zurücksetzen ☢", style:"width: 95%; margin: .5em auto; display: block;", classes: "onyx-negative", onclick: "reset"},
+				{kind: "onyx.Button", content: "App zurücksetzen", style:"width: 95%; margin: .5em auto; display: block;", classes: "onyx-negative", onclick: "reset"},
 				{kind: "onyx.Button", content: "Schließen", style:"width: 95%; margin: .5em auto; display: block;", classes: "onyx-affirmative", onclick: "close"}
 			]
 		}
