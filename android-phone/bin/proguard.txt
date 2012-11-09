@@ -1,3 +1,0 @@
-# view AndroidManifest.xml #generated:35
--keep class jjacobsohn.mensaApp.android.mensaApp { <init>(...); }
-
