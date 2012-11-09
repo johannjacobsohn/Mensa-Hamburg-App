@@ -3,12 +3,15 @@
  * Abstract i/o-Operations
  * Mostly just a wrapper to localstorage
  *
- *
+ * @TODO: write benchmarks for cache
  * @class data
  */
 var data = (function(){
 	"use strict";
 
+	/** 
+	 * since localstorage is quite slow, values get cached 
+	 */
 	var cache = {},
 
 	/**
@@ -20,7 +23,10 @@ var data = (function(){
 	 * @return {String} value
 	 */
 	get = function(key){
-		return typeof cache[key] !== "undefined" ? cache[key] : localStorage.getItem(key);
+		if( typeof cache[key] === "undefined" ) {
+			cache[key] = localStorage.getItem(key);
+		}
+		return cache[key];
 	},
 
 	/**
