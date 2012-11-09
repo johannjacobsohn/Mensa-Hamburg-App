@@ -22,9 +22,9 @@
 			"Jungiusstrasse"        : baselink + "610/2012/{{week}}/",
 			"Philosophenturm"       : baselink + "350/2012/{{week}}/",
 			"Stellingen"            : baselink + "580/2012/{{week}}/",
-			"Studierendenhaus"      : baselink + "310/2012/{{week}}/"
+			"Studierendenhaus"      : baselink + "310/2012/{{week}}/",
+			"Café CFEL"             : baselink + "680/2012/{{week}}/"
 		},
-
 		mensen : [
 			{
 				name: "Alexanderstrasse",
@@ -130,6 +130,12 @@
 				url:  baselink + "310/2012/{{week}}/",
 				address: "Von-Melle-Park 2, 20146 Hamburg",
 				open: "Montag - Donnerstag: 11:00 - 15:00 Uhr, Freitag: 11:00 - 14:30 Uhr"
+			},
+			{
+				name: "Café CFEL",
+				url: baselink + "/680/2012/{{week}}/",
+				address: "Notkestrasse 85, 22607 Hamburg",
+				open: "Montag - Freitag: 08:00 - 15:00 Uhr"
 			}
 		]
 	};
