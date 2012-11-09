@@ -61,7 +61,9 @@ var storage = (function(){ // its a trap!
 					subscriptions[type].push( fkt );
 				}
 			} else {
-				console.warn("event '" + type +"' does not exist");
+				if( console && console.warn ){
+					console.warn("event '" + type +"' does not exist");
+				}
 			}
 			return this;
 		},
@@ -459,13 +461,14 @@ var storage = (function(){ // its a trap!
 
 			// cleanup loadedMensen
 			// @TODO: cleanup
+			var filterByMensaAndWeek = function(mensa, week, item){
+				return (mensa === item.mensa && parseInt(week, 10) === item.week);
+			};
 			for(var mensa in loadedMensen){
 				if( loadedMensen.hasOwnProperty(mensa) ){
 					for(var week in loadedMensen[mensa]){
 						if(loadedMensen[mensa].hasOwnProperty(week)){
-							loadedMensen[mensa][week] = weekMenu.some(function(item){
-								return (mensa === item.mensa && parseInt(week, 10) === item.week);
-							});
+							loadedMensen[mensa][week] = weekMenu.some(filterByMensaAndWeek.bind(this, mensa, week));
 						}
 					}
 				}
@@ -521,7 +524,9 @@ var storage = (function(){ // its a trap!
 				mensa = mensenArr[m];
 				loadedMensen[mensa] = loadedMensen[mensa] || {};
 
-				// skip loading if this mensa has been already loaded, its currently loading or date is not this or next week -> there won't be any data on the server
+				// skip loading if this mensa has been already loaded,
+				// its currently loading or date is not this or next week
+				// -> there won't be any data on the server
 				// load anyway if forced to
 				if( ((!loadedMensen[mensa][week] || force) && !lock[mensa + week] && ( week === thisWeek || week === thisWeek + 1 )) ){
 					isFiltered = false;
@@ -530,9 +535,11 @@ var storage = (function(){ // its a trap!
 					lock[mensa + week] = true;
 
 					// load and parse URL with correct week number
+					// @TODO: change to urls.mensen
 					url = urls.mensenWeek[mensa].replace(/\{\{week\}\}/, week);
 
 					// Trigger AJAX-Call
+					// @TODO: remove additional_args and use bind instead
 					xhr.get(url, success, error, {
 						mensa : mensa,
 						week : week
@@ -540,43 +547,45 @@ var storage = (function(){ // its a trap!
 				}
 			}
 
-			function success(resp, additional_args){
-				var mensa = additional_args.mensa;
-				var week = additional_args.week;
-				
-				// parse HTML
-				var newWeekMenu = parseMensaHTML(resp, mensa, week);
-
-				// mark as cached only if new dishes where found
-				// data has changed!
-				if( newWeekMenu && newWeekMenu.length > 0 ){
-					// splice menu together
-					weekMenu = weekMenu.filter(function( item ){ return !(item.week === week && item.mensa === mensa); });
-					weekMenu = weekMenu.concat( newWeekMenu ); 
-
-					loadedMensen[mensa][week] = true;
-					dataHasChanged = true;
-				}
-
-				// release lock
-				delete lock[additional_args.mensa+additional_args.week];
-
-				// try to run callbacks
-				runMenuCallbacks();
-			}
-
-			function error(resp, additional_args){
-				console.error("xhr error");
-
-				// release lock
-				delete lock[additional_args.mensa+additional_args.week];
-
-				// try to run callbacks
-				runMenuCallbacks();
-			}
-
 			runMenuCallbacks();
 		},
+		// @TODO document
+		success = function(resp, additional_args){
+			var mensa = additional_args.mensa;
+			var week = additional_args.week;
+			
+			// parse HTML
+			var newWeekMenu = parseMensaHTML(resp, mensa, week);
+
+			// mark as cached only if new dishes where found
+			// data has changed!
+			if( newWeekMenu && newWeekMenu.length > 0 ){
+				// splice menu together
+				weekMenu = weekMenu.filter(function( item ){ return !(item.week === week && item.mensa === mensa); });
+				weekMenu = weekMenu.concat( newWeekMenu ); 
+
+				loadedMensen[mensa][week] = true;
+				dataHasChanged = true;
+			}
+
+			// release lock
+			delete lock[additional_args.mensa+additional_args.week];
+
+			// try to run callbacks
+			runMenuCallbacks();
+		},
+
+		// @TODO document
+		error = function (resp, additional_args){
+			console.error("xhr error");
+
+			// release lock
+			delete lock[additional_args.mensa+additional_args.week];
+
+			// try to run callbacks
+			runMenuCallbacks();
+		},
+
 		/**
 		 * parses retrieved html from the mensa pages and returns retreaved data
 		 *
@@ -608,7 +617,9 @@ var storage = (function(){ // its a trap!
 			try{
 				trs = tempDiv.getElementsByTagName("table")[0].getElementsByTagName("tr");
 			} catch(e){
-				if( console && console.log ) console.log("return: tr not found for " + mensa + " on week " + week);
+				if( console && console.log ){
+					console.log("return: tr not found for " + mensa + " on week " + week);
+				}
 				return [];
 			}
 			// extract and parse date field
@@ -844,18 +855,18 @@ var storage = (function(){ // its a trap!
 		*/
 		getTypeInfo = function(callback){
 			getWeekMenu(function(){
-				var type, types = {}, typesArr = [], l = weekMenu.length;
+				var type, types = {}, typesArr = [], l = weekMenu.length, valueEqualType = function(type, item){ return item.value === type; };
 				while ( l-- ){
 					types[weekMenu[l].name] = true;
 				}
-
+				
 				for(type in types){
 					if( types.hasOwnProperty(type) ){
 						typesArr.push({
 							content  : type,
 							name     : type,
-							filtered : typeof filterValues.name !== "undefined" && filterValues.name.some(function(item){ return item.value === type; }),
-							filter   : filterValues.name ? filterValues.name.filter(function(item){ return item.value === type; })[0] : []
+							filtered : typeof filterValues.name !== "undefined" && filterValues.name.some(valueEqualType.bind(this, type)),
+							filter   : filterValues.name ? filterValues.name.filter(valueEqualType.bind(this, type))[0] : []
 						});
 					}
 				}
@@ -871,7 +882,7 @@ var storage = (function(){ // its a trap!
 		 */
 		getDetails = function(type, callback){
 			getWeekMenu(function(){
-				var property, properties = {}, propertiesArr = [], l = weekMenu.length;
+				var property, properties = {}, propertiesArr = [], l = weekMenu.length, valueEqualsProperty = function(property, item){ return item.value === property; };
 				while ( l-- ){
 					for(var i = 0; i<weekMenu[l][type].length; i++){
 						properties[weekMenu[l][type][i]] = true;
@@ -885,7 +896,7 @@ var storage = (function(){ // its a trap!
 							name       : property,
 							filtered   : typeof filterProperties.name !== "undefined" && filterValues.name.indexOf( property ) !== -1,
 							filterType : (typeof filterProperties.name !== "undefined" && filterValues.name.indexOf( property ) !== -1) ,
-							filter     : filterValues[type] ? filterValues[type].filter(function(item){ return item.value === property; })[0] : []
+							filter     : filterValues[type] ? filterValues[type].filter(valueEqualsProperty.bind(this, property))[0] : []
 						});
 					}
 				}
