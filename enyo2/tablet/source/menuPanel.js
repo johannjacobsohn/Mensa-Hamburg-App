@@ -29,11 +29,11 @@ enyo.kind({
 		this.load();
 	},
 	load : function(){
-		this.$.menuList.loading(true);
+		this.$.menuList.setLoading(true);
 //		console.time("get");
 		storage.getSortedSegmented(function(json){
 //			console.timeEnd("get");
-			this.$.menuList.loading(false);
+			this.$.menuList.setLoading(false);
 			this.$.menuList.menu = json;
 //			console.time("list");
 			this.$.menuList.load();

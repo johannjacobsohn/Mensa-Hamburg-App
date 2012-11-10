@@ -2,9 +2,11 @@ enyo.kind({
 	name: "menuList",
 	classes: "menuList",
 	style: "height: 100%;",
+	published: {
+		loading: false,
+	},
 	components: [
-		{name: "spinner", tag: "img", src: "assets/spinner.gif", showing: false, classes: "search-spinner"},
-		{name: "loadingMessage", classes: "loading-message", content: "Wird geladen...", showing: false},
+		{kind: "Waiter"},
 		{kind: "List", name: "menu", style: "height: 100%;", classes: "enyo-unselectable preventDragTap menu", onSetupItem: "setupRow", toggleSelected: true, components: [
 			{name: "divider", kind: "Divider"},
 			{kind: "menuItem", classes: "item enyo-border-box"}
@@ -24,46 +26,47 @@ enyo.kind({
 		}
 		return true;
 	},
-	/* @TODO: change to be an published property*/
-	loading : function(bool){
-		// Timeout, damit nur gezeigt wird wenn wir länger warten müssen
-		var timeout = 1,
-		    long_timeout = 1000;
-		if(this.timer && !bool){
-			this.showloadingMessage(false);
-			this.showloadingSpinner(false);
-			clearTimeout(this.timer);
-			clearTimeout(this.long_timer);
-			delete this.timer;
-			delete this.long_timer;
-		} else if(bool && typeof this.timer !== "number") {
-			this.timer      = setTimeout( this.showloadingMessage.bind(this, true), timeout);
-			this.long_timer = setTimeout( this.showloadingSpinner.bind(this, true), long_timeout);
-		}
-	},
-	showloadingMessage : function(bool){
-		var msgs = [
-			"Bin dabei...",
-			"Kommt gleich...",
-			"abwarten...",
-			"wird geladen...",
-			"Eile mit Weile...", 
-			"Is' unterwegs...",
-			"Wird gleich..."
-		];
-
-		if(bool){
+	loadingChanged : function(){
+		if(this.loading){
 			this.$.menu.setCount(0);
 			this.$.menu.refresh();
-			this.$.loadingMessage.setContent( msgs[ Math.round( Math.random() * (msgs.length-1) ) ] );
+		}
+		this.$.waiter.setShowing( this.loading )
+	},
+	load: function(){
+		this.$.menu.setCount(this.menu.length);
+		this.$.menu.refresh();
+		this.setLoading(false);
+	}
+});
+
+enyo.kind({
+	name: "Waiter",
+	components: [
+		{name: "spinner", kind: "Image", noEvents: true, src: "assets/spinner.gif", showing: false, classes: "search-spinner"},
+		{name: "loadingMessage", classes: "loading-message", content: "...", showing: false},
+	],
+	showingChanged: function(){
+		this.inherited(arguments);
+		this.showloadingMessage(this.showing);
+		this.showloadingSpinner(this.showing);
+	},
+	msgs : [
+		"Bin dabei...",
+		"Kommt gleich...",
+		"abwarten...",
+		"wird geladen...",
+		"Eile mit Weile...", 
+		"Is' unterwegs...",
+		"Wird gleich..."
+	],
+	showloadingMessage : function(bool){
+		if(bool){
+			this.$.loadingMessage.setContent( this.msgs[ Math.round( Math.random() * (this.msgs.length-1) ) ] );
 		}
 		this.$.loadingMessage.setShowing( bool );
 	},
 	showloadingSpinner : function(bool){
 		this.$.spinner.setShowing(bool);
-	},
-	load: function(){
-		this.$.menu.setCount(this.menu.length);
-		this.$.menu.refresh();
 	}
 });

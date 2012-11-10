@@ -1,5 +1,5 @@
 /**
- * Menuansicht
+ * Menu view
  *
  * @kind menuView
  */
@@ -17,7 +17,6 @@ enyo.kind({
 		return index >= 0 && index < 10;
 	},
 	getView: function(inIndex) {
-		console.log(this.availableDates[inIndex], inIndex)
 		return { kind: "menuPanel", index: inIndex, dateString: this.availableDates[inIndex] };
 	},
 	getLeft: function(inSender, inEvent) {
@@ -71,9 +70,9 @@ enyo.kind({
 
 
 /**
- * MenuView
+ * menuPanel
  * 
- * @kind menuView
+ * @kind menuPanel
  */
 enyo.kind({
 	name: "menuPanel",
@@ -90,10 +89,6 @@ enyo.kind({
 		]},
 		{kind: "menuList"}
 	],
-	create : function(type, callback){
-		this.inherited(arguments);
-		this.load();
-	},
 	setHeader: function(){
 		this.$.header.setContent( formatDate( this.date ) );
 		this.$.header.render();
@@ -107,9 +102,14 @@ enyo.kind({
 	tomorrow: function(){
 		enyo.Signals.send("onGoToTomorrow");
 	},
+	create : function(type, callback){
+		this.inherited(arguments);
+		this.load();
+	},
 	load: function(){
 		this.date = storage.dateStringToDate(this.dateString);
 		this.setHeader();
+		this.$.menuList.setLoading(true);
 		storage.day(this.date, true, function(json, dateStr){
 			this.$.menuList.menu = json;
 			this.$.menuList.load();

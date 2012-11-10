@@ -155,7 +155,7 @@ setStudentPrices: function(e) {
 return data.save("displayStudentPrices", e ? "1" : "0");
 },
 displayStudentPrices: function() {
-return data.get("displayStudentPrices") === "1";
+return data.get("displayStudentPrices") !== "0";
 }
 }, (data.get("majorversion") != conf.majorVersion || data.get("minorversion") != conf.minorVersion) && !!data.get("menu") && (conf.versionHasChanged = !0);
 if (data.get("majorversion") != conf.majorVersion) {
@@ -3423,22 +3423,6 @@ e._fit = !0, e.applyStyle("width", this.containerBounds.width - t + "px"), e.res
 }
 });
 
-// PeekCollapsingArranger.js
-
-enyo.kind({
-name: "enyo.PeekCollapsingArranger",
-kind: "CollapsingArranger",
-peekWidth: 20,
-arrange: function(e, t) {
-var n = this.container.getPanels();
-for (var r = 0, i = this.containerPadding.left, s, o, u = 0; o = n[r]; r++) o.getShowing() && (this.arrangeControl(o, {
-left: i + u * this.peekWidth
-}), r >= t && (i += o.width + o.marginWidth - this.peekWidth), r == n.length - 1 && t < 0 && this.arrangeControl(o, {
-left: i - t
-}), u++);
-}
-});
-
 // OtherArrangers.js
 
 enyo.kind({
@@ -4348,6 +4332,22 @@ return this.value = t.selected.hasOwnProperty("value") ? t.selected.value : t.co
 }
 });
 
+// PeekCollapsingArranger.js
+
+enyo.kind({
+name: "enyo.PeekCollapsingArranger",
+kind: "CollapsingArranger",
+peekWidth: 20,
+arrange: function(e, t) {
+var n = this.container.getPanels();
+for (var r = 0, i = this.containerPadding.left, s, o, u = 0; o = n[r]; r++) o.getShowing() && (this.arrangeControl(o, {
+left: i + u * this.peekWidth
+}), r >= t && (i += o.width + o.marginWidth - this.peekWidth), r == n.length - 1 && t < 0 && this.arrangeControl(o, {
+left: i - t
+}), u++);
+}
+});
+
 // menuItem.js
 
 enyo.kind({
@@ -4677,7 +4677,7 @@ load: function() {
 this.$.list.setShowing(!1), this.$.spinner.show(), storage.getInfo(this.filter, function(e) {
 this.filter === "mensa" && (e = e.filter(function(e) {
 return e.active;
-})), this.$.spinner.hide(), this.data = e, this.$.list.setShowing(!0), this.$.list.setCount(this.data.length), setTimeout(this.$.list.refresh.bind(this.$.list), 1), console.log("load");
+})), this.$.spinner.hide(), this.data = e, this.$.list.setShowing(!0), this.$.list.setCount(this.data.length), setTimeout(this.$.list.refresh.bind(this.$.list), 1);
 }.bind(this));
 },
 setupItem: function(e, t) {
