@@ -88,7 +88,7 @@
 		 * @return {Boolean} state
 		 */
 		displayStudentPrices : function(){
-			return (typeof data.get("displayStudentPrices") === "undefined" ||  data.get("displayStudentPrices") === null || data.get("displayStudentPrices") === "1");
+			return data.get("displayStudentPrices") !== "0";
 		}
 	};
 	
