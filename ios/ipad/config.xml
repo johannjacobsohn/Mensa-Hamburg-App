@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+	<widget xmlns = "http://www.w3.org/ns/widgets"
+		xmlns:gap = "http://phonegap.com/ns/1.0"
+		id        = "jjacobsohn.mensaapp.ios.ipad.MensaHamburgAppTablet"
+		version   = "2.0.0">
+
+	<name>Mensa Hamburg HD</name>
+
+	<description>
+		Wann gibt es welches Essen in welcher Mensa? Eine App von Studenten für Studenten.
+	</description>
+
+	<author href="http://johannjacobsohn.github.com/Mensa-Hamburg-App/" email="mensa-hamburg-app@directbox.com">
+		Johann Jacobsohn
+	</author>
+	
+	<preference name="phonegap-version" value="2.1.0" />
+
+	<!-- please note that default means both landscape and portrait are enabled. If you want to use each platform's default settings (usually portrait-only), just remove this tag from your config.xml -->
+	<preference name="orientation" value="default" />
+	<preference name="target-device" value="tablet" />
+	<!--
+		target-device with possible values handset, tablet, or universal
+			example: <preference name="target-device" value="universal" />
+			please note that this currently only applies to iOS builds; by default all builds are universal
+	-->
+
+	<preference name="prerendered-icon" value="true" />	
+
+	<!-- app icon -->
+	<icon src="icons/72x72.png" />
+	<icon src="icons/57x57png"    gap:platform="ios" width="57"  height="57"  />
+	<icon src="icons/72x72.png"   gap:platform="ios" width="72"  height="72"  />
+	<icon src="icons/114x114.png" gap:platform="ios" width="114" height="114" />
+
+<!-- TODO:
+Default-Landscape@2x~ipad.png (2048x1496 pixels)
+Default-Landscape~ipad.png (1024x768 pixels)
+Default-Portrait@2x~ipad.png (1536x2008 pixels)
+Default-Portrait~ipad.png (768x1024 pixels)
+-->
+	<!-- Splash -->
+	<gap:splash src="splash/Default-Landscape-1024x768.png" height="768" width="1024" />
+	<gap:splash src="splash/Default-Portrait-768x1024.png" height="1024" width="768"  />
+
+	<!-- If you do not want any permissions to be added to your app, add the
+		following tag to your config.xml; you will still have the INTERNET
+		permission on your app, which PhoneGap requires. -->
+	<preference name="permissions" value="none"/>
+	<access origin="http://127.0.0.1*"/>
+	<access origin="http://speiseplan.studierendenwerk-hamburg.de"/>
+</widget>
