@@ -47,3 +47,8 @@
 .details-header{
 	font-weight: bold;
 }
+.details-item{
+	overflow: hidden;
+	text-overflow: ellipsis;
+
+}

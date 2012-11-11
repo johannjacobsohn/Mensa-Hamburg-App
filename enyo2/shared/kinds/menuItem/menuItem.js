@@ -15,11 +15,11 @@ enyo.kind({
 		{name : "moreInfo", kind: "FittableColumns", showing: false, components: [
 			{classes: "additives", components: [
 				{content: "Zusatzstoffe", classes: "details-header"},
-				{kind: "Repeater", name: "additives", onSetupItem: "setupItemAdditives", components: [ {name:"item"} ] }
+				{kind: "Repeater", name: "additives", onSetupItem: "setupItemAdditives", components: [ {name:"item", classes: "details-item"} ] }
 			]},
 			{classes: "properties", components: [
 				{content: "Eigenschaften", classes: "details-header"},
-				{kind: "Repeater", name: "properties", onSetupItem: "setupItemProperties", components: [ {name:"item"} ] }
+				{kind: "Repeater", name: "properties", onSetupItem: "setupItemProperties", components: [ {name:"item", classes: "details-item"} ] }
 			]}
 		]}
 	],
