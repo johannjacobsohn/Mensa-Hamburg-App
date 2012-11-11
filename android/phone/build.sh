@@ -1,13 +1,17 @@
 #!/bin/bash
 
-# build enyo
-rm -r ../enyo2/phone/deploy/*
-cd ../../enyo2/phone/tools
+set -x
+set -u
 
+path="../../enyo2/phone";
+
+# build enyo
+rm -r $path/deploy/*
+cd $path/tools
 ./deploy.sh
 cd -
 rm -r assets/www
-mv ../enyo2/phone/deploy/* assets/www/
+mv $path/deploy/* assets/www/
 
 # cordova/BOOM
 # build and deploy to device
