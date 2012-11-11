@@ -1,4 +1,11 @@
 keys
-
-android-phone/gen/*
-android-phone/bin/*
+android-phone/gen
+android-phone/bin
+android/phone/assets
+android/tablet/gen
+android/tablet/bin
+android/tablet/assets
+enyo2/tablet/build
+enyo2/phone/build
+enyo2/tablet/deploy
+enyo2/phone/deploy
