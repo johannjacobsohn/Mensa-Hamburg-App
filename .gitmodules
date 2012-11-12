@@ -10,15 +10,12 @@
 [submodule "enyo2/externals/onyx"]
 	path = enyo2/externals/onyx
 	url = https://github.com/enyojs/onyx.git
-[submodule "enyo/shared/enyo-1"]
-	path = enyo/shared/enyo-1
-	url = https://github.com/enyojs/enyo-1.0.git
+[submodule "diskontinued-frameworks/enyo/shared/enyo-1"]
+	path = diskontinued-frameworks/enyo/shared/enyo-1
+	url = https://github.com/enyojs/enyo-1.0
 [submodule "enyo2/externals/gts-plugins"]
 	path = enyo2/externals/gts-plugins
 	url = https://bitbucket.org/GlitchTechScience/gts-plugins.git
 [submodule "enyo2/externals/Newness-Labs"]
 	path = enyo2/externals/Newness-Labs
 	url = https://github.com/Newness/Labs.git
-[submodule "enyo2/p"]
-	path = enyo2/p
-	url = https://github.com/enyojs/bootplate.git
