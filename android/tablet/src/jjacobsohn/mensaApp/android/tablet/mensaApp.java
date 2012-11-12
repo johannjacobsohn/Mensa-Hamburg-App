@@ -16,7 +16,6 @@
        specific language governing permissions and limitations
        under the License.
  */
-
 package jjacobsohn.mensaApp.android.tablet;
 
 import android.app.Activity;
@@ -25,11 +24,10 @@ import org.apache.cordova.*;
 
 public class mensaApp extends DroidGap
 {
-    @Override
-    public void onCreate(Bundle savedInstanceState)
-    {
-        super.onCreate(savedInstanceState);
-        super.loadUrl("file:///android_asset/www/index.html");
-    }
+	@Override
+	public void onCreate(Bundle savedInstanceState)
+	{
+		super.onCreate(savedInstanceState);
+		super.loadUrl("file:///android_asset/www/index.html");
+	}
 }
-
