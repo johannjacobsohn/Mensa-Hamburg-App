@@ -12,6 +12,10 @@ enyo.kind({
 			{kind: "menuItem", classes: "item enyo-border-box"}
 		]}
 	],
+	tap: function(){
+		// menu list length has probably changed
+		this.$.menu.refresh();
+	},
 	setupRow: function(inSender, inEvent) {
 		var i = inEvent.index, r = this.menu[i], item = this.$.menuItem, divider = this.$.divider;
 		if(r.type === "header"){
