@@ -36,12 +36,17 @@ enyo.kind({
 		{ name: "newVersionPopup", style: "background: #eee;color: black; width: 300px", kind: "onyx.Popup", centered: true, floating: true, scrim: true, components: [
 			{content: info.onUpdateTitel, classes: "popup-header"},
 			{content: info.onUpdateText, classes: "popup-content"},
-			{kind: "onyx.Button", content: "Mehr Informationen zu dieser Version", classes: "onyx-affirmative"},
+			{kind: "onyx.Button", content: "Mehr Informationen zu dieser Version", ontap:"gotoNewVersion", classes: "onyx-affirmative"},
 			{kind: "onyx.Button", content: "Schließen", ontap: "closePopup"}
 		]},
 
 		{ kind: enyo.Signals, onChangePanels: "changePanels", onRequestSettings: "openSettings", onRequestInfo: "openInfo", onSettingsChange: "closeSettings"}
 	],
+	gotoNewVersion: function(){
+		if(enyo.platform.webos) {
+			location.href = "http://johannjacobsohn.github.com/Mensa-Hamburg-App/blog/2012/neue-version-furs-hp-touchpad/";
+		}
+	},
 	saveSettings: function(){
 		this.$.settingsView.saveMensen();
 	},
