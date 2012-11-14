@@ -1,6 +1,6 @@
 keys
-android-phone/gen
-android-phone/bin
+android/phone/gen
+android/phone/bin
 android/phone/assets
 android/tablet/gen
 android/tablet/bin
