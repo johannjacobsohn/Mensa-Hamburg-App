@@ -9,3 +9,4 @@ enyo2/tablet/build
 enyo2/phone/build
 enyo2/tablet/deploy
 enyo2/phone/deploy
+chrome/build
