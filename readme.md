@@ -1,17 +1,19 @@
 Mensa Hamburg App
 =================
 
-The Mensa Hamburg App is a _multiplattform_ app that deliveres formated 
-mensa menu information to the courious and hungry.
+The Mensa Hamburg App is a _multiplatform_ app that delivers formatted 
+mensa menu information to the curious and hungry.
 
-At the moment it displays exclusivly the mensa plans of the Studentenwerk 
+At the moment it displays exclusively the mensa plans of the Studentenwerk 
 Hamburg, but that may change in the future.
 
 The Mensa Hamburg App aims
 
-- to be as plattform agnostic as possible; to be available on as many plattforms available as possible
+- to be as platform agnostic as possible; to be available on as many platforms
+available as possible
 - to be as user friendly as possible,
-- to provide the fastest user experience, not just in terms of application performance, but in terms of how fast a user can get the desired information
+- to provide the fastest user experience, not just in terms of application
+performance, but in terms of how fast a user can get the desired information
 
 There are three major version available at the moment: a general _phone 
 version_, which supports any kind of small screen device or application and a 
@@ -28,12 +30,12 @@ framework for webOS 2.
 
  ![][mojo-device]
 
-There are other versions, frameworks and plattforms, which are not supported
+There are other versions, frameworks and platforms, which are not supported
 (any more).
 
 All versions depend on a single core ("shared", "kernel", whatever) which 
 retrieves and handles the data from the server and does the "heavy lifting", 
-but should not impose contrains on the ui.
+but should not impose constrain on the ui.
 
 Here, let me doodle that for you:
 
@@ -53,24 +55,20 @@ iPhone     Android   iPad  | | Playbook  HP Touchpad             HP/Palm Phones
 
 Planned features
 ----------------
+- support for win8
+- support for Intel AppUp
+- support for Firefox Market
+- support for win7 phone 
+- support for multiple languages, particularly English
+- launch a hosted web app
+- support for (some) Blackberry handhelds 
 - improved test coverage
-- Release for Intel AppUp
-- Firefox Market
-- release Version for win7 phone 
-- support for multiple languages, ie english
-- mensaIsClosed functionality
-- nodejs server
-- hosted Webapp
-- release Version for win8
-- release Version for (some) Blackberry handhelds 
-- Release Dashboard Widget
-- Release Desktop Gadget
 
 
 Getting Started
 ===
 
-Setup git
+Set up git
 -----
 	$ git clone https://github.com/johannjacobsohn/Mensa-Hamburg-App.git
 	$ cd Mensa-Hamburg-App
@@ -92,8 +90,9 @@ the same origin policy and allows testing of the app:
 
 Deploy to webOS
 ----
-To deploy to webOS you'll need the [palm SDK][palm-sdk] and either a webOS device or
-[an emulator][palm-emulator].
+
+To deploy to webOS you'll need the [palm SDK][palm-sdk] and either a webOS
+device or [an emulator][palm-emulator].
 
 To deploy the app to a device or emulator:
 
