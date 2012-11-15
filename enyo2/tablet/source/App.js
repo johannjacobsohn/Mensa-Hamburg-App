@@ -45,6 +45,16 @@ enyo.kind({
 	gotoNewVersion: function(){
 		if(enyo.platform.webos) {
 			location.href = "http://johannjacobsohn.github.com/Mensa-Hamburg-App/blog/2012/neue-version-furs-hp-touchpad/";
+		} else if (enyo.platform.android || enyo.platform.androidChrome) {
+			location.href = "http://johannjacobsohn.github.com/Mensa-Hamburg-App/blog/2012/neue-version-fur-android-tablets/";
+		} else if (enyo.platform.chrome) {
+			location.href = "http://johannjacobsohn.github.com/Mensa-Hamburg-App/blog/2012/neue-version-fur-chrome-web-store/";
+		} else if (enyo.platform.ios) {	
+			location.href = "http://johannjacobsohn.github.com/Mensa-Hamburg-App/blog/2012/neue-version-furs-ipad/";
+// touchpad?
+//		} else if (enyo.platform.android) {
+//			location.href = "";
+// win8?
 		}
 	},
 	saveSettings: function(){
