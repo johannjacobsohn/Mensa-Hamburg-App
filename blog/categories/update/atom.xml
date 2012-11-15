@@ -4,7 +4,7 @@
   <title><![CDATA[Category: update | Mensa Hamburg App]]></title>
   <link href="http://johannjacobsohn.github.com/Mensa-Hamburg-App/blog/categories/update/atom.xml" rel="self"/>
   <link href="http://johannjacobsohn.github.com/Mensa-Hamburg-App/"/>
-  <updated>2012-11-15T15:15:52+01:00</updated>
+  <updated>2012-11-15T20:21:37+01:00</updated>
   <id>http://johannjacobsohn.github.com/Mensa-Hamburg-App/</id>
   <author>
     <name><![CDATA[Johann Jacobsohn]]></name>
@@ -12,139 +12,6 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
-  
-  <entry>
-    <title type="html"><![CDATA[Neue Version für Android Tablets]]></title>
-    <link href="http://johannjacobsohn.github.com/Mensa-Hamburg-App/blog/2012/neue-version-fur-android-tablets/"/>
-    <updated>2012-11-15T20:46:00+01:00</updated>
-    <id>http://johannjacobsohn.github.com/Mensa-Hamburg-App/blog/2012/neue-version-fur-android-tablets</id>
-    <content type="html"><![CDATA[<figure class="left">
-	<a href="blog/categories/update/atom.xml">
-		<img src="/assets/release/tablet-2.0/android/ui-small.png">
-	</a>
-</figure>
-
-<p>Etwas Liebe für Android!</p>
-
-<!--more-->
-
-<h2 id="komplett-neue-oberflche">Komplett neue Oberfläche</h2>
-
-<figure>
-	<img src="/assets/release/tablet-2.0/android/ui.png">
-	<figcaption>Die neue Oberfläche: funkelniegelnagelneu</figcaption>
-</figure>
-
-<figure class="right" style="width: 200px">
-	<img src="/assets/release/tablet-2.0/android/portrait.png" title="" >
-	<figcaption>App im Portraitmodus mit abgeschalteten Filtern</figcaption>
-</figure>
-
-<p>Die Oberfläche der App wurde komplett neu geschrieben und ist jetzt 
-etwas schöner, deutlich flüssiger, viel schneller und - in Zeiten 
-von 5-Zoll-Telefonen (Galaxy Note) und 7-Zoll-Tablets (Kindle Fire) nicht unwichtig, sehr viel 
-anpassbarer an die Bildschirmgröße.  Zudem sind die einzelnen 
-Filterleisten zu- und abschaltbar, so dass man nur sehen muss, was 
-man braucht. Dies bedeutet auch das die App deutlich bequemer im 
-Portrait-Modus zu benutzen ist.</p>
-
-<h2 id="neues-app-icon">Neues App-Icon</h2>
-<figure>
-	<img src="/assets/release/tablet-2.0/android/icons.png" title="" >
-	<figcaption>Unten in der Mitte das neue und alte Logo</figcaption>
-</figure>
-
-<p>Nach langer Zeit gibt es endlich ein richtiges eigenes Icon. Während 
-das bisherige Icon von mir mit Gimp zusammengeworfen wurde ist das 
-neue von einer richtigen Designerin entworfen und speziell auf 
-Wiedererkennbarkeit und Vielseitigkeit ausgelegt.</p>
-
-<p>Im Gegensatz zum bisherigen “platten” Icon ist das neue texturiert, 
-wodurch es viel besser mit den Standardicons harmoniert und weniger 
-als hässliches (aber sehr aufdringliches) Entchen hervorsticht. Aus 
-dem “webOS-Kreis” ist ein Teller mutiert und das Besteck hat Tiefe 
-bekommen, was allgemein irgendwie handfester und appetitlicher 
-wirkt. Zudem hat sich der Name von “Mensa Hamburg App” zu “Mensa 
-Hamburg” gekürzt, was weniger redundant ist.</p>
-
-<h2 id="neue-filter">Neue Filter</h2>
-
-<figure>
-	<img src="/assets/release/tablet-2.0/android/filter.png" title="" >
-	<figcaption>Neue Filter</figcaption>
-</figure>
-
-<p>Die Filtermöglichkeiten der letzten Version waren relativ beschränkt, man
-konnte sich nur auf eine Mensa und ein Gericht einschränken. Das hat sich
-grundlegend geändert, die Filter wurden <em>erheblich</em> ausgebaut. 
-So ist es jetzt nicht mehr nur möglich auf mehrere Mensen oder Gerichte 
-einzuschränken, sondern auch Zusatzstoffe auszuschließen oder nur bestimmte 
-Arten von Gerichten zu sehen - und all diese Optionen auch zu kombinieren!</p>
-
-<p>Damit sind dann auch komplexere Zusammenhänge, wie “Vegan, aber ohne
-Konservierungsstoffe” oder “Nicht Vegetarisch, aber ohne Schwein” oder 
-“Nur Vegetarisch und aus dem Wok” möglich.</p>
-
-<p>Filter bleiben jetzt zudem auch bei Neustart der App erhalten, so dass gute 
-Filter nur einmal eingestellt werden müssen und dann immer erhalten bleiben.</p>
-
-<p>Die einzelnen Filteransichten können jederzeit aus- und eingebletet werden, 
-und hängen dadurch (nachdem man sie mal eingestellt hat) nicht mehr 
-permanent im Sichtfeld rum.</p>
-
-<figure>
-	<img src="/assets/release/tablet-2.0/android/set-filter.png" title="" >
-	<figcaption>Filtereinstellungen: Einzelne Filter lassen sich aus- 
-	und einblenden</figcaption>
-</figure>
-
-<p>Nur die relevanten Gerichte zu sehen erleichtert die Wahl erheblich und
-macht das Überblicken der (verbliebenen) Optionen einfacher.</p>
-
-<h2 id="details-fr-gerichte">Details für Gerichte</h2>
-<figure class="right" style="max-width: 60%;">
-	<img src="/assets/release/tablet-2.0/android/details.png" title="" >
-	<figcaption>Details für einzelne Gerichte gibts auf Antippen</figcaption>
-</figure>
-
-<p>Für Menschen mit Allergien, Unverträglichkeiten oder religiöse 
-Ernährungsvorschriften ist es wichtig genau zu sehen, welche 
-Zusatzstoffe in den Gerichten sind. Für Vegetarier sind nur 
-fleischlose Gerichte interessant, und manch einer möchte keine 
-Geschmacksverstärker zu sich nehmen. Mit einem einfachen Tippen auf 
-ein Gericht werden alle verfügbaren Eigenschaften und Zusatzstoffe 
-aufgelistet.</p>
-
-<h2 id="nachladen-von-daten-im-hintergrund">Nachladen von Daten im Hintergrund</h2>
-
-<p>Surround your pullquote like this {" text to be quoted "}</p>
-
-<h2 id="erstmal-keine-splashscreens-mehr">Erstmal keine Splashscreens mehr</h2>
-
-<h2 id="weitere-nderungen">Weitere Änderungen</h2>
-<ul>
-  <li>beim Aktualisieren der App werden nicht mehr alle Einstellungen gelöscht;</li>
-  <li>in den Einstellungen werden zusätzlich zu den Mensanamen auch deren Adressen angezeigt;</li>
-  <li>bei Datumsänderungen (wenn die App lange offen bleibt) wird der angezeigte Tag aktualisiert, so dass er immer aktuell bleibt.</li>
-  <li>dutzende Performance-Verbesserungen</li>
-  <li>Es gibt eine neue Mensa: “Café CFEL”</li>
-</ul>
-
-<h2 id="mitmachen">Mitmachen</h2>
-<p>In diese Version sind einige Anregungen und Vorschläge von Nutzern
-eingeflossen. Vielleicht hast Du ja auch eine Idee, wie die App für Dich
-besser funktionieren würde? Schreib eine Email an die Entwickler unter
-<a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#109;&#101;&#110;&#115;&#097;&#045;&#104;&#097;&#109;&#098;&#117;&#114;&#103;&#045;&#097;&#112;&#112;&#064;&#100;&#105;&#114;&#101;&#099;&#116;&#098;&#111;&#120;&#046;&#099;&#111;&#109;">&#109;&#101;&#110;&#115;&#097;&#045;&#104;&#097;&#109;&#098;&#117;&#114;&#103;&#045;&#097;&#112;&#112;&#064;&#100;&#105;&#114;&#101;&#099;&#116;&#098;&#111;&#120;&#046;&#099;&#111;&#109;</a> oder hinterlasse einen Kommentar!<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup></p>
-
-<div class="footnotes">
-  <ol>
-    <li id="fn:1">
-      <p>Wenn Du Deinen Namen nicht angeben möchtest kannst Du einfach einen ausgedachten Namen und eine Emailadresse wie test@example.net verwenden.<a href="#fnref:1" rel="reference">&#8617;</a></p>
-    </li>
-  </ol>
-</div>
-]]></content>
-  </entry>
   
   <entry>
     <title type="html"><![CDATA[Neue Version für Chrome Web Store]]></title>

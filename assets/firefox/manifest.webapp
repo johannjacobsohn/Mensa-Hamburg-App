@@ -1,0 +1,14 @@
+{
+  "name": "Mensa Hamburg",
+  "package_path": "http://johannjacobsohn.github.com/Mensa-Hamburg-App/assets/firefox/2.0.zip",
+  "description": "",
+  "launch_path": "/",
+  "icons": {
+    "128": "/img/icon-128.png"
+  },
+  "developer": {
+    "name": "Johann Jacobsohn",
+    "url": "http://johannjacobsohn.github.com/Mensa-Hamburg-App/"
+  },
+  "default_locale": "de"
+}
