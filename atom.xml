@@ -4,7 +4,7 @@
   <title><![CDATA[Mensa Hamburg App]]></title>
   <link href="http://johannjacobsohn.github.com/Mensa-Hamburg-App/atom.xml" rel="self"/>
   <link href="http://johannjacobsohn.github.com/Mensa-Hamburg-App/"/>
-  <updated>2012-11-15T14:26:22+01:00</updated>
+  <updated>2012-11-15T15:15:52+01:00</updated>
   <id>http://johannjacobsohn.github.com/Mensa-Hamburg-App/</id>
   <author>
     <name><![CDATA[Johann Jacobsohn]]></name>
@@ -19,7 +19,9 @@
     <updated>2012-11-15T20:46:00+01:00</updated>
     <id>http://johannjacobsohn.github.com/Mensa-Hamburg-App/blog/2012/neue-version-fur-android-tablets</id>
     <content type="html"><![CDATA[<div class="bogus-wrapper"><notextile><figure class="left">
-	<img src="http://johannjacobsohn.github.com/Mensa-Hamburg-App/assets/release/tablet-2.0/android/ui-small.png" />
+	<a href="http://johannjacobsohn.github.com/Mensa-Hamburg-App/blog/2012/neue-version-fur-android-tablets/">
+		<img src="http://johannjacobsohn.github.com/Mensa-Hamburg-App/assets/release/tablet-2.0/android/ui-small.png" />
+	</a>
 </figure></notextile></div>
 
 <p>Etwas Liebe für Android!</p>
@@ -122,6 +124,8 @@ Vergangenheit an, den jetzt werden die Daten in regelmäßigen
 Abständen geprüft und gegebenenfalls korrigiert.
 </span></p>
 
+<h2 id="erstmal-keine-splashscreens-mehr">Erstmal keine Splashscreens mehr</h2>
+
 <h2 id="weitere-nderungen">Weitere Änderungen</h2>
 <ul>
   <li>beim Aktualisieren der App werden nicht mehr alle Einstellungen gelöscht;</li>
@@ -153,8 +157,11 @@ besser funktionieren würde? Schreib eine Email an die Entwickler unter
     <updated>2012-11-14T20:47:00+01:00</updated>
     <id>http://johannjacobsohn.github.com/Mensa-Hamburg-App/blog/2012/neue-version-fur-chrome-web-store</id>
     <content type="html"><![CDATA[<div class="bogus-wrapper"><notextile><figure class="left">
-	<img src="http://johannjacobsohn.github.com/Mensa-Hamburg-App/assets/release/tablet-2.0/chrome/ui-small.png" />
+	<a href="http://johannjacobsohn.github.com/Mensa-Hamburg-App/blog/2012/neue-version-fur-chrome-web-store/">
+		<img src="http://johannjacobsohn.github.com/Mensa-Hamburg-App/assets/release/tablet-2.0/chrome/ui-small.png" />
+	</a>
 </figure></notextile></div>
+
 <p>Endlich ein neue Version der Chrome App. Schneller, schöner, anpassbarer!</p>
 
 <!--more-->

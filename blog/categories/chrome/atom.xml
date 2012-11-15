@@ -4,7 +4,7 @@
   <title><![CDATA[Category: chrome | Mensa Hamburg App]]></title>
   <link href="http://johannjacobsohn.github.com/Mensa-Hamburg-App/blog/categories/chrome/atom.xml" rel="self"/>
   <link href="http://johannjacobsohn.github.com/Mensa-Hamburg-App/"/>
-  <updated>2012-11-15T14:26:22+01:00</updated>
+  <updated>2012-11-15T15:15:52+01:00</updated>
   <id>http://johannjacobsohn.github.com/Mensa-Hamburg-App/</id>
   <author>
     <name><![CDATA[Johann Jacobsohn]]></name>
@@ -19,8 +19,11 @@
     <updated>2012-11-14T20:47:00+01:00</updated>
     <id>http://johannjacobsohn.github.com/Mensa-Hamburg-App/blog/2012/neue-version-fur-chrome-web-store</id>
     <content type="html"><![CDATA[<figure class="left">
-	<img src="/assets/release/tablet-2.0/chrome/ui-small.png">
+	<a href="blog/categories/chrome/atom.xml">
+		<img src="/assets/release/tablet-2.0/chrome/ui-small.png">
+	</a>
 </figure>
+
 <p>Endlich ein neue Version der Chrome App. Schneller, schöner, anpassbarer!</p>
 
 <!--more-->
