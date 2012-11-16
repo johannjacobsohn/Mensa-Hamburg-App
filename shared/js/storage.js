@@ -341,6 +341,29 @@ var storage = (function(){ // its a trap!
 			
 			saveFilters();
 		},
+		/** 
+		 * Sort callback for menu, used in getSortedSegmented
+		 * 
+		 * @private 
+		 */
+		sort = function(a, b){
+			var mensaWeight = 0,
+				dateWeight = 0,
+				nameA = a.mensa.toLowerCase(),
+				nameB = b.mensa.toLowerCase();
+			if ( nameA < nameB ){
+				mensaWeight = -10;
+			} else if (nameA > nameB) {
+				mensaWeight =  10;
+			}
+			if (a.date < b.date){
+				dateWeight = -100;
+			} else if (a.date > b.date) {
+				dateWeight =  100;
+			}
+
+			return mensaWeight + dateWeight;
+		},
 		/**
 		 * Get a segmented and sorted JSON representation of the current menu,
 		 * suitable for easy displaying
@@ -352,31 +375,8 @@ var storage = (function(){ // its a trap!
 		 */
 		getSortedSegmented = function(callback){
 			filter(function(json){
-				// @TODO: move sort function outside
-				var sorted = json.sort(function(a, b){
-					var mensaWeight = 0,
-					    dateWeight = 0,
-					    nameA = a.mensa.toLowerCase(),
-					    nameB = b.mensa.toLowerCase(),
-					    dateA = a.date.split("-"),
-					    dateB = b.date.split("-");
-					if (nameA < nameB){
-						mensaWeight = -10;
-					} else if (nameA > nameB) {
-						mensaWeight =  10;
-					}
-
-					dateWeight = parseInt(dateA[0], 10) * 100 +
-					           parseInt(dateA[1], 10) * 10 +
-					           parseInt(dateA[2], 10) -
-					           parseInt(dateB[0], 10) * 100 -
-					           parseInt(dateB[1], 10) * 10 -
-					           parseInt(dateB[2], 10);
-
-					return mensaWeight + dateWeight * 100;
-				});
-
-				var segmented = [],
+				var sorted = json.sort(sort),
+					segmented = [],
 					mensa = "",
 					date = "",
 					i = 0,
@@ -393,7 +393,7 @@ var storage = (function(){ // its a trap!
 				/*
 				 * wenn nur eine Mensa gewählt ist sollte diese als erstes in den Headern stehen
 				 */
-				 if( isMensaFilterSet && filteredByMensenLength === 1 && json[0]){
+				 if( json[0] && ((isMensaFilterSet && filteredByMensenLength === 1) || savedMensenLength === 1)){
 					segmented.push({
 						header     : json[0].mensa,
 						type       : "header",
@@ -415,7 +415,7 @@ var storage = (function(){ // its a trap!
 							headerType : "date"
 						});
 					}
-					if(mensa !== sorted[i].mensa && (!isMensaFilterSet || filteredByMensenLength !== 1) && savedMensenExist){
+					if(mensa !== sorted[i].mensa && (!isMensaFilterSet || filteredByMensenLength !== 1) && savedMensenLength !== 1 && savedMensenExist){
 						// wenn Header dann dieses und nächsten Eintrag als "First" bzw. "Last" kennzeichnen
 						if( segmented.length > 0 ){
 							segmented[segmented.length-1].last = true;
