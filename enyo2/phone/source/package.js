@@ -1,5 +1,5 @@
 enyo.depends(
-	/* core */
+	/* Core */
 	"core/utils.js",
 	"core/info.js",
 	"core/data.js",
@@ -8,24 +8,23 @@ enyo.depends(
 	"core/xhr.js",
 	"core/storage.js",
 
-	/* libs  */
+	/* Libs  */
 	"$lib/onyx",
 	"$lib/layout",
 	"$lib/ToggleBar",
 	"$lib/SelectorBar",
 	"$lib/Carousels",
 
-	/* Shared with Phone */
+	/* Shared with Tablet */
 	"kinds/menuItem",
 	"kinds/Divider",
 	"kinds/settingsView.js",
 	"kinds/infoView.js",
 	"kinds/menuList.js",
 
-	/*app*/
+	/* App */
 	"menuView.js",
 	"filterView.js",
-	"Toggle3Button",	
 	"App.css",
 	"App.js"
 );
