@@ -1,9 +1,3 @@
-[submodule "enyo2/externals/enyo"]
-	path = enyo2/externals/enyo
-	url = https://github.com/enyojs/enyo.git
-[submodule "enyo2/externals/enyo2-lib"]
-	path = enyo2/externals/enyo2-lib
-	url = https://github.com/MacFJA/enyo2-lib.git
 [submodule "enyo2/externals/layout"]
 	path = enyo2/externals/layout
 	url = https://github.com/enyojs/layout.git
@@ -19,3 +13,9 @@
 [submodule "enyo2/externals/Newness-Labs"]
 	path = enyo2/externals/Newness-Labs
 	url = https://github.com/Newness/Labs.git
+[submodule "enyo2/phone/enyo"]
+	path = enyo2/phone/enyo
+	url = https://github.com/enyojs/enyo.git
+[submodule "enyo2/tablet/enyo"]
+	path = enyo2/tablet/enyo
+	url = https://github.com/enyojs/enyo.git
