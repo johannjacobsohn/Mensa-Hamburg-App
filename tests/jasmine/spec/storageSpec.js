@@ -7,6 +7,7 @@ describe("storage", function(){
 		server = { respond: function(){} }
 //		server.respondWith( mensaHTML );
 		conf.setURLs( conf.getURLs() );
+		storage.unsetFilter();
 	});
 
 	afterEach(function () {
@@ -15,18 +16,108 @@ describe("storage", function(){
 	});
 
 	it( "has working getWeekMenu-Method" , function(){
+		var m = [];
 		runs(function () {
 			storage.getWeekMenu(function(menu){
-				this.m = menu;
-				console.log(this, this.m)
+				m = menu;
 			}.bind(this));
 		});
 		waits(2000);
 		runs(function () {
-			console.log(this, this.m)
-			expect( this.m.length ).toBeGreaterThan(0);
+			expect( m.length ).toBeGreaterThan(0);
 		});
 //		server.respond();
+	});
+	
+	it( "lets you include one mensa" , function(){
+		var m;
+		storage.setFilter('mensa', [{value: 'Geomatikum', type: 'include'}])
+		storage.filter(function(filteredWeekMenu){
+			m = filteredWeekMenu;
+		});
+		waits(500);
+		runs(function () {
+			n = m.filter(function(item){
+				return item.mensa !== 'Geomatikum';
+			});
+			expect( m.length ).toBeGreaterThan(0);
+			expect( n.length ).toBe(0);
+		});
+		server.respond();
+	});
+	it( "lets you include multiple mensen" , function(){
+		var m;
+		storage.setFilter('mensa', [{value: 'Philosophenturm', type: 'include'}, {value: 'Geomatikum', type: 'include'}])
+		storage.filter(function(filteredWeekMenu){
+			m = filteredWeekMenu;
+		});
+		waits(500);
+		runs(function () {
+			var p = m.filter(function(item){
+				return item.mensa === 'Philosophenturm';
+			});
+			var g = m.filter(function(item){
+				return item.mensa === 'Geomatikum';
+			});
+			var n = m.filter(function(item){
+				return item.mensa !== 'Geomatikum' && item.mensa !== 'Philosophenturm';
+			});
+			expect( m.length ).toBeGreaterThan(0);
+			expect( p.length ).toBeGreaterThan(0);
+			expect( g.length ).toBeGreaterThan(0);
+			expect( n.length ).toBe(0);
+		});
+		server.respond();
+	});
+	
+	it( "lets you exclude one mensa" , function(){
+		var m;
+		storage.setFilter('mensa', [{value: 'Geomatikum', type: 'exclude'}])
+		storage.filter(function(filteredWeekMenu){
+			m = filteredWeekMenu;
+		});
+		waits(500);
+		runs(function () {
+			n = m.filter(function(item){
+				return item.mensa === 'Geomatikum';
+			});
+			expect( m.length ).toBeGreaterThan(0);
+			expect( n.length ).toBe(0);
+		});
+		server.respond();
+	});
+	
+	it( "lets you in- and exclude mensen" , function(){
+		var m;
+		storage.setFilter('mensa', [{value: 'Philosophenturm', type: 'include'}, {value: 'Geomatikum', type: 'exclude'}])
+		storage.filter(function(filteredWeekMenu){
+			m = filteredWeekMenu;
+		});
+		waits(500);
+		runs(function () {
+			var n = m.filter(function(item){
+				return item.mensa !== 'Philosophenturm';
+			});
+			expect( m.length ).toBeGreaterThan(0);
+			expect( n.length ).toBe(0);
+		});
+		server.respond();
+	});
+	it( "lets you exclude multiple mensen" , function(){
+		var m;
+		storage.setFilter('mensa', [{value: 'Philosophenturm', type: 'exclude'}, {value: 'Geomatikum', type: 'exclude'}])
+		storage.filter(function(filteredWeekMenu){
+			m = filteredWeekMenu;
+		});
+		waits(500);
+		runs(function () {
+			var n = m.filter(function(item){
+				return item.mensa === 'Philosophenturm' || item.mensa === 'Geomatikum';
+			});
+			expect( m.length ).toBeGreaterThan(0);
+			expect( n.length ).toBe(0);
+		});
+		server.respond();
 	});
 
 	it( "lets you include one additive" , function(){
@@ -129,9 +220,9 @@ describe("storage", function(){
 		var todaysMenu;
 		storage.nextDay(function(menu, dateString, date){
 			var thisDate = new Date();
-			if( thisDate.getDay() === 6 ){
+			if( thisDate.getDay() === 5 ){
 				thisDate = new Date(thisDate.valueOf() + 60 * 60 * 24 * 1000 * 3);
-			} else if ( thisDate.getDay() === 0 ){
+			} else if ( thisDate.getDay() === 6 ){
 				thisDate = new Date(thisDate.valueOf() + 60 * 60 * 24 * 1000 * 2);
 			} else {
 				thisDate = new Date(thisDate.valueOf() + 60 * 60 * 24 * 1000);
@@ -141,7 +232,7 @@ describe("storage", function(){
 			var tomorrowDate = storage.dateStringToDate( tomorrow );
 
 			expect( menu.length).toBeGreaterThan( 0 );
-			expect( tomorrow ).toBe( dateString);
+			expect( tomorrow ).toBe( dateString );
 			expect( tomorrowDate.valueOf() ).toBe( date.valueOf() );
 
 			expect( menu.filter(function( item ){ return item.date !== tomorrow } ).length ).toBe(0);
@@ -189,7 +280,7 @@ describe("storage", function(){
 	it( ".getMensaInfo works" , function(){
 		storage.getMensaInfo(function(val){
 			cache.mensen = val;
-			expect( 16 ).toBe( val.length );
+			expect( 17 ).toBe( val.length );
 			expect( val[0].name ).toBe( "Alexanderstrasse" );
 			expect( val[0].url ).toBe( "http://speiseplan.studierendenwerk-hamburg.de/index.php/de/660/2012/{{week}}/" );
 		});

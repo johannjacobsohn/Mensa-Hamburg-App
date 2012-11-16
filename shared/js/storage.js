@@ -158,9 +158,9 @@ var storage = (function(){ // its a trap!
 		filterByProp = function(prop, includes, excludes, item){
 			/* if property is string THEN
 			 *     return true if
-			 *     - includes prop AND should include prop
+			 *     - is prop AND should be prop
 			 *       OR
-			 *     - does not include prop AND should not include prop
+			 *     - is not prop AND should not be prop
 			 *
 			 * else if property is array
 			 *     return false if
@@ -178,9 +178,17 @@ var storage = (function(){ // its a trap!
 			var b = true;
 			
 			if(typeof item[prop] === "string") {
-				return filterValues[prop].some(function(i){
-					return i.value === item[prop] && i.type === "include";
+				var result = filterValues[prop].some(function(i){
+					return i.type === "include" && i.value === item[prop];
 				});
+				// includes overwrite excludes; ignore excludes if includes are set
+				if(!filterValues[prop].some(function(i){return i.type === "include";})){
+					result = filterValues[prop].every(function(i){
+						return i.type === "exclude" && i.value !== item[prop];
+					});
+				}
+				
+				return result;
 			} else {
 				//find out if one of the properties is either in- or excluded
 				var inc =  includeAll(includes, item[prop]);
@@ -344,6 +352,7 @@ var storage = (function(){ // its a trap!
 		 */
 		getSortedSegmented = function(callback){
 			filter(function(json){
+				// @TODO: move sort function outside
 				var sorted = json.sort(function(a, b){
 					var mensaWeight = 0,
 					    dateWeight = 0,
@@ -367,18 +376,19 @@ var storage = (function(){ // its a trap!
 					return mensaWeight + dateWeight * 100;
 				});
 
-				var isMensaFilterSet = typeof filterValues.mensa !== "undefined";
-				var filteredByMensenLength = isMensaFilterSet && filterValues.mensa.length || 0;
-
-				var isDateFilterSet = typeof filterValues.date !== "undefined" && filterValues.date.length === 1;
-
 				var segmented = [],
 					mensa = "",
 					date = "",
 					i = 0,
 					l = sorted.length,
 					first = false,
-					savedMensenExist = (conf.getSavedURLs()).length > 1 || true; // FIXME
+					savedMensenLength = (conf.getSavedURLs()).length,
+					savedMensenExist = savedMensenLength > 1 || true, // FIXME
+					isMensaFilterSet = typeof filterValues.mensa !== "undefined",
+					ex = filterValues.mensa ? filterValues.mensa.filter(function(item){return item.type === "exclude"}) : [],
+					inc =  filterValues.mensa ? filterValues.mensa.filter(function(item){return item.type !== "exclude"}) : [],
+					filteredByMensenLength = inc.length ? inc.length : savedMensenLength - ex.length,
+					isDateFilterSet = typeof filterValues.date !== "undefined" && filterValues.date.length === 1 && filterValues.date[0].type === "include";
 
 				/*
 				 * wenn nur eine Mensa gewählt ist sollte diese als erstes in den Headern stehen

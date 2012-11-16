@@ -39,7 +39,6 @@ describe( "conf", function(){
 		}
 
 		conf.setURLs(["Geomatikum", "Campus"]);
-		console.log(m)
 		var active = m.filter(function(item){ return item.active; });
 		expect( active.length ).toBe(2);
 	});
