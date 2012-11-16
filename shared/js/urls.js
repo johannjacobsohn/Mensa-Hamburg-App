@@ -23,7 +23,7 @@
 			"Philosophenturm"       : baselink + "350/2012/{{week}}/",
 			"Stellingen"            : baselink + "580/2012/{{week}}/",
 			"Studierendenhaus"      : baselink + "310/2012/{{week}}/",
-			"Café CFEL"             : baselink + "680/2012/{{week}}/"
+			"Cafe CFEL"             : baselink + "680/2012/{{week}}/"
 		},
 		mensen : [
 			{
@@ -132,7 +132,7 @@
 				open: "Montag - Donnerstag: 11:00 - 15:00 Uhr, Freitag: 11:00 - 14:30 Uhr"
 			},
 			{
-				name: "Café CFEL",
+				name: "Cafe CFEL",
 				url: baselink + "/680/2012/{{week}}/",
 				address: "Notkestrasse 85, 22607 Hamburg",
 				open: "Montag - Freitag: 08:00 - 15:00 Uhr"
