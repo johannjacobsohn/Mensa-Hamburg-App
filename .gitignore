@@ -10,3 +10,6 @@ enyo2/phone/build
 enyo2/tablet/deploy
 enyo2/phone/deploy
 chrome/build
+enyo2/externals/build
+enyo2/tablet/build
+experimental-plattforms/firefox/build
