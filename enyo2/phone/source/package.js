@@ -1,12 +1,12 @@
-﻿enyo.depends(
+enyo.depends(
 	/* core */
-	"utils.js",
-	"info.js",
-	"data.js",
-	"conf.js",
-	"urls.js",
-	"xhr.js",
-	"storage.js",
+	"core/utils.js",
+	"core/info.js",
+	"core/data.js",
+	"core/conf.js",
+	"core/urls.js",
+	"core/xhr.js",
+	"core/storage.js",
 
 	/* libs  */
 	"$lib/onyx",
@@ -26,6 +26,6 @@
 	"menuView.js",
 	"filterView.js",
 	"Toggle3Button",	
-	"app.css",
+	"App.css",
 	"App.js"
 );
