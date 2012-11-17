@@ -9,9 +9,9 @@ enyo.kind({
 		activePanels : JSON.parse(data.get("activePanels") || '{\"date\":true,\"mensa\":true,\"name\":true,\"additives\":false,\"properties\":false}')
 	},
 	components : [
-		{ kind: "filterPanel", name : "date",       filter: "date",       type : "binary",  title : "Datum"         , showing: false },
-		{ kind: "filterPanel", name : "mensa",      filter: "mensa",      type : "binary",  title : "Mensa"         , showing: false },
-		{ kind: "filterPanel", name : "name",       filter: "name",       type : "binary",  title : "Gericht"       , showing: false },
+		{ kind: "filterPanel", name : "date",       filter: "date",       type : "ternary",  title : "Datum"         , showing: false },
+		{ kind: "filterPanel", name : "mensa",      filter: "mensa",      type : "ternary",  title : "Mensa"         , showing: false },
+		{ kind: "filterPanel", name : "name",       filter: "name",       type : "ternary",  title : "Gericht"       , showing: false },
 		{ kind: "filterPanel", name : "additives",  filter: "additives",  type : "ternary", title : "Zusatzstoffe"  , showing: false },
 		{ kind: "filterPanel", name : "properties", filter: "properties", type : "ternary", title : "Eigenschaften" , showing: false },
 		{ kind: "menuPanel" }
