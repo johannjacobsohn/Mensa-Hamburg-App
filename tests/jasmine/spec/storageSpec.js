@@ -223,9 +223,10 @@ describe("storage", function(){
 			if( thisDate.getDay() === 5 ){
 				thisDate = new Date(thisDate.valueOf() + 60 * 60 * 24 * 1000 * 3);
 			} else if ( thisDate.getDay() === 6 ){
-				thisDate = new Date(thisDate.valueOf() + 60 * 60 * 24 * 1000 * 2);
+				// since "today" on a saturday refers to monday, next day must be tuesday
+				thisDate = new Date(thisDate.valueOf() + 60 * 60 * 24 * 1000 * 3);
 			} else {
-				thisDate = new Date(thisDate.valueOf() + 60 * 60 * 24 * 1000);
+				thisDate = new Date(thisDate.valueOf() + 60 * 60 * 24 * 1000 * 2);
 			}
 
 			var tomorrow = storage.dateToDateString( thisDate );
@@ -341,6 +342,61 @@ describe("storage", function(){
 
 
 });
+
+describe("storage.sortedSegmented", function(){
+	var server;
+	
+	beforeEach(function () {
+		server = { respond: function(){} }
+		storage.unsetFilter();
+		
+		this.addMatchers({
+			toBeGreaterThanOrEqual: function(expected) {
+			  return this.actual >= expected;
+			}
+		});
+	});
+
+	afterEach(function () {});
+
+	it( "is sorted" , function(){
+		var m = [];
+		runs(function () {
+			storage.getSortedSegmented(function(menu){
+				m = menu;
+			}.bind(this));
+		});
+		waits(2000);
+		runs(function () {
+			var date = "2000-01-01", mensa = "AAAAAAAAAAAAAAAAAAAAAAA", i;
+			expect( m.length ).toBeGreaterThan(0);
+			for(i = 0, l = m.length; i<l; i++){
+				if(m[i].type === "header") continue;
+				expect(m[i].date).toBeGreaterThanOrEqual(date);
+				expect(m[i].mensa).toBeGreaterThanOrEqual(mensa);
+				date = m[i].date;
+				mensa = m[i].mensa;
+			}
+		});
+//		server.respond();
+	});
+
+	it( "has headers" , function(){
+		var m = [];
+		runs(function () {
+			storage.getSortedSegmented(function(menu){
+				m = menu;
+			}.bind(this));
+		});
+		waits(2000);
+		runs(function () {
+			// one mensa, one mensa header
+
+		});
+//		server.respond();
+	});	
+});
+	
 
 /*
 	@TODO:

@@ -344,25 +344,23 @@ var storage = (function(){ // its a trap!
 		/** 
 		 * Sort callback for menu, used in getSortedSegmented
 		 * 
+		 * Performance tests: http://jsperf.com/sorting-by-multiple-parameters/2
+		 * 
 		 * @private 
 		 */
 		sort = function(a, b){
-			var mensaWeight = 0,
-				dateWeight = 0,
-				nameA = a.mensa.toLowerCase(),
+			var nameA, nameB;
+			if (a.date === b.date){
+				nameA = a.mensa.toLowerCase();
 				nameB = b.mensa.toLowerCase();
-			if ( nameA < nameB ){
-				mensaWeight = -10;
-			} else if (nameA > nameB) {
-				mensaWeight =  10;
+				if(nameA === nameB){
+					return 0
+				} else {
+					return nameA > nameB ? 1 : -1;
+				}
+			} else {
+				return a.date > b.date ? 1 : -1;
 			}
-			if (a.date < b.date){
-				dateWeight = -100;
-			} else if (a.date > b.date) {
-				dateWeight =  100;
-			}
-
-			return mensaWeight + dateWeight;
 		},
 		/**
 		 * Get a segmented and sorted JSON representation of the current menu,
