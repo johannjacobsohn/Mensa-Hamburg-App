@@ -11,6 +11,9 @@
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
+.onyx-toggle-button {
+	text-shadow: none;
+}
 .item.first {
 	border-top: none;
 }
