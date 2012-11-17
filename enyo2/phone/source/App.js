@@ -60,17 +60,10 @@ enyo.kind({
 				]}
 			]},
 		]},
-		{
-			name: "popup",
-			kind: "onyx.Popup",
-			centered: true,
-			modal: true,
-			floating: true,
-			style : "margin: 10px",
-			content: info.notConfText
-		},
-		{ kind: enyo.Signals, onRequestMenu: "openMenu", onRequestOpen: "open"}
+		{ name: "popup", kind: "onyx.Popup", centered: true, modal: true, floating: true, style : "margin: 10px", content: info.notConfText },
+		{ kind: enyo.Signals, onSettingsChange: "openMenu", onRequestMenu: "openMenu", onRequestOpen: "open"}
 	],
+	handlers: {"onCloseMe": "openMenu"},
 	open: function( inSender, payload ){
 		this.openPage( payload.page );
 	},

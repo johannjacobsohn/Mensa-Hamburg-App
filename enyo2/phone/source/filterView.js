@@ -1,32 +1,24 @@
 /**
- * Filteransicht
- *
+ * Filter view
+ * 
  */
 enyo.kind({
 	name: "filterView",
 	fit : true,
 	kind: "FittableRows",
 	components: [
-		{kind: "onyx.Toolbar", classes: "header", components: [
-			{ content: "Gerichte filtern" },
-		]},
-		{ kind: "onyx.PickerDecorator", onchange: "changePreserveFilters", components: [
-			{},
-			{kind: "onyx.Picker", components: [
-				{content: "Permanent", active: true},
-				{content: "Flüchtig" },
-			]}
-		]},
+		{kind: "onyx.Toolbar", content: "Gerichte filtern" },
 		{kind: "Scroller", fit: true, components: [
-			{kind: "filter-double",  name:"mensaFilter",      title: "Nach Mensen filtern",        type: "mensa"},
-			{kind: "filter-double",  name:"nameFilter",       title: "Nach Gericht filtern",       type: "name"},
-			{kind: "filter-trippel", name:"additivesFilter",  title: "Nach Zusatzstoffen filtern", type: "additives"},
-			{kind: "filter-trippel", name:"propertiesFilter", title: "Nach Eigenschaften filtern", type: "properties"}
+			{kind: "filterList", filterKind: "filter-item-double",  name:"mensaFilter",      title: "Nach Mensen filtern",        type: "mensa"},
+			{kind: "filterList", filterKind: "filter-item-double",  name:"nameFilter",       title: "Nach Gericht filtern",       type: "name"},
+			{kind: "filterList", filterKind: "filter-item-trippel", name:"additivesFilter",  title: "Nach Zusatzstoffen filtern", type: "additives"},
+			{kind: "filterList", filterKind: "filter-item-trippel", name:"propertiesFilter", title: "Nach Eigenschaften filtern", type: "properties"}
 		]},
 		{kind: "onyx.Button", content: "Filtern", style:"width: 100%;", classes: "onyx-affirmative", onclick: "applyFilters"},
 	],
 	applyFilters : function(){
 		this.setFilter("name").setFilter("mensa").setFilter("properties").setFilter("additives");
+		enyo.Signals.send("onRequestMenu");
 	},
 	setFilter : function(type){
 		var filters = this.$[type + "Filter"].getStatus();
@@ -39,48 +31,45 @@ enyo.kind({
 		}
 		return this;
 	},
-	load : function(inCaller) {},
+	loaded: false,
+	load : function(inCaller) {
+		if(!this.loaded){
+			this.$.mensaFilter.load();
+			this.$.nameFilter.load();
+			this.$.additivesFilter.load();
+			this.$.propertiesFilter.load();
+			this.loaded = true;
+		}
+	},
 	changePreserveFilters : function(inSender){
 		storage.setPersistentFilters( inSender.$.toggle.getValue() );
 	}
 });
 
-
 enyo.kind({
 	name: "filter-item-double",
 	classes: "item enyo-border-box",
 	kind: "FittableColumns",
-	label: "",
+	published: {
+		label: "",
+		state: "include"
+	},
 	components: [
 		{ content: "", name: "label", fit: true },
-		{ kind: "onyx.ToggleButton", onContent: "Mit", offContent: "Ohne", onChange: "buttonToggle" }
+		{ kind: "onyx.ToggleButton", name: "pickerButton", onContent: "Mit", offContent: "Ohne", onChange: "change" }
 	],
-	change: function(inSender, inEvent){
-		var state;
-		var that = this;
-		setTimeout( function(){
-			if( typeof inEvent.index === "undefined" ) return;
-			
-			if( inEvent.selected.content === "Ja" ){
-				state = "include";
-			} else if( inEvent.selected.content === "Nein" ){
-				state = "exclude";
-			} else{
-				state = "none";
-			}
-
-			that.bubble( "onChange", { 
-				content : that.label,
-				state   : state
-			});
-		}, 10);
+	stateChanged: function(){
+		this.$.pickerButton.value = this.state === "include";
 	},
-	ontap: "tap",
-	tap: function(inSender, inEvent){
-		this.$.pickerButton.tap()
+	change: function(inSender, inEvent){
+		this.bubble( "onChange", { 
+			content : this.label,
+			state   : inEvent.value ? "include" : "exclude"
+		});
 	},
 	load: function(){
 		this.$.label.setContent( this.label );
+		this.stateChanged();
 	}
 });
 
@@ -88,64 +77,55 @@ enyo.kind({
 	name: "filter-item-trippel",
 	classes: "item enyo-border-box",
 	kind: "FittableColumns",
-	label: "",
+	published: {
+		label: "",
+		state: "none",
+	},
 	components: [
 		{ content: "", name: "label", fit: true },
 		{style: "width: 70px;", components:[
 			{style: "width: 32px; float: left;", components: [
-				{kind: "onyx.Checkbox", onchange: "checkboxClicked"},
+				{kind: "onyx.Checkbox", onchange: "change", name: "include"},
 				{ content: "Mit", style: "font-size: 10px; text-align: center;"},
 			]},
 			{style: "width: 32px; float: left;", components: [
-				{kind: "onyx.Checkbox", onchange: "checkboxClicked"},
+				{kind: "onyx.Checkbox", onchange: "change", name: "exclude"},
 				{ content: "Ohne", style: "font-size: 10px; text-align: center;"}
 			]}
 		]}
  	],
-	checkboxClicked: function(inSender) {
-		if (inSender.getValue()) { this.log("I've been checked!"); }
-	},
 	change: function(inSender, inEvent){
-		var state;
-		var that = this;
-		setTimeout( function(){
-			if( typeof inEvent.index === "undefined" ) return;
-			
-			if( inEvent.selected.content === "Ja" ){
-				state = "include";
-			} else if( inEvent.selected.content === "Nein" ){
-				state = "exclude";
-			} else{
-				state = "none";
-			}
+		var o = inEvent.originator;
+		if(o.checked){
+			this.$[ o.name === "exclude" ? "include" : "exclude" ].setChecked( false );
+		}
 
-			that.bubble( "onChange", { 
-				content : that.label,
-				state   : state
-			});
-		}, 10);
-	},
-	ontap: "tap",
-	tap: function(inSender, inEvent){
-		this.$.pickerButton.tap()
+		this.bubble( "onChange", { 
+			content : this.label,
+			state   : o.checked ? o.name : "none"
+		});
 	},
 	load: function(){
 		this.$.label.setContent( this.label );
+		if(this.state && this.state !== "none")
+			this.$[ this.state ].setChecked( true );
 	}
 });
 
-
 enyo.kind({
-	name: "filter-double",
-	title: "Nach Eigenschaften filtern",
-	type: "properties", 
+	name: "filterList",
+    published: {
+		title: "Nach Eigenschaften filtern",
+		filterKind: "",
+		type: "properties"
+	}, 
 	classes: "enyo-unselectable preventDragTap",
 	kind: "onyx.Groupbox",
 	components: [
 		{kind: "onyx.GroupboxHeader", name: "header", ontap:"activate", style: "padding: 10px"},
 		{name: "drawer", kind: "onyx.Drawer", components: [
 			{name: "repeater", kind: "Repeater", onSetupItem: "setupItem", components: [
-				{ kind: "filter-item-double" }
+				{ content: "" }
 			]}
 		]}
 	],
@@ -158,13 +138,12 @@ enyo.kind({
 		var type = inEvent.state,    // include, exclude, none
 		    value = inEvent.content;  //
 		if( typeof value === "undefined"  || typeof type === "undefined"  ) return
-
+		this.filteredBy[this.name] = this.filteredBy[this.name] || {};
 		if( type === "none" ){
-			delete this.filteredBy[value];
+			delete this.filteredBy[this.name][value];
 		} else {
-			this.filteredBy[value] = type;
+			this.filteredBy[this.name][value] = type;
 		}
-
 		return true;
 	},
 	activate: function() {
@@ -174,105 +153,38 @@ enyo.kind({
 	cache: [],
 	setupItem: function(inSender, inEvent) {
 		"use strict";
-		var i = inEvent.index, r = this.cache[i], item = inEvent.item.$["filter-item-double"];
+		var i = inEvent.index, r = this.cache[i], item = inEvent.item.$[this.filterKind];
 		item.label = r.content;
-		item.value = r.filtered;
+		if(r.filter && r.filter.type){
+			item.state = r.filter.type;
+			this.filteredBy[this.name] = this.filteredBy[this.name] || {};
+			this.filteredBy[this.name][r.name] = item.state;
+		}
+		
 		item.load();
 	},
 	load: function(){
 		"use strict";
-		var that = this;
+		this.$.header.setContent( this.title );
+		this.$.repeater.itemComponents[0].kind = this.filterKind;
 		storage.getInfo(this.type, function(values){
-			that.cache = values;
-			that.$.repeater.setCount(values.length);
-		});
+			if(this.type === "mensa") {
+				values = values.filter(function(item){ return item.active });
+			}
+			this.cache = values;
+			this.$.repeater.setCount(this.cache.length);
+		}.bind(this));
 	},
 	getStatus: function(){
 		"use strict";
 		var filter = [], value;
 		// filters need to be returned in this form:
 		// [{value: "a", type: "include"}, {"b", type: "include"}]
-		for( value in this.filteredBy ){
-			if( this.filteredBy.hasOwnProperty(value) ){
-				filter.push( { value: value, type: this.filteredBy[value] } );
+		for( value in this.filteredBy[this.name] ){
+			if( this.filteredBy[this.name].hasOwnProperty(value) ){
+				filter.push( { value: value, type: this.filteredBy[this.name][value] } );
 			}
 		}
 		return filter;
-	},
-	create: function(){
-		this.inherited( arguments );
-		this.$.header.setContent( this.title );
-		this.load();
-	}
-});
-
-enyo.kind({
-	name: "filter-trippel",
-	title: "Nach Eigenschaften filtern",
-	type: "properties", 
-	classes: "enyo-unselectable preventDragTap",
-	kind: "onyx.Groupbox",
-	components: [
-		{kind: "onyx.GroupboxHeader", name: "header", ontap:"activate", style: "padding: 10px"},
-		{name: "drawer", kind: "onyx.Drawer", components: [
-			{name: "repeater", kind: "Repeater", onSetupItem: "setupItem", components: [
-				{ kind: "filter-item-trippel" }
-			]}
-		]}
-	],
-	handlers: {
-		"onChange" : "changed"
-	},
-	filteredBy : {},
-	changed: function(inSender, inEvent){
-		"use strict";
-		var type = inEvent.state,    // include, exclude, none
-		    value = inEvent.content;  //
-		if( typeof value === "undefined"  || typeof type === "undefined"  ) return
-
-		if( type === "none" ){
-			delete this.filteredBy[value];
-		} else {
-			this.filteredBy[value] = type;
-		}
-
-		return true;
-	},
-	activate: function() {
-		"use strict";
-		this.$.drawer.setOpen(!this.$.drawer.open);
-	},
-	cache: [],
-	setupItem: function(inSender, inEvent) {
-		"use strict";
-		var i = inEvent.index, r = this.cache[i], item = inEvent.item.$["filter-item-trippel"];
-		item.label = r.content;
-		item.value = r.filtered;
-		item.load();
-	},
-	load: function(){
-		"use strict";
-		var that = this;
-		storage.getInfo(this.type, function(values){
-			that.cache = values;
-			that.$.repeater.setCount(values.length);
-		});
-	},
-	getStatus: function(){
-		"use strict";
-		var filter = [], value;
-		// filters need to be returned in this form:
-		// [{value: "a", type: "include"}, {"b", type: "include"}]
-		for( value in this.filteredBy ){
-			if( this.filteredBy.hasOwnProperty(value) ){
-				filter.push( { value: value, type: this.filteredBy[value] } );
-			}
-		}
-		return filter;
-	},
-	create: function(){
-		this.inherited( arguments );
-		this.$.header.setContent( this.title );
-		this.load();
 	}
 });
