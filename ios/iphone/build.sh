@@ -17,7 +17,7 @@ cd $path/tools
 ./deploy.sh
 cd -
 mv $path/deploy/* build
-cp -r config.xml icons build
+cp -r config.xml icons splash build
 
 cd build
 #zip ../build.zip .

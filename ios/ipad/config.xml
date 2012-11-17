@@ -49,4 +49,5 @@ Default-Portrait~ipad.png (768x1024 pixels)
 	<preference name="permissions" value="none"/>
 	<access origin="http://127.0.0.1*"/>
 	<access origin="http://speiseplan.studierendenwerk-hamburg.de"/>
+	<access origin="http://johannjacobsohn.github.com" browserOnly="true" />
 </widget>
