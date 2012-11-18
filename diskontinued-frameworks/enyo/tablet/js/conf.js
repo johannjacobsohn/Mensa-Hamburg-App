@@ -1,1 +1,1 @@
-../../../shared/js/conf.js
+../../../../shared/js/conf.js

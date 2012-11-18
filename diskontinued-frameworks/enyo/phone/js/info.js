@@ -1,1 +1,1 @@
-../../../shared/js/info.js
+../../../../shared/js/info.js
