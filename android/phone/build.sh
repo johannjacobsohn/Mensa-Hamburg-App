@@ -12,6 +12,7 @@ cd $path/tools
 cd -
 rm -r assets/www
 mv $path/deploy/* assets/www/
+cp cordova-2.2.0.js assets/www/
 
 # cordova/BOOM
 # build and deploy to device
