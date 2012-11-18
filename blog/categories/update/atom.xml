@@ -4,7 +4,7 @@
   <title><![CDATA[Category: update | Mensa Hamburg App]]></title>
   <link href="http://johannjacobsohn.github.com/Mensa-Hamburg-App/blog/categories/update/atom.xml" rel="self"/>
   <link href="http://johannjacobsohn.github.com/Mensa-Hamburg-App/"/>
-  <updated>2012-11-17T12:05:30+01:00</updated>
+  <updated>2012-11-18T22:11:50+01:00</updated>
   <id>http://johannjacobsohn.github.com/Mensa-Hamburg-App/</id>
   <author>
     <name><![CDATA[Johann Jacobsohn]]></name>
@@ -14,7 +14,123 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Neue Version fürs iPad]]></title>
+    <title type="html"><![CDATA[Neue Phone-Version für Android (2.1)]]></title>
+    <link href="http://johannjacobsohn.github.com/Mensa-Hamburg-App/blog/2012/neue-phone-version/"/>
+    <updated>2012-11-21T12:46:00+01:00</updated>
+    <id>http://johannjacobsohn.github.com/Mensa-Hamburg-App/blog/2012/neue-phone-version</id>
+    <content type="html"><![CDATA[<figure class="left">
+	<img src="/assets/release/phone-2.1/android/ui-small.png" title="" >
+</figure>
+
+<p>Nach all den Änderungen in der Tablet- und Mojo-Version gibt es auch eine 
+Update für iPhone/iPod sowie Android-Smartphones. Neu ist das swipen von Tag 
+zu Tag, die erheblich ausgebauten Filter, ein neues Icon und deutlich 
+verbesserte Performance.</p>
+
+<!-- more -->
+
+<h2 id="neues-app-icon">Neues App-Icon</h2>
+<figure class="right">
+	<img src="/assets/release/phone-2.1/android/icons.png" title="" >
+	<figcaption>Unten rechte das neue Logo</figcaption>
+</figure>
+
+<p>Nach langer Zeit gibt es endlich ein richtiges eigenes Icon. Während das 
+bisherige Icon von mir mit Gimp zusammengeworfen wurde ist das neue von 
+einer richtigen Designerin entworfen und speziell auf Wiedererkennbarkeit 
+und Vielseitigkeit ausgelegt.</p>
+
+<p>Im Gegensatz zum bisherigen “platten” Icon ist das neue texturiert, wodurch 
+es viel besser mit den Standardicons harmoniert und weniger als hässliches 
+(aber sehr aufdringliches) Entchen hervorsticht. Aus dem “webOS-Kreis” ist 
+ein Teller mutiert und das Besteck hat Tiefe bekommen, was allgemein 
+irgendwie handfester und appetitlicher wirkt.</p>
+
+<h2 id="verbesserte-filter">Verbesserte Filter</h2>
+<figure class="left">
+	<img src="/assets/release/phone-2.1/android/filter.png" title="" >
+	<figcaption>Neue Filter</figcaption>
+</figure>
+
+<p>Die Filtermöglichkeiten der letzten Version waren relativ beschränkt, man 
+konnte nur Mensen und Gerichte filtern. Das hat sich grundlegend geändert, 
+die Filter wurden  <em>erheblich</em> ausgebaut. So ist es jetzt möglich auf 
+mehrere Mensen oder Gerichte einzuschränken, Zusatzstoffe auszuschließen 
+oder nur bestimmte Arten von Gerichten zu sehen - und all diese Optionen 
+auch zu kombinieren!</p>
+
+<p>Damit sind dann auch komplexere Zusammenhänge, wie “Vegan, aber ohne
+Konservierungsstoffe” oder “Nicht Vegetarisch, aber ohne Schwein” oder 
+“Vegetarisch und aus dem Wok” möglich.</p>
+
+<p>Filter bleiben jetzt zudem auch bei Neustart der App erhalten, so dass
+gute Filter nur einmal eingestellt werden müssen und dann immer erhalten bleiben.</p>
+
+<p>Nur die relevanten Gerichte zu sehen erleichtert die Wahl erheblich und
+macht das Überblicken der (verbliebenen) Optionen einfacher.</p>
+
+<h2 id="details-fr-gerichte">Details für Gerichte</h2>
+<figure class="right">
+	<img src="/assets/release/phone-2.1/android/details.png" title="" >
+	<figcaption>Details für einzelne Gerichte gibts auf Antippen</figcaption>
+</figure>
+
+<p>Für Menschen mit Allergien, Unverträglichkeiten oder religiöse 
+Ernährungsvorschriften ist es wichtig genau zu sehen, welche Zusatzstoffe in 
+den Gerichten sind. Für Vegetarier sind nur fleischlose Gerichte 
+interessant, und manch einer möchte keine Geschmacksverstärker zu sich 
+nehmen. Mit einem einfachen Tippen auf ein Gericht werden alle verfügbaren 
+Eigenschaften und Zusatzstoffe aufgelistet.</p>
+
+<h2 id="wischen-von-tag-zu-tag">Wischen von Tag zu Tag</h2>
+<figure class="left">
+	<img src="/assets/release/phone-2.1/android/swipe.png" title="" >
+	<figcaption>Die Tage lassen sich jetzt per Geste ändern</figcaption>
+</figure>
+
+<p>Die alte Methode Tage zu wechseln (um z.B. das morgige Menu zu sehen) was 
+etwas unschön: auf den Pfeil tippen, warten. Jetzt können Tage mit einem 
+Wisch gewechselt werden und die neuen Tage werden vorgeladen (warten 
+entfällt also). Das ist nicht nur schöner, sondern auch schneller und behebt 
+damit (hoffentlich) eines der von Nutzern meist genannten Probleme.</p>
+
+<h2 id="nachladen-von-daten-im-hintergrund">Nachladen von Daten im Hintergrund</h2>
+
+<p>Surround your pullquote like this {" text to be quoted "}</p>
+
+<h2 id="weitere-nderungen">Weitere Änderungen</h2>
+
+<ul>
+  <li>Dauerhafte Filter: Filter bleiben jetzt auch beim Schließen und Neustarten 
+der App erhalten.</li>
+  <li>Aufräumarbeiten im Code;</li>
+  <li>beim Aktualisieren der App werden nicht mehr alle Einstellungen gelöscht;</li>
+  <li>in den Einstellungen werden zusätzlich zu den Mensanamen auch deren 
+Adressen angezeigt;</li>
+  <li>für iOS &gt; 5 ist das scrollen <em>erheblich</em> flüssiger geworden;</li>
+  <li>die Phoneversion teilt jetzt erhebliche Teile des Quellcodes mit der 
+Tabletversion, dadurch lassen sich Verbesserungen viel einfacher von der einen 
+zur anderen Version übertragen, was gut für beide ist.</li>
+</ul>
+
+<h2 id="mitmachen">Mitmachen</h2>
+<p>In diese Version sind einige Anregungen und Vorschläge von Nutzern
+eingeflossen. Vielleicht hast Du ja auch eine Idee, wie die App für Dich
+besser funktionieren würde? Schreib eine Email an die Entwickler unter
+<a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#109;&#101;&#110;&#115;&#097;&#045;&#104;&#097;&#109;&#098;&#117;&#114;&#103;&#045;&#097;&#112;&#112;&#064;&#100;&#105;&#114;&#101;&#099;&#116;&#098;&#111;&#120;&#046;&#099;&#111;&#109;">&#109;&#101;&#110;&#115;&#097;&#045;&#104;&#097;&#109;&#098;&#117;&#114;&#103;&#045;&#097;&#112;&#112;&#064;&#100;&#105;&#114;&#101;&#099;&#116;&#098;&#111;&#120;&#046;&#099;&#111;&#109;</a> oder hinterlasse einen Kommentar!<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup></p>
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+      <p>Wenn Du Deinen Namen nicht angeben möchtest kannst Du einfach einen ausgedachten Namen und eine Emailadresse wie test@example.net verwenden.<a href="#fnref:1" rel="reference">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Neue Version fürs iPad (2.0)]]></title>
     <link href="http://johannjacobsohn.github.com/Mensa-Hamburg-App/blog/2012/neue-version-furs-ipad/"/>
     <updated>2012-11-18T21:49:00+01:00</updated>
     <id>http://johannjacobsohn.github.com/Mensa-Hamburg-App/blog/2012/neue-version-furs-ipad</id>
@@ -24,7 +140,8 @@
 	</a>
 </figure>
 
-<p>Eine neue iPad-App.</p>
+<p>Eine neue iPad mit ganz neuer Oberfläche, verbesserten Filtern, dramatisch 
+verbessertem Scrollen und neuem Icon.</p>
 
 <!--more-->
 
@@ -144,7 +261,7 @@ besser funktionieren würde? Schreib eine Email an die Entwickler unter
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Neue Version für Android Tablets]]></title>
+    <title type="html"><![CDATA[Neue Version für Android Tablets (2.0)]]></title>
     <link href="http://johannjacobsohn.github.com/Mensa-Hamburg-App/blog/2012/neue-version-fur-android-tablets/"/>
     <updated>2012-11-17T20:46:00+01:00</updated>
     <id>http://johannjacobsohn.github.com/Mensa-Hamburg-App/blog/2012/neue-version-fur-android-tablets</id>
@@ -154,7 +271,8 @@ besser funktionieren würde? Schreib eine Email an die Entwickler unter
 	</a>
 </figure>
 
-<p>Etwas Liebe für Android!</p>
+<p>Auch Android-Tablet sollen nicht angehängt werden: verbesserte Filter, neue 
+Oberfläche, neues Icon und erheblich schneller!</p>
 
 <!--more-->
 
@@ -407,7 +525,7 @@ besser funktionieren würde? Schreib eine Email an die Entwickler unter
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Neue Version fürs HP Touchpad]]></title>
+    <title type="html"><![CDATA[Neue Version fürs HP Touchpad (2.0)]]></title>
     <link href="http://johannjacobsohn.github.com/Mensa-Hamburg-App/blog/2012/neue-version-furs-hp-touchpad/"/>
     <updated>2012-11-11T22:53:00+01:00</updated>
     <id>http://johannjacobsohn.github.com/Mensa-Hamburg-App/blog/2012/neue-version-furs-hp-touchpad</id>
@@ -535,24 +653,6 @@ besser funktionieren würde? Schreib eine Email an die Entwickler unter
     </li>
   </ol>
 </div>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Bugfixes für HP/Palm-Telefone (1.5.2)]]></title>
-    <link href="http://johannjacobsohn.github.com/Mensa-Hamburg-App/blog/2012/bugfixes-fur-fur-hp-slash-palm-telefone-1-dot-5-2/"/>
-    <updated>2012-10-24T22:25:00+02:00</updated>
-    <id>http://johannjacobsohn.github.com/Mensa-Hamburg-App/blog/2012/bugfixes-fur-fur-hp-slash-palm-telefone-1-dot-5-2</id>
-    <content type="html"><![CDATA[<p>Nach dem größeren <a href="/blog/2012/neue-version-fur-hp-slash-palm-telefone/">1.5-Release</a>
-gibt es jetzt ein kleines Bugfix-Release.</p>
-
-<p>Behoben wurden</p>
-
-<ul>
-  <li>ein Problem mit der Anzeige der Details am Ende des Menus, wobei Teile des Bildschirms weiß wurden,</li>
-  <li>Daten werden tatsächlich im Hintergrund aktuell gehalten,</li>
-  <li>Header wird jetzt öfter aktualisiert um das richtige Datum zu zeigen.</li>
-</ul>
 ]]></content>
   </entry>
   

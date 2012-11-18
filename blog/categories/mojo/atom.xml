@@ -4,7 +4,7 @@
   <title><![CDATA[Category: mojo | Mensa Hamburg App]]></title>
   <link href="http://johannjacobsohn.github.com/Mensa-Hamburg-App/blog/categories/mojo/atom.xml" rel="self"/>
   <link href="http://johannjacobsohn.github.com/Mensa-Hamburg-App/"/>
-  <updated>2012-11-17T12:05:30+01:00</updated>
+  <updated>2012-11-18T22:11:50+01:00</updated>
   <id>http://johannjacobsohn.github.com/Mensa-Hamburg-App/</id>
   <author>
     <name><![CDATA[Johann Jacobsohn]]></name>
@@ -18,8 +18,14 @@
     <link href="http://johannjacobsohn.github.com/Mensa-Hamburg-App/blog/2012/bugfixes-fur-fur-hp-slash-palm-telefone-1-dot-5-2/"/>
     <updated>2012-10-24T22:25:00+02:00</updated>
     <id>http://johannjacobsohn.github.com/Mensa-Hamburg-App/blog/2012/bugfixes-fur-fur-hp-slash-palm-telefone-1-dot-5-2</id>
-    <content type="html"><![CDATA[<p>Nach dem größeren <a href="/blog/2012/neue-version-fur-hp-slash-palm-telefone/">1.5-Release</a>
+    <content type="html"><![CDATA[<figure class="left">
+	<img src="/assets/release/mojo-1.5/ui-small.png" title="" >
+</figure>
+
+<p>Nach dem größeren <a href="/blog/2012/neue-version-fur-hp-slash-palm-telefone/">1.5-Release</a>
 gibt es jetzt ein kleines Bugfix-Release.</p>
+
+<!-- more -->
 
 <p>Behoben wurden</p>
 
@@ -32,11 +38,15 @@ gibt es jetzt ein kleines Bugfix-Release.</p>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Neue Version für HP/Palm-Telefone]]></title>
+    <title type="html"><![CDATA[Neue Version für HP/Palm-Telefone (1.5.1)]]></title>
     <link href="http://johannjacobsohn.github.com/Mensa-Hamburg-App/blog/2012/neue-version-fur-hp-slash-palm-telefone/"/>
     <updated>2012-09-28T19:39:00+02:00</updated>
     <id>http://johannjacobsohn.github.com/Mensa-Hamburg-App/blog/2012/neue-version-fur-hp-slash-palm-telefone</id>
-    <content type="html"><![CDATA[<p>Es gibt wieder ein Update für HP/Palm Prē, Prē Plus, Prē 2, Pre³, Veer und Pixi!
+    <content type="html"><![CDATA[<figure class="left">
+	<img src="/assets/release/mojo-1.5/ui-small.png" title="" >
+</figure>
+
+<p>Es gibt wieder ein Update für HP/Palm Prē, Prē Plus, Prē 2, Pre³, Veer und Pixi!
 Nach dem die HP/Palm-App bei der letzten Runde Updates leer ausgegangen ist (sorry!)
 gibt es jetzt einen ganzen Schwung Verbesserungen, welche diese Version auf die
 gleiche Stand bringen wie <a href="/alle-versionen">die anderen</a>.</p>
@@ -47,7 +57,7 @@ gleiche Stand bringen wie <a href="/alle-versionen">die anderen</a>.</p>
 
 <h2 id="neues-app-icon">Neues App-Icon</h2>
 <figure class="right">
-	<img src="/assets/webos-appicons.png" title="" >
+	<img src="/assets/release/mojo-1.5/webos-appicons.png" title="" >
 	<figcaption>Unten links das neue, daneben das alte Logo</figcaption>
 </figure>
 
@@ -64,7 +74,7 @@ was allgemein irgendwie handfester und appetitlicher wirkt.</p>
 
 <h2 id="verbesserte-filter">Verbesserte Filter</h2>
 <figure class="left">
-	<img src="/assets/filter-new2.png" title="" >
+	<img src="/assets/release/mojo-1.5/filter-new2.png" title="" >
 	<figcaption>Neue Filter</figcaption>
 </figure>
 
@@ -88,7 +98,7 @@ macht das Überblicken der (verbliebenen) Optionen einfacher.</p>
 
 <h2 id="details-fr-gerichte">Details für Gerichte</h2>
 <figure class="right">
-	<img src="/assets/menu-new-details.png" title="" >
+	<img src="/assets/release/mojo-1.5/menu-new-details.png" title="" >
 	<figcaption>Details für einzelne Gerichte gibts auf Antippen</figcaption>
 </figure>
 
