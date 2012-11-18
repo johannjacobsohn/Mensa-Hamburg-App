@@ -56,7 +56,7 @@ enyo.kind({
 	},
 	components: [
 		{ content: "", name: "label", fit: true },
-		{ kind: "onyx.ToggleButton", name: "pickerButton", onContent: "Mit", offContent: "Ohne", onChange: "change" }
+		{ style: "width: 84px", kind: "onyx.ToggleButton", name: "pickerButton", onContent: "Mit", offContent: "Ohne", onChange: "change" }
 	],
 	stateChanged: function(){
 		this.$.pickerButton.value = this.state === "include";
@@ -155,12 +155,13 @@ enyo.kind({
 		"use strict";
 		var i = inEvent.index, r = this.cache[i], item = inEvent.item.$[this.filterKind];
 		item.label = r.content;
+		this.filteredBy[this.name] = this.filteredBy[this.name] || {};
 		if(r.filter && r.filter.type){
 			item.state = r.filter.type;
-			this.filteredBy[this.name] = this.filteredBy[this.name] || {};
 			this.filteredBy[this.name][r.name] = item.state;
+		} else {
+			this.filteredBy[this.name][r.name] = "include";
 		}
-		
 		item.load();
 	},
 	load: function(){
