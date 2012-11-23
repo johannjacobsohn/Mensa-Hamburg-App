@@ -21,20 +21,20 @@ enyo.kind({
 	},
 	getLeft: function(inSender, inEvent) {
 		var oldIndex = this.index;
-		inEvent.snap && this.index--;
+		if(inEvent.snap) { this.index--; }
 		if( !this.dateIsAvailable(this.index - 1) ){
 			this.index = oldIndex;
-			return false
+			return false;
 		}
 		this.$.carousel.newView( inEvent.originator, this.getView( this.index - 1 ) );
 		return true;
 	},
 	getRight: function(inSender, inEvent) {
 		var oldIndex = this.index;
-		inEvent.snap && this.index++;
+		if(inEvent.snap) { this.index++; }
 		if( !this.dateIsAvailable(this.index + 1) ){
 			this.index = oldIndex;
-			return false
+			return false;
 		}
 		this.$.carousel.newView( inEvent.originator, this.getView( this.index + 1 ) );
 		return true;
@@ -47,13 +47,13 @@ enyo.kind({
 		if( today.getDay() === 0 ){ // sunday => monday - 1 day
 			today = new Date( today.valueOf() + 1 * 1000 * 60 * 60 * 24);
 		}
-		var today = storage.dateToDateString( today );
+		today = storage.dateToDateString( today );
 		this.index = this.availableDates.indexOf( today );
 		this.$.carousel.setCenterView(this.getView(this.index));
 	},
 	yesterday : function() {
 		this.$.carousel.previous();
-		return true
+		return true;
 	},
 	tomorrow : function() {
 		this.$.carousel.next();
@@ -84,14 +84,16 @@ enyo.kind({
 			{kind: "FittableColumns", style:"width: 100%; margin: 0px", components: [
 				{kind: "onyx.IconButton", style: "height: 32px;", src: "assets/menu-icon-back.png", ontap: "yesterday", name: "yesterdayControl"},
 				{content: "", name: "header", fit: true, ontap: "today", style:"text-align: center; line-height: 32px"}, //@TODO -> CSS!
-				{kind: "onyx.IconButton", style:"height: 32px;", src: "assets/menu-icon-forward.png", ontap: "tomorrow", name: "tomorrowControl"},
+				{kind: "onyx.IconButton", style:"height: 32px;", src: "assets/menu-icon-forward.png", ontap: "tomorrow", name: "tomorrowControl"}
 			]}
 		]},
 		{kind: "menuList"}
 	],
 	setHeader: function(){
 		this.$.header.setContent( formatDate( this.date ) );
-		this.$.header.render();
+		this.$.yesterdayControl.setShowing(storage.isPrevDayAvailable());
+		this.$.tomorrowControl.setShowing(storage.isNextDayAvailable());
+//		this.$.header.render();
 	},
 	today: function(){
 		enyo.Signals.send("onGoToToday");
