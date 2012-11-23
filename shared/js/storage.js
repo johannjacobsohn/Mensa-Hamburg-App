@@ -945,11 +945,13 @@ var storage = (function(){ // its a trap!
 		getDateInfo = function(callback){
 			var dates = getAvailableDates(true);
 			var l = dates.length;
+			var valueEq = function(d, item){ return item.value === d; };
 			while( l-- ){
 				dates[l] = {
-					filtered : typeof filterProperties.date !== "undefined" && filterValues.date.indexOf( dates[l] ) !== -1,
+					filtered : typeof filterProperties.date !== "undefined" && filterValues.date.some( valueEq.bind(this, dates[l]) ),
 					name     : dates[l],
-					content  : dateToString(dates[l])
+					content  : dateToString(dates[l]),
+					filter   : filterValues.date ? filterValues.date.filter( valueEq.bind(this, dates[l]) )[0] : []
 				};
 			}
 			callback (dates);
