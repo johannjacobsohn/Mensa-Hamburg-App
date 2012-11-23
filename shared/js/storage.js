@@ -1,6 +1,4 @@
 /**
- *
- *
  * Storage
  *
  *
@@ -8,8 +6,6 @@
  *
  *
  * @class storage
- *
- * 
  */
 var storage = (function(){ // its a trap!
 	"use strict";
@@ -18,7 +14,7 @@ var storage = (function(){ // its a trap!
 		isFiltered       = false,
 		date = new Date(), //now
 		week = function(){ return date.getWeek(); },
-		lock = [],
+		lock = {},
 		dataHasChanged = false,
 		/**
 		 *     loadedMensen{
@@ -61,9 +57,7 @@ var storage = (function(){ // its a trap!
 					subscriptions[type].push( fkt );
 				}
 			} else {
-				if( console && console.warn ){
-					console.warn("event '" + type +"' does not exist");
-				}
+				log("event '" + type +"' does not exist");
 			}
 			return this;
 		},
@@ -85,7 +79,7 @@ var storage = (function(){ // its a trap!
 					subscriptions[type][i](args);
 				}
 			} else {
-				console.warn("event '" + type +"' does not exist");
+				log("event '" + type +"' does not exist");
 			}
 			return this;
 		},
@@ -155,7 +149,7 @@ var storage = (function(){ // its a trap!
 		 * @param item
 		 * @return bool
 		 */
-		filterByProp = function(prop, includes, excludes, item){
+		filterByProp = function(prop, includes, excludes, includesAreSet, item){
 			/* if property is string THEN
 			 *     return true if
 			 *     - is prop AND should be prop
@@ -173,10 +167,6 @@ var storage = (function(){ // its a trap!
 			 * if one excluding property is set, return false, else return true
 			 * if one including property is set, return true, else return false
 			 */
-
-			var a = true;
-			var b = true;
-			
 			if(typeof item[prop] === "string") {
 				var result = filterValues[prop].some(function(i){
 					return i.type === "include" && i.value === item[prop];
@@ -215,12 +205,12 @@ var storage = (function(){ // its a trap!
 		 */
 		filter = function(callback){
 			getWeekMenu(function(){
-				var i = 0, includes = [], excludes = [];
+				var i = 0, l = 0, includes = [], excludes = [];
 				if(!isFiltered) { // skip if already filtered
 					// copy weekMenu to filteredWeekMenu
 					filteredWeekMenu = [];
-					for(i = 0; i < weekMenu.length; i++){
-						filteredWeekMenu.push( weekMenu[i] );
+					for(i = 0, l = weekMenu.length; i < l; i++){
+						filteredWeekMenu[i] = weekMenu[i];
 					}
 
 					// filter filteredWeekMenu
@@ -354,7 +344,7 @@ var storage = (function(){ // its a trap!
 				nameA = a.mensa.toLowerCase();
 				nameB = b.mensa.toLowerCase();
 				if(nameA === nameB){
-					return 0
+					return 0;
 				} else {
 					return nameA > nameB ? 1 : -1;
 				}
@@ -383,8 +373,8 @@ var storage = (function(){ // its a trap!
 					savedMensenLength = (conf.getSavedURLs()).length,
 					savedMensenExist = savedMensenLength > 1 || true, // FIXME
 					isMensaFilterSet = typeof filterValues.mensa !== "undefined",
-					ex = filterValues.mensa ? filterValues.mensa.filter(function(item){return item.type === "exclude"}) : [],
-					inc =  filterValues.mensa ? filterValues.mensa.filter(function(item){return item.type !== "exclude"}) : [],
+					ex = filterValues.mensa ? filterValues.mensa.filter(function(item){ return item.type === "exclude"; }) : [],
+					inc =  filterValues.mensa ? filterValues.mensa.filter(function(item){ return item.type !== "exclude"; }) : [],
 					filteredByMensenLength = inc.length ? inc.length : savedMensenLength - ex.length,
 					isDateFilterSet = typeof filterValues.date !== "undefined" && filterValues.date.length === 1 && filterValues.date[0].type === "include";
 
@@ -585,7 +575,7 @@ var storage = (function(){ // its a trap!
 
 		// @TODO document
 		error = function (resp, additional_args){
-			console.error("xhr error");
+			log("xhr error");
 
 			// release lock
 			delete lock[additional_args.mensa+additional_args.week];
@@ -625,9 +615,7 @@ var storage = (function(){ // its a trap!
 			try{
 				trs = tempDiv.getElementsByTagName("table")[0].getElementsByTagName("tr");
 			} catch(e){
-				if( console && console.log ){
-					console.log("return: tr not found for " + mensa + " on week " + week);
-				}
+				log("return: tr not found for " + mensa + " on week " + week);
 				return [];
 			}
 			// extract and parse date field
@@ -641,7 +629,7 @@ var storage = (function(){ // its a trap!
 					tds = trs[j].getElementsByTagName("td");
 					ths = trs[j].getElementsByTagName("th");
 				} catch(e){
-					console.log(e);
+					log(e);
 					continue;
 				}
 
@@ -656,7 +644,7 @@ var storage = (function(){ // its a trap!
 					try{
 						p = tds[i].getElementsByTagName("p");
 					} catch(e){
-						console.log(e);
+						log(e);
 						continue;
 					}
 			
@@ -753,11 +741,10 @@ var storage = (function(){ // its a trap!
 		 * 
 		 * @method runMenuCallbacks
 		 * @private
-		 * @return {Boolean} Callbacks have been called
 		 */
 		runMenuCallbacks = function(){
 			// only execute callback queue if all locks are released
-			if(isEmpty(lock)){
+			if(Object.keys(lock) === 0){
 				if(filteredWeekMenu.length === 0){
 					filteredWeekMenu = weekMenu;
 				}
@@ -776,9 +763,6 @@ var storage = (function(){ // its a trap!
 
 					dataHasChanged = false;
 				}
-				return true;
-			} else {
-				return false;
 			}
 		},
 		/**
