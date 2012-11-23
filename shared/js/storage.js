@@ -146,6 +146,9 @@ var storage = (function(){ // its a trap!
 		 * @method filterByProp
 		 * 
 		 * @param prop
+		 * @param includes
+		 * @param excludes
+		 * @param includesAreSet
 		 * @param item
 		 * @return bool
 		 */
@@ -168,11 +171,13 @@ var storage = (function(){ // its a trap!
 			 * if one including property is set, return true, else return false
 			 */
 			if(typeof item[prop] === "string") {
-				var result = filterValues[prop].some(function(i){
-					return i.type === "include" && i.value === item[prop];
-				});
+				var result;
 				// includes overwrite excludes; ignore excludes if includes are set
-				if(!filterValues[prop].some(function(i){return i.type === "include";})){
+				if(includesAreSet){
+					result = filterValues[prop].some(function(i){
+						return i.type === "include" && i.value === item[prop];
+					});
+				} else {
 					result = filterValues[prop].every(function(i){
 						return i.type === "exclude" && i.value !== item[prop];
 					});
@@ -191,7 +196,6 @@ var storage = (function(){ // its a trap!
 				}
 				return inc && exc;
 			}
-			return false;
 		},
 		/**
 		 * do the filtering
@@ -222,8 +226,8 @@ var storage = (function(){ // its a trap!
 							// split filtervalues in includes and excludes
 							includes = filterValues[prop].filter( isInclude ).map( returnValue );
 							excludes = filterValues[prop].filter( isExclude ).map( returnValue );
-
-							filteredWeekMenu = filteredWeekMenu.filter( filterByProp.bind(this, prop, includes, excludes) );
+							var includesAreSet = filterValues[prop].some( isInclude );
+							filteredWeekMenu = filteredWeekMenu.filter( filterByProp.bind(this, prop, includes, excludes, includesAreSet) );
 						}
 					}
 					isFiltered = true;
@@ -744,7 +748,7 @@ var storage = (function(){ // its a trap!
 		 */
 		runMenuCallbacks = function(){
 			// only execute callback queue if all locks are released
-			if(Object.keys(lock) === 0){
+			if(Object.keys(lock).length === 0){
 				if(filteredWeekMenu.length === 0){
 					filteredWeekMenu = weekMenu;
 				}
