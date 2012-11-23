@@ -31,7 +31,7 @@ enyo.kind({
 					e += c.width + c.marginWidth - this.peekWidth;
 				}
 				// FIXME: overdragging-ish
-				if (i == c$.length - 1 && inIndex < 0) {
+				if (i === c$.length - 1 && inIndex < 0) {
 					this.arrangeControl(c, {left: e - inIndex});
 				}
 				n++;

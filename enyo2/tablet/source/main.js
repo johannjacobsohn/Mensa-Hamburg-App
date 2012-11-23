@@ -20,7 +20,7 @@ enyo.kind({
 	activePanelsChanged : function(){
 		var name;
 		for( name in this.activePanels ){
-			if( this.activePanels.hasOwnProperty(name) && this.activePanels[name] === !(this.oldactivePanels[name])){
+			if( this.activePanels.hasOwnProperty(name) && this.activePanels[name] !== (this.oldactivePanels[name])){
 				this.$[name].setShowing( this.activePanels[name] );
 				this.$[name].load();
 				this.$[name].reflow();

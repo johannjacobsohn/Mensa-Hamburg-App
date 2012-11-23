@@ -1,10 +1,7 @@
 ﻿/*
- * - @FIXMEs
  * - Dokumentation
  * - Strings auslagern
  * - Performancetests
- * - header iPhone
- * - manchmal im iPhone nicht korrekt geladen
  */
 
 // startup
@@ -37,20 +34,20 @@ enyo.kind({
 			{kind: "onyx.Toolbar", name: "toolbar", components: [
 				{kind: "FittableColumns",  classes: "enyo-center", style: "width: 100%; margin-left: 0;", components: [
 					{ontap: "openView", classes: "navButton", target: "menu", components: [
-						{kind: "onyx.IconButton", name: "menuButton",     src: "assets/menu.png", classes: "active" },
+						{kind: "onyx.IconButton", name: "menuButton",     src: "assets/menu.png", classes: "active" }
 					]},
 					{ontap: "openView", classes: "navButton", target: "settings", components: [
-						{kind: "onyx.IconButton", name: "settingsButton", src: "assets/settings.png" },
+						{kind: "onyx.IconButton", name: "settingsButton", src: "assets/settings.png" }
 					]},
 					{ontap: "openView", classes: "navButton", target: "filter", components: [
-						{kind: "onyx.IconButton", name: "filterButton",   src: "assets/filter.png"   },
+						{kind: "onyx.IconButton", name: "filterButton",   src: "assets/filter.png"   }
 					]},
 					{ontap: "openView", classes: "navButton", target: "info", components: [
 						{kind: "onyx.IconButton", name: "infoButton",     src: "assets/info.png"     }
 					]}
 					
 				]}
-			]},
+			]}
 		]},
 		{ name: "popup", kind: "onyx.Popup", centered: true, modal: true, floating: true, style : "margin: 10px", content: info.notConfText },
 		{ name: "newVersionPopup", style: "background: #eee;color: black; width: 300px", kind: "onyx.Popup", centered: true, floating: true, scrim: true, components: [
@@ -69,7 +66,7 @@ enyo.kind({
 		this.openPage( payload.page );
 	},
 	openMenu: function(){
-		this.setActiveButton( this.$.menuButton )
+		this.setActiveButton( this.$.menuButton );
 		this.openPage("menu");
 	},
 	setActiveButton: function(active){
@@ -87,7 +84,9 @@ enyo.kind({
 	openPage : function(activePage){
 		var index = this.pages.indexOf(activePage);
 		this.$.panels.setIndex(index);
-		this.$[activePage].load();
+		setTimeout(function(){
+			this.$[activePage].load();
+		}.bind(this), 1);
 	},
 	showNotConfigured : function(){
 		var popup = this.$.popup;
@@ -98,7 +97,7 @@ enyo.kind({
 		this.inherited( arguments );
 
 		if(!conf.isConfigured()){
-			enyo.Signals.send("onRequestOpen", { page: "settings" })
+			enyo.Signals.send("onRequestOpen", { page: "settings" });
 			this.showNotConfigured();
 		} else if( conf.versionHasChanged ){
 			this.$.newVersionPopup.setShowing(true);

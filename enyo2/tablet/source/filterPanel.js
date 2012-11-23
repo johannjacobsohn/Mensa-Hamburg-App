@@ -2,7 +2,6 @@
  *
  *
  * @kind filterPanel
- * @TODO: dump state 
  */
 enyo.kind({
 	name : "filterPanel",
@@ -30,23 +29,21 @@ enyo.kind({
 	create : function(){
 		this.inherited(arguments);
 		this.$.title.setContent(this.title);
-		this.states = this.type === "ternary" ? [ false, "include", "exclude" ] : [ false, "include" ]
-//		this.load();
+		this.states = this.type === "ternary" ? [ false, "include", "exclude" ] : [ false, "include" ];
 	},
 	load : function(){
 		this.$.list.setShowing(false);
 		this.$.spinner.show();
 		storage.getInfo( this.filter, function(json){
 			if(this.filter === "mensa"){
-				json = json.filter(function(item){ return item.active });
+				json = json.filter(function(item){ return item.active; });
 			}
 			this.$.spinner.hide();
 			this.data = json;
 //			this.data.unshift({ content : "Alle", value: "all", filtered: json.filter(function(i){return i.filtered;}).length===0 });
 			this.$.list.setShowing(true);
 			this.$.list.setCount(this.data.length);
-//			this.reflow();
-			setTimeout( this.$.list.refresh.bind(this.$.list), 1 )
+			setTimeout( this.$.list.refresh.bind(this.$.list), 1 );
 		}.bind(this));
 	},
 	setupItem: function(inSender, inEvent) {

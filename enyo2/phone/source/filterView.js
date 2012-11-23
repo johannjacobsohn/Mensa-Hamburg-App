@@ -14,7 +14,7 @@ enyo.kind({
 			{kind: "filterList", filterKind: "filter-item-trippel", name:"additivesFilter",  title: "Nach Zusatzstoffen filtern", type: "additives"},
 			{kind: "filterList", filterKind: "filter-item-trippel", name:"propertiesFilter", title: "Nach Eigenschaften filtern", type: "properties"}
 		]},
-		{kind: "onyx.Button", content: "Filtern", style:"width: 100%;", classes: "onyx-affirmative", onclick: "applyFilters"},
+		{kind: "onyx.Button", content: "Filtern", style:"width: 100%;", classes: "onyx-affirmative", onclick: "applyFilters"}
 	],
 	applyFilters : function(){
 		this.setFilter("name").setFilter("mensa").setFilter("properties").setFilter("additives");
@@ -79,21 +79,21 @@ enyo.kind({
 	kind: "FittableColumns",
 	published: {
 		label: "",
-		state: "none",
+		state: "none"
 	},
 	components: [
 		{ content: "", name: "label", fit: true },
 		{style: "width: 70px;", components:[
 			{style: "width: 32px; float: left;", components: [
 				{kind: "onyx.Checkbox", onchange: "change", name: "include"},
-				{ content: "Mit", style: "font-size: 10px; text-align: center;"},
+				{ content: "Mit", style: "font-size: 10px; text-align: center;"}
 			]},
 			{style: "width: 32px; float: left;", components: [
 				{kind: "onyx.Checkbox", onchange: "change", name: "exclude"},
 				{ content: "Ohne", style: "font-size: 10px; text-align: center;"}
 			]}
 		]}
- 	],
+	],
 	change: function(inSender, inEvent){
 		var o = inEvent.originator;
 		if(o.checked){
@@ -107,8 +107,9 @@ enyo.kind({
 	},
 	load: function(){
 		this.$.label.setContent( this.label );
-		if(this.state && this.state !== "none")
+		if(this.state && this.state !== "none"){
 			this.$[ this.state ].setChecked( true );
+		}
 	}
 });
 
@@ -137,7 +138,9 @@ enyo.kind({
 		"use strict";
 		var type = inEvent.state,    // include, exclude, none
 		    value = inEvent.content;  //
-		if( typeof value === "undefined"  || typeof type === "undefined"  ) return
+		if( typeof value === "undefined"  || typeof type === "undefined"  ){
+			return true;
+		}
 		this.filteredBy[this.name] = this.filteredBy[this.name] || {};
 		if( type === "none" ){
 			delete this.filteredBy[this.name][value];
@@ -170,7 +173,7 @@ enyo.kind({
 		this.$.repeater.itemComponents[0].kind = this.filterKind;
 		storage.getInfo(this.type, function(values){
 			if(this.type === "mensa") {
-				values = values.filter(function(item){ return item.active });
+				values = values.filter(function(item){ return item.active; });
 			}
 			this.cache = values;
 			this.$.repeater.setCount(this.cache.length);

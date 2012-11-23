@@ -1,53 +1,23 @@
-
-// http://syn.ac/tech/19/get-the-weeknumber-with-javascript/
-Date.prototype.getWeek = function() {
-	var determinedate = new Date();
-	determinedate.setFullYear(this.getFullYear(), this.getMonth(), this.getDate());
-	var D = determinedate.getDay();
-	if(D === 0){ D = 7; }
-	determinedate.setDate(determinedate.getDate() + (4 - D));
-	var YN = determinedate.getFullYear();
-	var ZBDoCY = Math.floor((determinedate.getTime() - new Date(YN, 0, 1, -6)) / 86400000);
-	var WN = 1 + Math.floor(ZBDoCY / 7);
-	return WN;
-};
-
-function isEmpty(obj) {
-	for(var prop in obj) {
-		if(obj.hasOwnProperty(prop)){
-			return false;
+/**
+ * 
+ * 
+ * 
+ * 
+ */
+if(typeof log === "undefined"){
+	function log(){
+		var r = "", i = 0;
+		if(console && console.log){
+			for(; i < arguments.length; i++){
+				r += " " + arguments[i];
+			}
+			console.log(r);
 		}
 	}
-	return true;
-}
-
-// https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Function/bind
-if (!Function.prototype.bind) {
-  Function.prototype.bind = function (oThis) {
-    if (typeof this !== "function") {
-      // closest thing possible to the ECMAScript 5 internal IsCallable function
-      throw new TypeError("Function.prototype.bind - what is trying to be bound is not callable");
-    }
- 
-    var aArgs = Array.prototype.slice.call(arguments, 1),
-        fToBind = this,
-        fNOP = function () {},
-        fBound = function () {
-          return fToBind.apply(this instanceof fNOP && oThis
-                                 ? this
-                                 : oThis,
-                               aArgs.concat(Array.prototype.slice.call(arguments)));
-        };
- 
-    fNOP.prototype = this.prototype;
-    fBound.prototype = new fNOP();
- 
-    return fBound;
-  };
 }
 
 /**
- * Create a nicely formated string representation of any given Date <br/>
+ * Create a nicely formated string representation of any given Date
  *
  * Just a legacy wrapper for formatDate
  * 
@@ -96,6 +66,19 @@ function formatDate(date, lang){
 	return dateDiff >= -1 && dateDiff <= 1 ? dayStrings[lang][dateDiff] : dateFormats[lang];
 }
 
+// http://syn.ac/tech/19/get-the-weeknumber-with-javascript/
+Date.prototype.getWeek = function() {
+	var determinedate = new Date();
+	determinedate.setFullYear(this.getFullYear(), this.getMonth(), this.getDate());
+	var D = determinedate.getDay();
+	if(D === 0){ D = 7; }
+	determinedate.setDate(determinedate.getDate() + (4 - D));
+	var YN = determinedate.getFullYear();
+	var ZBDoCY = Math.floor((determinedate.getTime() - new Date(YN, 0, 1, -6)) / 86400000);
+	var WN = 1 + Math.floor(ZBDoCY / 7);
+	return WN;
+};
+
 /*
  * http://stackoverflow.com/questions/1036742/date-difference-in-javascript-ignoring-time-of-day
  */
@@ -113,6 +96,70 @@ function daysBetween(first, second) {
 	return Math.floor(days);
 }
 
+
+///////////////
+// Polyfills //
+///////////////
+
+// https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Object/keys
+if (!Object.keys) {
+  Object.keys = (function () {
+    var hasOwnProperty = Object.prototype.hasOwnProperty,
+        hasDontEnumBug = !({toString: null}).propertyIsEnumerable('toString'),
+        dontEnums = [
+          'toString',
+          'toLocaleString',
+          'valueOf',
+          'hasOwnProperty',
+          'isPrototypeOf',
+          'propertyIsEnumerable',
+          'constructor'
+        ],
+        dontEnumsLength = dontEnums.length;
+ 
+    return function (obj) {
+      if (typeof obj !== 'object' && typeof obj !== 'function' || obj === null) throw new TypeError('Object.keys called on non-object');
+ 
+      var result = [];
+ 
+      for (var prop in obj) {
+        if (hasOwnProperty.call(obj, prop)) result.push(prop);
+      }
+ 
+      if (hasDontEnumBug) {
+        for (var i=0; i < dontEnumsLength; i++) {
+          if (hasOwnProperty.call(obj, dontEnums[i])) result.push(dontEnums[i]);
+        }
+      }
+      return result;
+    }
+  })()
+};
+
+// https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Function/bind
+if (!Function.prototype.bind) {
+  Function.prototype.bind = function (oThis) {
+    if (typeof this !== "function") {
+      // closest thing possible to the ECMAScript 5 internal IsCallable function
+      throw new TypeError("Function.prototype.bind - what is trying to be bound is not callable");
+    }
+ 
+    var aArgs = Array.prototype.slice.call(arguments, 1),
+        fToBind = this,
+        fNOP = function () {},
+        fBound = function () {
+          return fToBind.apply(this instanceof fNOP && oThis
+                                 ? this
+                                 : oThis,
+                               aArgs.concat(Array.prototype.slice.call(arguments)));
+        };
+ 
+    fNOP.prototype = this.prototype;
+    fBound.prototype = new fNOP();
+ 
+    return fBound;
+  };
+}
 
 /*
 http://stackoverflow.com/questions/1744310/how-to-fix-array-indexof-in-javascript-for-ie-browsers
@@ -294,3 +341,34 @@ if (!Array.prototype.every)
     return true;
   };
 }
+
+
+if (!Array.prototype.filter)  
+{  
+  Array.prototype.filter = function(fun /*, thisp */)  
+  {  
+    "use strict";  
+  
+    if (this == null)  
+      throw new TypeError();  
+  
+    var t = Object(this);  
+    var len = t.length >>> 0;  
+    if (typeof fun != "function")  
+      throw new TypeError();  
+  
+    var res = [];  
+    var thisp = arguments[1];  
+    for (var i = 0; i < len; i++)  
+    {  
+      if (i in t)  
+      {  
+        var val = t[i]; // in case fun mutates this  
+        if (fun.call(thisp, val, i, t))  
+          res.push(val);  
+      }  
+    }  
+  
+    return res;  
+  };  
+}  

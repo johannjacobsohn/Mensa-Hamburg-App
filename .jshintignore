@@ -15,3 +15,8 @@ tests
 experimental-plattforms
 diskontinued-frameworks
 blackberry
+
+shared/js/utils.js
+webos/mojo/js/utils.js
+enyo2/tablet/source/core/utils.js
+enyo2/phone/source/core/utils.js

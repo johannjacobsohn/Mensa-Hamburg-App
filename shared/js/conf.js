@@ -31,11 +31,7 @@
 		 * @return {Array} an Array of mensa names
 		 */
 		getURLs: function(){
-			var array = [], item = "";
-			urls.mensen.forEach(function( item ){
-				array.push( item.name );
-			});
-			return array;
+			return urls.mensen.map(function( item ){ return item.name ; });
 		},
 		/**
 		 * set active mensen
@@ -68,7 +64,7 @@
 		 * @return {JSON} json
 		 */
 		getMensaInfo : function(){
-			if(console && console.warn) { console.warn( "conf.getMensaInfo is depreciated" ); }
+			log( "conf.getMensaInfo is depreciated" );
 			return storage.getMensaInfo();
 		},
 		/**
@@ -94,12 +90,12 @@
 	
 	// version has changed if majorversion or minorversion differ from
 	// saved value and there is no saved menu (it could be a fresh install otherwise)
-	if( (data.get("majorversion") != conf.majorVersion || data.get("minorversion") != conf.minorVersion) && !!data.get("menu") ){
+	if( data.get("minorversion") && parseInt(data.get("minorversion"), 10) !== conf.minorVersion ){
 		conf.versionHasChanged = true;
 	}
 
 	// ☢ nuke all saved data if major version has changed
-	if( data.get("majorversion") != conf.majorVersion ){
+	if( data.get("majorversion") && parseInt(data.get("majorversion"), 10) !== conf.majorVersion ){
 		var savedMensen = data.get("urls");
 		data.clear();
 		if( savedMensen ){ 

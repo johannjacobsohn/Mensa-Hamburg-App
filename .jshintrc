@@ -10,6 +10,8 @@
 		"formatDate",
 		"xhr",
 		"dateToString",
+		"log",
+		"enyo",
 		
 		// mojo
 		"Mojo",

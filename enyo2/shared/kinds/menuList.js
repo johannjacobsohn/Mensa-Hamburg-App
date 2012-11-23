@@ -3,7 +3,7 @@ enyo.kind({
 	classes: "menuList",
 	style: "height: 100%;",
 	published: {
-		loading: false,
+		loading: false
 	},
 	components: [
 		{kind: "Waiter"},
@@ -35,7 +35,7 @@ enyo.kind({
 			this.$.menu.setCount(0);
 			this.$.menu.refresh();
 		}
-		this.$.waiter.setShowing( this.loading )
+		this.$.waiter.setShowing( this.loading );
 	},
 	load: function(){
 		this.$.menu.setCount(this.menu.length);
@@ -48,7 +48,7 @@ enyo.kind({
 	name: "Waiter",
 	components: [
 		{name: "spinner", kind: "Image", noEvents: true, src: "assets/spinner.gif", showing: false, classes: "search-spinner"},
-		{name: "loadingMessage", classes: "loading-message", content: "...", showing: false},
+		{name: "loadingMessage", classes: "loading-message", content: "...", showing: false}
 	],
 	showingChanged: function(){
 		this.inherited(arguments);
