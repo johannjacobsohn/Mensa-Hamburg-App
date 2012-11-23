@@ -15,12 +15,12 @@ describe("storage", function(){
 //		server.restore();
 	});
 
-	it( "has working getWeekMenu-Method" , function(){
+	it( "has working getWeekMenu-Method", function(){
 		var m = [];
 		runs(function () {
 			storage.getWeekMenu(function(menu){
 				m = menu;
-			}.bind(this));
+			});
 		});
 		waits(2000);
 		runs(function () {
@@ -218,18 +218,22 @@ describe("storage", function(){
 
 	it( ".nextDay works" , function(){
 		var todaysMenu;
+		storage.today(function(){});
 		storage.nextDay(function(menu, dateString, date){
 			var thisDate = new Date();
-			if( thisDate.getDay() === 5 ){
-				thisDate = new Date(thisDate.valueOf() + 60 * 60 * 24 * 1000 * 3);
-			} else if ( thisDate.getDay() === 6 ){
-				// since "today" on a saturday refers to monday, next day must be tuesday
-				thisDate = new Date(thisDate.valueOf() + 60 * 60 * 24 * 1000 * 3);
-			} else {
+			if( thisDate.getDay() === 5 ){ // friday
+				// on friday, monday is the next day
 				thisDate = new Date(thisDate.valueOf() + 60 * 60 * 24 * 1000 * 2);
+			} else if ( thisDate.getDay() === 6 ){ // saturday
+				// since "today" on a saturday refers to monday, next day must be tuesday
+				thisDate = new Date(thisDate.valueOf() + 60 * 60 * 24 * 1000 * 2);
+			} else if( thisDate.getDay() === 0 ) { // sunday
+				// see saturday
+				thisDate = new Date(thisDate.valueOf() + 60 * 60 * 24 * 1000 * 1);
 			}
+			nextDate = new Date(thisDate.valueOf() + 60 * 60 * 24 * 1000);
 
-			var tomorrow = storage.dateToDateString( thisDate );
+			var tomorrow = storage.dateToDateString( nextDate );
 			var tomorrowDate = storage.dateStringToDate( tomorrow );
 
 			expect( menu.length).toBeGreaterThan( 0 );
@@ -341,6 +345,19 @@ describe("storage", function(){
 	});
 
 
+	it( ".setDateFilter" , function(){
+		
+		storage.getDateInfo(function(dates){
+			var filters = [{ value: dates[0].name, type: "exclude" }];
+			storage.setFilter("date", filters);
+			storage.getDateInfo(function(dates){
+				expect(dates[0].filter.type ).toEqual( "exclude" );
+			});
+		});
+
+		server.respond();
+	});
+
 });
 
 describe("storage.sortedSegmented", function(){
@@ -373,7 +390,9 @@ describe("storage.sortedSegmented", function(){
 			for(i = 0, l = m.length; i<l; i++){
 				if(m[i].type === "header") continue;
 				expect(m[i].date).toBeGreaterThanOrEqual(date);
-				expect(m[i].mensa).toBeGreaterThanOrEqual(mensa);
+				if( m[i].date == date ){
+					expect(m[i].mensa).toBeGreaterThanOrEqual(mensa);
+				}
 				date = m[i].date;
 				mensa = m[i].mensa;
 			}
