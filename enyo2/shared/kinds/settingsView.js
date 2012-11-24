@@ -37,14 +37,16 @@ enyo.kind({
 		item.sublabel = r.address;
 	},
 	saveMensen : function(){
-		// Save URLs
-		conf.setURLs(this.savedMensen);
+		if(JSON.stringify(this.savedMensen) !== JSON.stringify(conf.getSavedURLs())){
+			// Save URLs
+			conf.setURLs(this.savedMensen);
 
-		// Reload Data
-		storage.cleanData();
+			// Reload Data
+			storage.cleanData();
 
-		// send signal that we're done here
-		enyo.Signals.send("onSettingsChange");
+			// send signal that we're done here
+			enyo.Signals.send("onSettingsChange");
+		}
 	},
 	/**
 	 * (cached) values
