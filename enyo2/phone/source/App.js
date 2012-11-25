@@ -49,7 +49,7 @@ enyo.kind({
 				]}
 			]}
 		]},
-		{ name: "popup", kind: "onyx.Popup", centered: true, modal: true, floating: true, style : "margin: 10px", content: info.notConfText },
+		{ name: "popup", kind: "onyx.Popup", name: "introPopup", centered: true, modal: true, floating: true, style : "margin: 10px", content: info.notConfText },
 		{ name: "newVersionPopup", style: "background: #eee;color: black; width: 300px", kind: "onyx.Popup", centered: true, floating: true, scrim: true, components: [
 			{content: info.onUpdateTitel, classes: "popup-header"},
 			{content: info.onUpdateText, classes: "popup-content"},
@@ -60,6 +60,10 @@ enyo.kind({
 	],
 	gotoNewVersion: function(){
 		location.href = "http://johannjacobsohn.github.com/Mensa-Hamburg-App/blog/2012/neue-phone-version/";
+	},
+	closePopup: function(){
+		this.$.introPopup.setShowing(false);
+		this.$.newVersionPopup.setShowing(false);
 	},
 	handlers: {"onCloseMe": "openMenu"},
 	open: function( inSender, payload ){
