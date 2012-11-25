@@ -4,7 +4,7 @@
   <title><![CDATA[Category: tablet-2.0 | Mensa Hamburg App]]></title>
   <link href="http://johannjacobsohn.github.com/Mensa-Hamburg-App/blog/categories/tablet-2-0/atom.xml" rel="self"/>
   <link href="http://johannjacobsohn.github.com/Mensa-Hamburg-App/"/>
-  <updated>2012-11-25T12:20:08+01:00</updated>
+  <updated>2012-11-25T18:24:08+01:00</updated>
   <id>http://johannjacobsohn.github.com/Mensa-Hamburg-App/</id>
   <author>
     <name><![CDATA[Johann Jacobsohn]]></name>
@@ -12,6 +12,38 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Neue Version fürs Tablet]]></title>
+    <link href="http://johannjacobsohn.github.com/Mensa-Hamburg-App/blog/2012/neue-version-furs-tablet/"/>
+    <updated>2012-11-25T18:03:00+01:00</updated>
+    <id>http://johannjacobsohn.github.com/Mensa-Hamburg-App/blog/2012/neue-version-furs-tablet</id>
+    <content type="html"><![CDATA[<figure class="left">
+	<a href="blog/categories/tablet-2-0/atom.xml">
+		<img src="/assets/release/tablet-2.0/android/ui-small.png">
+	</a>
+</figure>
+
+<p>Uff, kaum veröffentlicht gibt es schon eine Aktualisierung für alle Tablets. 
+Behoben wurden ein nerviges Filter-Problem und die Geschwindigkeit wurde 
+etwas verbessert.</p>
+
+<!--more-->
+
+<p>Android Tablets und Chrome hat ein Update erhalten, HP Touchpad und iPad 
+waren ohnehin noch nicht durchs Review (also schon eingereicht aber noch 
+nicht veröffentlicht), und werden sich dadurch vermutlich noch etwas verzögern.</p>
+
+<p>Aktualisiert wurden: </p>
+
+<ul>
+  <li>HP Touchpad</li>
+  <li>iPad</li>
+  <li>Android Tablet</li>
+  <li>Chrome App</li>
+</ul>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Neue Version fürs iPad (2.0)]]></title>
