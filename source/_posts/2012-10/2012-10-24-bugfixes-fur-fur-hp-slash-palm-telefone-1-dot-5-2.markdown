@@ -6,8 +6,14 @@ comments: true
 categories: palm hp phone update mojo mojo-1.5
 ---
 
+<figure class="left">
+	{% img /assets/release/mojo-1.5/ui-small.png  %}
+</figure> 
+
 Nach dem größeren [1.5-Release](/blog/2012/neue-version-fur-hp-slash-palm-telefone/)
 gibt es jetzt ein kleines Bugfix-Release.
+
+<!-- more -->
 
 Behoben wurden
 

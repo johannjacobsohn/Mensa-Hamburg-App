@@ -1,10 +1,16 @@
 ---
 layout: post
-title: "Neue Version fürs HP Touchpad"
+title: "Neue Version fürs HP Touchpad (2.0)"
 date: 2012-11-11 22:53
 comments: true
 categories: hp touchpad update tablet tablet-2.0
 ---
+
+<figure class="left">
+	<a href="{{page.url}}">
+		{% img /assets/release/tablet-2.0/touchpad/ui-small.png %}
+	</a>
+</figure> 
 
 Nach fünf Monaten gibt es ein riesen Update fürs HP Touchpad: neue 
 Oberfläche, neue Filter, neues Icon!
@@ -16,7 +22,7 @@ Komplett neue Oberfläche
 ---
 
 <figure>
-	{% img /assets/release/tablet-2.0/ui.png %}
+	{% img /assets/release/tablet-2.0/touchpad/ui.png %}
 	<figcaption>Die neue Oberfläche: funkelniegelnagelneu</figcaption>
 </figure> 
 
@@ -29,14 +35,14 @@ man braucht. Dies bedeutet auch das die App deutlich bequemer im
 Portrait-Modus zu benutzen ist.
 
 <figure>
-	{% img /assets/release/tablet-2.0/portrait.png  %}
+	{% img /assets/release/tablet-2.0/touchpad/portrait.png  %}
 	<figcaption>App im Portraitmodus mit abgeschalteten Filtern</figcaption>
 </figure> 
 
 Neues App-Icon
 ---
 <figure>
-	{% img /assets/release/tablet-2.0/touchpad-appicon.png  %}
+	{% img /assets/release/tablet-2.0/touchpad/touchpad-appicon.png  %}
 	<figcaption>Unten rechts das neue, daneben das alte Logo</figcaption>
 </figure> 
 
@@ -58,7 +64,7 @@ Neue Filter
 ---
 
 <figure>
-	{% img /assets/release/tablet-2.0/filter.png  %}
+	{% img /assets/release/tablet-2.0/touchpad/filter.png  %}
 	<figcaption>Neue Filter</figcaption>
 </figure> 
 
@@ -81,7 +87,7 @@ und hängen dadurch (nachdem man sie mal eingestellt hat) nicht mehr
 permanent im Sichtfeld rum.
 
 <figure>
-	{% img /assets/release/tablet-2.0/set-filter.png  %}
+	{% img /assets/release/tablet-2.0/touchpad/set-filter.png  %}
 	<figcaption>Filtereinstellungen: Einzelne Filter lassen sich aus- 
 	und einblenden</figcaption>
 </figure> 
@@ -93,7 +99,7 @@ macht das Überblicken der (verbliebenen) Optionen einfacher.
 Details für Gerichte
 ----
 <figure class="right" style="max-width: 60%;">
-	{% img /assets/release/tablet-2.0/details.png  %}
+	{% img /assets/release/tablet-2.0/touchpad/details.png  %}
 	<figcaption>Details für einzelne Gerichte gibts auf Antippen</figcaption>
 </figure> 
 

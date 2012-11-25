@@ -18,7 +18,7 @@ Dies ist jetzt die Version 1.5.1 und damit ein ziemlicher Sprung von 1.0.5.
 Neues App-Icon
 ---
 <figure class="right">
-	{% img /assets/webos-appicons.png  %}
+	{% img /assets/release/mojo-1.5/webos-appicons.png  %}
 	<figcaption>Unten links das neue, daneben das alte Logo</figcaption>
 </figure> 
 
@@ -36,7 +36,7 @@ was allgemein irgendwie handfester und appetitlicher wirkt.
 Verbesserte Filter
 ----
 <figure class="left">
-	{% img /assets/filter-new2.png  %}
+	{% img /assets/release/mojo-1.5/filter-new2.png  %}
 	<figcaption>Neue Filter</figcaption>
 </figure> 
 
@@ -62,7 +62,7 @@ macht das Überblicken der (verbliebenen) Optionen einfacher.
 Details für Gerichte
 ----
 <figure class="right">
-	{% img /assets/menu-new-details.png  %}
+	{% img /assets/release/mojo-1.5/menu-new-details.png  %}
 	<figcaption>Details für einzelne Gerichte gibts auf Antippen</figcaption>
 </figure> 
 
