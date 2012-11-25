@@ -90,12 +90,12 @@
 	
 	// version has changed if majorversion or minorversion differ from
 	// saved value and there is no saved menu (it could be a fresh install otherwise)
-	if( data.get("minorversion") && parseInt(data.get("minorversion"), 10) !== conf.minorVersion ){
+	if( data.get("menu") && parseInt(data.get("minorversion"), 10) !== conf.minorVersion ){
 		conf.versionHasChanged = true;
 	}
 
 	// ☢ nuke all saved data if major version has changed
-	if( data.get("majorversion") && parseInt(data.get("majorversion"), 10) !== conf.majorVersion ){
+	if( data.get("menu") && parseInt(data.get("majorversion"), 10) !== conf.majorVersion ){
 		var savedMensen = data.get("urls");
 		data.clear();
 		if( savedMensen ){ 
