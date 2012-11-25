@@ -12,7 +12,8 @@ StageAssistant.prototype.setup = function() {
 					onChoose: function(value) {
 						if(value === "goto"){
 //							location.href = "http://johannjacobsohn.github.com/Mensa-Hamburg-App/blog/2012/neue-version-fur-hp-slash-palm-telefone/";
-							location.href = "http://johannjacobsohn.github.com/Mensa-Hamburg-App/blog/2012/bugfixes-fur-fur-hp-slash-palm-telefone-1-dot-5-2/";
+//							location.href = "http://johannjacobsohn.github.com/Mensa-Hamburg-App/blog/2012/bugfixes-fur-fur-hp-slash-palm-telefone-1-dot-5-2/";
+							location.href = "http://johannjacobsohn.github.com/Mensa-Hamburg-App/blog/2012/neue-version-fur-hp-slash-palm-phones-1-dot-5-3/";
 						}
 					},
 					title   : info.onUpdateTitel,
