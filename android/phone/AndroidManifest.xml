@@ -20,7 +20,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" android:windowSoftInputMode="adjustPan"
 	package="jjacobsohn.mensaApp.android"
 	android:versionName="2.1"
-	android:versionCode="5"
+	android:versionCode="11"
 	android:hardwareAccelerated="true"
 	android:installLocation="auto">
 	<supports-screens
