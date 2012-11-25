@@ -4,7 +4,7 @@
   <title><![CDATA[Category: palm | Mensa Hamburg App]]></title>
   <link href="http://johannjacobsohn.github.com/Mensa-Hamburg-App/blog/categories/palm/atom.xml" rel="self"/>
   <link href="http://johannjacobsohn.github.com/Mensa-Hamburg-App/"/>
-  <updated>2012-11-18T22:11:50+01:00</updated>
+  <updated>2012-11-25T12:20:08+01:00</updated>
   <id>http://johannjacobsohn.github.com/Mensa-Hamburg-App/</id>
   <author>
     <name><![CDATA[Johann Jacobsohn]]></name>
@@ -12,6 +12,28 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Bugfixes für HP/Palm-Telefone (1.5.3)]]></title>
+    <link href="http://johannjacobsohn.github.com/Mensa-Hamburg-App/blog/2012/neue-version-fur-hp-slash-palm-phones-1-dot-5-3/"/>
+    <updated>2012-11-24T22:25:00+01:00</updated>
+    <id>http://johannjacobsohn.github.com/Mensa-Hamburg-App/blog/2012/neue-version-fur-hp-slash-palm-phones-1-dot-5-3</id>
+    <content type="html"><![CDATA[<figure class="left">
+	<img src="/assets/release/mojo-1.5/ui-small.png" title="" >
+</figure>
+
+<p>Noch eine kleinere Aktualisierung des <a href="/blog/2012/neue-version-fur-hp-slash-palm-telefone/">1.5-Release</a> für 
+webOS-Telefone.</p>
+
+<!-- more -->
+
+<ul>
+  <li>Neue Mensa Cafe CFEL am Desy</li>
+  <li>Bugfixes und Geschwindigkeitsverbesserungen</li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Bugfixes für HP/Palm-Telefone (1.5.2)]]></title>
