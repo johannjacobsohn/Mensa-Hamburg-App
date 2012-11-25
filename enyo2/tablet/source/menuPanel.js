@@ -13,7 +13,7 @@ enyo.kind({
 			{classes: "menu-button", ontap: "openInfo", kind: "onyx.IconButton", src: "assets/info.png"   },
 			{classes: "menu-button", ontap: "openPanels", kind: "onyx.IconButton", src: "assets/filter.png"   }
 		]},
-		{kind: enyo.Signals, onFilterChange: "load", onDisplayPricesChange: "load", onSettingsChange: "load"}
+		{kind: enyo.Signals, onFilterChange: "load", onDisplayPricesChange: "load", onSettingsChange: "settingsChange"}
 	],
 	openPanels: function(){
 		enyo.Signals.send("onChangePanels");
@@ -23,6 +23,11 @@ enyo.kind({
 	},
 	openInfo: function(){
 		enyo.Signals.send("onRequestInfo");
+	},
+	settingsChange: function(inSender, payload){
+		if(payload.changed){
+			this.load();
+		}
 	},
 	create : function(){
 		this.inherited(arguments);
