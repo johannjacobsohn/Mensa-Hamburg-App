@@ -162,8 +162,10 @@ enyo.kind({
 		if(r.filter && r.filter.type){
 			item.state = r.filter.type;
 			this.filteredBy[this.name][r.name] = item.state;
-		} else {
+		} else if ( this.filterKind === "filter-item-double") {
 			this.filteredBy[this.name][r.name] = "include";
+		} else {
+			this.filteredBy[this.name][r.name] = "none";
 		}
 		item.load();
 	},
