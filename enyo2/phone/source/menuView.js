@@ -110,12 +110,12 @@ enyo.kind({
 	},
 	load: function(){
 		this.date = storage.dateStringToDate(this.dateString);
-		this.setHeader();
 		this.$.menuList.setLoading(true);
 		storage.day(this.date, true, function(json, dateStr){
 			this.$.menuList.menu = json;
 			this.$.menuList.load();
 		}.bind(this));
+		this.setHeader();
 	}
 });
 
