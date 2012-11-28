@@ -4,14 +4,15 @@ set -x
 set -u
 
 path="../../enyo2/phone";
-
+build="$path/deploy/phone";
+target="assets/www";
 # build enyo
-rm -r $path/deploy/*
-cd $path/tools
-./deploy.sh
+rm -r $build
+cd $path
+tools/deploy.sh
 cd -
-rm -r assets/www
-mv $path/deploy/* assets/www/
+rm -r $target
+mv $build $target
 cp cordova-2.2.0.js assets/www/
 
 # cordova/BOOM
