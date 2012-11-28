@@ -5,16 +5,16 @@
 set -u
 set -x
 
-path=../../../enyo2/tablet
+path=../../enyo2/tablet
 
 # clear old builds
 rm -r build build.zip
 
-rm -r $path/deploy/*
-cd $path/tools
-./deploy.sh
+rm -r $path/deploy/tablet
+cd $path
+tools/deploy.sh
 cd -
-mv $path/deploy/* build
+mv $path/deploy/tablet build
 cp -r icon.png build
 
 cd build

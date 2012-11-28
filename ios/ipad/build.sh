@@ -11,11 +11,11 @@ id=137859
 # clear old builds
 rm -r build build.zip
 
-rm -r ../../enyo2/tablet/deploy/*
-cd ../../enyo2/tablet/tools
-./deploy.sh
+rm -r ../../enyo2/tablet/deploy/tablet
+cd ../../enyo2/tablet
+./tools/deploy.sh
 cd -
-mv ../../enyo2/tablet/deploy/* build
+mv ../../enyo2/tablet/deploy/tablet build
 cp -r config.xml icons splash build
 
 cd build

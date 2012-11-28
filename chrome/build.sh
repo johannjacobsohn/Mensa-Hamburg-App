@@ -7,13 +7,13 @@ set -x # verbose
 # clear old builds
 set +e
 rm -r build
-rm -r ../enyo2/tablet/deploy/*
+rm -r ../enyo2/tablet/deploy/tablet
 set -e
 
-cd ../enyo2/tablet/tools
-./deploy.sh
+cd ../enyo2/tablet
+tools/deploy.sh
 cd -
-mv ../enyo2/tablet/deploy/* build
+mv ../enyo2/tablet/deploy/tablet build
 cp -L manifest.json icon-16.png icon-48.png icon-128.png build
 
 chromium-browser --pack-extension=build --pack-extension-key=../keys/chrome/chrome.pem
