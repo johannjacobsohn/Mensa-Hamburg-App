@@ -13,7 +13,6 @@
 	"$lib/layout",
 	"$lib/ToggleBar",
 	"$lib/SelectorBar",
-	"PeekCollapsingArranger.js",
 
 	/* Shared with Phone */
 	"kinds/menuItem",

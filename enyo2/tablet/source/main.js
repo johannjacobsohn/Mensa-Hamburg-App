@@ -2,9 +2,10 @@ enyo.kind({
 	name : "main",
 	kind : "Panels",
 	classes: "enyo-unselectable enyo-fit panels",
-	arrangerKind: "PeekCollapsingArranger",
+	arrangerKind: "CollapsingArranger",
 	narrowFit: false,
 //	realtimeFit: true,
+	peekWidth: 20,
 	published: {
 		activePanels : JSON.parse(data.get("activePanels") || '{\"date\":true,\"mensa\":true,\"name\":true,\"additives\":false,\"properties\":false}')
 	},
