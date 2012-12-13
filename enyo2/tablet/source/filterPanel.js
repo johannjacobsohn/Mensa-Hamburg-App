@@ -45,6 +45,7 @@ enyo.kind({
 			this.$.list.setCount(this.data.length);
 			setTimeout( this.$.list.refresh.bind(this.$.list), 1 );
 		}.bind(this));
+		return this;
 	},
 	setupItem: function(inSender, inEvent) {
 		var i = inEvent.index, r = this.data[i], item = this.$.item;
