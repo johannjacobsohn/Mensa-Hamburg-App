@@ -538,7 +538,7 @@ var storage = (function(){ // its a trap!
 
 					// load and parse URL with correct week number
 					// @TODO: change to urls.mensen
-					url = urls.mensenWeek[mensa].replace(/\{\{week\}\}/, week);
+					url = urls.mensenWeek[mensa].replace(" ", "")+week;
 
 					// Trigger AJAX-Call
 					// @TODO: remove additional_args and use bind instead
@@ -557,7 +557,7 @@ var storage = (function(){ // its a trap!
 			var week = additional_args.week;
 			
 			// parse HTML
-			var newWeekMenu = parseMensaHTML(resp, mensa, week);
+			var newWeekMenu = JSON.parse(resp || "[]");
 
 			// mark as cached only if new dishes where found
 			// data has changed!
