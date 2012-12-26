@@ -1,2 +1,2 @@
 #!/bin/bash
-forever nodemon --exitcrash server.js
+forever -e error.log -o output.log server.js
