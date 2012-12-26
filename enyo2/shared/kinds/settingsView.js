@@ -45,8 +45,8 @@ enyo.kind({
 			// Reload Data
 			storage.cleanData();
 			
-			// 
-			changed = true
+			// set changed to true so listeners to onSettingsChange can reload
+			changed = true;
 		}
 		// send signal that we're done here
 		enyo.Signals.send("onSettingsChange", {changed: changed});

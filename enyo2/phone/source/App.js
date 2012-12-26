@@ -49,7 +49,7 @@ enyo.kind({
 				]}
 			]}
 		]},
-		{ name: "popup", kind: "onyx.Popup", name: "introPopup", centered: true, modal: true, floating: true, style : "margin: 10px", content: info.notConfText },
+		{ kind: "onyx.Popup", name: "introPopup", centered: true, modal: true, floating: true, style : "margin: 10px", content: info.notConfText },
 		{ name: "newVersionPopup", style: "background: #eee;color: black; width: 300px", kind: "onyx.Popup", centered: true, floating: true, scrim: true, components: [
 			{content: info.onUpdateTitel, classes: "popup-header"},
 			{content: info.onUpdateText, classes: "popup-content"},
