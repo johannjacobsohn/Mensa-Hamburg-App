@@ -3,6 +3,8 @@
  *
  * @class urls
 */
+/*jshint node:true*/
+"use strict";
 (function(){
 	var baselink = "http://speiseplan.studierendenwerk-hamburg.de/index.php/de/";
 	var urls = {

@@ -1,12 +1,14 @@
 /**
  * 
- * 
+ * @TODO document
  * @TODO add parser for wedel
  * 
  */
+/*jshint node:true*/
+"use strict";
 ;(function(){
 var cheerio = require("cheerio");
-var parser = {}
+var parser = {};
 parser.studhh = function(body, mensa, week){
 	var weekMenu = [];
 	var $ = cheerio.load(body);	
@@ -15,7 +17,6 @@ parser.studhh = function(body, mensa, week){
 	var germanStartdate = datefield.split("-")[0].trim();
 	var germanStartdateArr = germanStartdate.split(".");
 	var startdate = new Date(germanStartdateArr[2],(germanStartdateArr[1]-1),germanStartdateArr[0]);
-
 	$("table").first().find("tr").each(function(){
 		var $tr = $(this);
 		// Parse Dishname
@@ -23,7 +24,11 @@ parser.studhh = function(body, mensa, week){
 		$tr.find("td").each(function(i){
 			var $td = $(this);
 			$td.find("p").each(function(){
-				var $pi = $(this);
+				var $pi = $(this), l = 0, properties = [], additives = [],
+				    tempObj = {}, dish = "", imgs = [], spans = [], title = "",
+				    price = "", studPrice = "", normalPrice = "",
+				    date = new Date(startdate.valueOf() + (i) * 24 * 60 * 60 * 1000),
+				    dateString = date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getDate();
 				
 				// parse price
 				var priceEl = $pi.find(".price");
@@ -40,8 +45,6 @@ parser.studhh = function(body, mensa, week){
 				normalPrice = price[1].replace(/[^0-9,]/g,"");
 
 				// Parse Properties
-				properties = [];
-				tempObj = {};
 				imgs = $pi.find("img");
 				for ( l = 0; l < imgs.length; l++ ) {
 					title = $(imgs[l]).attr("title");
@@ -55,9 +58,7 @@ parser.studhh = function(body, mensa, week){
 				}
 
 				// Parse Additives
-				additives = [];
-				tempObj = {};
-				spans = $pi.find("span"); // no getElementsByClassName for IE
+				spans = $pi.find("span");
 				for ( l = 0; l < spans.length; l++ ) {
 					if($(spans[l]).hasClass("tooltip")) {
 						title = $(spans[l]).attr("title");
@@ -77,9 +78,6 @@ parser.studhh = function(body, mensa, week){
 				dish = dish.replace(/\(([0-9.]+,?[\s]*)*\)/g, " "); // remove additives and replace with an empty space in case the preceding an following words are not separated
 				dish = dish.replace(/[\s]+,[\s]*/g, ", "); // fix ugly comma placement, eg. "a ,b"
 				dish = dish.replace(/[\s]+/g, " ").trim(); // remove exessive whitespaces
-				console.log("i", i)
-				date = new Date(startdate.valueOf() + (i) * 24 * 60 * 60 * 1000);
-				dateString = date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getDate();
 
 				weekMenu.push({
 					mensa       : mensa,
@@ -96,7 +94,7 @@ parser.studhh = function(body, mensa, week){
 		});
 	});
 	return weekMenu;
-}
+};
 
 exports.parser = parser;
 })();
