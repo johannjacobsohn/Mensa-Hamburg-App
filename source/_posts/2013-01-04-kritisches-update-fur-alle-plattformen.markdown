@@ -6,6 +6,6 @@ comments: true
 categories: ios android webos chrome blackberry
 ---
 
-Leider ist ein fehler im Kern der Mensa App aufgetaucht der verhindert, dass 
+Leider ist ein Fehler im Kern der Mensa App aufgetaucht der verhindert, dass 
 sie die korrekten Daten bekommt. Daher funktioniert sie im Moment nicht. 
 Dieses Update behebt das Problem und bringt weitere kleine Verbesserungen.
