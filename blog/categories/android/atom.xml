@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: android | Mensa Hamburg App]]></title>
-  <link href="http://johannjacobsohn.github.com/Mensa-Hamburg-App/blog/categories/android/atom.xml" rel="self"/>
-  <link href="http://johannjacobsohn.github.com/Mensa-Hamburg-App/"/>
-  <updated>2013-01-03T14:11:27+01:00</updated>
-  <id>http://johannjacobsohn.github.com/Mensa-Hamburg-App/</id>
+  <link href="http://mensaapp.org/blog/categories/android/atom.xml" rel="self"/>
+  <link href="http://mensaapp.org/"/>
+  <updated>2013-01-04T22:55:25+01:00</updated>
+  <id>http://mensaapp.org/</id>
   <author>
     <name><![CDATA[Johann Jacobsohn]]></name>
     
@@ -14,10 +14,21 @@
 
   
   <entry>
+    <title type="html"><![CDATA[Kritisches Update für alle Plattformen]]></title>
+    <link href="http://mensaapp.org/blog/2013/kritisches-update-fur-alle-plattformen/"/>
+    <updated>2013-01-04T17:53:00+01:00</updated>
+    <id>http://mensaapp.org/blog/2013/kritisches-update-fur-alle-plattformen</id>
+    <content type="html"><![CDATA[<p>Leider ist ein fehler im Kern der Mensa App aufgetaucht der verhindert, dass 
+sie die korrekten Daten bekommt. Daher funktioniert sie im Moment nicht. 
+Dieses Update behebt das Problem und bringt weitere kleine Verbesserungen.</p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Neue Version fürs Tablet]]></title>
-    <link href="http://johannjacobsohn.github.com/Mensa-Hamburg-App/blog/2012/neue-version-furs-tablet/"/>
+    <link href="http://mensaapp.org/blog/2012/neue-version-furs-tablet/"/>
     <updated>2012-11-25T18:03:00+01:00</updated>
-    <id>http://johannjacobsohn.github.com/Mensa-Hamburg-App/blog/2012/neue-version-furs-tablet</id>
+    <id>http://mensaapp.org/blog/2012/neue-version-furs-tablet</id>
     <content type="html"><![CDATA[<figure class="left">
 	<a href="blog/categories/android/atom.xml">
 		<img src="/assets/release/tablet-2.0/android/ui-small.png">
@@ -47,9 +58,9 @@ nicht veröffentlicht), und werden sich dadurch vermutlich noch etwas verzögern
   
   <entry>
     <title type="html"><![CDATA[Neue Phone-Version für Android (2.1)]]></title>
-    <link href="http://johannjacobsohn.github.com/Mensa-Hamburg-App/blog/2012/neue-phone-version/"/>
+    <link href="http://mensaapp.org/blog/2012/neue-phone-version/"/>
     <updated>2012-11-21T12:46:00+01:00</updated>
-    <id>http://johannjacobsohn.github.com/Mensa-Hamburg-App/blog/2012/neue-phone-version</id>
+    <id>http://mensaapp.org/blog/2012/neue-phone-version</id>
     <content type="html"><![CDATA[<figure class="left">
 	<img src="/assets/release/phone-2.1/android/ui-small.png" title="" >
 </figure>
@@ -163,9 +174,9 @@ besser funktionieren würde? Schreib eine Email an die Entwickler unter
   
   <entry>
     <title type="html"><![CDATA[Neue Version für Android Tablets (2.0)]]></title>
-    <link href="http://johannjacobsohn.github.com/Mensa-Hamburg-App/blog/2012/neue-version-fur-android-tablets/"/>
+    <link href="http://mensaapp.org/blog/2012/neue-version-fur-android-tablets/"/>
     <updated>2012-11-17T20:46:00+01:00</updated>
-    <id>http://johannjacobsohn.github.com/Mensa-Hamburg-App/blog/2012/neue-version-fur-android-tablets</id>
+    <id>http://mensaapp.org/blog/2012/neue-version-fur-android-tablets</id>
     <content type="html"><![CDATA[<figure class="left">
 	<a href="blog/categories/android/atom.xml">
 		<img src="/assets/release/tablet-2.0/android/ui-small.png">

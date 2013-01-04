@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: tablet-2.0 | Mensa Hamburg App]]></title>
-  <link href="http://johannjacobsohn.github.com/Mensa-Hamburg-App/blog/categories/tablet-2-0/atom.xml" rel="self"/>
-  <link href="http://johannjacobsohn.github.com/Mensa-Hamburg-App/"/>
-  <updated>2013-01-03T14:11:27+01:00</updated>
-  <id>http://johannjacobsohn.github.com/Mensa-Hamburg-App/</id>
+  <link href="http://mensaapp.org/blog/categories/tablet-2-0/atom.xml" rel="self"/>
+  <link href="http://mensaapp.org/"/>
+  <updated>2013-01-04T22:55:25+01:00</updated>
+  <id>http://mensaapp.org/</id>
   <author>
     <name><![CDATA[Johann Jacobsohn]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Neue Version fürs Tablet]]></title>
-    <link href="http://johannjacobsohn.github.com/Mensa-Hamburg-App/blog/2012/neue-version-furs-tablet/"/>
+    <link href="http://mensaapp.org/blog/2012/neue-version-furs-tablet/"/>
     <updated>2012-11-25T18:03:00+01:00</updated>
-    <id>http://johannjacobsohn.github.com/Mensa-Hamburg-App/blog/2012/neue-version-furs-tablet</id>
+    <id>http://mensaapp.org/blog/2012/neue-version-furs-tablet</id>
     <content type="html"><![CDATA[<figure class="left">
 	<a href="blog/categories/tablet-2-0/atom.xml">
 		<img src="/assets/release/tablet-2.0/android/ui-small.png">
@@ -47,9 +47,9 @@ nicht veröffentlicht), und werden sich dadurch vermutlich noch etwas verzögern
   
   <entry>
     <title type="html"><![CDATA[Neue Version fürs iPad (2.0)]]></title>
-    <link href="http://johannjacobsohn.github.com/Mensa-Hamburg-App/blog/2012/neue-version-furs-ipad/"/>
+    <link href="http://mensaapp.org/blog/2012/neue-version-furs-ipad/"/>
     <updated>2012-11-18T21:49:00+01:00</updated>
-    <id>http://johannjacobsohn.github.com/Mensa-Hamburg-App/blog/2012/neue-version-furs-ipad</id>
+    <id>http://mensaapp.org/blog/2012/neue-version-furs-ipad</id>
     <content type="html"><![CDATA[<figure class="left">
 	<a href="blog/categories/tablet-2-0/atom.xml">
 		<img src="/assets/release/tablet-2.0/ipad/ui-small.png">
@@ -178,9 +178,9 @@ besser funktionieren würde? Schreib eine Email an die Entwickler unter
   
   <entry>
     <title type="html"><![CDATA[Neue Version für Android Tablets (2.0)]]></title>
-    <link href="http://johannjacobsohn.github.com/Mensa-Hamburg-App/blog/2012/neue-version-fur-android-tablets/"/>
+    <link href="http://mensaapp.org/blog/2012/neue-version-fur-android-tablets/"/>
     <updated>2012-11-17T20:46:00+01:00</updated>
-    <id>http://johannjacobsohn.github.com/Mensa-Hamburg-App/blog/2012/neue-version-fur-android-tablets</id>
+    <id>http://mensaapp.org/blog/2012/neue-version-fur-android-tablets</id>
     <content type="html"><![CDATA[<figure class="left">
 	<a href="blog/categories/tablet-2-0/atom.xml">
 		<img src="/assets/release/tablet-2.0/android/ui-small.png">
@@ -312,9 +312,9 @@ besser funktionieren würde? Schreib eine Email an die Entwickler unter
   
   <entry>
     <title type="html"><![CDATA[Neue Version für Chrome Web Store]]></title>
-    <link href="http://johannjacobsohn.github.com/Mensa-Hamburg-App/blog/2012/neue-version-fur-chrome-web-store/"/>
+    <link href="http://mensaapp.org/blog/2012/neue-version-fur-chrome-web-store/"/>
     <updated>2012-11-14T20:47:00+01:00</updated>
-    <id>http://johannjacobsohn.github.com/Mensa-Hamburg-App/blog/2012/neue-version-fur-chrome-web-store</id>
+    <id>http://mensaapp.org/blog/2012/neue-version-fur-chrome-web-store</id>
     <content type="html"><![CDATA[<figure class="left">
 	<a href="blog/categories/tablet-2-0/atom.xml">
 		<img src="/assets/release/tablet-2.0/chrome/ui-small.png">
@@ -442,9 +442,9 @@ besser funktionieren würde? Schreib eine Email an die Entwickler unter
   
   <entry>
     <title type="html"><![CDATA[Neue Version fürs HP Touchpad (2.0)]]></title>
-    <link href="http://johannjacobsohn.github.com/Mensa-Hamburg-App/blog/2012/neue-version-furs-hp-touchpad/"/>
+    <link href="http://mensaapp.org/blog/2012/neue-version-furs-hp-touchpad/"/>
     <updated>2012-11-11T22:53:00+01:00</updated>
-    <id>http://johannjacobsohn.github.com/Mensa-Hamburg-App/blog/2012/neue-version-furs-hp-touchpad</id>
+    <id>http://mensaapp.org/blog/2012/neue-version-furs-hp-touchpad</id>
     <content type="html"><![CDATA[<figure class="left">
 	<a href="blog/categories/tablet-2-0/atom.xml">
 		<img src="/assets/release/tablet-2.0/touchpad/ui-small.png">

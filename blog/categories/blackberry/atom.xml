@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: blackberry | Mensa Hamburg App]]></title>
+  <link href="http://mensaapp.org/blog/categories/blackberry/atom.xml" rel="self"/>
+  <link href="http://mensaapp.org/"/>
+  <updated>2013-01-04T22:55:25+01:00</updated>
+  <id>http://mensaapp.org/</id>
+  <author>
+    <name><![CDATA[Johann Jacobsohn]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Kritisches Update für alle Plattformen]]></title>
+    <link href="http://mensaapp.org/blog/2013/kritisches-update-fur-alle-plattformen/"/>
+    <updated>2013-01-04T17:53:00+01:00</updated>
+    <id>http://mensaapp.org/blog/2013/kritisches-update-fur-alle-plattformen</id>
+    <content type="html"><![CDATA[<p>Leider ist ein fehler im Kern der Mensa App aufgetaucht der verhindert, dass 
+sie die korrekten Daten bekommt. Daher funktioniert sie im Moment nicht. 
+Dieses Update behebt das Problem und bringt weitere kleine Verbesserungen.</p>
+]]></content>
+  </entry>
+  
+</feed>
