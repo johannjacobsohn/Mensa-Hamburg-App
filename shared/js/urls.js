@@ -4,7 +4,7 @@
  * @class urls
 */
 (function(){
-	var baselink = "http://vserver3099.vserver-on.de:8080/";
+	var baselink = "http://menu.mensaapp.org/";
 	urls = {
 		mensenWeek : {},
 		mensen : [
