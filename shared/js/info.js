@@ -6,7 +6,7 @@
 info = {
 	appName    : "Mensa-Hamburg App",
 	appDesc    : "Dies ist eine Open Source App (auf github) für viele Betriebssysteme von Studenten für Studenten!\n Hast Du einen Fehler gefunden oder Verbesserungsvorschläge? Schreib an die Entwickler oder schau auf die Projektseite. Dein Feedback ist immer Willkommen!",
-	appURL     : "http://johannjacobsohn.github.com/Mensa-Hamburg-App/",
+	appURL     : "http://mensaapp.org/",
 	appEmail   : "mensa-hamburg-app@directbox.com",
 
 	onUpdateTitel : "Neue Version",
