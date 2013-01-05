@@ -538,7 +538,7 @@ var storage = (function(){ // its a trap!
 
 					// load and parse URL with correct week number
 					// @TODO: change to urls.mensen
-					url = urls.mensenWeek[mensa].replace(" ", "")+week;
+					url = urls.mensenWeek[mensa].replace("{{week}}", week);
 
 					// Trigger AJAX-Call
 					// @TODO: remove additional_args and use bind instead

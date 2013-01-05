@@ -109,11 +109,13 @@
 			},
 			{
 				name: "Studierendenhaus",
+				url:  baselink + "Studierendenhaus/{{week}}/",
 				address: "Von-Melle-Park 2, 20146 Hamburg",
 				open: "Montag - Donnerstag: 11:00 - 15:00 Uhr, Freitag: 11:00 - 14:30 Uhr"
 			},
 			{
 				name: "Cafe CFEL",
+				url:  baselink + "CafeCFEL/{{week}}/",
 				address: "Notkestrasse 85, 22607 Hamburg",
 				open: "Montag - Freitag: 08:00 - 15:00 Uhr"
 			}
@@ -124,7 +126,6 @@
 	 * copy urls.mensen into legacy urls.mensenWeek
 	 */
 	urls.mensen.forEach(function( mensa ){
-		mensa.url = baselink + mensa.name + "/";
 		urls.mensenWeek[ mensa.name ] = mensa.url;
 	});
 
