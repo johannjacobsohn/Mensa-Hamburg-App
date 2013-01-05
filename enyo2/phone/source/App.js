@@ -59,7 +59,11 @@ enyo.kind({
 		{ kind: enyo.Signals, onSettingsChange: "openMenu", onRequestMenu: "openMenu", onRequestOpen: "open"}
 	],
 	gotoNewVersion: function(){
-		location.href = "http://johannjacobsohn.github.com/Mensa-Hamburg-App/blog/2012/neue-phone-version/";
+		if (enyo.platform.android || enyo.platform.androidChrome) {
+			location.href = info.releaseNotes.androidPhone;
+		} else if (enyo.platform.ios) {
+			location.href = info.releaseNotes.iphone;
+		}
 	},
 	closePopup: function(){
 		this.$.introPopup.setShowing(false);

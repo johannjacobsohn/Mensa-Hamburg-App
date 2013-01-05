@@ -13,5 +13,15 @@ info = {
 	onUpdateText  : "Yay, Du hast eine neue Version der Mensa App! Für mehr Informationen gibt es eine Seite mit einer Übersicht über die letzten Änderungen und weiteren Informationen:",
 
 	notConfTitle : "Noch nicht konfiguriert",
-	notConfText  : "Uh, scheinbar ist hier noch nichts konfiguriert, daher werden *keine* Mensen geladen... Du musst welche aktivieren um etwas zu sehen."
+	notConfText  : "Uh, scheinbar ist hier noch nichts konfiguriert, daher werden *keine* Mensen geladen... Du musst welche aktivieren um etwas zu sehen.",
+	// contains an url to the latest release notes
+	releaseNotes: {
+		mojo          : "http://mensaapp.org/blog/2013/kritisches-update-fur-alle-plattformen/",
+		touchpad      : "http://mensaapp.org/blog/2013/kritisches-update-fur-alle-plattformen/",
+		playbook      : "http://mensaapp.org/blog/2013/kritisches-update-fur-alle-plattformen/",
+		ipad          : "http://mensaapp.org/blog/2013/kritisches-update-fur-alle-plattformen/",
+		iphone        : "http://mensaapp.org/blog/2013/kritisches-update-fur-alle-plattformen/",
+		androidPhone  : "http://mensaapp.org/blog/2013/kritisches-update-fur-alle-plattformen/",
+		androidTablet : "http://mensaapp.org/blog/2013/kritisches-update-fur-alle-plattformen/"
+	}
 };
