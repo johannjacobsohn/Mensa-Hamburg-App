@@ -563,7 +563,7 @@ var storage = (function(){ // its a trap!
 			// data has changed!
 			if( newWeekMenu && newWeekMenu.length > 0 ){
 				// splice menu together
-				weekMenu = weekMenu.filter(function( item ){ return !(parseInt(item.week, 10) === week && item.mensa === mensa); });
+				weekMenu = weekMenu.filter(function( item ){ return (parseInt(item.week, 10) !== week || item.mensa !== mensa); });
 				weekMenu = weekMenu.concat( newWeekMenu ); 
 
 				loadedMensen[mensa][week] = true;
