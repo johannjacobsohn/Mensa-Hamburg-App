@@ -97,7 +97,7 @@ enyo.kind({
 		}.bind(this), 1);
 	},
 	showNotConfigured : function(){
-		var popup = this.$.popup;
+		var popup = this.$.introPopup;
 		popup.show();
 		popup.applyStyle("left", 0);
 	},
