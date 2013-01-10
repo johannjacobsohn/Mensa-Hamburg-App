@@ -1,0 +1,51 @@
+CACHE MANIFEST
+# v 1.0
+
+index.html
+assets/filter.png
+assets/info.png
+assets/menu-icon-back.png
+assets/menu-icon-forward.png
+assets/menu.png
+assets/settings.png
+assets/spinner.gif
+assets/icn-share.png
+assets/icon-email.png
+assets/shadow.png
+build/app.css
+build/app.js
+build/enyo.css
+build/enyo.js
+lib/Carousels/newness.Carousels.js
+lib/Carousels/package.js
+lib/onyx/images/checkbox.png
+lib/onyx/images/grabbutton.png
+lib/onyx/images/gradient-invert.png
+lib/onyx/images/gradient.png
+lib/onyx/images/more.png
+lib/onyx/images/progress-button-cancel.png
+lib/onyx/images/search-input-cancel.png
+lib/onyx/images/search-input-search.png
+lib/onyx/images/slider-handle.png
+lib/onyx/images/spinner-dark.gif
+lib/onyx/images/spinner-light.gif
+lib/SelectorBar/assets/menu-arrow-light.png
+lib/SelectorBar/assets/menu-arrow.png
+lib/SelectorBar/package.js
+lib/SelectorBar/SelectorBar.css
+lib/SelectorBar/SelectorBar.js
+lib/ToggleBar/package.js
+lib/ToggleBar/ToggleBar.css
+lib/ToggleBar/ToggleBar.js
+
+# apple:
+64x64.png
+72x72.png
+144x144.png
+landscape-ipad.jpg
+portrait-ipad.png
+
+# importent for xhr
+NETWORK:
+*
+
