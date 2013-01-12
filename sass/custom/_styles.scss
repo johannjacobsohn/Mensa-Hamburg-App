@@ -150,3 +150,19 @@ article h2{
 .footnotes{
 	font-size: .8em;
 }
+
+table{
+	width: 100%!important;
+	border-collapse: separate;
+}
+td{
+	padding: 4px;
+	border-bottom: 1px solid #ccc;
+	border-top: 1px solid #fff;
+}
+tr:first-child td{
+	border-top: none;
+}
+tr:last-child td{
+	border-bottom: none;
+}
