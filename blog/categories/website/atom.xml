@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: website | Mensa Hamburg App]]></title>
+  <link href="http://mensaapp.org/blog/categories/website/atom.xml" rel="self"/>
+  <link href="http://mensaapp.org/"/>
+  <updated>2013-01-12T14:13:12+01:00</updated>
+  <id>http://mensaapp.org/</id>
+  <author>
+    <name><![CDATA[Johann Jacobsohn]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Neue Domain: mensaapp.org]]></title>
+    <link href="http://mensaapp.org/blog/2013/neue-domain-mensaapp-dot-org/"/>
+    <updated>2013-01-12T02:05:00+01:00</updated>
+    <id>http://mensaapp.org/blog/2013/neue-domain-mensaapp-dot-org</id>
+    <content type="html"><![CDATA[<p>Nach langer Zeit auf der alten <a href="http://pages.github.com/">github:pages</a>-Domain hat die Mensa App 
+endlich ein neues Zuhause auf <a href="http://pages.github.com/">mensaapp.org</a> gefunden: kürzer, besser 
+zu merken und zukunftssicher (weil unabhängig von Technologie und 
+Organisation). Hooray!</p>
+
+]]></content>
+  </entry>
+  
+</feed>

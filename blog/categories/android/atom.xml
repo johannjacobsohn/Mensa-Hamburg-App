@@ -4,7 +4,7 @@
   <title><![CDATA[Category: android | Mensa Hamburg App]]></title>
   <link href="http://mensaapp.org/blog/categories/android/atom.xml" rel="self"/>
   <link href="http://mensaapp.org/"/>
-  <updated>2013-01-05T01:11:43+01:00</updated>
+  <updated>2013-01-12T14:13:12+01:00</updated>
   <id>http://mensaapp.org/</id>
   <author>
     <name><![CDATA[Johann Jacobsohn]]></name>
@@ -21,6 +21,41 @@
     <content type="html"><![CDATA[<p>Leider ist ein Fehler im Kern der Mensa App aufgetaucht der verhindert, dass 
 sie die korrekten Daten bekommt. Daher funktioniert sie im Moment nicht. 
 Dieses Update behebt das Problem und bringt weitere kleine Verbesserungen.</p>
+
+<p><em>Update</em>:</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>webOS-Telefone</td>
+      <td>Live im App Catalog, wird als Update ausgeliefert</td>
+    </tr>
+    <tr>
+      <td>webOS-Touchpad</td>
+      <td>Live im App Catalog, wird als Update ausgeliefert</td>
+    </tr>
+    <tr>
+      <td>Android/Phone</td>
+      <td>Live im Play Store, wird als Update ausgeliefert</td>
+    </tr>
+    <tr>
+      <td>Android/Tablet</td>
+      <td>Live im Play Store, wird als Update ausgeliefert</td>
+    </tr>
+    <tr>
+      <td>iPhone</td>
+      <td>in einer Wochen</td>
+    </tr>
+    <tr>
+      <td>iPad</td>
+      <td>in einer Wochen</td>
+    </tr>
+    <tr>
+      <td>Blackberry Playbook</td>
+      <td>in zwei Wochen</td>
+    </tr>
+  </tbody>
+</table>
 ]]></content>
   </entry>
   

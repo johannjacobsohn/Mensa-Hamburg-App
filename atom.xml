@@ -4,7 +4,7 @@
   <title><![CDATA[Mensa Hamburg App]]></title>
   <link href="http://mensaapp.org/atom.xml" rel="self"/>
   <link href="http://mensaapp.org/"/>
-  <updated>2013-01-05T01:11:43+01:00</updated>
+  <updated>2013-01-12T14:13:12+01:00</updated>
   <id>http://mensaapp.org/</id>
   <author>
     <name><![CDATA[Johann Jacobsohn]]></name>
@@ -14,6 +14,19 @@
 
   
   <entry>
+    <title type="html"><![CDATA[Neue Domain: mensaapp.org]]></title>
+    <link href="http://mensaapp.org/blog/2013/neue-domain-mensaapp-dot-org/"/>
+    <updated>2013-01-12T02:05:00+01:00</updated>
+    <id>http://mensaapp.org/blog/2013/neue-domain-mensaapp-dot-org</id>
+    <content type="html"><![CDATA[<p>Nach langer Zeit auf der alten <a href="http://pages.github.com/">github:pages</a>-Domain hat die Mensa App 
+endlich ein neues Zuhause auf <a href="http://pages.github.com/">mensaapp.org</a> gefunden: kürzer, besser 
+zu merken und zukunftssicher (weil unabhängig von Technologie und 
+Organisation). Hooray!</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Kritisches Update für alle Plattformen]]></title>
     <link href="http://mensaapp.org/blog/2013/kritisches-update-fur-alle-plattformen/"/>
     <updated>2013-01-04T17:53:00+01:00</updated>
@@ -21,6 +34,41 @@
     <content type="html"><![CDATA[<p>Leider ist ein Fehler im Kern der Mensa App aufgetaucht der verhindert, dass 
 sie die korrekten Daten bekommt. Daher funktioniert sie im Moment nicht. 
 Dieses Update behebt das Problem und bringt weitere kleine Verbesserungen.</p>
+
+<p><em>Update</em>:</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>webOS-Telefone</td>
+      <td>Live im App Catalog, wird als Update ausgeliefert</td>
+    </tr>
+    <tr>
+      <td>webOS-Touchpad</td>
+      <td>Live im App Catalog, wird als Update ausgeliefert</td>
+    </tr>
+    <tr>
+      <td>Android/Phone</td>
+      <td>Live im Play Store, wird als Update ausgeliefert</td>
+    </tr>
+    <tr>
+      <td>Android/Tablet</td>
+      <td>Live im Play Store, wird als Update ausgeliefert</td>
+    </tr>
+    <tr>
+      <td>iPhone</td>
+      <td>in einer Wochen</td>
+    </tr>
+    <tr>
+      <td>iPad</td>
+      <td>in einer Wochen</td>
+    </tr>
+    <tr>
+      <td>Blackberry Playbook</td>
+      <td>in zwei Wochen</td>
+    </tr>
+  </tbody>
+</table>
 ]]></content>
   </entry>
   
