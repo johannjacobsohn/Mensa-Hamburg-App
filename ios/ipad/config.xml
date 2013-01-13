@@ -2,7 +2,7 @@
 	<widget xmlns = "http://www.w3.org/ns/widgets"
 		xmlns:gap = "http://phonegap.com/ns/1.0"
 		id        = "jjacobsohn.mensaapp.ios.ipad.MensaHamburgAppTablet"
-		version   = "2.0.1">
+		version   = "2.0.2">
 
 	<name>Mensa Hamburg HD</name>
 
@@ -14,7 +14,7 @@
 		Johann Jacobsohn
 	</author>
 	
-	<preference name="phonegap-version" value="2.1.0" />
+	<preference name="phonegap-version" value="2.2.0" />
 
 	<!-- please note that default means both landscape and portrait are enabled. If you want to use each platform's default settings (usually portrait-only), just remove this tag from your config.xml -->
 	<preference name="orientation" value="default" />
@@ -48,6 +48,7 @@ Default-Portrait~ipad.png (768x1024 pixels)
 		permission on your app, which PhoneGap requires. -->
 	<preference name="permissions" value="none"/>
 	<access origin="http://127.0.0.1*"/>
-	<access origin="http://speiseplan.studierendenwerk-hamburg.de"/>
+	<access origin="http://menu.mensaapp.org"/>
+	<access origin="http://mensaapp.org" browserOnly="true"/>
 	<access origin="http://johannjacobsohn.github.com" browserOnly="true" />
 </widget>
