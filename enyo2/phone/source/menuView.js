@@ -7,7 +7,7 @@ enyo.kind({
 	name: "menuView",
 	fit: true,
 	components: [
-		{ name: "carousel", kind: "newness.Carousel", onGetLeft: "getLeft", onGetRight: "getRight", onTransitionFinish: "transitionFinish", style: "height: 100%;"},
+		{ name: "carousel", kind: "newness.Carousel", onGetLeft: "getLeft", onGetRight: "getRight", style: "height: 100%;"},
 		{ kind: enyo.Signals, onGoToToday: "today", onGoToYesterday: "yesterday", onGoToTomorrow: "tomorrow"}
 	],
 	menu : [],
