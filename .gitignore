@@ -14,3 +14,5 @@ enyo2/externals/build
 enyo2/tablet/build
 experimental-plattforms/firefox/build
 server/data
+webapp/tablet
+webapp/phone
