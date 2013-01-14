@@ -94,6 +94,7 @@ body > header {
 
 figure{
 	text-align: center;
+	margin-bottom: 2em;
 }
 figure.left{
 	float: left;
@@ -104,6 +105,7 @@ figure.right{
 	float: right;
 	margin-left: .5em;
 }
+
 
 figcaption{
 	font-size: 80%;
@@ -165,4 +167,14 @@ tr:first-child td{
 }
 tr:last-child td{
 	border-bottom: none;
+}
+
+dl{
+	margin: 1em 0;
+}
+dt{
+	font-weight: bold;
+}
+dd{
+	margin-left: 1em;
 }
