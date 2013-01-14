@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ios | Mensa Hamburg App]]></title>
   <link href="http://mensaapp.org/blog/categories/ios/atom.xml" rel="self"/>
   <link href="http://mensaapp.org/"/>
-  <updated>2013-01-12T14:19:27+01:00</updated>
+  <updated>2013-01-14T15:16:46+01:00</updated>
   <id>http://mensaapp.org/</id>
   <author>
     <name><![CDATA[Johann Jacobsohn]]></name>
@@ -21,6 +21,11 @@
     <content type="html"><![CDATA[<p>Leider ist ein Fehler im Kern der Mensa App aufgetaucht der verhindert, dass 
 sie die korrekten Daten bekommt. Daher funktioniert sie im Moment nicht. 
 Dieses Update behebt das Problem und bringt weitere kleine Verbesserungen.</p>
+
+<p>In der Zwischenzeit (und natürlich auch danach) kann die Webapp unter 
+<a href="http://phone.mensaapp.org">phone.mensaapp.org</a> bzw. 
+<a href="http://tablet.mensaapp.org">tablet.mensaapp.org</a> verwendet werden. Die 
+<a href="/webapp-installieren">Webapp kann auch installiert werden</a>!</p>
 
 <p><em>Update</em>:</p>
 
@@ -44,11 +49,11 @@ Dieses Update behebt das Problem und bringt weitere kleine Verbesserungen.</p>
     </tr>
     <tr>
       <td>iPhone</td>
-      <td>in einer Wochen</td>
+      <td>Bei Apple eingereicht, in den nächsten Tagen live</td>
     </tr>
     <tr>
       <td>iPad</td>
-      <td>in einer Wochen</td>
+      <td>Bei Apple eingereicht, in den nächsten Tagen live</td>
     </tr>
     <tr>
       <td>Blackberry Playbook</td>

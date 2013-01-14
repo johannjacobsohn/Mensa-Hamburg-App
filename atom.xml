@@ -4,7 +4,7 @@
   <title><![CDATA[Mensa Hamburg App]]></title>
   <link href="http://mensaapp.org/atom.xml" rel="self"/>
   <link href="http://mensaapp.org/"/>
-  <updated>2013-01-12T14:19:27+01:00</updated>
+  <updated>2013-01-14T15:16:46+01:00</updated>
   <id>http://mensaapp.org/</id>
   <author>
     <name><![CDATA[Johann Jacobsohn]]></name>
@@ -12,6 +12,33 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Web-Apps]]></title>
+    <link href="http://mensaapp.org/blog/2013/web-apps/"/>
+    <updated>2013-01-12T16:43:00+01:00</updated>
+    <id>http://mensaapp.org/blog/2013/web-apps</id>
+    <content type="html"><![CDATA[<p>Ab sofort steht die Mensa Hamburg App als <a href="https://de.wikipedia.org/wiki/Webapp">Webapp</a> für alle Systeme zur 
+Verfügung, sie läuft auf jedem System das einen Browser hat (Firefox, 
+Chrome, Internet Explorer 8+, Opera, Safari etc). In modernen Browsern muss 
+sie nur einmal aufgerufen werden und liegt danach lokal, braucht als <em>keine</em> 
+Internetverbindung mehr um geladen zu werden. Praktisch für Laptops und 
+Netbooks!</p>
+
+<p>Es gibt sie in zwei Varianten:</p>
+
+<dl>
+  <dt><a href="http://phone.mensaapp.org">phone.mensaapp.org</a></dt>
+  <dd>optimiert für kleine Bildschirme, z.B. von Telefonen</dd>
+  <dt><a href="http://tablet.mensaapp.org">tablet.mensaapp.org</a></dt>
+  <dd>optimiert für größere Bildschirme von Tablets, Net- und Notebooks</dd>
+</dl>
+
+<p>Auf iPhone und Ipad lässt sich die Webapp wie die normale App 
+<a href="http://mensaapp.org/webapp-installieren">installieren</a> und funktioniert dann genauso.</p>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Neue Domain: mensaapp.org]]></title>
@@ -35,6 +62,11 @@ Organisation). Hooray!</p>
 sie die korrekten Daten bekommt. Daher funktioniert sie im Moment nicht. 
 Dieses Update behebt das Problem und bringt weitere kleine Verbesserungen.</p>
 
+<p>In der Zwischenzeit (und natürlich auch danach) kann die Webapp unter 
+<a href="http://phone.mensaapp.org">phone.mensaapp.org</a> bzw. 
+<a href="http://tablet.mensaapp.org">tablet.mensaapp.org</a> verwendet werden. Die 
+<a href="http://mensaapp.org/webapp-installieren">Webapp kann auch installiert werden</a>!</p>
+
 <p><em>Update</em>:</p>
 
 <table>
@@ -57,11 +89,11 @@ Dieses Update behebt das Problem und bringt weitere kleine Verbesserungen.</p>
     </tr>
     <tr>
       <td>iPhone</td>
-      <td>in einer Wochen</td>
+      <td>Bei Apple eingereicht, in den nächsten Tagen live</td>
     </tr>
     <tr>
       <td>iPad</td>
-      <td>in einer Wochen</td>
+      <td>Bei Apple eingereicht, in den nächsten Tagen live</td>
     </tr>
     <tr>
       <td>Blackberry Playbook</td>
