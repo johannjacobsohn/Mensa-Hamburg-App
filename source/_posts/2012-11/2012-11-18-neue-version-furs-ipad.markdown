@@ -134,7 +134,7 @@ Mitmachen
 In diese Version sind einige Anregungen und Vorschläge von Nutzern
 eingeflossen. Vielleicht hast Du ja auch eine Idee, wie die App für Dich
 besser funktionieren würde? Schreib eine Email an die Entwickler unter
-<mensa-hamburg-app@directbox.com> oder hinterlasse einen Kommentar![^1]
+<info@mensaapp.org> oder hinterlasse einen Kommentar![^1]
 
 [^1]: Wenn Du Deinen Namen nicht angeben möchtest kannst Du einfach einen ausgedachten Namen und eine Emailadresse wie test@example.net verwenden.
 

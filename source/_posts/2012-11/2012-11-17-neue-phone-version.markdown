@@ -11,9 +11,9 @@ categories: android android-phone update phone-2.1
 </figure> 
 
 Nach all den Änderungen in der Tablet- und Mojo-Version gibt es auch eine 
-Update für iPhone/iPod sowie Android-Smartphones. Neu ist das swipen von Tag 
-zu Tag, die erheblich ausgebauten Filter, ein neues Icon und deutlich 
-verbesserte Performance.
+Update für Android-Smartphones. Neu ist das swipen von Tag zu Tag, die 
+erheblich ausgebauten Filter, ein neues Icon und deutlich verbesserte 
+Performance.
 
 <!-- more -->
 
@@ -21,7 +21,7 @@ Neues App-Icon
 ---
 <figure class="right">
 	{% img /assets/release/phone-2.1/android/icons.png  %}
-	<figcaption>Unten rechte das neue Logo</figcaption>
+	<figcaption>Unten rechts das neue Logo</figcaption>
 </figure> 
 
 Nach langer Zeit gibt es endlich ein richtiges eigenes Icon. Während das 
@@ -106,7 +106,6 @@ der App erhalten.
 - beim Aktualisieren der App werden nicht mehr alle Einstellungen gelöscht;
 - in den Einstellungen werden zusätzlich zu den Mensanamen auch deren 
 Adressen angezeigt;
-- für iOS > 5 ist das scrollen *erheblich* flüssiger geworden;
 - die Phoneversion teilt jetzt erhebliche Teile des Quellcodes mit der 
 Tabletversion, dadurch lassen sich Verbesserungen viel einfacher von der einen 
 zur anderen Version übertragen, was gut für beide ist.
@@ -117,7 +116,7 @@ Mitmachen
 In diese Version sind einige Anregungen und Vorschläge von Nutzern
 eingeflossen. Vielleicht hast Du ja auch eine Idee, wie die App für Dich
 besser funktionieren würde? Schreib eine Email an die Entwickler unter
-<mensa-hamburg-app@directbox.com> oder hinterlasse einen Kommentar![^1]
+<info@mensaapp.org> oder hinterlasse einen Kommentar![^1]
 
 [^1]: Wenn Du Deinen Namen nicht angeben möchtest kannst Du einfach einen ausgedachten Namen und eine Emailadresse wie test@example.net verwenden.
  
