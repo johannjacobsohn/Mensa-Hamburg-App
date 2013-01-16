@@ -21,6 +21,7 @@ In der Zwischenzeit (und natürlich auch danach) kann die Webapp unter
 | webOS-Touchpad      | Live im App Catalog, wird als Update ausgeliefert
 | Android/Phone       | Live im Play Store, wird als Update ausgeliefert
 | Android/Tablet      | Live im Play Store, wird als Update ausgeliefert
-| iPhone              | Bei Apple eingereicht, in den nächsten Tagen live
-| iPad                | Bei Apple eingereicht, in den nächsten Tagen live
+| iPhone              | Live im App Store, wird als Update ausgeliefert
+| iPad                | Live im App Store, wird als Update ausgeliefert
+| Chrome Web App      | kommende Woche
 | Blackberry Playbook | in zwei Wochen
