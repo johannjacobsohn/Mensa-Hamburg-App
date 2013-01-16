@@ -4,7 +4,7 @@
   <title><![CDATA[Mensa Hamburg App]]></title>
   <link href="http://mensaapp.org/atom.xml" rel="self"/>
   <link href="http://mensaapp.org/"/>
-  <updated>2013-01-14T15:30:05+01:00</updated>
+  <updated>2013-01-16T12:31:23+01:00</updated>
   <id>http://mensaapp.org/</id>
   <author>
     <name><![CDATA[Johann Jacobsohn]]></name>
@@ -12,6 +12,141 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Neue Version fürs iPhone]]></title>
+    <link href="http://mensaapp.org/blog/2013/neue-version-furs-iphone/"/>
+    <updated>2013-01-16T11:48:00+01:00</updated>
+    <id>http://mensaapp.org/blog/2013/neue-version-furs-iphone</id>
+    <content type="html"><![CDATA[<div class="bogus-wrapper"><notextile><figure class="left">
+	<img src="http://mensaapp.org/assets/release/phone-2.1/ios/ui-small.png" title="" />
+</figure></notextile></div>
+
+<p>Nach all den Änderungen in der iPad-Version gibt es auch eine Update fürs 
+iPhone/iPod. Neu ist das swipen von Tag zu Tag, die erheblich ausgebauten 
+Filter, ein neues Icon und deutlich verbesserte Performance. Leider 
+unterstützt diese Version das iPhone 3G nicht mehr.</p>
+
+<!-- more -->
+
+<h2 id="iphone-5-und-iphone-3g">iPhone 5 und iPhone 3G</h2>
+
+<p>Es gibt eine gute und eine schlechte Nachricht…</p>
+
+<dl>
+  <dt>Die gute Nachricht</dt>
+  <dd>Die Mensaapp läuft jetzt auch auf dem iPhone 5 ohne komische Ränder, yay!</dd>
+  <dt>Die schlecht Nachricht:</dt>
+  <dd>leider hat Apple <a href="http://www.macstories.net/news/with-ios-4-3-apple-drops-iphone-3g-support/">das iPhone 3G fallen gelassen</a>
+diese Telefone bekommen also keine neuen Apps mehr und keine Updates mehr 
+für alte Apps Diese Geräte (und alle anderen) können aber <a href="http://mensaapp.org/webapp-installieren#iphone">die Webapp installieren</a>
+und verlieren auf diese Weise keinerlei Funktionalität.
+Das selbe gilt auch für den iPod Touch 2G sowie alle älteren iPhones und iPods!</dd>
+</dl>
+
+<h2 id="neues-app-icon">Neues App-Icon</h2>
+<div class="bogus-wrapper"><notextile><figure class="right">
+	<img src="http://mensaapp.org/assets/release/phone-2.1/ios/icons.png" title="" />
+	<figcaption>Unten rechts das neue Logo</figcaption>
+</figure></notextile></div>
+
+<p>Nach langer Zeit gibt es endlich ein richtiges eigenes Icon. Während das 
+bisherige Icon von mir mit Gimp zusammengeworfen wurde ist das neue von 
+einer richtigen Designerin entworfen und speziell auf Wiedererkennbarkeit 
+und Vielseitigkeit ausgelegt.</p>
+
+<p>Im Gegensatz zum bisherigen “platten” Icon ist das neue texturiert, wodurch 
+es viel besser mit den Standardicons harmoniert und weniger als hässliches 
+(aber sehr aufdringliches) Entchen hervorsticht. Aus dem “webOS-Kreis” ist 
+ein Teller mutiert und das Besteck hat Tiefe bekommen, was allgemein 
+irgendwie handfester und appetitlicher wirkt.</p>
+
+<h2 id="verbesserte-filter">Verbesserte Filter</h2>
+<div class="bogus-wrapper"><notextile><figure class="left">
+	<img src="http://mensaapp.org/assets/release/phone-2.1/ios/filter.png" title="" />
+	<figcaption>Neue Filter</figcaption>
+</figure></notextile></div>
+
+<p>Die Filtermöglichkeiten der letzten Version waren relativ beschränkt, man 
+konnte nur Mensen und Gerichte filtern. Das hat sich grundlegend geändert, 
+die Filter wurden  <em>erheblich</em> ausgebaut. So ist es jetzt möglich auf 
+mehrere Mensen oder Gerichte einzuschränken, Zusatzstoffe auszuschließen 
+oder nur bestimmte Arten von Gerichten zu sehen - und all diese Optionen 
+auch zu kombinieren!</p>
+
+<p>Damit sind dann auch komplexere Zusammenhänge, wie “Vegan, aber ohne
+Konservierungsstoffe” oder “Nicht Vegetarisch, aber ohne Schwein” oder 
+“Vegetarisch und aus dem Wok” möglich.</p>
+
+<p>Filter bleiben jetzt zudem auch bei Neustart der App erhalten, so dass
+gute Filter nur einmal eingestellt werden müssen und dann immer erhalten bleiben.</p>
+
+<p>Nur die relevanten Gerichte zu sehen erleichtert die Wahl erheblich und
+macht das Überblicken der (verbliebenen) Optionen einfacher.</p>
+
+<h2 id="details-fr-gerichte">Details für Gerichte</h2>
+<div class="bogus-wrapper"><notextile><figure class="right">
+	<img src="http://mensaapp.org/assets/release/phone-2.1/ios/details.png" title="" />
+	<figcaption>Details für einzelne Gerichte gibts auf Antippen</figcaption>
+</figure></notextile></div>
+
+<p>Für Menschen mit Allergien, Unverträglichkeiten oder religiöse 
+Ernährungsvorschriften ist es wichtig genau zu sehen, welche Zusatzstoffe in 
+den Gerichten sind. Für Vegetarier sind nur fleischlose Gerichte 
+interessant, und manch einer möchte keine Geschmacksverstärker zu sich 
+nehmen. Mit einem einfachen Tippen auf ein Gericht werden alle verfügbaren 
+Eigenschaften und Zusatzstoffe aufgelistet.</p>
+
+<h2 id="wischen-von-tag-zu-tag">Wischen von Tag zu Tag</h2>
+<div class="bogus-wrapper"><notextile><figure class="left">
+	<img src="http://mensaapp.org/assets/release/phone-2.1/ios/swipe.png" title="" />
+	<figcaption>Die Tage lassen sich jetzt per Geste ändern</figcaption>
+</figure></notextile></div>
+
+<p>Die alte Methode Tage zu wechseln (um z.B. das morgige Menu zu sehen) was 
+etwas unschön: auf den Pfeil tippen, warten. Jetzt können Tage mit einem 
+Wisch gewechselt werden und die neuen Tage werden vorgeladen (warten 
+entfällt also). Das ist nicht nur schöner, sondern auch schneller und behebt 
+damit (hoffentlich) eines der von Nutzern meist genannten Probleme.</p>
+
+<h2 id="nachladen-von-daten-im-hintergrund">Nachladen von Daten im Hintergrund</h2>
+
+<p><span class="pullquote-right" data-pullquote="jetzt werden die Daten in regelmäßigen  Abständen geprüft">
+Kennst Du das? Manchmal ändern sich die Speisepläne der Mensa, und Dein Telefon merkt es nicht? 
+Dieses Problem gehört jetzt der Vergangenheit an, den jetzt werden die Daten in regelmäßigen 
+Abständen geprüft und gegebenenfalls korrigiert.
+</span></p>
+
+<h2 id="weitere-nderungen">Weitere Änderungen</h2>
+
+<ul>
+  <li>Dauerhafte Filter: Filter bleiben jetzt auch beim Schließen und Neustarten 
+der App erhalten.</li>
+  <li>Aufräumarbeiten im Code;</li>
+  <li>beim Aktualisieren der App werden nicht mehr alle Einstellungen gelöscht;</li>
+  <li>in den Einstellungen werden zusätzlich zu den Mensanamen auch deren 
+Adressen angezeigt;</li>
+  <li>die Phoneversion teilt jetzt erhebliche Teile des Quellcodes mit der 
+Tabletversion, dadurch lassen sich Verbesserungen viel einfacher von der einen 
+zur anderen Version übertragen, was gut für beide ist;</li>
+  <li>ein <a href="http://mensaapp.org/blog/2013/kritisches-update-fur-alle-plattformen/">kritischer Fehler</a> wurde behoben.</li>
+</ul>
+
+<h2 id="mitmachen">Mitmachen</h2>
+<p>In diese Version sind einige Anregungen und Vorschläge von Nutzern
+eingeflossen. Vielleicht hast Du ja auch eine Idee, wie die App für Dich
+besser funktionieren würde? Schreib eine Email an die Entwickler unter
+<a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#105;&#110;&#102;&#111;&#064;&#109;&#101;&#110;&#115;&#097;&#097;&#112;&#112;&#046;&#111;&#114;&#103;">&#105;&#110;&#102;&#111;&#064;&#109;&#101;&#110;&#115;&#097;&#097;&#112;&#112;&#046;&#111;&#114;&#103;</a> oder hinterlasse einen Kommentar!<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup></p>
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+      <p>Wenn Du Deinen Namen nicht angeben möchtest kannst Du einfach einen ausgedachten Namen und eine Emailadresse wie test@example.net verwenden.<a href="#fnref:1" rel="reference">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Web-Apps]]></title>
@@ -89,11 +224,15 @@ Dieses Update behebt das Problem und bringt weitere kleine Verbesserungen.</p>
     </tr>
     <tr>
       <td>iPhone</td>
-      <td>Bei Apple eingereicht, in den nächsten Tagen live</td>
+      <td>Live im App Store, wird als Update ausgeliefert</td>
     </tr>
     <tr>
       <td>iPad</td>
-      <td>Bei Apple eingereicht, in den nächsten Tagen live</td>
+      <td>Live im App Store, wird als Update ausgeliefert</td>
+    </tr>
+    <tr>
+      <td>Chrome Web App</td>
+      <td>kommende Woche</td>
     </tr>
     <tr>
       <td>Blackberry Playbook</td>
@@ -168,16 +307,16 @@ webOS-Telefone.</p>
 </figure></notextile></div>
 
 <p>Nach all den Änderungen in der Tablet- und Mojo-Version gibt es auch eine 
-Update für iPhone/iPod sowie Android-Smartphones. Neu ist das swipen von Tag 
-zu Tag, die erheblich ausgebauten Filter, ein neues Icon und deutlich 
-verbesserte Performance.</p>
+Update für Android-Smartphones. Neu ist das swipen von Tag zu Tag, die 
+erheblich ausgebauten Filter, ein neues Icon und deutlich verbesserte 
+Performance.</p>
 
 <!-- more -->
 
 <h2 id="neues-app-icon">Neues App-Icon</h2>
 <div class="bogus-wrapper"><notextile><figure class="right">
 	<img src="http://mensaapp.org/assets/release/phone-2.1/android/icons.png" title="" />
-	<figcaption>Unten rechte das neue Logo</figcaption>
+	<figcaption>Unten rechts das neue Logo</figcaption>
 </figure></notextile></div>
 
 <p>Nach langer Zeit gibt es endlich ein richtiges eigenes Icon. Während das 
@@ -256,7 +395,6 @@ der App erhalten.</li>
   <li>beim Aktualisieren der App werden nicht mehr alle Einstellungen gelöscht;</li>
   <li>in den Einstellungen werden zusätzlich zu den Mensanamen auch deren 
 Adressen angezeigt;</li>
-  <li>für iOS &gt; 5 ist das scrollen <em>erheblich</em> flüssiger geworden;</li>
   <li>die Phoneversion teilt jetzt erhebliche Teile des Quellcodes mit der 
 Tabletversion, dadurch lassen sich Verbesserungen viel einfacher von der einen 
 zur anderen Version übertragen, was gut für beide ist.</li>
@@ -266,7 +404,7 @@ zur anderen Version übertragen, was gut für beide ist.</li>
 <p>In diese Version sind einige Anregungen und Vorschläge von Nutzern
 eingeflossen. Vielleicht hast Du ja auch eine Idee, wie die App für Dich
 besser funktionieren würde? Schreib eine Email an die Entwickler unter
-<a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#109;&#101;&#110;&#115;&#097;&#045;&#104;&#097;&#109;&#098;&#117;&#114;&#103;&#045;&#097;&#112;&#112;&#064;&#100;&#105;&#114;&#101;&#099;&#116;&#098;&#111;&#120;&#046;&#099;&#111;&#109;">&#109;&#101;&#110;&#115;&#097;&#045;&#104;&#097;&#109;&#098;&#117;&#114;&#103;&#045;&#097;&#112;&#112;&#064;&#100;&#105;&#114;&#101;&#099;&#116;&#098;&#111;&#120;&#046;&#099;&#111;&#109;</a> oder hinterlasse einen Kommentar!<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup></p>
+<a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#105;&#110;&#102;&#111;&#064;&#109;&#101;&#110;&#115;&#097;&#097;&#112;&#112;&#046;&#111;&#114;&#103;">&#105;&#110;&#102;&#111;&#064;&#109;&#101;&#110;&#115;&#097;&#097;&#112;&#112;&#046;&#111;&#114;&#103;</a> oder hinterlasse einen Kommentar!<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup></p>
 
 <div class="footnotes">
   <ol>
@@ -402,7 +540,7 @@ Abständen geprüft und gegebenenfalls korrigiert.
 <p>In diese Version sind einige Anregungen und Vorschläge von Nutzern
 eingeflossen. Vielleicht hast Du ja auch eine Idee, wie die App für Dich
 besser funktionieren würde? Schreib eine Email an die Entwickler unter
-<a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#109;&#101;&#110;&#115;&#097;&#045;&#104;&#097;&#109;&#098;&#117;&#114;&#103;&#045;&#097;&#112;&#112;&#064;&#100;&#105;&#114;&#101;&#099;&#116;&#098;&#111;&#120;&#046;&#099;&#111;&#109;">&#109;&#101;&#110;&#115;&#097;&#045;&#104;&#097;&#109;&#098;&#117;&#114;&#103;&#045;&#097;&#112;&#112;&#064;&#100;&#105;&#114;&#101;&#099;&#116;&#098;&#111;&#120;&#046;&#099;&#111;&#109;</a> oder hinterlasse einen Kommentar!<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup></p>
+<a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#105;&#110;&#102;&#111;&#064;&#109;&#101;&#110;&#115;&#097;&#097;&#112;&#112;&#046;&#111;&#114;&#103;">&#105;&#110;&#102;&#111;&#064;&#109;&#101;&#110;&#115;&#097;&#097;&#112;&#112;&#046;&#111;&#114;&#103;</a> oder hinterlasse einen Kommentar!<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup></p>
 
 <div class="footnotes">
   <ol>
@@ -541,7 +679,7 @@ Abständen geprüft und gegebenenfalls korrigiert.
 <p>In diese Version sind einige Anregungen und Vorschläge von Nutzern
 eingeflossen. Vielleicht hast Du ja auch eine Idee, wie die App für Dich
 besser funktionieren würde? Schreib eine Email an die Entwickler unter
-<a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#109;&#101;&#110;&#115;&#097;&#045;&#104;&#097;&#109;&#098;&#117;&#114;&#103;&#045;&#097;&#112;&#112;&#064;&#100;&#105;&#114;&#101;&#099;&#116;&#098;&#111;&#120;&#046;&#099;&#111;&#109;">&#109;&#101;&#110;&#115;&#097;&#045;&#104;&#097;&#109;&#098;&#117;&#114;&#103;&#045;&#097;&#112;&#112;&#064;&#100;&#105;&#114;&#101;&#099;&#116;&#098;&#111;&#120;&#046;&#099;&#111;&#109;</a> oder hinterlasse einen Kommentar!<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup></p>
+<a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#105;&#110;&#102;&#111;&#064;&#109;&#101;&#110;&#115;&#097;&#097;&#112;&#112;&#046;&#111;&#114;&#103;">&#105;&#110;&#102;&#111;&#064;&#109;&#101;&#110;&#115;&#097;&#097;&#112;&#112;&#046;&#111;&#114;&#103;</a> oder hinterlasse einen Kommentar!<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup></p>
 
 <div class="footnotes">
   <ol>
@@ -676,7 +814,7 @@ Abständen geprüft und gegebenenfalls korrigiert.
 <p>In diese Version sind einige Anregungen und Vorschläge von Nutzern
 eingeflossen. Vielleicht hast Du ja auch eine Idee, wie die App für Dich
 besser funktionieren würde? Schreib eine Email an die Entwickler unter
-<a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#109;&#101;&#110;&#115;&#097;&#045;&#104;&#097;&#109;&#098;&#117;&#114;&#103;&#045;&#097;&#112;&#112;&#064;&#100;&#105;&#114;&#101;&#099;&#116;&#098;&#111;&#120;&#046;&#099;&#111;&#109;">&#109;&#101;&#110;&#115;&#097;&#045;&#104;&#097;&#109;&#098;&#117;&#114;&#103;&#045;&#097;&#112;&#112;&#064;&#100;&#105;&#114;&#101;&#099;&#116;&#098;&#111;&#120;&#046;&#099;&#111;&#109;</a> oder hinterlasse einen Kommentar!<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup></p>
+<a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#105;&#110;&#102;&#111;&#064;&#109;&#101;&#110;&#115;&#097;&#097;&#112;&#112;&#046;&#111;&#114;&#103;">&#105;&#110;&#102;&#111;&#064;&#109;&#101;&#110;&#115;&#097;&#097;&#112;&#112;&#046;&#111;&#114;&#103;</a> oder hinterlasse einen Kommentar!<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup></p>
 
 <div class="footnotes">
   <ol>
@@ -813,7 +951,7 @@ Abständen geprüft und gegebenenfalls korrigiert.
 <p>In diese Version sind einige Anregungen und Vorschläge von Nutzern
 eingeflossen. Vielleicht hast Du ja auch eine Idee, wie die App für Dich
 besser funktionieren würde? Schreib eine Email an die Entwickler unter
-<a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#109;&#101;&#110;&#115;&#097;&#045;&#104;&#097;&#109;&#098;&#117;&#114;&#103;&#045;&#097;&#112;&#112;&#064;&#100;&#105;&#114;&#101;&#099;&#116;&#098;&#111;&#120;&#046;&#099;&#111;&#109;">&#109;&#101;&#110;&#115;&#097;&#045;&#104;&#097;&#109;&#098;&#117;&#114;&#103;&#045;&#097;&#112;&#112;&#064;&#100;&#105;&#114;&#101;&#099;&#116;&#098;&#111;&#120;&#046;&#099;&#111;&#109;</a> oder hinterlasse einen Kommentar!<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup></p>
+<a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#105;&#110;&#102;&#111;&#064;&#109;&#101;&#110;&#115;&#097;&#097;&#112;&#112;&#046;&#111;&#114;&#103;">&#105;&#110;&#102;&#111;&#064;&#109;&#101;&#110;&#115;&#097;&#097;&#112;&#112;&#046;&#111;&#114;&#103;</a> oder hinterlasse einen Kommentar!<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup></p>
 
 <div class="footnotes">
   <ol>
@@ -950,7 +1088,7 @@ Wir alle lieben Verbesserungen, kaum jemand mag Veränderungen. Die neue Version
 <p>In diese Version sind einige Anregungen und Vorschläge von Nutzern
 eingeflossen. Vielleicht hast Du ja auch eine Idee, wie die App für Dich
 besser funktionieren würde? Schreib eine Email an die Entwickler unter
-<a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#109;&#101;&#110;&#115;&#097;&#045;&#104;&#097;&#109;&#098;&#117;&#114;&#103;&#045;&#097;&#112;&#112;&#064;&#100;&#105;&#114;&#101;&#099;&#116;&#098;&#111;&#120;&#046;&#099;&#111;&#109;">&#109;&#101;&#110;&#115;&#097;&#045;&#104;&#097;&#109;&#098;&#117;&#114;&#103;&#045;&#097;&#112;&#112;&#064;&#100;&#105;&#114;&#101;&#099;&#116;&#098;&#111;&#120;&#046;&#099;&#111;&#109;</a> oder hinterlasse einen Kommentar!<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup></p>
+<a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#105;&#110;&#102;&#111;&#064;&#109;&#101;&#110;&#115;&#097;&#097;&#112;&#112;&#046;&#111;&#114;&#103;">&#105;&#110;&#102;&#111;&#064;&#109;&#101;&#110;&#115;&#097;&#097;&#112;&#112;&#046;&#111;&#114;&#103;</a> oder hinterlasse einen Kommentar!<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup></p>
 
 <div class="footnotes">
   <ol>

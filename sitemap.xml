@@ -2,7 +2,7 @@
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
         <loc>http://mensaapp.org/blog/2012/neue-version-fur-hp-slash-palm-telefone/</loc>
-        <lastmod>2012-11-18T16:53:57+01:00</lastmod>
+        <lastmod>2013-01-16T12:28:19+01:00</lastmod>
     </url>
     <url>
         <loc>
@@ -12,23 +12,23 @@
     </url>
     <url>
         <loc>http://mensaapp.org/blog/2012/neue-version-furs-hp-touchpad/</loc>
-        <lastmod>2012-11-18T17:11:51+01:00</lastmod>
+        <lastmod>2013-01-16T12:29:15+01:00</lastmod>
     </url>
     <url>
         <loc>http://mensaapp.org/blog/2012/neue-version-fur-chrome-web-store/</loc>
-        <lastmod>2012-11-15T14:36:42+01:00</lastmod>
+        <lastmod>2013-01-16T12:27:21+01:00</lastmod>
     </url>
     <url>
         <loc>http://mensaapp.org/blog/2012/neue-version-fur-android-tablets/</loc>
-        <lastmod>2012-11-18T17:11:18+01:00</lastmod>
+        <lastmod>2013-01-16T12:28:30+01:00</lastmod>
     </url>
     <url>
         <loc>http://mensaapp.org/blog/2012/neue-version-furs-ipad/</loc>
-        <lastmod>2012-11-18T17:09:35+01:00</lastmod>
+        <lastmod>2013-01-16T12:28:59+01:00</lastmod>
     </url>
     <url>
         <loc>http://mensaapp.org/blog/2012/neue-phone-version/</loc>
-        <lastmod>2012-11-18T17:15:41+01:00</lastmod>
+        <lastmod>2013-01-16T12:27:34+01:00</lastmod>
     </url>
     <url>
         <loc>http://mensaapp.org/blog/2012/neue-version-fur-hp-slash-palm-phones-1-dot-5-3/</loc>
@@ -40,7 +40,7 @@
     </url>
     <url>
         <loc>http://mensaapp.org/blog/2013/kritisches-update-fur-alle-plattformen/</loc>
-        <lastmod>2013-01-14T14:32:43+01:00</lastmod>
+        <lastmod>2013-01-16T11:49:59+01:00</lastmod>
     </url>
     <url>
         <loc>http://mensaapp.org/blog/2013/neue-domain-mensaapp-dot-org/</loc>
@@ -51,8 +51,12 @@
         <lastmod>2013-01-14T15:16:14+01:00</lastmod>
     </url>
     <url>
+        <loc>http://mensaapp.org/blog/2013/neue-version-furs-iphone/</loc>
+        <lastmod>2013-01-16T12:26:41+01:00</lastmod>
+    </url>
+    <url>
         <loc>http://mensaapp.org/</loc>
-        <lastmod>2013-01-14T15:16:14+01:00</lastmod>
+        <lastmod>2013-01-16T12:29:15+01:00</lastmod>
     </url>
     <url>
         <loc>http://mensaapp.org/info/</loc>
@@ -68,6 +72,6 @@
     </url>
     <url>
         <loc>http://mensaapp.org/blog/archives/</loc>
-        <lastmod>2013-01-14T15:16:14+01:00</lastmod>
+        <lastmod>2013-01-16T12:29:15+01:00</lastmod>
     </url>
 </urlset>
