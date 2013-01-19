@@ -1,6 +1,6 @@
 {
 	"name": "Mensa Hamburg",
-	"version": "2.0.2",
+	"version": "2.0.3",
 	"manifest_version": 2,
 	"app": {
 		"launch": {
@@ -13,8 +13,8 @@
 		"48"  : "icon-48.png",
 		"128" : "icon-128.png"
 	},
-	"homepage_url": "http://johannjacobsohn.github.com/Mensa-Hamburg-App/",
+	"homepage_url": "http://mensaapp.org",
 	"offline_enabled": true,
 	"omnibox": { "keyword": "mensa" },
-	"permissions": [ "http://speiseplan.studierendenwerk-hamburg.de/*" ]
+	"permissions": [ "http://menu.mensaapp.org/*" ]
 }
