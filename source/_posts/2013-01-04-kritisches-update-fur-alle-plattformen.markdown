@@ -23,5 +23,5 @@ In der Zwischenzeit (und natürlich auch danach) kann die Webapp unter
 | Android/Tablet      | Live im Play Store, wird als Update ausgeliefert
 | iPhone              | Live im App Store, wird als Update ausgeliefert
 | iPad                | Live im App Store, wird als Update ausgeliefert
-| Chrome Web App      | Live im Chrome Web Store, wird automatisch aktualisiert
+| Chrome App      | Live im Chrome Web Store, aktualisiert automatisch
 | Blackberry Playbook | kommende Woche
