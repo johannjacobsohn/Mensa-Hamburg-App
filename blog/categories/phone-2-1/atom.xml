@@ -4,7 +4,7 @@
   <title><![CDATA[Category: phone-2.1 | Mensa Hamburg App]]></title>
   <link href="http://mensaapp.org/blog/categories/phone-2-1/atom.xml" rel="self"/>
   <link href="http://mensaapp.org/"/>
-  <updated>2013-01-16T12:31:23+01:00</updated>
+  <updated>2013-01-20T19:55:02+01:00</updated>
   <id>http://mensaapp.org/</id>
   <author>
     <name><![CDATA[Johann Jacobsohn]]></name>
@@ -14,7 +14,7 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Neue Version fürs iPhone]]></title>
+    <title type="html"><![CDATA[Neue Version fürs iPhone (2.1.1)]]></title>
     <link href="http://mensaapp.org/blog/2013/neue-version-furs-iphone/"/>
     <updated>2013-01-16T11:48:00+01:00</updated>
     <id>http://mensaapp.org/blog/2013/neue-version-furs-iphone</id>
@@ -141,6 +141,61 @@ besser funktionieren würde? Schreib eine Email an die Entwickler unter
     </li>
   </ol>
 </div>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Kritisches Update für alle Plattformen]]></title>
+    <link href="http://mensaapp.org/blog/2013/kritisches-update-fur-alle-plattformen/"/>
+    <updated>2013-01-04T17:53:00+01:00</updated>
+    <id>http://mensaapp.org/blog/2013/kritisches-update-fur-alle-plattformen</id>
+    <content type="html"><![CDATA[<p>Leider ist ein Fehler im Kern der Mensa App aufgetaucht der verhindert, dass 
+sie die korrekten Daten bekommt. Daher funktioniert sie im Moment nicht. 
+Dieses Update behebt das Problem und bringt weitere kleine Verbesserungen.</p>
+
+<p>In der Zwischenzeit (und natürlich auch danach) kann die Webapp unter 
+<a href="http://phone.mensaapp.org">phone.mensaapp.org</a> bzw. 
+<a href="http://tablet.mensaapp.org">tablet.mensaapp.org</a> verwendet werden. Die 
+<a href="/webapp-installieren">Webapp kann auch installiert werden</a>!</p>
+
+<p><em>Update</em>:</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>webOS-Telefone</td>
+      <td>Live im App Catalog, wird als Update ausgeliefert</td>
+    </tr>
+    <tr>
+      <td>webOS-Touchpad</td>
+      <td>Live im App Catalog, wird als Update ausgeliefert</td>
+    </tr>
+    <tr>
+      <td>Android/Phone</td>
+      <td>Live im Play Store, wird als Update ausgeliefert</td>
+    </tr>
+    <tr>
+      <td>Android/Tablet</td>
+      <td>Live im Play Store, wird als Update ausgeliefert</td>
+    </tr>
+    <tr>
+      <td>iPhone</td>
+      <td>Live im App Store, wird als Update ausgeliefert</td>
+    </tr>
+    <tr>
+      <td>iPad</td>
+      <td>Live im App Store, wird als Update ausgeliefert</td>
+    </tr>
+    <tr>
+      <td>Chrome Web App</td>
+      <td>Live im Chrome Web Store, wird automatisch aktualisiert</td>
+    </tr>
+    <tr>
+      <td>Blackberry Playbook</td>
+      <td>kommende Woche</td>
+    </tr>
+  </tbody>
+</table>
 ]]></content>
   </entry>
   

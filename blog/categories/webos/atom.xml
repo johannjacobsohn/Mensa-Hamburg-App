@@ -4,7 +4,7 @@
   <title><![CDATA[Category: webos | Mensa Hamburg App]]></title>
   <link href="http://mensaapp.org/blog/categories/webos/atom.xml" rel="self"/>
   <link href="http://mensaapp.org/"/>
-  <updated>2013-01-16T12:31:23+01:00</updated>
+  <updated>2013-01-20T19:55:02+01:00</updated>
   <id>http://mensaapp.org/</id>
   <author>
     <name><![CDATA[Johann Jacobsohn]]></name>
@@ -57,11 +57,11 @@ Dieses Update behebt das Problem und bringt weitere kleine Verbesserungen.</p>
     </tr>
     <tr>
       <td>Chrome Web App</td>
-      <td>kommende Woche</td>
+      <td>Live im Chrome Web Store, wird automatisch aktualisiert</td>
     </tr>
     <tr>
       <td>Blackberry Playbook</td>
-      <td>in zwei Wochen</td>
+      <td>kommende Woche</td>
     </tr>
   </tbody>
 </table>
