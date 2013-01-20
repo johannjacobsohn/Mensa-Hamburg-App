@@ -4,7 +4,7 @@
   <title><![CDATA[Category: tablet-2.0 | Mensa Hamburg App]]></title>
   <link href="http://mensaapp.org/blog/categories/tablet-2-0/atom.xml" rel="self"/>
   <link href="http://mensaapp.org/"/>
-  <updated>2013-01-20T19:55:02+01:00</updated>
+  <updated>2013-01-20T19:57:31+01:00</updated>
   <id>http://mensaapp.org/</id>
   <author>
     <name><![CDATA[Johann Jacobsohn]]></name>
@@ -56,8 +56,8 @@ Dieses Update behebt das Problem und bringt weitere kleine Verbesserungen.</p>
       <td>Live im App Store, wird als Update ausgeliefert</td>
     </tr>
     <tr>
-      <td>Chrome Web App</td>
-      <td>Live im Chrome Web Store, wird automatisch aktualisiert</td>
+      <td>Chrome App</td>
+      <td>Live im Chrome Web Store, aktualisiert automatisch</td>
     </tr>
     <tr>
       <td>Blackberry Playbook</td>
