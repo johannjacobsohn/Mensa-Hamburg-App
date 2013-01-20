@@ -3,7 +3,7 @@ layout: post
 title: "Kritisches Update für alle Plattformen"
 date: 2013-01-04 17:53
 comments: true
-categories: ios android webos chrome blackberry
+categories: ios android webos chrome blackberry phone-2.1 tablet-2.0
 ---
 
 Leider ist ein Fehler im Kern der Mensa App aufgetaucht der verhindert, dass 
@@ -23,5 +23,5 @@ In der Zwischenzeit (und natürlich auch danach) kann die Webapp unter
 | Android/Tablet      | Live im Play Store, wird als Update ausgeliefert
 | iPhone              | Live im App Store, wird als Update ausgeliefert
 | iPad                | Live im App Store, wird als Update ausgeliefert
-| Chrome Web App      | kommende Woche
-| Blackberry Playbook | in zwei Wochen
+| Chrome Web App      | Live im Chrome Web Store, wird automatisch aktualisiert
+| Blackberry Playbook | kommende Woche

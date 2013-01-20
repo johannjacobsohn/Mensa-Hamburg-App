@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Neue Version fürs iPhone"
+title: "Neue Version fürs iPhone (2.1.1)"
 date: 2013-01-16 11:48
 comments: true
 categories: apple iphone ipod update phone phone-2.1
