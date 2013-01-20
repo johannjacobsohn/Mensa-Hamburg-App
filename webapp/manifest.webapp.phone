@@ -1,0 +1,16 @@
+{
+	"version": "1.0",
+	"name": "Mensa HH",
+	"description": "Wann gibt es welches Essen in welcher Mensa? Eine App von Studenten für Studenten.",
+	"launch_path": "/",
+	"icons": {
+		"30": "30x30.png",
+		"60": "60x60.png",
+		"128": "128x128.png"
+	},
+	"developer": {
+		"name": "Johann Jacobsohn",
+		"url": "http://mensaapp.org"
+	},
+	"default_locale": "de"
+}
