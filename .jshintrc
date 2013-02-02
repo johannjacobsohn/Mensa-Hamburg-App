@@ -12,12 +12,13 @@
 		"dateToString",
 		"log",
 		"enyo",
+		"XDomainRequest",
 		
 		// mojo
 		"Mojo",
 		"$L"
 	],
-	"browser"   : true,
+	"browser"   : false,
 	"white"     : false,
 	"smarttabs" : true,
 	"eqeqeq"    : true,
