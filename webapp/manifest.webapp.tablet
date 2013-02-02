@@ -1,6 +1,6 @@
 {
 	"version": "1.0",
-	"name": "Mensa HH",
+	"name": "Mensa Hamburg",
 	"description": "Wann gibt es welches Essen in welcher Mensa? Eine App von Studenten für Studenten.",
 	"launch_path": "/",
 	"icons": {
