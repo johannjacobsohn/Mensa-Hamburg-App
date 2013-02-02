@@ -1,1 +1,0 @@
-../../../shared/js/info.js
