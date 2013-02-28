@@ -55,6 +55,42 @@
 		</p>
 		<cite>DonJar</cite>
 	</blockquote>
+	
+	<blockquote class="webos mojo">
+		<p>	Super</p>
+		<cite>Marc R</cite>
+	</blockquote>
+
+	<blockquote class="ios iphone">
+		<p>
+			<strong>Beste Mensa App für Hamburg!</strong>
+			Absolut die beste Mensa-App für Hamburg! Die für einen persönlich relevanten Mensen können ausgewählt werden und in EINER Übersicht angezeigt werden.Funktioniert nach dem Update auch im Jahr 2013 wieder einwandfrei.
+		</p>
+		<cite>Christian F</cite>
+	</blockquote>
+	
+	<blockquote class="ios iphone">
+		<p>
+			Ich werde die App definitiv weiterempfehlen, find ich super! 
+		</p>
+		<cite>Michel A</cite>
+	</blockquote>
+
+	<blockquote class="blackberry playbook">
+		<p><strong>Super!</strong>
+			hab die app schon auf meinem pre3 und nun auch auf dem playbook. cooles enyo design und funktioniert einwandfrei! super um schnell mal in der vorlesung zu gucken was man sich gleich in der mensa zu essen holen kann! 
+		</p>
+	</blockquote>
+	
+	<blockquote class="android phone">
+		<p><strong>Top Teil!</strong> Alles so wie es sein soll.</p>
+		<cite>Jens</cite>
+	</blockquote>
+	
+	<blockquote class="ios ipad">
+		<p><strong>Praktisch und übersichtlich</strong> Funktioniert einwandfrei</p>
+		<cite>cillo</cite>
+	</blockquote>
 </section>
 
 
@@ -62,21 +98,20 @@
 <script type="text/javascript">
 ;(function(doc){
 	// testimonials
-	var el = doc.getElementById("testimonials");
-	var testimonials = el.getElementsByTagName("blockquote"),
+	var testimonials = doc.getElementById("testimonials").getElementsByTagName("blockquote"),
 	testimonialsLength = testimonials.length,
 	periode = 10E3,
+	activeElement = testimonials[0],
 	cycleTestimonials = function(){
 		// remove Class
-		var active = el.getElementsByClassName("active")[0];
-		active.className = active.className.replace("active", "");
+		activeElement.className = activeElement.className.replace("active", "");
 	
 		// add Class
-		var rand = Math.round( Math.random() * (testimonialsLength - 1) )
-		testimonials[ rand ].className += " active";
+		activeElement = testimonials[ Math.round( Math.random() * (testimonialsLength - 1) ) ];
+		activeElement.className += " active";
 		setTimeout(cycleTestimonials, periode);
 	};
-	
+	cycleTestimonials();
 	setTimeout(cycleTestimonials, periode);
 })(document);
 </script>
