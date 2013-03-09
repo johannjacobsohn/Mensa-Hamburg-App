@@ -26,12 +26,12 @@ Die gute Nachricht
 : Die Mensaapp läuft jetzt auch auf dem iPhone 5 ohne komische Ränder, yay!
 
 Die schlecht Nachricht:
-: leider hat Apple [das iPhone 3G fallen gelassen](http://www.macstories.net/news/with-ios-4-3-apple-drops-iphone-3g-support/)
-  diese Telefone bekommen also keine neuen Apps mehr und keine Updates mehr 
-  für alte Apps Diese Geräte (und alle anderen) können aber [die Webapp installieren](/webapp-installieren#iphone)
-  und verlieren auf diese Weise keinerlei Funktionalität.
-  Das selbe gilt auch für den iPod Touch 2G sowie alle älteren iPhones und iPods!
-
+: leider hat Apple [das iPhone 3G fallen gelassen][apple-drops-support] - 
+  diese Telefone bekommen also keine neuen und keine Updates für alte Apps 
+  mehr. Diese Geräte (und alle anderen) können aber [die Webapp 
+  installieren][webapp-iphone] und verlieren auf diese Weise keinerlei 
+  Funktionalität. Das gleiche gilt auch für den iPod Touch 2G sowie alle 
+  älteren iPhones und iPods!
 
 Neues App-Icon
 ---
@@ -137,3 +137,6 @@ besser funktionieren würde? Schreib eine Email an die Entwickler unter
 
 [^1]: Wenn Du Deinen Namen nicht angeben möchtest kannst Du einfach einen ausgedachten Namen und eine Emailadresse wie test@example.net verwenden.
  
+ 
+[apple-drops-support]: http://www.macstories.net/news/with-ios-4-3-apple-drops-iphone-3g-support/
+[webapp-iphone]: /webapp-installieren#iphone
