@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ipod | Mensa Hamburg App]]></title>
   <link href="http://mensaapp.org/blog/categories/ipod/atom.xml" rel="self"/>
   <link href="http://mensaapp.org/"/>
-  <updated>2013-01-20T19:57:31+01:00</updated>
+  <updated>2013-03-09T23:52:26+01:00</updated>
   <id>http://mensaapp.org/</id>
   <author>
     <name><![CDATA[Johann Jacobsohn]]></name>
@@ -37,11 +37,12 @@ unterstützt diese Version das iPhone 3G nicht mehr.</p>
   <dt>Die gute Nachricht</dt>
   <dd>Die Mensaapp läuft jetzt auch auf dem iPhone 5 ohne komische Ränder, yay!</dd>
   <dt>Die schlecht Nachricht:</dt>
-  <dd>leider hat Apple <a href="http://www.macstories.net/news/with-ios-4-3-apple-drops-iphone-3g-support/">das iPhone 3G fallen gelassen</a>
-diese Telefone bekommen also keine neuen Apps mehr und keine Updates mehr 
-für alte Apps Diese Geräte (und alle anderen) können aber <a href="/webapp-installieren#iphone">die Webapp installieren</a>
-und verlieren auf diese Weise keinerlei Funktionalität.
-Das selbe gilt auch für den iPod Touch 2G sowie alle älteren iPhones und iPods!</dd>
+  <dd>leider hat Apple <a href="http://www.macstories.net/news/with-ios-4-3-apple-drops-iphone-3g-support/">das iPhone 3G fallen gelassen</a> - 
+diese Telefone bekommen also keine neuen und keine Updates für alte Apps 
+mehr. Diese Geräte (und alle anderen) können aber <a href="/webapp-installieren#iphone">die Webapp 
+installieren</a> und verlieren auf diese Weise keinerlei 
+Funktionalität. Das gleiche gilt auch für den iPod Touch 2G sowie alle 
+älteren iPhones und iPods!</dd>
 </dl>
 
 <h2 id="neues-app-icon">Neues App-Icon</h2>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: firefoxOS | Mensa Hamburg App]]></title>
+  <link href="http://mensaapp.org/blog/categories/firefoxos/atom.xml" rel="self"/>
+  <link href="http://mensaapp.org/"/>
+  <updated>2013-03-09T23:52:26+01:00</updated>
+  <id>http://mensaapp.org/</id>
+  <author>
+    <name><![CDATA[Johann Jacobsohn]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Erste Version für FirefoxOS!]]></title>
+    <link href="http://mensaapp.org/blog/2013/erste-version-fuer-firefox-os/"/>
+    <updated>2013-03-11T09:29:00+01:00</updated>
+    <id>http://mensaapp.org/blog/2013/erste-version-fuer-firefox-os</id>
+    <content type="html"><![CDATA[<p>Es sind zwar noch keine Geräte mit 
+<a href="https://www.mozilla.org/de/firefox/partners/#os">FirefoxOS</a> im Handel, die 
+Mensa App läuft aber trotzdem schon!</p>
+
+<p>Die App ist ab sofort im <a href="https://marketplace.firefox.com/app/mensa-hamburg/">Firefox Marketplace für FirefoxOS und Firefox auf 
+Android</a> verfügbar!</p>
+
+<figure class="left" style="width: 45%;">
+	<img src="/assets/release/phone-2.1/firefoxOS/firefoxOS-marketplace_2.png">
+	<figcaption>Die Mensa App im Firefox Marketplace</figcaption>
+</figure>
+
+<figure class="right" style="width: 45%;">
+	<img src="/assets/release/phone-2.1/firefoxOS/ui.png">
+	<figcaption>Die Oberfläche auf FirefoxOS</figcaption>
+</figure>
+]]></content>
+  </entry>
+  
+</feed>

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: phone-2.1 | Mensa Hamburg App]]></title>
   <link href="http://mensaapp.org/blog/categories/phone-2-1/atom.xml" rel="self"/>
   <link href="http://mensaapp.org/"/>
-  <updated>2013-01-20T19:57:31+01:00</updated>
+  <updated>2013-03-09T23:52:26+01:00</updated>
   <id>http://mensaapp.org/</id>
   <author>
     <name><![CDATA[Johann Jacobsohn]]></name>
@@ -12,6 +12,30 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Erste Version für FirefoxOS!]]></title>
+    <link href="http://mensaapp.org/blog/2013/erste-version-fuer-firefox-os/"/>
+    <updated>2013-03-11T09:29:00+01:00</updated>
+    <id>http://mensaapp.org/blog/2013/erste-version-fuer-firefox-os</id>
+    <content type="html"><![CDATA[<p>Es sind zwar noch keine Geräte mit 
+<a href="https://www.mozilla.org/de/firefox/partners/#os">FirefoxOS</a> im Handel, die 
+Mensa App läuft aber trotzdem schon!</p>
+
+<p>Die App ist ab sofort im <a href="https://marketplace.firefox.com/app/mensa-hamburg/">Firefox Marketplace für FirefoxOS und Firefox auf 
+Android</a> verfügbar!</p>
+
+<figure class="left" style="width: 45%;">
+	<img src="/assets/release/phone-2.1/firefoxOS/firefoxOS-marketplace_2.png">
+	<figcaption>Die Mensa App im Firefox Marketplace</figcaption>
+</figure>
+
+<figure class="right" style="width: 45%;">
+	<img src="/assets/release/phone-2.1/firefoxOS/ui.png">
+	<figcaption>Die Oberfläche auf FirefoxOS</figcaption>
+</figure>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Neue Version fürs iPhone (2.1.1)]]></title>
@@ -37,11 +61,12 @@ unterstützt diese Version das iPhone 3G nicht mehr.</p>
   <dt>Die gute Nachricht</dt>
   <dd>Die Mensaapp läuft jetzt auch auf dem iPhone 5 ohne komische Ränder, yay!</dd>
   <dt>Die schlecht Nachricht:</dt>
-  <dd>leider hat Apple <a href="http://www.macstories.net/news/with-ios-4-3-apple-drops-iphone-3g-support/">das iPhone 3G fallen gelassen</a>
-diese Telefone bekommen also keine neuen Apps mehr und keine Updates mehr 
-für alte Apps Diese Geräte (und alle anderen) können aber <a href="/webapp-installieren#iphone">die Webapp installieren</a>
-und verlieren auf diese Weise keinerlei Funktionalität.
-Das selbe gilt auch für den iPod Touch 2G sowie alle älteren iPhones und iPods!</dd>
+  <dd>leider hat Apple <a href="http://www.macstories.net/news/with-ios-4-3-apple-drops-iphone-3g-support/">das iPhone 3G fallen gelassen</a> - 
+diese Telefone bekommen also keine neuen und keine Updates für alte Apps 
+mehr. Diese Geräte (und alle anderen) können aber <a href="/webapp-installieren#iphone">die Webapp 
+installieren</a> und verlieren auf diese Weise keinerlei 
+Funktionalität. Das gleiche gilt auch für den iPod Touch 2G sowie alle 
+älteren iPhones und iPods!</dd>
 </dl>
 
 <h2 id="neues-app-icon">Neues App-Icon</h2>
@@ -192,7 +217,7 @@ Dieses Update behebt das Problem und bringt weitere kleine Verbesserungen.</p>
     </tr>
     <tr>
       <td>Blackberry Playbook</td>
-      <td>kommende Woche</td>
+      <td>Live in der Blackberry World, wird als Update ausgeliefert</td>
     </tr>
   </tbody>
 </table>

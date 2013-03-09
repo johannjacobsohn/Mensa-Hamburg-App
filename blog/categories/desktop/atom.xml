@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: desktop | Mensa Hamburg App]]></title>
+  <link href="http://mensaapp.org/blog/categories/desktop/atom.xml" rel="self"/>
+  <link href="http://mensaapp.org/"/>
+  <updated>2013-03-09T23:52:26+01:00</updated>
+  <id>http://mensaapp.org/</id>
+  <author>
+    <name><![CDATA[Johann Jacobsohn]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Die Mensa App auf dem Desktop!]]></title>
+    <link href="http://mensaapp.org/blog/2013/die-mensa-app-auf-dem-desktop/"/>
+    <updated>2013-03-10T09:29:00+01:00</updated>
+    <id>http://mensaapp.org/blog/2013/die-mensa-app-auf-dem-desktop</id>
+    <content type="html"><![CDATA[<p>Mit Firefox lässt sich jetzt die Mensa Hamburg App <em>auf jedem Rechner</em> als 
+Programm installieren! Einfach im <a href="https://marketplace.firefox.com/app/mensa-hamburg/">Firefox Marketplace</a>
+die Mensa Hamburg App auswählen und fortan wie ein ganz normales Programm verwenden.</p>
+
+<figure>
+	<img src="/assets/release/tablet-2.0/firefox/winxp.png">
+	<figcaption>Die Mensa Hamburg App auf Windows XP</figcaption>
+</figure>
+
+<figure>
+	<img src="/assets/release/tablet-2.0/firefox/macos.png">
+	<figcaption>Die Mensa Hamburg App auf MacOS X</figcaption>
+</figure>
+
+]]></content>
+  </entry>
+  
+</feed>
