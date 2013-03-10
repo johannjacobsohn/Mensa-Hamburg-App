@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns="http://www.w3.org/ns/widgets"
+		xmlns:rim="http://www.blackberry.com/ns/widgets"
+		version="2.0.0.0">
+
+	<name>Mensa Hamburg HD</name>
+	<author>Johann Jacobsohn</author>
+	<description>Wann gibt es welches Essen in welcher Mensa?</description>
+
+	<license href="http://opensource.org/licenses/alphabetical"></license>
+
+	<!-- PhoneGap API -->
+	<access subdomains="true" uri="file:///store/home" />
+	<access subdomains="true" uri="file:///SDCard" />
+
+	<access uri="http://menu.mensaapp.org" subdomains="true">
+		<feature id="blackberry.app.event"/>
+		<feature id="blackberry.invoke"/>
+	</access>
+
+	<access uri="http://mensaapp.org" subdomains="true">
+		<feature id="blackberry.app.event"/>
+		<feature id="blackberry.invoke"/>
+		<feature id="blackberry.invoke.BrowserArguments"/>
+	</access>
+
+	<icon rim:hover="false" src="icon.png" />
+
+	<rim:loadingScreen backgroundColor="#000000" foregroundImage="loading_foreground.png" onFirstLaunch="true">
+		<rim:transitionEffect type="fadeOut" />
+	</rim:loadingScreen>
+	<content src="index.html" />
+</widget>
