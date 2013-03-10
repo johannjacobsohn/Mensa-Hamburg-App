@@ -25,7 +25,12 @@ enyo.kind({
 		this.bubble("onCloseMe");
 	},
 	moreInfo : function(me, inEvent){
-		location.href = info.appURL;
+		if (typeof blackberry !== 'undefined') {
+			var args = new blackberry.invoke.BrowserArguments(info.appURL);
+			blackberry.invoke.invoke(blackberry.invoke.APP_BROWSER, args);
+		} else {
+			location.href = info.appURL;
+		}
 	},
 	email : function(me, inEvent){
 		location.href = "mailto:" + info.appEmail + "?subject=Mensa%20Hamburg%20App&body=Moin!" ;
