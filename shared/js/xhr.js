@@ -4,7 +4,9 @@
  *
  * @class xhr
  */
+var xhr;
 (function(){
+	"use strict";
 	// http://www.html5rocks.com/en/tutorials/cors/
 	function createCORSRequest(method, url) {
 		var xhr = new XMLHttpRequest();
@@ -54,8 +56,19 @@
 		 */
 		getJSON : function(url, success, error, additional_args){
 			this.get(url, function(resp, additional_args){
-				success(JSON.parse(resp), additional_args);
-			}, error);
+				var json = null;
+				try{
+					json = JSON.parse(resp);
+				} catch(e){
+//					console.log(url);
+//					console.log(resp);
+//					console.log(e);
+					return;
+				}
+				if (json){
+					success(json, additional_args);
+				}
+			}, error, additional_args);
 		}
 	};
 })();
