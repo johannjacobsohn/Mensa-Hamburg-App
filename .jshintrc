@@ -1,24 +1,26 @@
 {
-	"predef": [
-		"xhr",
-		"data",
-		"conf",
-		"urls",
-		"info",
-		"storage",
-		"isEmpty",
-		"formatDate",
-		"xhr",
-		"dateToString",
-		"log",
-		"enyo",
-		"XDomainRequest",
+	"globals"   : {
+		"App": false,
+		"xhr": true,
+		"data": true,
+		"conf": true,
+		"urls": true,
+		"info": true,
+		"storage": true,
+		"isEmpty": true,
+		"formatDate": true,
+		"dateToString": true,
+		"log": true,
+		"enyo": false,
+		"XDomainRequest": false,
 		
 		// mojo
-		"Mojo",
-		"$L"
-	],
-	"browser"   : false,
+		"Mojo": false,
+		"$L": false,
+		
+		"blackberry": false
+	},
+	"browser"   : true,
 	"white"     : false,
 	"smarttabs" : true,
 	"eqeqeq"    : true,
@@ -26,6 +28,14 @@
 	"forin"     : true,
 	"undef"     : true,
 	"bitwise"   : true,
-	"noarg"     : true
+	"noarg"     : true,
+	"latedef"   : true,
+	"strict"    : false,
+	"regexdash" : true,
+	"wsh"       : false,
+	"trailing"  : false,
+	"indent"    : 4,
+	"newcap"    : true ,
+	"unused"    : "vars"
 }
 

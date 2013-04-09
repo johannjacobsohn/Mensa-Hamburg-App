@@ -13,7 +13,7 @@ FilterAssistant.prototype.activate = function(event) {
 FilterAssistant.prototype.deactivate = function(event) {
 	/* remove any event handlers you added in activate and do any other cleanup that should happen before
 	   this scene is popped or another scene is pushed on top */
-	};
+};
 
 FilterAssistant.prototype.cleanup = function(event) {
 	/* this function should do any cleanup needed before the scene is destroyed as 
@@ -94,7 +94,6 @@ FilterAssistant.prototype.updateFilterList = function( name, items ){
 };
 
 FilterAssistant.prototype.listPropertyChangeHandler = function(event){
-	var name    = event.model.name;
 	var type    = event.model.filterType;
 	var filters = [];
 

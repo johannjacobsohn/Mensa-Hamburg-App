@@ -8,26 +8,24 @@ StageAssistant.prototype.setup = function() {
 	if( conf.versionHasChanged ){
 		setTimeout(function(){
 			var activeScene = Mojo.Controller.stageController.activeScene();
-				activeScene.showAlertDialog({
-					onChoose: function(value) {
-						if(value === "goto"){
-							location.href = info.releaseNotes.mojo;
-						}
-					},
-					title   : info.onUpdateTitel,
-					message : info.onUpdateText,
-					choices : [
-						{ label: $L("Projektseite öffnen"), value: "goto" },
-						{ label: $L("Schließen"), value: ""}
-					]
-				});
+			activeScene.showAlertDialog({
+				onChoose: function(value) {
+					if(value === "goto"){
+						location.href = info.releaseNotes.mojo;
+					}
+				},
+				title   : info.onUpdateTitel,
+				message : info.onUpdateText,
+				choices : [
+					{ label: $L("Projektseite öffnen"), value: "goto" },
+					{ label: $L("Schließen"), value: ""}
+				]
+			});
 		}, 1000);
 	}
 };
 // handle menu commands
 StageAssistant.prototype.handleCommand = function(event) {
-	var activeScene = Mojo.Controller.stageController.activeScene();
-
 	if(event.type === Mojo.Event.command) {
 		if(event.command === "config" || event.command === "filter" || event.command === "info"){
 			this.controller.pushScene( event.command );

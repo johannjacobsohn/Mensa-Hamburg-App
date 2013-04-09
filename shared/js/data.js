@@ -6,7 +6,8 @@
  * @TODO: write benchmarks for cache
  * @class data
  */
-var data = (function(){
+var data = {};
+data = (function(){
 	"use strict";
 
 	/** 

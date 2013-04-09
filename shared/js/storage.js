@@ -5,15 +5,14 @@
  *
  *
  *
- * @class storage
  */
-var storage = (function(){ // its a trap!
+var storage = {};
+storage = (function(){ // its a trap!
 	"use strict";
 	var weekMenu         = [], // Cache
 		filteredWeekMenu = [], // Cache
 		isFiltered       = false,
 		date = new Date(), //now
-		week = function(){ return date.getWeek(); },
 		lock = {},
 		dataHasChanged = false,
 		/**
@@ -385,7 +384,7 @@ var storage = (function(){ // its a trap!
 				/*
 				 * wenn nur eine Mensa gewählt ist sollte diese als erstes in den Headern stehen
 				 */
-				 if( json[0] && ((isMensaFilterSet && filteredByMensenLength === 1) || savedMensenLength === 1)){
+				if( json[0] && ((isMensaFilterSet && filteredByMensenLength === 1) || savedMensenLength === 1)){
 					segmented.push({
 						header     : json[0].mensa,
 						type       : "header",
@@ -445,9 +444,7 @@ var storage = (function(){ // its a trap!
 		 * @return this
 		 */
 		cleanData = function(){
-			var validUrls   = conf.getSavedURLs(),
-				day         = "",
-				mensaLength = 0;
+			var validUrls = conf.getSavedURLs();
 
 			// Make sure we load the cache before we cleanup and save an empty menu
 			loadCachedData();
@@ -662,7 +659,7 @@ var storage = (function(){ // its a trap!
 		 * @private
 		 */
 		cleanUpOldData = function(){
-			var week = (new Date()).getWeek(), day = "";
+			var week = (new Date()).getWeek();
 			weekMenu = weekMenu.filter(function(item){
 				return (week === parseInt(item.week, 10) || week + 1 === parseInt(item.week, 10));
 			});
@@ -859,7 +856,10 @@ var storage = (function(){ // its a trap!
 		 */
 		thisDay = function(callback, sortedSegmented){
 			sortedSegmented = typeof sortedSegmented === "undefined" ? true : sortedSegmented;
-			date.setHours(0); date.setMinutes(0); date.setSeconds(0);  date.setMilliseconds(0);
+			date.setHours(0);
+			date.setMinutes(0);
+			date.setSeconds(0);
+			date.setMilliseconds(0);
 
 			if ( date.getDay() === 6 ){ // Saturday
 				date.setDate( date.getDate() + 2 );
@@ -878,7 +878,10 @@ var storage = (function(){ // its a trap!
 		 */
 		today = function(callback, sortedSegmented){
 			date = new Date(); //now
-			date.setHours(0); date.setMinutes(0); date.setSeconds(0);  date.setMilliseconds(0);
+			date.setHours(0);
+			date.setMinutes(0);
+			date.setSeconds(0);
+			date.setMilliseconds(0);
 			sortedSegmented = typeof sortedSegmented === "undefined" ? true : sortedSegmented;
 
 			if ( date.getDay() === 6 ){ // Saturday
@@ -1049,21 +1052,21 @@ var storage = (function(){ // its a trap!
 			return new Date(dateString[0], dateString[1]-1 ,dateString[2]);
 		};
 
-		////////////////////////////////////////////////
-		// init                                       //
-		////////////////////////////////////////////////
+	////////////////////////////////////////////////
+	// init                                       //
+	////////////////////////////////////////////////
 
-		// populate loadedMensen and weekMenu from cache
-		loadCachedData();
+	// populate loadedMensen and weekMenu from cache
+	loadCachedData();
 
-		// load saved Filters
-		loadFilters();
+	// load saved Filters
+	loadFilters();
 
-		// remove old data for performance
-		cleanUpOldData();
+	// remove old data for performance
+	cleanUpOldData();
 
-		// periodically (every day) check data
-		checkForData();
+	// periodically (every day) check data
+	checkForData();
 
 	return {
 		// cache control:

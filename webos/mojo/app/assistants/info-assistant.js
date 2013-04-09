@@ -55,7 +55,7 @@ InfoAssistant.prototype.setup = function() {
 						"contactDisplay": "Team Mensa App",
 						"role": 1,
 						"value": info.appEmail
-					 }]
+					}]
 				}
 			}
 		});
