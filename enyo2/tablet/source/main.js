@@ -1,7 +1,7 @@
 enyo.kind({
 	name : "MainView",
 	published: {
-		activePanels : JSON.parse(data.get("activePanels") || '{\"date\":true,\"mensa\":true,\"name\":true,\"additives\":false,\"properties\":false}')
+		activePanels : JSON.parse(data.get("activePanels") || "{\"date\":true,\"mensa\":true,\"name\":true,\"additives\":false,\"properties\":false}")
 	},
 	components: [
 		{kind : "Panels", classes: "enyo-unselectable enyo-fit panels", arrangerKind: "CollapsingArranger", narrowFit: false, realtimeFit: false, peekWidth: 20, components : [

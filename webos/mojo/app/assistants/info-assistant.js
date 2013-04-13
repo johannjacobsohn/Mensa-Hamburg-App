@@ -43,12 +43,12 @@ InfoAssistant.prototype.setup = function() {
 		Mojo.Controller.stageController.popScene("menu");
 	}); 
 	Mojo.Event.listen(this.controller.get("email"),     Mojo.Event.tap, function(){
-		this.controller.serviceRequest('palm://com.palm.applicationManager', {
-			method: 'launch',
+		this.controller.serviceRequest("palm://com.palm.applicationManager", {
+			method: "launch",
 			parameters: {
-				id: 'com.palm.app.email',
+				id: "com.palm.app.email",
 				params: {
-					summary: 'Mensa Hamburg App',
+					summary: "Mensa Hamburg App",
 					text: "Moin!",
 					recipients:[{
 						"type": "email",

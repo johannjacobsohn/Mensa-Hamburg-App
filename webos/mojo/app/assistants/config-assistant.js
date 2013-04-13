@@ -43,7 +43,7 @@ ConfigAssistant.prototype.setup = function() {
 		{ items: this.mensen} // Modell
 	);
 
-	this.controller.setupWidget('mensaToggleButton', {
+	this.controller.setupWidget("mensaToggleButton", {
 		trueLabel: "An",
 		falseLabel: "Aus",
 		modelProperty : "active"

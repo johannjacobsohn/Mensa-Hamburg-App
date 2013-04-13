@@ -25,7 +25,7 @@ enyo.kind({
 		this.bubble("onCloseMe");
 	},
 	moreInfo : function(inSender, inEvent){
-		if (typeof blackberry !== 'undefined') {
+		if (typeof blackberry !== "undefined") {
 			var args = new blackberry.invoke.BrowserArguments(info.appURL);
 			blackberry.invoke.invoke(blackberry.invoke.APP_BROWSER, args);
 		} else {

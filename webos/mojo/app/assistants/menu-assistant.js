@@ -84,16 +84,16 @@ MenuAssistant.prototype.setup = function() {
 	); 
 
 	this.controller.setupWidget(Mojo.Menu.viewMenu,
-		{ spacerHeight: 0, menuClass:'no-fade' },
+		{spacerHeight: 0, menuClass: "no-fade"},
 		this.headerMenu = {
 			visible: true,
 			items: [
 				{}, // <-- helps to center the menu
 				{
 					items: [
-						{ label: $L('Yesterday'), icon  : "back"   , command: 'prevDay' },
-						{ label: "Heute"        , width : 200      , command: 'today'   },
-						{ label: $L('Refresh')  , icon  :'forward' , command: 'nextDay' }
+						{ label: $L("Yesterday"), icon  : "back"   , command: "prevDay" },
+						{ label: "Heute"        , width : 200      , command: "today"   },
+						{ label: $L("Refresh")  , icon  :"forward" , command: "nextDay" }
 					]
 				},
 				{} // <-- helps to center the menu
@@ -117,7 +117,7 @@ MenuAssistant.prototype.setup = function() {
 	this.menu = this.controller.get("menu");
 
 //	this.controller.instantiateChildWidgets(menu);
-	this.controller.listen('menu', Mojo.Event.listTap, this.handleTap.bind(this));
+	this.controller.listen("menu", Mojo.Event.listTap, this.handleTap.bind(this));
 	
 	// Data is fetched in activate...
 };
@@ -149,7 +149,7 @@ MenuAssistant.prototype.handleCommand = function(event) {
 };
 
 MenuAssistant.prototype.load = function(type){
-	this.controller.get('spinner').mojo.start();
+	this.controller.get("spinner").mojo.start();
 	this.menu.style.display = "none";
 	this.menu.mojo.revealItem(0, false);
 
@@ -158,7 +158,7 @@ MenuAssistant.prototype.load = function(type){
 
 MenuAssistant.prototype.fetch = function(json, dateString, date){
 	// stop wait indicator
-	this.controller.get('spinner').mojo.stop();
+	this.controller.get("spinner").mojo.stop();
 
 	// Set price
 	// @TODO: move in storage

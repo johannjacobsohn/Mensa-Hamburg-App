@@ -46,7 +46,7 @@ enyo.kind({
 //			location.href = "";
 // win8?
 		}
-		else if (typeof blackberry !== 'undefined') {
+		else if (typeof blackberry !== "undefined") {
 			var args = new blackberry.invoke.BrowserArguments(info.releaseNotes.playbook);
 			blackberry.invoke.invoke(blackberry.invoke.APP_BROWSER, args);
 		}

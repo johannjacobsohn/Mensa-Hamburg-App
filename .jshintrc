@@ -36,6 +36,7 @@
 	"trailing"  : false,
 	"indent"    : 4,
 	"newcap"    : true ,
-	"unused"    : "vars"
+	"unused"    : "vars",
+	"quotmark"  : "double"
 }
 
