@@ -17,6 +17,11 @@ die Mensa Hamburg App auswählen und fortan wie ein ganz normales Programm verwe
 </figure> 
 
 <figure>
+	{% img /assets/release/tablet-2.0/firefox/win8.png %}
+	<figcaption>Die Mensa Hamburg App auf Windows 8</figcaption>
+</figure> 
+
+<figure>
 	{% img /assets/release/tablet-2.0/firefox/macos.png %}
 	<figcaption>Die Mensa Hamburg App auf MacOS X</figcaption>
 </figure> 
