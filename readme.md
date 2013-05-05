@@ -115,6 +115,6 @@ emulator, then
 [mojo-device]: http://johannjacobsohn.github.com/Mensa-Hamburg-App/assets/devices/mojo.png
 [zipped-code]: https://github.com/johannjacobsohn/Mensa-Hamburg-App/archive/master.zip
 [same-origin-policy]: https://en.wikipedia.org/wiki/Same_origin_policy
-[palm-skd]: https://developer.palm.com/content/resources/develop/sdk_pdk_download.html
+[palm-sdk]: https://developer.palm.com/content/resources/develop/sdk_pdk_download.html
 [palm-emulator]: https://developer.palm.com/content/api/dev-guide/tools/emulator.html
 [android-sdk]: https://developer.android.com/sdk
