@@ -30,7 +30,7 @@ storage = (function(){ // its a trap!
 		/*
 		 * Events:
 		 */
-		 
+
 		/*
 		* All subscriptions to all defined events
 		*/
@@ -87,7 +87,7 @@ storage = (function(){ // its a trap!
 		 * Filters
 		 *
 		 */
-		 
+
 		// Flag if filters should be remembered
 		persistentFilters = data.get("persistentFilters") || "1",
 
@@ -112,7 +112,7 @@ storage = (function(){ // its a trap!
 		},
 		filterProperties = {},
 		filterValues = {},
-		
+
 		/**
 		 * Get filter setting from storage and populate properties
 		 *
@@ -181,7 +181,7 @@ storage = (function(){ // its a trap!
 						return i.type === "exclude" && i.value !== item[prop];
 					});
 				}
-				
+
 				return result;
 			} else {
 				//find out if one of the properties is either in- or excluded
@@ -235,7 +235,7 @@ storage = (function(){ // its a trap!
 				callback(filteredWeekMenu);
 			});
 		},
-		
+
 		/**
 		 * return if one element of array a is in array b
 		 * http://jsperf.com/of-an-array-is-in-another-array/2
@@ -255,7 +255,7 @@ storage = (function(){ // its a trap!
 			}
 			return true;
 		},
-		
+
 		/**
 		 * return if every element of array a is in array b
 		 * 
@@ -331,7 +331,6 @@ storage = (function(){ // its a trap!
 			isFiltered = false;
 			filterProperties = {};
 			filterValues = {};
-			
 			saveFilters();
 		},
 		/** 
@@ -412,7 +411,7 @@ storage = (function(){ // its a trap!
 							segmented[segmented.length-1].last = true;
 						}
 						first = true;
-						
+
 						segmented.push({
 							header    : sorted[i].mensa,
 							type      : "header",
@@ -423,7 +422,7 @@ storage = (function(){ // its a trap!
 					sorted[i].first = first; //(mensa != sorted[i].mensa && savedMensenExist);
 					sorted[i].last  = false;
 					segmented.push(sorted[i]);
-					
+
 					mensa = sorted[i].mensa;
 					date = sorted[i].date;
 				}
@@ -552,7 +551,7 @@ storage = (function(){ // its a trap!
 		success = function(resp, additional_args){
 			var mensa = additional_args.mensa;
 			var week = additional_args.week;
-			
+
 			// parse HTML
 			var newWeekMenu = JSON.parse(resp || "[]");
 
@@ -561,7 +560,7 @@ storage = (function(){ // its a trap!
 			if( newWeekMenu && newWeekMenu.length > 0 ){
 				// splice menu together
 				weekMenu = weekMenu.filter(function( item ){ return (parseInt(item.week, 10) !== week || item.mensa !== mensa); });
-				weekMenu = weekMenu.concat( newWeekMenu ); 
+				weekMenu = weekMenu.concat( newWeekMenu );
 
 				loadedMensen[mensa][week] = true;
 				dataHasChanged = true;
@@ -700,7 +699,7 @@ storage = (function(){ // its a trap!
 				while ( l-- ){
 					types[weekMenu[l].name] = true;
 				}
-				
+
 				for(type in types){
 					if( types.hasOwnProperty(type) ){
 						typesArr.push({
@@ -986,7 +985,7 @@ storage = (function(){ // its a trap!
 		isNextDayAvailable = function(){
 			var testDate = new Date( date.valueOf() ),
 			    thisDay = date.getDay();
-			
+
 			// skip Weekends
 			if ( thisDay === 5 ) {
 				testDate.setDate( date.getDate() + 3 );
@@ -1164,7 +1163,6 @@ storage = (function(){ // its a trap!
 
 		// events:
 		on: on,
-		
 		update : update,
 
 		// Helpers:

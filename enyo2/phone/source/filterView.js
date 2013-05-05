@@ -62,7 +62,7 @@ enyo.kind({
 		this.$.pickerButton.value = this.state === "include";
 	},
 	change: function(inSender, inEvent){
-		this.bubble( "onChange", { 
+		this.bubble( "onChange", {
 			content : this.label,
 			state   : inEvent.value ? "include" : "exclude"
 		});
@@ -100,7 +100,7 @@ enyo.kind({
 			this.$[ o.name === "exclude" ? "include" : "exclude" ].setChecked( false );
 		}
 
-		this.bubble( "onChange", { 
+		this.bubble( "onChange", {
 			content : this.label,
 			state   : o.checked ? o.name : "none"
 		});
@@ -119,7 +119,7 @@ enyo.kind({
 		title: "Nach Eigenschaften filtern",
 		filterKind: "",
 		type: "properties"
-	}, 
+	},
 	classes: "enyo-unselectable preventDragTap",
 	kind: "onyx.Groupbox",
 	components: [

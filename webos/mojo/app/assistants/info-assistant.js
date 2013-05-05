@@ -41,7 +41,7 @@ InfoAssistant.prototype.setup = function() {
 
 	Mojo.Event.listen(this.controller.get("close"), Mojo.Event.tap, function(){
 		Mojo.Controller.stageController.popScene("menu");
-	}); 
+	});
 	Mojo.Event.listen(this.controller.get("email"),     Mojo.Event.tap, function(){
 		this.controller.serviceRequest("palm://com.palm.applicationManager", {
 			method: "launch",
@@ -59,8 +59,8 @@ InfoAssistant.prototype.setup = function() {
 				}
 			}
 		});
-	}.bind(this)); 
+	}.bind(this));
 	Mojo.Event.listen(this.controller.get("more-info"), Mojo.Event.tap, function(){
 		location.href = info.appURL;
-	}); 
+	});
 };

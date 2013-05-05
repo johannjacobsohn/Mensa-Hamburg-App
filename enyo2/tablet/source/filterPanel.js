@@ -53,7 +53,7 @@ enyo.kind({
 		item.removeClass( "exclude" );
 		r.filter = r.filter || {};
 		r.filter.type = r.filter.type || false;
-		
+
 		if( r.filter.type ){
 			item.addClass( r.filter.type );
 		}
@@ -73,7 +73,7 @@ enyo.kind({
 				filters.push( { value: this.data[i].name, type: this.data[i].filter.type } );
 			}
 		}
-		
+
 		// set filter
 		if(filters.length > 0){
 			storage.setFilter(this.filter, filters);

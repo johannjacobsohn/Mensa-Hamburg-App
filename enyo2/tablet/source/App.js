@@ -39,7 +39,7 @@ enyo.kind({
 			location.href = info.releaseNotes.androidTablet;
 		} else if (enyo.platform.chrome) {
 			location.href = info.releaseNotes.chrome;
-		} else if (enyo.platform.ios) {	
+		} else if (enyo.platform.ios) {
 			location.href = info.releaseNotes.ipad;
 // touchpad?
 //		} else if (enyo.platform.android) {
@@ -81,9 +81,9 @@ enyo.kind({
 			this.$.newVersionPopup.setShowing(true);
 			this.$.newVersionPopup.reflow();
 		}
-		
+
 		setTimeout( this.reloadDateFilter.bind(this), this.dateTimeout );
-		
+
 		if(enyo.platform.webos) {
 			window.PalmSystem.stageReady();
 		}

@@ -39,7 +39,7 @@ ConfigAssistant.prototype.setup = function() {
 
 	// get list data async
 	this.controller.setupWidget("mensen",
-		{ itemTemplate: "config/mensa-item" }, 
+		{ itemTemplate: "config/mensa-item" },
 		{ items: this.mensen} // Modell
 	);
 
@@ -65,7 +65,7 @@ ConfigAssistant.prototype.setup = function() {
 	Mojo.Event.listen(this.controller.get("studPrices"), Mojo.Event.propertyChange, function(o){
 		conf.setStudentPrices(o.value === "1");
 	});
-	
+
 	this.controller.setupWidget("permanentFilters",
 		this.attributes = {
 			choices: [

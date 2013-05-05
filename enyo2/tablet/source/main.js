@@ -62,4 +62,4 @@ enyo.kind({
 		this.inherited( arguments );
 		this.activePanelsChanged();
 	}
-}); 
+});

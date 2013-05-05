@@ -60,7 +60,7 @@ enyo.kind({
 		"Kommt gleich...",
 		"abwarten...",
 		"wird geladen...",
-		"Eile mit Weile...", 
+		"Eile mit Weile...",
 		"Is' unterwegs...",
 		"Wird gleich..."
 	],

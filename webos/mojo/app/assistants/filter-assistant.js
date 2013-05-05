@@ -38,18 +38,18 @@ FilterAssistant.prototype.setup = function() {
 	this.filterList("name", "double");
 	this.filterList("properties", "trippel");
 	this.filterList("additives", "trippel");
-	
-	this.controller.setupWidget("wo", { 
+
+	this.controller.setupWidget("wo", {
 		modelProperty : "wo",
 		trueValue: "exclude",
 		falseValue: "ignore"
 	});
-	this.controller.setupWidget("with", { 
+	this.controller.setupWidget("with", {
 		modelProperty : "w",
 		trueValue: "include",
 		falseValue: "ignore"
 	});
-	this.controller.setupWidget("filterToggleButton", { 
+	this.controller.setupWidget("filterToggleButton", {
 		modelProperty : "toggle",
 		trueLabel: "Mit",
 		falseLabel: "Ohne",

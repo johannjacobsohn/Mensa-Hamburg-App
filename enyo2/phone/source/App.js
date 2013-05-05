@@ -45,18 +45,17 @@ enyo.kind({
 					{ontap: "openView", classes: "navButton", target: "info", components: [
 						{kind: "onyx.IconButton", name: "infoButton",     src: "assets/info.png"     }
 					]}
-					
 				]}
 			]}
 		]},
-		{ kind: "onyx.Popup", name: "introPopup", centered: true, modal: true, floating: true, style : "margin: 10px", content: info.notConfText },
-		{ name: "newVersionPopup", style: "background: #eee;color: black; width: 300px", kind: "onyx.Popup", centered: true, floating: true, scrim: true, components: [
+		{kind: "onyx.Popup", name: "introPopup", centered: true, modal: true, floating: true, style : "margin: 10px", content: info.notConfText},
+		{name: "newVersionPopup", style: "background: #eee;color: black; width: 300px", kind: "onyx.Popup", centered: true, floating: true, scrim: true, components: [
 			{content: info.onUpdateTitel, classes: "popup-header"},
 			{content: info.onUpdateText, classes: "popup-content"},
 			{kind: "onyx.Button", content: "Mehr Informationen zu dieser Version", ontap:"gotoNewVersion", classes: "onyx-affirmative"},
 			{kind: "onyx.Button", content: "Schließen", ontap: "closePopup"}
 		]},
-		{ kind: enyo.Signals, onSettingsChange: "openMenu", onRequestMenu: "openMenu", onRequestOpen: "open"}
+		{kind: enyo.Signals, onSettingsChange: "openMenu", onRequestMenu: "openMenu", onRequestOpen: "open"}
 	],
 	gotoNewVersion: function(){
 		if (enyo.platform.android || enyo.platform.androidChrome) {

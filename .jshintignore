@@ -31,3 +31,4 @@ webapp/tablet/lib
 webapp/phone/lib
 
 server
+node_modules

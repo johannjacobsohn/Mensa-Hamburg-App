@@ -10,7 +10,7 @@ enyo.kind({
 		{kind: "onyx.Toolbar", content: "Einstellungen" },
 
 		{kind: "GTS.SelectorBar", style: "background: #eee", label: "Preise", choices: [{content: "Studentenpreise anzeigen", value: true},{content: "Normale Preise anzeigen", value: false}], name:"price", onChange: "changePrice"},
-		{kind: "Scroller", fit: true, components: [	
+		{kind: "Scroller", fit: true, components: [
 			{name: "mensaList", kind: "Repeater", classes: "enyo-unselectable preventDragTap", onSetupItem: "setupRow", components: [
 				{kind: "GTS.ToggleBar", label: "yes", name:"toggleItem", classes: "item enyo-border-box", onChange: "changeMensa"}
 			]}
@@ -44,7 +44,7 @@ enyo.kind({
 
 			// Reload Data
 			storage.cleanData();
-			
+
 			// set changed to true so listeners to onSettingsChange can reload
 			changed = true;
 		}

@@ -81,7 +81,7 @@ MenuAssistant.prototype.setup = function() {
 	this.controller.setupWidget("spinner",
 		this.attributes = { spinnerSize: "large" },
 		this.model = { spinning: true }
-	); 
+	);
 
 	this.controller.setupWidget(Mojo.Menu.viewMenu,
 		{spacerHeight: 0, menuClass: "no-fade"},
@@ -110,15 +110,15 @@ MenuAssistant.prototype.setup = function() {
 		dividerFunction: function(listitem){
 			return listitem.mensa;
 		}
-	}, 
+	},
 	this.items = {"items": []} // Modell
 	);
-	
+
 	this.menu = this.controller.get("menu");
 
 //	this.controller.instantiateChildWidgets(menu);
 	this.controller.listen("menu", Mojo.Event.listTap, this.handleTap.bind(this));
-	
+
 	// Data is fetched in activate...
 };
 

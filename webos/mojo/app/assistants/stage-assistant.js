@@ -30,7 +30,7 @@ StageAssistant.prototype.handleCommand = function(event) {
 		if(event.command === "config" || event.command === "filter" || event.command === "info"){
 			this.controller.pushScene( event.command );
 		} else if(event.command === "menu"){
-			this.controller.popScenesTo( event.command ); 
+			this.controller.popScenesTo( event.command );
 		} else if(event.command === "reset"){
 			data.clear();
 			location.reload();

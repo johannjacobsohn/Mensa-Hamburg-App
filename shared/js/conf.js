@@ -87,7 +87,7 @@
 			return data.get("displayStudentPrices") !== "0";
 		}
 	};
-	
+
 	// version has changed if majorversion or minorversion differ from
 	// saved value and there is no saved menu (it could be a fresh install otherwise)
 	if( data.get("menu") && parseInt(data.get("minorversion"), 10) !== conf.minorVersion ){
@@ -99,7 +99,7 @@
 		conf.versionHasChanged = true;
 		var savedMensen = data.get("urls");
 		data.clear();
-		if( savedMensen ){ 
+		if( savedMensen ){
 			data.set("urls", savedMensen);
 		}
 	}

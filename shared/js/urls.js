@@ -121,7 +121,7 @@
 			}
 		]
 	};
-	
+
 	/*
 	 * copy urls.mensen into legacy urls.mensenWeek
 	 */
