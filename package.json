@@ -1,0 +1,9 @@
+{
+	"name": "mensaapp",
+	"version": "1.0.0",
+	"license": "MIT",
+	"devDependencies": {
+		"jshint": "*"
+	}
+}
+

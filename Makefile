@@ -1,3 +1,5 @@
+setup:
+	npm install
 
-lint: 
-	jshint .
+lint:
+	node_modules/.bin/jshint .
