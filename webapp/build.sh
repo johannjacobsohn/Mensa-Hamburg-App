@@ -30,7 +30,7 @@ cd -
 mv $build $target
 
 # copy icons
-cp 64x64.png 72x72.png 128x128.png 60x60.png 144x144.png favicon.ico $target
+cp 64x64.png 72x72.png 128x128.png 60x60.png 144x144.png 144x144_.png favicon.ico $target
 
 # copy manifests and other files
 cp app.appcache landscape-ipad.png portrait-ipad.png index.html $target

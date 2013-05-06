@@ -1,5 +1,5 @@
 CACHE MANIFEST
-# v 1.0.6
+# v 1.0.7
 
 index.html
 assets/filter.png
@@ -44,6 +44,9 @@ lib/ToggleBar/ToggleBar.js
 144x144.png
 landscape-ipad.png
 portrait-ipad.png
+
+# win:
+144x144_.png
 
 # importent for xhr
 NETWORK:
