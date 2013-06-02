@@ -19,3 +19,6 @@
 [submodule "enyo2/tablet/enyo"]
 	path = enyo2/tablet/enyo
 	url = https://github.com/enyojs/enyo.git
+[submodule "blackberry/bb10-phone/sdk"]
+	path = blackberry/bb10-phone/sdk
+	url = git@github.com:badtoyz/BB10-WebWorks-SDK-Linux-Gold.git

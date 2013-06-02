@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns="http://www.w3.org/ns/widgets"
+		xmlns:rim="http://www.blackberry.com/ns/widgets"
+		version="2.0.0.0">
+
+	<name>Mensa Hamburg</name>
+	<author>Johann Jacobsohn</author>
+	<description>Wann gibt es welches Essen in welcher Mensa?</description>
+
+	<license href="http://opensource.org/licenses/alphabetical"></license>
+
+	<access uri="http://mensaapp.org" subdomains="true"></access>
+
+	<icon src="icon.png" />
+	<content src="index.html" />
+</widget>
