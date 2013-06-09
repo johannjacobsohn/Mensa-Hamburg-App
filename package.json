@@ -3,7 +3,8 @@
 	"version": "1.0.0",
 	"license": "MIT",
 	"devDependencies": {
-		"jshint": "*"
+		"jshint": "*",
+		"mocha-phantomjs": "2.x"
 	}
 }
 
