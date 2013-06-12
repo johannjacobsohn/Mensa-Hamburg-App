@@ -20,7 +20,6 @@ shared/js/utils.js
 webos/mojo/js/utils.js
 enyo2/tablet/source/core/utils.js
 enyo2/phone/source/core/utils.js
-server/node_modules/
 webapp/phone-dev/build
 webapp/phone-dev/lib
 webapp/tablet-dev/build
