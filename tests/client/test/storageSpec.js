@@ -1,11 +1,6 @@
-	describe("storage", function(){
-	var server;
-	
-	beforeEach(function () {
-//		localStorage.clear();
-//		server = sinon.fakeServer.create();
-		server = { respond: function(){} }
-//		server.respondWith( mensaHTML );
+describe("storage", function(){
+	before(function () {
+		localStorage.clear();
 		conf.setURLs( conf.getURLs() );
 		storage.unsetFilter();
 	});
@@ -27,8 +22,8 @@
 			expect( n.length ).to.be(0);
 			done();
 		});
-		server.respond();
 	});
+
 	it( "lets you include multiple mensen" , function(){
 		var m;
 		storage.setFilter('mensa', [{value: 'Philosophenturm', type: 'include'}, {value: 'Geomatikum', type: 'include'}])
@@ -48,9 +43,8 @@
 			expect( g.length ).to.be.greaterThan(0);
 			expect( n.length ).to.be(0);
 		});
-		server.respond();
 	});
-	
+
 	it( "lets you exclude one mensa" , function(){
 		storage.setFilter('mensa', [{value: 'Geomatikum', type: 'exclude'}])
 		storage.filter(function(filteredWeekMenu){
@@ -61,9 +55,8 @@
 			expect( m.length ).to.be.greaterThan(0);
 			expect( n.length ).to.be(0);
 		});
-		server.respond();
 	});
-	
+
 	it( "lets you in- and exclude mensen" , function(){
 		var m;
 		storage.setFilter('mensa', [{value: 'Philosophenturm', type: 'include'}, {value: 'Geomatikum', type: 'exclude'}])
@@ -75,8 +68,8 @@
 			expect( m.length ).to.be.greaterThan(0);
 			expect( n.length ).to.be(0);
 		});
-		server.respond();
 	});
+
 	it( "lets you exclude multiple mensen" , function(){
 		var m;
 		storage.setFilter('mensa', [{value: 'Philosophenturm', type: 'exclude'}, {value: 'Geomatikum', type: 'exclude'}])
@@ -88,7 +81,6 @@
 			expect( m.length ).to.be.greaterThan(0);
 			expect( n.length ).to.be(0);
 		});
-		server.respond();
 	});
 
 	it( "lets you include one additive" , function(done){
@@ -113,7 +105,6 @@
 			expect( filteredWeekMenu.length ).to.be.greaterThan(0);
 			expect( m.length ).to.be(0);
 		});
-		server.respond();
 	});
 
 	it( "lets you include multiple additives" , function(){
@@ -125,7 +116,6 @@
 			expect( filteredWeekMenu.length ).to.be.greaterThan(0);
 			expect( m.length ).to.be(0);
 		});
-		server.respond();
 	});
 
 	it( "lets you include some additives exclude others" , function(){
@@ -137,7 +127,6 @@
 			expect( filteredWeekMenu.length ).to.be.greaterThan(0);
 			expect( m.length ).to.be(0);
 		});
-		server.respond();
 	});
 
 	it( "lets you exclude multiple additives" , function(){
@@ -150,7 +139,6 @@
 			expect( filteredWeekMenu.length ).to.be.greaterThan(0);
 			expect( m.length ).to.be(0);
 		})
-		server.respond();
 	});
 
 	/*
@@ -180,7 +168,6 @@
 			// save Menu for later
 			cache.todaysMenu = menu;
 		}, false);
-		server.respond();
 	});
 
 	it( ".nextDay works" , function(){
@@ -210,21 +197,18 @@
 
 			expect( menu.filter(function( item ){ return item.date !== tomorrow } ).length ).to.be(0);
 		}, false);
-		server.respond();
 	});
 
 	it( ".prevDay works" , function(){
 		storage.prevDay(function(menu, dateString, date){
 			expect( menu ).to.eql( cache.todaysMenu );
 		}, false);
-		server.respond();
 	}, false);
 
 	it( ".thisDay works" , function(){
 		storage.thisDay(function(menu, dateString, date){
 			expect( menu ).to.eql( cache.todaysMenu );
 		}, false);
-		server.respond();
 	}, false);
 
 	it( ".dateToDateString works" , function(){
@@ -240,14 +224,12 @@
 			cache.types = val;
 			expect( val.length ).to.be.greaterThan( 0 );
 		});
-		server.respond();
 	});
 
 	it( ".getInfo(type) works" , function(){
 		storage.getInfo("type", function(val){
 			expect( cache.types ).to.be( val );
 		});
-		server.respond();
 	});
 
 	it( ".getMensaInfo works" , function(){
@@ -255,16 +237,14 @@
 			cache.mensen = val;
 			expect( 17 ).to.be( val.length );
 			expect( val[0].name ).to.be( "Alexanderstrasse" );
-			expect( val[0].url ).to.be( "http://menu.mensaapp.org/Alexanderstrasse/{{week}}" );
+			expect( val[0].url ).to.be( "http://menu.mensaapp.org/alexanderstrasse/{{week}}" );
 		});
-		server.respond();
 	});
 
 	it( ".getInfo(mensa) works" , function(){
 		storage.getInfo("mensa", function(val){
 			expect( cache.mensen).to.be( val)
 		});
-		server.respond();
 	});
 
 	it( ".getDateInfo works" , function(){
@@ -272,14 +252,12 @@
 			cache.dates = val;
 			expect(val.length).to.be.greaterThan(0);
 		});
-		server.respond();
 	});
 
 	it( ".getInfo(date)" , function(){
 		storage.getInfo("date", function(val){
 			expect(cache.dates).to.eql(val);
 		});
-		server.respond();
 	});
 
 	it( ".getPropertiesInfo works" , function(){
@@ -287,14 +265,12 @@
 			cache.properties = val;
 			expect( val.length ).to.be.greaterThan(0 );
 		});
-		server.respond();
 	});
 
 	it( ".getInfo(properties) works" , function(){
 		storage.getInfo("properties", function(val){
 			expect( cache.properties ).to.eql( val )
 		});
-		server.respond();
 	});
 
 	it( ".getAdditivesInfo works" , function(){
@@ -302,19 +278,15 @@
 			cache.additives = val;
 			expect( val.length).to.be.greaterThan(0 );
 		});
-		server.respond();
 	});
 
 	it( ".getInfo(additives) works" , function(){
 		storage.getInfo("additives", function(val){
 			expect( cache.additives ).to.eql( val);
 		});
-		server.respond();
 	});
 
-
 	it( ".setDateFilter" , function(){
-		
 		storage.getDateInfo(function(dates){
 			var filters = [{ value: dates[0].name, type: "exclude" }];
 			storage.setFilter("date", filters);
@@ -322,10 +294,7 @@
 				expect(dates[0].filter.type ).to.eql( "exclude" );
 			});
 		});
-
-		server.respond();
 	});
-
 });
 
 describe("storage.sortedSegmented", function(){
@@ -362,7 +331,6 @@ describe("storage.sortedSegmented", function(){
 	});	
 */
 });
-	
 
 /*
 	@TODO:

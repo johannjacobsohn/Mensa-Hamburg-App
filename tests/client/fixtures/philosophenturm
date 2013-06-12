@@ -1,0 +1,1103 @@
+{
+  "menu": [
+    {
+      "mensaId": "philosophenturm",
+      "week": 24,
+      "name": "Aus dem Suppentopf und Süßes",
+      "studPrice": 1.2,
+      "normalPrice": 2.2,
+      "date": "2012-06-24T22:00:00.000Z",
+      "_id": "51b7a5fc8459fc1f0400001d",
+      "__v": 0,
+      "additives": [
+        "vegetarisch",
+        "Glutenhaltiges",
+        "Milch/-erzeugnisse",
+        "Farbstoffe",
+        "Ei/-erzeugnisse"
+      ],
+      "properties": [
+        "vegetarisch"
+      ]
+    },
+    {
+      "mensaId": "philosophenturm",
+      "week": 24,
+      "name": "Aus dem Suppentopf und Süßes",
+      "studPrice": 1.2,
+      "normalPrice": 2.2,
+      "date": "2012-06-24T22:00:00.000Z",
+      "_id": "51b7a5fc8459fc1f0400001e",
+      "__v": 0,
+      "additives": [
+        "laktosefrei",
+        "vegetarisch",
+        "Antioxidationsmittel",
+        "Geschmacksverstärker",
+        "Geschwefelt",
+        "Glutenhaltiges",
+        "Soja/-erzeugnisse",
+        "Sellerie/-erzeugnisse"
+      ],
+      "properties": [
+        "laktosefrei",
+        "vegetarisch"
+      ]
+    },
+    {
+      "mensaId": "philosophenturm",
+      "week": 24,
+      "name": "Aus dem Suppentopf und Süßes",
+      "studPrice": 1.2,
+      "normalPrice": 2.2,
+      "date": "2012-06-25T22:00:00.000Z",
+      "_id": "51b7a5fc8459fc1f0400001f",
+      "__v": 0,
+      "additives": [
+        "vegetarisch",
+        "Glutenhaltiges",
+        "Ei/-erzeugnisse",
+        "Soja/-erzeugnisse",
+        "Milch/-erzeugnisse",
+        "Farbstoffe"
+      ],
+      "properties": [
+        "vegetarisch"
+      ]
+    },
+    {
+      "mensaId": "philosophenturm",
+      "week": 24,
+      "name": "Aus dem Suppentopf und Süßes",
+      "studPrice": 1.2,
+      "normalPrice": 2.2,
+      "date": "2012-06-25T22:00:00.000Z",
+      "_id": "51b7a5fc8459fc1f04000020",
+      "__v": 0,
+      "additives": [
+        "laktosefrei",
+        "vegetarisch",
+        "Soja/-erzeugnisse",
+        "Sellerie/-erzeugnisse"
+      ],
+      "properties": [
+        "laktosefrei",
+        "vegetarisch"
+      ]
+    },
+    {
+      "mensaId": "philosophenturm",
+      "week": 24,
+      "name": "Aus dem Suppentopf und Süßes",
+      "studPrice": 1.2,
+      "normalPrice": 2.2,
+      "date": "2012-06-26T22:00:00.000Z",
+      "_id": "51b7a5fc8459fc1f04000021",
+      "__v": 0,
+      "additives": [
+        "Klima Teller",
+        "vegetarisch",
+        "Phosphat",
+        "Glutenhaltiges",
+        "Ei/-erzeugnisse",
+        "Soja/-erzeugnisse",
+        "Milch/-erzeugnisse"
+      ],
+      "properties": [
+        "Klima Teller",
+        "vegetarisch"
+      ]
+    },
+    {
+      "mensaId": "philosophenturm",
+      "week": 24,
+      "name": "Aus dem Suppentopf und Süßes",
+      "studPrice": 1.2,
+      "normalPrice": 2.2,
+      "date": "2012-06-26T22:00:00.000Z",
+      "_id": "51b7a5fc8459fc1f04000022",
+      "__v": 0,
+      "additives": [
+        "Klima Teller",
+        "laktosefrei",
+        "vegetarisch",
+        "Konservierungsstoffe",
+        "Soja/-erzeugnisse",
+        "Sellerie/-erzeugnisse"
+      ],
+      "properties": [
+        "Klima Teller",
+        "laktosefrei",
+        "vegetarisch"
+      ]
+    },
+    {
+      "mensaId": "philosophenturm",
+      "week": 24,
+      "name": "Aus dem Suppentopf und Süßes",
+      "studPrice": 1.2,
+      "normalPrice": 2.2,
+      "date": "2012-06-27T22:00:00.000Z",
+      "_id": "51b7a5fc8459fc1f04000023",
+      "__v": 0,
+      "additives": [
+        "vegetarisch",
+        "Farbstoffe",
+        "Glutenhaltiges",
+        "Ei/-erzeugnisse",
+        "Milch/-erzeugnisse",
+        "Schwefeldioxid/Sulfite"
+      ],
+      "properties": [
+        "vegetarisch"
+      ]
+    },
+    {
+      "mensaId": "philosophenturm",
+      "week": 24,
+      "name": "Aus dem Suppentopf und Süßes",
+      "studPrice": 1.2,
+      "normalPrice": 2.2,
+      "date": "2012-06-27T22:00:00.000Z",
+      "_id": "51b7a5fc8459fc1f04000024",
+      "__v": 0,
+      "additives": [
+        "Sellerie/-erzeugnisse"
+      ],
+      "properties": []
+    },
+    {
+      "mensaId": "philosophenturm",
+      "week": 24,
+      "name": "Aus dem Suppentopf und Süßes",
+      "studPrice": 1.2,
+      "normalPrice": 2.2,
+      "date": "2012-06-28T22:00:00.000Z",
+      "_id": "51b7a5fc8459fc1f04000025",
+      "__v": 0,
+      "additives": [
+        "laktosefrei",
+        "vegetarisch",
+        "Glutenhaltiges",
+        "Ei/-erzeugnisse",
+        "Konservierungsstoffe",
+        "Antioxidationsmittel"
+      ],
+      "properties": [
+        "laktosefrei",
+        "vegetarisch"
+      ]
+    },
+    {
+      "mensaId": "philosophenturm",
+      "week": 24,
+      "name": "Aus dem Suppentopf und Süßes",
+      "studPrice": 1.2,
+      "normalPrice": 2.2,
+      "date": "2012-06-28T22:00:00.000Z",
+      "_id": "51b7a5fc8459fc1f04000026",
+      "__v": 0,
+      "additives": [
+        "laktosefrei",
+        "vegetarisch",
+        "Antioxidationsmittel",
+        "Geschmacksverstärker",
+        "Geschwefelt",
+        "Glutenhaltiges",
+        "Soja/-erzeugnisse",
+        "Sellerie/-erzeugnisse"
+      ],
+      "properties": [
+        "laktosefrei",
+        "vegetarisch"
+      ]
+    },
+    {
+      "mensaId": "philosophenturm",
+      "week": 24,
+      "name": "Gut und günstig",
+      "studPrice": 1.85,
+      "normalPrice": 2.95,
+      "date": "2012-06-24T22:00:00.000Z",
+      "_id": "51b7a5fc8459fc1f04000027",
+      "__v": 0,
+      "additives": [
+        "mit Rind",
+        "Antioxidationsmittel",
+        "Geschwefelt",
+        "Soja/-erzeugnisse",
+        "Milch/-erzeugnisse",
+        "Glutenhaltiges"
+      ],
+      "properties": [
+        "mit Rind"
+      ]
+    },
+    {
+      "mensaId": "philosophenturm",
+      "week": 24,
+      "name": "Gut und günstig",
+      "studPrice": 1.85,
+      "normalPrice": 2.95,
+      "date": "2012-06-25T22:00:00.000Z",
+      "_id": "51b7a5fc8459fc1f04000028",
+      "__v": 0,
+      "additives": [
+        "mit Geflügel",
+        "Glutenhaltiges",
+        "Senf/-erzeugnisse",
+        "Geschmacksverstärker",
+        "Ei/-erzeugnisse",
+        "Milch/-erzeugnisse",
+        "Sellerie/-erzeugnisse"
+      ],
+      "properties": [
+        "mit Geflügel"
+      ]
+    },
+    {
+      "mensaId": "philosophenturm",
+      "week": 24,
+      "name": "Gut und günstig",
+      "studPrice": 1.85,
+      "normalPrice": 2.95,
+      "date": "2012-06-26T22:00:00.000Z",
+      "_id": "51b7a5fc8459fc1f04000029",
+      "__v": 0,
+      "additives": [
+        "Vegan",
+        "Klima Teller",
+        "laktosefrei",
+        "vegetarisch",
+        "Sellerie/-erzeugnisse",
+        "Glutenhaltiges",
+        "Soja/-erzeugnisse"
+      ],
+      "properties": [
+        "Vegan",
+        "Klima Teller",
+        "laktosefrei",
+        "vegetarisch"
+      ]
+    },
+    {
+      "mensaId": "philosophenturm",
+      "week": 24,
+      "name": "Gut und günstig",
+      "studPrice": 1.85,
+      "normalPrice": 2.95,
+      "date": "2012-06-27T22:00:00.000Z",
+      "_id": "51b7a5fc8459fc1f0400002a",
+      "__v": 0,
+      "additives": [
+        "Campus Vital",
+        "vegetarisch",
+        "Farbstoffe",
+        "Konservierungsstoffe",
+        "Antioxidationsmittel",
+        "Geschmacksverstärker",
+        "Glutenhaltiges",
+        "Milch/-erzeugnisse",
+        "Sellerie/-erzeugnisse",
+        "Soja/-erzeugnisse"
+      ],
+      "properties": [
+        "Campus Vital",
+        "vegetarisch"
+      ]
+    },
+    {
+      "mensaId": "philosophenturm",
+      "week": 24,
+      "name": "Beliebt und gerne gegessen",
+      "studPrice": 2.2,
+      "normalPrice": 3.3,
+      "date": "2012-06-25T22:00:00.000Z",
+      "_id": "51b7a5fc8459fc1f0400002b",
+      "__v": 0,
+      "additives": [
+        "mit Fisch",
+        "Glutenhaltiges",
+        "Fisch/-erzeugnisse",
+        "Senf/-erzeugnisse",
+        "Konservierungsstoffe",
+        "Geschmacksverstärker",
+        "Süßungsmittel",
+        "Ei/-erzeugnisse",
+        "Soja/-erzeugnisse",
+        "Milch/-erzeugnisse",
+        "Sellerie/-erzeugnisse"
+      ],
+      "properties": [
+        "mit Fisch"
+      ]
+    },
+    {
+      "mensaId": "philosophenturm",
+      "week": 24,
+      "name": "Beliebt und gerne gegessen",
+      "studPrice": 2.2,
+      "normalPrice": 3.3,
+      "date": "2012-06-26T22:00:00.000Z",
+      "_id": "51b7a5fc8459fc1f0400002c",
+      "__v": 0,
+      "additives": [
+        "Klima Teller",
+        "mit Geflügel",
+        "Antioxidationsmittel",
+        "Glutenhaltiges",
+        "Soja/-erzeugnisse",
+        "Milch/-erzeugnisse"
+      ],
+      "properties": [
+        "Klima Teller",
+        "mit Geflügel"
+      ]
+    },
+    {
+      "mensaId": "philosophenturm",
+      "week": 24,
+      "name": "Beliebt und gerne gegessen",
+      "studPrice": 2.2,
+      "normalPrice": 3.3,
+      "date": "2012-06-27T22:00:00.000Z",
+      "_id": "51b7a5fc8459fc1f0400002d",
+      "__v": 0,
+      "additives": [
+        "Klima Teller",
+        "mit Geflügel",
+        "Glutenhaltiges",
+        "Ei/-erzeugnisse",
+        "Erdnuss/-erzeugnisse",
+        "Soja/-erzeugnisse",
+        "Sellerie/-erzeugnisse",
+        "Senf/-erzeugnisse",
+        "Sesam/-erzeugnisse",
+        "Milch/-erzeugnisse"
+      ],
+      "properties": [
+        "Klima Teller",
+        "mit Geflügel"
+      ]
+    },
+    {
+      "mensaId": "philosophenturm",
+      "week": 24,
+      "name": "Beliebt und gerne gegessen",
+      "studPrice": 2.2,
+      "normalPrice": 3.3,
+      "date": "2012-06-28T22:00:00.000Z",
+      "_id": "51b7a5fc8459fc1f0400002e",
+      "__v": 0,
+      "additives": [
+        "mit Schwein",
+        "Glutenhaltiges",
+        "Ei/-erzeugnisse",
+        "Milch/-erzeugnisse"
+      ],
+      "properties": [
+        "mit Schwein"
+      ]
+    },
+    {
+      "mensaId": "philosophenturm",
+      "week": 24,
+      "name": "Beliebt und gerne gegessen",
+      "studPrice": 2.2,
+      "normalPrice": 3.3,
+      "date": "2012-06-28T22:00:00.000Z",
+      "_id": "51b7a5fc8459fc1f0400002f",
+      "__v": 0,
+      "additives": [
+        "Klima Teller",
+        "mit Geflügel",
+        "Süßungsmittel",
+        "Sellerie/-erzeugnisse",
+        "Konservierungsstoffe",
+        "Glutenhaltiges",
+        "Milch/-erzeugnisse"
+      ],
+      "properties": [
+        "Klima Teller",
+        "mit Geflügel"
+      ]
+    },
+    {
+      "mensaId": "philosophenturm",
+      "week": 24,
+      "name": "Vegetarisch",
+      "studPrice": 2.6,
+      "normalPrice": 3.7,
+      "date": "2012-06-24T22:00:00.000Z",
+      "_id": "51b7a5fc8459fc1f04000030",
+      "__v": 0,
+      "additives": [
+        "vegetarisch",
+        "Farbstoffe",
+        "Konservierungsstoffe",
+        "Glutenhaltiges",
+        "Ei/-erzeugnisse",
+        "Erdnuss/-erzeugnisse",
+        "Soja/-erzeugnisse",
+        "Milch/-erzeugnisse",
+        "Schalenfrüchte",
+        "Sellerie/-erzeugnisse",
+        "Schwefeldioxid/Sulfite"
+      ],
+      "properties": [
+        "vegetarisch"
+      ]
+    },
+    {
+      "mensaId": "philosophenturm",
+      "week": 24,
+      "name": "Vegetarisch",
+      "studPrice": 2.4,
+      "normalPrice": 3.5,
+      "date": "2012-06-25T22:00:00.000Z",
+      "_id": "51b7a5fc8459fc1f04000031",
+      "__v": 0,
+      "additives": [
+        "Campus Vital",
+        "vegetarisch",
+        "Antioxidationsmittel",
+        "Glutenhaltiges",
+        "Milch/-erzeugnisse",
+        "Sellerie/-erzeugnisse"
+      ],
+      "properties": [
+        "Campus Vital",
+        "vegetarisch"
+      ]
+    },
+    {
+      "mensaId": "philosophenturm",
+      "week": 24,
+      "name": "Vegetarisch",
+      "studPrice": 2.2,
+      "normalPrice": 3.3,
+      "date": "2012-06-26T22:00:00.000Z",
+      "_id": "51b7a5fc8459fc1f04000032",
+      "__v": 0,
+      "additives": [
+        "Klima Teller",
+        "vegetarisch",
+        "Farbstoffe",
+        "Antioxidationsmittel",
+        "Süßungsmittel",
+        "Glutenhaltiges",
+        "Ei/-erzeugnisse",
+        "Milch/-erzeugnisse",
+        "Senf/-erzeugnisse"
+      ],
+      "properties": [
+        "Klima Teller",
+        "vegetarisch"
+      ]
+    },
+    {
+      "mensaId": "philosophenturm",
+      "week": 24,
+      "name": "Vegetarisch",
+      "studPrice": 2.5,
+      "normalPrice": 3.6,
+      "date": "2012-06-28T22:00:00.000Z",
+      "_id": "51b7a5fc8459fc1f04000033",
+      "__v": 0,
+      "additives": [
+        "Campus Vital",
+        "vegetarisch",
+        "Farbstoffe",
+        "Konservierungsstoffe",
+        "Geschmacksverstärker",
+        "Glutenhaltiges",
+        "Soja/-erzeugnisse",
+        "Milch/-erzeugnisse",
+        "Sellerie/-erzeugnisse",
+        "Antioxidationsmittel"
+      ],
+      "properties": [
+        "Campus Vital",
+        "vegetarisch"
+      ]
+    },
+    {
+      "mensaId": "philosophenturm",
+      "week": 24,
+      "name": "Campus Spezial",
+      "studPrice": 3.5,
+      "normalPrice": 4.15,
+      "date": "2012-06-24T22:00:00.000Z",
+      "_id": "51b7a5fc8459fc1f04000034",
+      "__v": 0,
+      "additives": [
+        "mit Geflügel",
+        "Konservierungsstoffe",
+        "Glutenhaltiges",
+        "Ei/-erzeugnisse",
+        "Erdnuss/-erzeugnisse",
+        "Soja/-erzeugnisse",
+        "Milch/-erzeugnisse",
+        "Sellerie/-erzeugnisse",
+        "Senf/-erzeugnisse",
+        "Sesam/-erzeugnisse"
+      ],
+      "properties": [
+        "mit Geflügel"
+      ]
+    },
+    {
+      "mensaId": "philosophenturm",
+      "week": 24,
+      "name": "Campus Spezial",
+      "studPrice": 3.75,
+      "normalPrice": 4.45,
+      "date": "2012-06-25T22:00:00.000Z",
+      "_id": "51b7a5fc8459fc1f04000035",
+      "__v": 0,
+      "additives": [
+        "mit Rind",
+        "Antioxidationsmittel",
+        "Süßungsmittel",
+        "Milch/-erzeugnisse",
+        "Senf/-erzeugnisse"
+      ],
+      "properties": [
+        "mit Rind"
+      ]
+    },
+    {
+      "mensaId": "philosophenturm",
+      "week": 24,
+      "name": "Campus Spezial",
+      "studPrice": 4.5,
+      "normalPrice": 5.3,
+      "date": "2012-06-26T22:00:00.000Z",
+      "_id": "51b7a5fc8459fc1f04000036",
+      "__v": 0,
+      "additives": [
+        "Klima Teller",
+        "laktosefrei",
+        "mit Fisch",
+        "Glutenhaltiges",
+        "Fisch/-erzeugnisse",
+        "Sellerie/-erzeugnisse"
+      ],
+      "properties": [
+        "Klima Teller",
+        "laktosefrei",
+        "mit Fisch"
+      ]
+    },
+    {
+      "mensaId": "philosophenturm",
+      "week": 24,
+      "name": "Campus Spezial",
+      "studPrice": 3.3,
+      "normalPrice": 3.9,
+      "date": "2012-06-27T22:00:00.000Z",
+      "_id": "51b7a5fc8459fc1f04000037",
+      "__v": 0,
+      "additives": [
+        "mit Schwein",
+        "Glutenhaltiges",
+        "Ei/-erzeugnisse",
+        "Milch/-erzeugnisse",
+        "Geschmacksverstärker",
+        "Soja/-erzeugnisse"
+      ],
+      "properties": [
+        "mit Schwein"
+      ]
+    },
+    {
+      "mensaId": "philosophenturm",
+      "week": 24,
+      "name": "Campus Spezial",
+      "studPrice": 3.85,
+      "normalPrice": 4.55,
+      "date": "2012-06-28T22:00:00.000Z",
+      "_id": "51b7a5fc8459fc1f04000038",
+      "__v": 0,
+      "additives": [
+        "mit Fisch",
+        "Farbstoffe",
+        "Glutenhaltiges",
+        "Fisch/-erzeugnisse",
+        "Soja/-erzeugnisse",
+        "Senf/-erzeugnisse",
+        "Antioxidationsmittel",
+        "Geschwefelt",
+        "Milch/-erzeugnisse"
+      ],
+      "properties": [
+        "mit Fisch"
+      ]
+    },
+    {
+      "mensaId": "philosophenturm",
+      "week": 24,
+      "name": "Pasta-Bar pro 100g",
+      "studPrice": 0.45,
+      "normalPrice": 0.65,
+      "date": "2012-06-24T22:00:00.000Z",
+      "_id": "51b7a5fc8459fc1f04000039",
+      "__v": 0,
+      "additives": [
+        "vegetarisch",
+        "Milch/-erzeugnisse"
+      ],
+      "properties": [
+        "vegetarisch"
+      ]
+    },
+    {
+      "mensaId": "philosophenturm",
+      "week": 24,
+      "name": "Pasta-Bar pro 100g",
+      "studPrice": 0.45,
+      "normalPrice": 0.65,
+      "date": "2012-06-24T22:00:00.000Z",
+      "_id": "51b7a5fc8459fc1f0400003a",
+      "__v": 0,
+      "additives": [
+        "mit Schwein",
+        "Farbstoffe",
+        "Konservierungsstoffe",
+        "Antioxidationsmittel",
+        "Glutenhaltiges",
+        "Milch/-erzeugnisse",
+        "Sellerie/-erzeugnisse"
+      ],
+      "properties": [
+        "mit Schwein"
+      ]
+    },
+    {
+      "mensaId": "philosophenturm",
+      "week": 24,
+      "name": "Pasta-Bar pro 100g",
+      "studPrice": 0.45,
+      "normalPrice": 0.65,
+      "date": "2012-06-25T22:00:00.000Z",
+      "_id": "51b7a5fc8459fc1f0400003b",
+      "__v": 0,
+      "additives": [
+        "Klima Teller",
+        "mit Fisch",
+        "Geschmacksverstärker",
+        "Krebstier(e)/-erzeugnisse",
+        "Fisch/-erzeugnisse",
+        "Soja/-erzeugnisse",
+        "Sellerie/-erzeugnisse"
+      ],
+      "properties": [
+        "Klima Teller",
+        "mit Fisch"
+      ]
+    },
+    {
+      "mensaId": "philosophenturm",
+      "week": 24,
+      "name": "Pasta-Bar pro 100g",
+      "studPrice": 0.45,
+      "normalPrice": 0.65,
+      "date": "2012-06-25T22:00:00.000Z",
+      "_id": "51b7a5fc8459fc1f0400003c",
+      "__v": 0,
+      "additives": [
+        "Klima Teller",
+        "vegetarisch",
+        "Antioxidationsmittel",
+        "Glutenhaltiges",
+        "Soja/-erzeugnisse",
+        "Milch/-erzeugnisse",
+        "Sellerie/-erzeugnisse"
+      ],
+      "properties": [
+        "Klima Teller",
+        "vegetarisch"
+      ]
+    },
+    {
+      "mensaId": "philosophenturm",
+      "week": 24,
+      "name": "Pasta-Bar pro 100g",
+      "studPrice": 0.45,
+      "normalPrice": 0.65,
+      "date": "2012-06-26T22:00:00.000Z",
+      "_id": "51b7a5fc8459fc1f0400003d",
+      "__v": 0,
+      "additives": [
+        "mit Schwein",
+        "Konservierungsstoffe",
+        "Antioxidationsmittel",
+        "Ei/-erzeugnisse",
+        "Milch/-erzeugnisse",
+        "Sellerie/-erzeugnisse"
+      ],
+      "properties": [
+        "mit Schwein"
+      ]
+    },
+    {
+      "mensaId": "philosophenturm",
+      "week": 24,
+      "name": "Pasta-Bar pro 100g",
+      "studPrice": 0.45,
+      "normalPrice": 0.65,
+      "date": "2012-06-26T22:00:00.000Z",
+      "_id": "51b7a5fc8459fc1f0400003e",
+      "__v": 0,
+      "additives": [
+        "Vegan",
+        "Klima Teller",
+        "vegetarisch",
+        "Antioxidationsmittel",
+        "Geschmacksverstärker",
+        "Geschwärzt",
+        "Soja/-erzeugnisse",
+        "Sellerie/-erzeugnisse"
+      ],
+      "properties": [
+        "Vegan",
+        "Klima Teller",
+        "vegetarisch"
+      ]
+    },
+    {
+      "mensaId": "philosophenturm",
+      "week": 24,
+      "name": "Pasta-Bar pro 100g",
+      "studPrice": 0.45,
+      "normalPrice": 0.65,
+      "date": "2012-06-27T22:00:00.000Z",
+      "_id": "51b7a5fc8459fc1f0400003f",
+      "__v": 0,
+      "additives": [
+        "mit Schwein",
+        "Konservierungsstoffe",
+        "Antioxidationsmittel",
+        "Sellerie/-erzeugnisse"
+      ],
+      "properties": [
+        "mit Schwein"
+      ]
+    },
+    {
+      "mensaId": "philosophenturm",
+      "week": 24,
+      "name": "Pasta-Bar pro 100g",
+      "studPrice": 0.45,
+      "normalPrice": 0.65,
+      "date": "2012-06-27T22:00:00.000Z",
+      "_id": "51b7a5fc8459fc1f04000040",
+      "__v": 0,
+      "additives": [
+        "vegetarisch",
+        "Milch/-erzeugnisse",
+        "Geschmacksverstärker",
+        "Glutenhaltiges",
+        "Soja/-erzeugnisse"
+      ],
+      "properties": [
+        "vegetarisch"
+      ]
+    },
+    {
+      "mensaId": "philosophenturm",
+      "week": 24,
+      "name": "Pasta-Bar pro 100g",
+      "studPrice": 0.45,
+      "normalPrice": 0.65,
+      "date": "2012-06-28T22:00:00.000Z",
+      "_id": "51b7a5fc8459fc1f04000041",
+      "__v": 0,
+      "additives": [
+        "vegetarisch",
+        "Milch/-erzeugnisse",
+        "Glutenhaltiges",
+        "Soja/-erzeugnisse",
+        "Sellerie/-erzeugnisse"
+      ],
+      "properties": [
+        "vegetarisch"
+      ]
+    },
+    {
+      "mensaId": "philosophenturm",
+      "week": 24,
+      "name": "Pasta-Bar pro 100g",
+      "studPrice": 0.45,
+      "normalPrice": 0.65,
+      "date": "2012-06-28T22:00:00.000Z",
+      "_id": "51b7a5fc8459fc1f04000042",
+      "__v": 0,
+      "additives": [
+        "mit Rind",
+        "Milch/-erzeugnisse",
+        "Sellerie/-erzeugnisse",
+        "Farbstoffe",
+        "Geschmacksverstärker",
+        "Glutenhaltiges",
+        "Soja/-erzeugnisse"
+      ],
+      "properties": [
+        "mit Rind"
+      ]
+    },
+    {
+      "mensaId": "philosophenturm",
+      "week": 24,
+      "name": "Gemüse-Bar pro 100g",
+      "studPrice": 0.45,
+      "normalPrice": 0.65,
+      "date": "2012-06-24T22:00:00.000Z",
+      "_id": "51b7a5fc8459fc1f04000043",
+      "__v": 0,
+      "additives": [
+        "vegetarisch",
+        "Konservierungsstoffe",
+        "Geschmacksverstärker",
+        "Soja/-erzeugnisse"
+      ],
+      "properties": [
+        "vegetarisch"
+      ]
+    },
+    {
+      "mensaId": "philosophenturm",
+      "week": 24,
+      "name": "Gemüse-Bar pro 100g",
+      "studPrice": 0.45,
+      "normalPrice": 0.65,
+      "date": "2012-06-25T22:00:00.000Z",
+      "_id": "51b7a5fc8459fc1f04000044",
+      "__v": 0,
+      "additives": [
+        "vegetarisch"
+      ],
+      "properties": [
+        "vegetarisch"
+      ]
+    },
+    {
+      "mensaId": "philosophenturm",
+      "week": 24,
+      "name": "Gemüse-Bar pro 100g",
+      "studPrice": 0.45,
+      "normalPrice": 0.65,
+      "date": "2012-06-26T22:00:00.000Z",
+      "_id": "51b7a5fc8459fc1f04000045",
+      "__v": 0,
+      "additives": [
+        "Klima Teller",
+        "vegetarisch"
+      ],
+      "properties": [
+        "Klima Teller",
+        "vegetarisch"
+      ]
+    },
+    {
+      "mensaId": "philosophenturm",
+      "week": 24,
+      "name": "Gemüse-Bar pro 100g",
+      "studPrice": 0.45,
+      "normalPrice": 0.65,
+      "date": "2012-06-27T22:00:00.000Z",
+      "_id": "51b7a5fc8459fc1f04000046",
+      "__v": 0,
+      "additives": [
+        "vegetarisch",
+        "Sesam/-erzeugnisse"
+      ],
+      "properties": [
+        "vegetarisch"
+      ]
+    },
+    {
+      "mensaId": "philosophenturm",
+      "week": 24,
+      "name": "Gemüse-Bar pro 100g",
+      "studPrice": 0.45,
+      "normalPrice": 0.65,
+      "date": "2012-06-28T22:00:00.000Z",
+      "_id": "51b7a5fc8459fc1f04000047",
+      "__v": 0,
+      "additives": [
+        "vegetarisch",
+        "Konservierungsstoffe",
+        "Geschmacksverstärker",
+        "Soja/-erzeugnisse",
+        "Glutenhaltiges",
+        "Milch/-erzeugnisse",
+        "Farbstoffe"
+      ],
+      "properties": [
+        "vegetarisch"
+      ]
+    },
+    {
+      "mensaId": "philosophenturm",
+      "week": 24,
+      "name": "Aus dem Wok",
+      "studPrice": 2.4,
+      "normalPrice": 3.5,
+      "date": "2012-06-24T22:00:00.000Z",
+      "_id": "51b7a5fc8459fc1f04000048",
+      "__v": 0,
+      "additives": [
+        "laktosefrei",
+        "vegetarisch",
+        "Antioxidationsmittel",
+        "Geschmacksverstärker",
+        "Süßungsmittel",
+        "Glutenhaltiges",
+        "Soja/-erzeugnisse",
+        "Schalenfrüchte"
+      ],
+      "properties": [
+        "laktosefrei",
+        "vegetarisch"
+      ]
+    },
+    {
+      "mensaId": "philosophenturm",
+      "week": 24,
+      "name": "Aus dem Wok",
+      "studPrice": 2.4,
+      "normalPrice": 3.5,
+      "date": "2012-06-25T22:00:00.000Z",
+      "_id": "51b7a5fc8459fc1f04000049",
+      "__v": 0,
+      "additives": [
+        "laktosefrei",
+        "vegetarisch",
+        "Antioxidationsmittel",
+        "Geschmacksverstärker",
+        "Süßungsmittel",
+        "Soja/-erzeugnisse"
+      ],
+      "properties": [
+        "laktosefrei",
+        "vegetarisch"
+      ]
+    },
+    {
+      "mensaId": "philosophenturm",
+      "week": 24,
+      "name": "Aus dem Wok",
+      "studPrice": 3.3,
+      "normalPrice": 3.9,
+      "date": "2012-06-24T22:00:00.000Z",
+      "_id": "51b7a5fc8459fc1f0400004a",
+      "__v": 0,
+      "additives": [
+        "laktosefrei",
+        "mit Geflügel",
+        "Antioxidationsmittel",
+        "Geschmacksverstärker",
+        "Süßungsmittel",
+        "Glutenhaltiges",
+        "Soja/-erzeugnisse",
+        "Schalenfrüchte"
+      ],
+      "properties": [
+        "laktosefrei",
+        "mit Geflügel"
+      ]
+    },
+    {
+      "mensaId": "philosophenturm",
+      "week": 24,
+      "name": "Aus dem Wok",
+      "studPrice": 3.3,
+      "normalPrice": 3.9,
+      "date": "2012-06-25T22:00:00.000Z",
+      "_id": "51b7a5fc8459fc1f0400004b",
+      "__v": 0,
+      "additives": [
+        "mit Schwein",
+        "Antioxidationsmittel",
+        "Geschmacksverstärker",
+        "Süßungsmittel",
+        "Soja/-erzeugnisse"
+      ],
+      "properties": [
+        "mit Schwein"
+      ]
+    },
+    {
+      "mensaId": "philosophenturm",
+      "week": 24,
+      "name": "Aus dem Wok",
+      "studPrice": 3.3,
+      "normalPrice": 3.9,
+      "date": "2012-06-26T22:00:00.000Z",
+      "_id": "51b7a5fc8459fc1f0400004c",
+      "__v": 0,
+      "additives": [
+        "Klima Teller",
+        "laktosefrei",
+        "mit Fisch",
+        "Konservierungsstoffe",
+        "Antioxidationsmittel",
+        "Geschmacksverstärker",
+        "Süßungsmittel",
+        "Glutenhaltiges",
+        "Ei/-erzeugnisse",
+        "Soja/-erzeugnisse"
+      ],
+      "properties": [
+        "Klima Teller",
+        "laktosefrei",
+        "mit Fisch"
+      ]
+    },
+    {
+      "mensaId": "philosophenturm",
+      "week": 24,
+      "name": "Aus dem Wok",
+      "studPrice": 3.3,
+      "normalPrice": 3.9,
+      "date": "2012-06-27T22:00:00.000Z",
+      "_id": "51b7a5fc8459fc1f0400004d",
+      "__v": 0,
+      "additives": [
+        "laktosefrei",
+        "mit Schwein",
+        "Antioxidationsmittel",
+        "Geschmacksverstärker",
+        "Süßungsmittel",
+        "Soja/-erzeugnisse"
+      ],
+      "properties": [
+        "laktosefrei",
+        "mit Schwein"
+      ]
+    },
+    {
+      "mensaId": "philosophenturm",
+      "week": 24,
+      "name": "Aus dem Wok",
+      "studPrice": 3.3,
+      "normalPrice": 3.9,
+      "date": "2012-06-28T22:00:00.000Z",
+      "_id": "51b7a5fc8459fc1f0400004e",
+      "__v": 0,
+      "additives": [
+        "laktosefrei",
+        "mit Rind",
+        "Antioxidationsmittel",
+        "Geschmacksverstärker",
+        "Süßungsmittel",
+        "Soja/-erzeugnisse"
+      ],
+      "properties": [
+        "laktosefrei",
+        "mit Rind"
+      ]
+    }
+  ]
+}

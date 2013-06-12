@@ -1,0 +1,564 @@
+{
+  "menu": [
+    {
+      "mensaId": "buceriuslawschool",
+      "week": 24,
+      "name": "Suppe & Co",
+      "studPrice": 1.5,
+      "normalPrice": 1.75,
+      "date": "2013-06-09T22:00:00.000Z",
+      "_id": "51b8bcb1becca7a521000053",
+      "__v": 0,
+      "additives": [
+        "Vegan",
+        "laktosefrei",
+        "vegetarisch",
+        "Antioxidationsmittel",
+        "Geschmacksverstärker",
+        "Geschwefelt",
+        "Glutenhaltiges",
+        "Soja/-erzeugnisse",
+        "Sellerie/-erzeugnisse"
+      ],
+      "properties": [
+        "Vegan",
+        "laktosefrei",
+        "vegetarisch"
+      ]
+    },
+    {
+      "mensaId": "buceriuslawschool",
+      "week": 24,
+      "name": "Suppe & Co",
+      "studPrice": 1.5,
+      "normalPrice": 1.75,
+      "date": "2013-06-10T22:00:00.000Z",
+      "_id": "51b8bcb1becca7a521000054",
+      "__v": 0,
+      "additives": [
+        "vegetarisch",
+        "Milch/-erzeugnisse",
+        "Sellerie/-erzeugnisse"
+      ],
+      "properties": [
+        "vegetarisch"
+      ]
+    },
+    {
+      "mensaId": "buceriuslawschool",
+      "week": 24,
+      "name": "Suppe & Co",
+      "studPrice": 1.5,
+      "normalPrice": 1.75,
+      "date": "2013-06-11T22:00:00.000Z",
+      "_id": "51b8bcb1becca7a521000055",
+      "__v": 0,
+      "additives": [
+        "Vegan",
+        "Klima Teller",
+        "laktosefrei",
+        "vegetarisch",
+        "Antioxidationsmittel",
+        "Geschwefelt",
+        "Sellerie/-erzeugnisse"
+      ],
+      "properties": [
+        "Vegan",
+        "Klima Teller",
+        "laktosefrei",
+        "vegetarisch"
+      ]
+    },
+    {
+      "mensaId": "buceriuslawschool",
+      "week": 24,
+      "name": "Suppe & Co",
+      "studPrice": 1.5,
+      "normalPrice": 1.75,
+      "date": "2013-06-12T22:00:00.000Z",
+      "_id": "51b8bcb1becca7a521000056",
+      "__v": 0,
+      "additives": [
+        "vegetarisch",
+        "Milch/-erzeugnisse",
+        "Sellerie/-erzeugnisse"
+      ],
+      "properties": [
+        "vegetarisch"
+      ]
+    },
+    {
+      "mensaId": "buceriuslawschool",
+      "week": 24,
+      "name": "Suppe & Co",
+      "studPrice": 1.5,
+      "normalPrice": 1.75,
+      "date": "2013-06-13T22:00:00.000Z",
+      "_id": "51b8bcb1becca7a521000057",
+      "__v": 0,
+      "additives": [
+        "laktosefrei",
+        "mit Geflügel",
+        "Sellerie/-erzeugnisse"
+      ],
+      "properties": [
+        "laktosefrei",
+        "mit Geflügel"
+      ]
+    },
+    {
+      "mensaId": "buceriuslawschool",
+      "week": 24,
+      "name": "Tagesgericht",
+      "studPrice": 3.1,
+      "normalPrice": 3.6,
+      "date": "2013-06-09T22:00:00.000Z",
+      "_id": "51b8bcb1becca7a521000058",
+      "__v": 0,
+      "additives": [
+        "mit Schwein",
+        "Farbstoffe",
+        "Konservierungsstoffe",
+        "Glutenhaltiges",
+        "Ei/-erzeugnisse",
+        "Milch/-erzeugnisse",
+        "Geschmacksverstärker",
+        "Soja/-erzeugnisse"
+      ],
+      "properties": [
+        "mit Schwein"
+      ]
+    },
+    {
+      "mensaId": "buceriuslawschool",
+      "week": 24,
+      "name": "Tagesgericht",
+      "studPrice": 3.2,
+      "normalPrice": 3.7,
+      "date": "2013-06-10T22:00:00.000Z",
+      "_id": "51b8bcb1becca7a521000059",
+      "__v": 0,
+      "additives": [
+        "mit Schwein",
+        "Soja/-erzeugnisse",
+        "Süßungsmittel",
+        "Senf/-erzeugnisse",
+        "Sesam/-erzeugnisse",
+        "Konservierungsstoffe",
+        "Antioxidationsmittel",
+        "Geschwefelt",
+        "Sellerie/-erzeugnisse",
+        "Farbstoffe",
+        "Glutenhaltiges",
+        "Milch/-erzeugnisse"
+      ],
+      "properties": [
+        "mit Schwein"
+      ]
+    },
+    {
+      "mensaId": "buceriuslawschool",
+      "week": 24,
+      "name": "Tagesgericht",
+      "studPrice": 2.9,
+      "normalPrice": 3.3,
+      "date": "2013-06-11T22:00:00.000Z",
+      "_id": "51b8bcb1becca7a52100005a",
+      "__v": 0,
+      "additives": [
+        "Klima Teller",
+        "laktosefrei",
+        "mit Fisch",
+        "Konservierungsstoffe",
+        "Antioxidationsmittel",
+        "Fisch/-erzeugnisse",
+        "Farbstoffe",
+        "Süßungsmittel",
+        "Glutenhaltiges",
+        "Ei/-erzeugnisse",
+        "Milch/-erzeugnisse",
+        "Senf/-erzeugnisse"
+      ],
+      "properties": [
+        "Klima Teller",
+        "laktosefrei",
+        "mit Fisch"
+      ]
+    },
+    {
+      "mensaId": "buceriuslawschool",
+      "week": 24,
+      "name": "Tagesgericht",
+      "studPrice": 2.7,
+      "normalPrice": 3.1,
+      "date": "2013-06-12T22:00:00.000Z",
+      "_id": "51b8bcb1becca7a52100005b",
+      "__v": 0,
+      "additives": [
+        "laktosefrei",
+        "mit Schwein",
+        "Konservierungsstoffe",
+        "Antioxidationsmittel",
+        "Süßungsmittel",
+        "Ei/-erzeugnisse",
+        "Sellerie/-erzeugnisse",
+        "Senf/-erzeugnisse"
+      ],
+      "properties": [
+        "laktosefrei",
+        "mit Schwein"
+      ]
+    },
+    {
+      "mensaId": "buceriuslawschool",
+      "week": 24,
+      "name": "Tagesgericht",
+      "studPrice": 2.9,
+      "normalPrice": 3.3,
+      "date": "2013-06-13T22:00:00.000Z",
+      "_id": "51b8bcb1becca7a52100005c",
+      "__v": 0,
+      "additives": [
+        "mit Rind",
+        "Glutenhaltiges",
+        "Ei/-erzeugnisse",
+        "Soja/-erzeugnisse",
+        "Milch/-erzeugnisse",
+        "Sellerie/-erzeugnisse",
+        "Senf/-erzeugnisse"
+      ],
+      "properties": [
+        "mit Rind"
+      ]
+    },
+    {
+      "mensaId": "buceriuslawschool",
+      "week": 24,
+      "name": "Vegetarisch",
+      "studPrice": 2.9,
+      "normalPrice": 3.3,
+      "date": "2013-06-09T22:00:00.000Z",
+      "_id": "51b8bcb1becca7a52100005d",
+      "__v": 0,
+      "additives": [
+        "vegetarisch",
+        "Antioxidationsmittel",
+        "Soja/-erzeugnisse",
+        "Milch/-erzeugnisse",
+        "Sellerie/-erzeugnisse"
+      ],
+      "properties": [
+        "vegetarisch"
+      ]
+    },
+    {
+      "mensaId": "buceriuslawschool",
+      "week": 24,
+      "name": "Vegetarisch",
+      "studPrice": 2.2,
+      "normalPrice": 2.5,
+      "date": "2013-06-10T22:00:00.000Z",
+      "_id": "51b8bcb1becca7a52100005e",
+      "__v": 0,
+      "additives": [
+        "vegetarisch",
+        "Geschmacksverstärker",
+        "Ei/-erzeugnisse",
+        "Milch/-erzeugnisse",
+        "Senf/-erzeugnisse",
+        "Sellerie/-erzeugnisse"
+      ],
+      "properties": [
+        "vegetarisch"
+      ]
+    },
+    {
+      "mensaId": "buceriuslawschool",
+      "week": 24,
+      "name": "Vegetarisch",
+      "studPrice": 3,
+      "normalPrice": 3.5,
+      "date": "2013-06-11T22:00:00.000Z",
+      "_id": "51b8bcb1becca7a52100005f",
+      "__v": 0,
+      "additives": [
+        "Klima Teller",
+        "vegetarisch",
+        "Milch/-erzeugnisse",
+        "Sellerie/-erzeugnisse",
+        "Antioxidationsmittel",
+        "Geschwefelt"
+      ],
+      "properties": [
+        "Klima Teller",
+        "vegetarisch"
+      ]
+    },
+    {
+      "mensaId": "buceriuslawschool",
+      "week": 24,
+      "name": "Vegetarisch",
+      "studPrice": 2.6,
+      "normalPrice": 3,
+      "date": "2013-06-12T22:00:00.000Z",
+      "_id": "51b8bcb1becca7a521000060",
+      "__v": 0,
+      "additives": [
+        "vegetarisch",
+        "Antioxidationsmittel",
+        "Geschwefelt",
+        "Ei/-erzeugnisse",
+        "Milch/-erzeugnisse",
+        "Geschmacksverstärker",
+        "Glutenhaltiges"
+      ],
+      "properties": [
+        "vegetarisch"
+      ]
+    },
+    {
+      "mensaId": "buceriuslawschool",
+      "week": 24,
+      "name": "Vegetarisch",
+      "studPrice": 3.2,
+      "normalPrice": 3.7,
+      "date": "2013-06-13T22:00:00.000Z",
+      "_id": "51b8bcb1becca7a521000061",
+      "__v": 0,
+      "additives": [
+        "vegetarisch",
+        "Farbstoffe",
+        "Glutenhaltiges",
+        "Milch/-erzeugnisse"
+      ],
+      "properties": [
+        "vegetarisch"
+      ]
+    },
+    {
+      "mensaId": "buceriuslawschool",
+      "week": 24,
+      "name": "BLS Spezial",
+      "studPrice": 3.2,
+      "normalPrice": 3.7,
+      "date": "2013-06-09T22:00:00.000Z",
+      "_id": "51b8bcb1becca7a521000062",
+      "__v": 0,
+      "additives": [
+        "mit Geflügel",
+        "Ei/-erzeugnisse",
+        "Erdnuss/-erzeugnisse",
+        "Soja/-erzeugnisse",
+        "Milch/-erzeugnisse",
+        "Sellerie/-erzeugnisse",
+        "Senf/-erzeugnisse",
+        "Sesam/-erzeugnisse"
+      ],
+      "properties": [
+        "mit Geflügel"
+      ]
+    },
+    {
+      "mensaId": "buceriuslawschool",
+      "week": 24,
+      "name": "BLS Spezial",
+      "studPrice": 3,
+      "normalPrice": 3.5,
+      "date": "2013-06-10T22:00:00.000Z",
+      "_id": "51b8bcb1becca7a521000063",
+      "__v": 0,
+      "additives": [
+        "Klima Teller",
+        "laktosefrei",
+        "Campus Vital",
+        "mit Rind",
+        "Konservierungsstoffe",
+        "Glutenhaltiges",
+        "Ei/-erzeugnisse"
+      ],
+      "properties": [
+        "Klima Teller",
+        "laktosefrei",
+        "Campus Vital",
+        "mit Rind"
+      ]
+    },
+    {
+      "mensaId": "buceriuslawschool",
+      "week": 24,
+      "name": "BLS Spezial",
+      "studPrice": 3.5,
+      "normalPrice": 4,
+      "date": "2013-06-11T22:00:00.000Z",
+      "_id": "51b8bcb1becca7a521000064",
+      "__v": 0,
+      "additives": [
+        "Klima Teller",
+        "mit Geflügel",
+        "Glutenhaltiges",
+        "Farbstoffe",
+        "Antioxidationsmittel",
+        "Geschwefelt",
+        "Süßungsmittel",
+        "Ei/-erzeugnisse",
+        "Milch/-erzeugnisse",
+        "Senf/-erzeugnisse"
+      ],
+      "properties": [
+        "Klima Teller",
+        "mit Geflügel"
+      ]
+    },
+    {
+      "mensaId": "buceriuslawschool",
+      "week": 24,
+      "name": "BLS Spezial",
+      "studPrice": 3.6,
+      "normalPrice": 4.1,
+      "date": "2013-06-12T22:00:00.000Z",
+      "_id": "51b8bcb1becca7a521000065",
+      "__v": 0,
+      "additives": [
+        "mit Rind",
+        "Süßungsmittel",
+        "Milch/-erzeugnisse",
+        "Senf/-erzeugnisse",
+        "Glutenhaltiges",
+        "Soja/-erzeugnisse"
+      ],
+      "properties": [
+        "mit Rind"
+      ]
+    },
+    {
+      "mensaId": "buceriuslawschool",
+      "week": 24,
+      "name": "BLS Spezial",
+      "studPrice": 2.8,
+      "normalPrice": 3.2,
+      "date": "2013-06-13T22:00:00.000Z",
+      "_id": "51b8bcb1becca7a521000066",
+      "__v": 0,
+      "additives": [
+        "laktosefrei",
+        "mit Fisch",
+        "Glutenhaltiges",
+        "Krebstier(e)/-erzeugnisse",
+        "Ei/-erzeugnisse",
+        "Soja/-erzeugnisse"
+      ],
+      "properties": [
+        "laktosefrei",
+        "mit Fisch"
+      ]
+    },
+    {
+      "mensaId": "buceriuslawschool",
+      "week": 24,
+      "name": "Pasta- und Gemüsetheke",
+      "studPrice": 2.6,
+      "normalPrice": 3.1,
+      "date": "2013-06-09T22:00:00.000Z",
+      "_id": "51b8bcb1becca7a521000067",
+      "__v": 0,
+      "additives": [
+        "mit Schwein",
+        "Farbstoffe",
+        "Konservierungsstoffe",
+        "Antioxidationsmittel",
+        "Glutenhaltiges",
+        "Milch/-erzeugnisse",
+        "Sellerie/-erzeugnisse"
+      ],
+      "properties": [
+        "mit Schwein"
+      ]
+    },
+    {
+      "mensaId": "buceriuslawschool",
+      "week": 24,
+      "name": "Pasta- und Gemüsetheke",
+      "studPrice": 2.6,
+      "normalPrice": 3.1,
+      "date": "2013-06-10T22:00:00.000Z",
+      "_id": "51b8bcb1becca7a521000068",
+      "__v": 0,
+      "additives": [
+        "vegetarisch",
+        "Farbstoffe",
+        "Geschmacksverstärker",
+        "Glutenhaltiges",
+        "Soja/-erzeugnisse",
+        "Milch/-erzeugnisse",
+        "Sellerie/-erzeugnisse",
+        "Phosphat"
+      ],
+      "properties": [
+        "vegetarisch"
+      ]
+    },
+    {
+      "mensaId": "buceriuslawschool",
+      "week": 24,
+      "name": "Pasta- und Gemüsetheke",
+      "studPrice": 2.6,
+      "normalPrice": 3.1,
+      "date": "2013-06-11T22:00:00.000Z",
+      "_id": "51b8bcb1becca7a521000069",
+      "__v": 0,
+      "additives": [
+        "Klima Teller",
+        "vegetarisch",
+        "Farbstoffe",
+        "Ei/-erzeugnisse",
+        "Milch/-erzeugnisse"
+      ],
+      "properties": [
+        "Klima Teller",
+        "vegetarisch"
+      ]
+    },
+    {
+      "mensaId": "buceriuslawschool",
+      "week": 24,
+      "name": "Pasta- und Gemüsetheke",
+      "studPrice": 2.6,
+      "normalPrice": 3.1,
+      "date": "2013-06-12T22:00:00.000Z",
+      "_id": "51b8bcb1becca7a52100006a",
+      "__v": 0,
+      "additives": [
+        "vegetarisch",
+        "Glutenhaltiges",
+        "Ei/-erzeugnisse",
+        "Milch/-erzeugnisse"
+      ],
+      "properties": [
+        "vegetarisch"
+      ]
+    },
+    {
+      "mensaId": "buceriuslawschool",
+      "week": 24,
+      "name": "Pasta- und Gemüsetheke",
+      "studPrice": 2.6,
+      "normalPrice": 3.1,
+      "date": "2013-06-13T22:00:00.000Z",
+      "_id": "51b8bcb1becca7a52100006b",
+      "__v": 0,
+      "additives": [
+        "mit Schwein",
+        "Konservierungsstoffe",
+        "Antioxidationsmittel",
+        "Ei/-erzeugnisse",
+        "Milch/-erzeugnisse",
+        "Sellerie/-erzeugnisse",
+        "Glutenhaltiges",
+        "Soja/-erzeugnisse"
+      ],
+      "properties": [
+        "mit Schwein"
+      ]
+    }
+  ]
+}

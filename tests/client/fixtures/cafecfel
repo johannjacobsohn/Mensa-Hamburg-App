@@ -1,0 +1,203 @@
+{
+  "menu": [
+    {
+      "mensaId": "cafecfel",
+      "week": 24,
+      "name": "Aus dem Suppentopf und Süßes",
+      "studPrice": 1.2,
+      "normalPrice": 2.2,
+      "date": "2013-06-11T22:00:00.000Z",
+      "_id": "51b8bcb4becca7a5210000ca",
+      "__v": 0,
+      "additives": [
+        "Klima Teller",
+        "vegetarisch",
+        "Farbstoffe",
+        "Glutenhaltiges",
+        "Ei/-erzeugnisse",
+        "Milch/-erzeugnisse",
+        "Süßungsmittel"
+      ],
+      "properties": [
+        "Klima Teller",
+        "vegetarisch"
+      ]
+    },
+    {
+      "mensaId": "cafecfel",
+      "week": 24,
+      "name": "Gut und günstig",
+      "studPrice": 1.85,
+      "normalPrice": 2.95,
+      "date": "2013-06-12T22:00:00.000Z",
+      "_id": "51b8bcb4becca7a5210000cb",
+      "__v": 0,
+      "additives": [
+        "mit Schwein",
+        "Konservierungsstoffe",
+        "Antioxidationsmittel",
+        "Glutenhaltiges",
+        "Soja/-erzeugnisse",
+        "Milch/-erzeugnisse",
+        "Sellerie/-erzeugnisse"
+      ],
+      "properties": [
+        "mit Schwein"
+      ]
+    },
+    {
+      "mensaId": "cafecfel",
+      "week": 24,
+      "name": "Beliebt und gerne gegessen",
+      "studPrice": 2.2,
+      "normalPrice": 3.3,
+      "date": "2013-06-10T22:00:00.000Z",
+      "_id": "51b8bcb4becca7a5210000cc",
+      "__v": 0,
+      "additives": [
+        "mit Geflügel",
+        "Glutenhaltiges",
+        "Ei/-erzeugnisse",
+        "Erdnuss/-erzeugnisse",
+        "Soja/-erzeugnisse",
+        "Milch/-erzeugnisse",
+        "Sellerie/-erzeugnisse",
+        "Senf/-erzeugnisse",
+        "Sesam/-erzeugnisse",
+        "Konservierungsstoffe"
+      ],
+      "properties": [
+        "mit Geflügel"
+      ]
+    },
+    {
+      "mensaId": "cafecfel",
+      "week": 24,
+      "name": "Beliebt und gerne gegessen",
+      "studPrice": 2.2,
+      "normalPrice": 3.3,
+      "date": "2013-06-11T22:00:00.000Z",
+      "_id": "51b8bcb4becca7a5210000cd",
+      "__v": 0,
+      "additives": [
+        "Klima Teller",
+        "mit Geflügel",
+        "Glutenhaltiges",
+        "Soja/-erzeugnisse",
+        "Milch/-erzeugnisse",
+        "Sellerie/-erzeugnisse",
+        "Geschmacksverstärker"
+      ],
+      "properties": [
+        "Klima Teller",
+        "mit Geflügel"
+      ]
+    },
+    {
+      "mensaId": "cafecfel",
+      "week": 24,
+      "name": "Beliebt und gerne gegessen",
+      "studPrice": 2.2,
+      "normalPrice": 3.3,
+      "date": "2013-06-12T22:00:00.000Z",
+      "_id": "51b8bcb4becca7a5210000ce",
+      "__v": 0,
+      "additives": [
+        "mit Rind",
+        "Antioxidationsmittel",
+        "Glutenhaltiges",
+        "Milch/-erzeugnisse",
+        "Ei/-erzeugnisse"
+      ],
+      "properties": [
+        "mit Rind"
+      ]
+    },
+    {
+      "mensaId": "cafecfel",
+      "week": 24,
+      "name": "Vegetarisch",
+      "studPrice": 2.5,
+      "normalPrice": 3.6,
+      "date": "2013-06-09T22:00:00.000Z",
+      "_id": "51b8bcb4becca7a5210000cf",
+      "__v": 0,
+      "additives": [
+        "vegetarisch",
+        "Antioxidationsmittel",
+        "Geschwefelt",
+        "Milch/-erzeugnisse",
+        "Geschwärzt"
+      ],
+      "properties": [
+        "vegetarisch"
+      ]
+    },
+    {
+      "mensaId": "cafecfel",
+      "week": 24,
+      "name": "Vegetarisch",
+      "studPrice": 2.6,
+      "normalPrice": 3.7,
+      "date": "2013-06-10T22:00:00.000Z",
+      "_id": "51b8bcb4becca7a5210000d0",
+      "__v": 0,
+      "additives": [
+        "vegetarisch",
+        "Antioxidationsmittel",
+        "Milch/-erzeugnisse",
+        "Sellerie/-erzeugnisse",
+        "Glutenhaltiges",
+        "Ei/-erzeugnisse"
+      ],
+      "properties": [
+        "vegetarisch"
+      ]
+    },
+    {
+      "mensaId": "cafecfel",
+      "week": 24,
+      "name": "Campus Spezial",
+      "studPrice": 3.95,
+      "normalPrice": 4.65,
+      "date": "2013-06-09T22:00:00.000Z",
+      "_id": "51b8bcb4becca7a5210000d1",
+      "__v": 0,
+      "additives": [
+        "mit Fisch",
+        "Glutenhaltiges",
+        "Fisch/-erzeugnisse",
+        "Soja/-erzeugnisse",
+        "Milch/-erzeugnisse"
+      ],
+      "properties": [
+        "mit Fisch"
+      ]
+    },
+    {
+      "mensaId": "cafecfel",
+      "week": 24,
+      "name": "Campus Spezial",
+      "studPrice": 4.3,
+      "normalPrice": 5.05,
+      "date": "2013-06-13T22:00:00.000Z",
+      "_id": "51b8bcb4becca7a5210000d2",
+      "__v": 0,
+      "additives": [
+        "laktosefrei",
+        "mit Fisch",
+        "Farbstoffe",
+        "Glutenhaltiges",
+        "Fisch/-erzeugnisse",
+        "Senf/-erzeugnisse",
+        "Geschmacksverstärker",
+        "Krebstier(e)/-erzeugnisse",
+        "Sellerie/-erzeugnisse"
+      ],
+      "properties": [
+        "laktosefrei",
+        "mit Fisch"
+      ]
+    }
+  ]
+}

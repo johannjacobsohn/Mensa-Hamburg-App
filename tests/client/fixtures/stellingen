@@ -1,0 +1,323 @@
+{
+  "menu": [
+    {
+      "mensaId": "stellingen",
+      "week": 24,
+      "name": "Gut und günstig",
+      "studPrice": 1.3,
+      "normalPrice": 2.3,
+      "date": "2013-06-10T22:00:00.000Z",
+      "_id": "51b8bcb3becca7a5210000bb",
+      "__v": 0,
+      "additives": [
+        "laktosefrei",
+        "mit Rind",
+        "mit Schwein",
+        "Glutenhaltiges",
+        "Ei/-erzeugnisse"
+      ],
+      "properties": [
+        "laktosefrei",
+        "mit Rind",
+        "mit Schwein"
+      ]
+    },
+    {
+      "mensaId": "stellingen",
+      "week": 24,
+      "name": "Beliebt und gerne gegessen",
+      "studPrice": 1.65,
+      "normalPrice": 2.65,
+      "date": "2013-06-09T22:00:00.000Z",
+      "_id": "51b8bcb3becca7a5210000bc",
+      "__v": 0,
+      "additives": [
+        "mit Schwein",
+        "Glutenhaltiges",
+        "Milch/-erzeugnisse",
+        "Sellerie/-erzeugnisse"
+      ],
+      "properties": [
+        "mit Schwein"
+      ]
+    },
+    {
+      "mensaId": "stellingen",
+      "week": 24,
+      "name": "Beliebt und gerne gegessen",
+      "studPrice": 1.65,
+      "normalPrice": 2.65,
+      "date": "2013-06-11T22:00:00.000Z",
+      "_id": "51b8bcb3becca7a5210000bd",
+      "__v": 0,
+      "additives": [
+        "Klima Teller",
+        "mit Geflügel",
+        "Glutenhaltiges",
+        "Soja/-erzeugnisse",
+        "Milch/-erzeugnisse",
+        "Sellerie/-erzeugnisse"
+      ],
+      "properties": [
+        "Klima Teller",
+        "mit Geflügel"
+      ]
+    },
+    {
+      "mensaId": "stellingen",
+      "week": 24,
+      "name": "Beliebt und gerne gegessen",
+      "studPrice": 1.65,
+      "normalPrice": 2.65,
+      "date": "2013-06-13T22:00:00.000Z",
+      "_id": "51b8bcb3becca7a5210000be",
+      "__v": 0,
+      "additives": [
+        "mit Schwein",
+        "Glutenhaltiges",
+        "Milch/-erzeugnisse"
+      ],
+      "properties": [
+        "mit Schwein"
+      ]
+    },
+    {
+      "mensaId": "stellingen",
+      "week": 24,
+      "name": "Vegetarisch",
+      "studPrice": 2.5,
+      "normalPrice": 3.6,
+      "date": "2013-06-09T22:00:00.000Z",
+      "_id": "51b8bcb3becca7a5210000bf",
+      "__v": 0,
+      "additives": [
+        "vegetarisch",
+        "Milch/-erzeugnisse",
+        "Geschwärzt"
+      ],
+      "properties": [
+        "vegetarisch"
+      ]
+    },
+    {
+      "mensaId": "stellingen",
+      "week": 24,
+      "name": "Vegetarisch",
+      "studPrice": 2.05,
+      "normalPrice": 3.05,
+      "date": "2013-06-10T22:00:00.000Z",
+      "_id": "51b8bcb3becca7a5210000c0",
+      "__v": 0,
+      "additives": [
+        "vegetarisch",
+        "Antioxidationsmittel",
+        "Milch/-erzeugnisse",
+        "Sellerie/-erzeugnisse"
+      ],
+      "properties": [
+        "vegetarisch"
+      ]
+    },
+    {
+      "mensaId": "stellingen",
+      "week": 24,
+      "name": "Vegetarisch",
+      "studPrice": 1.85,
+      "normalPrice": 2.85,
+      "date": "2013-06-11T22:00:00.000Z",
+      "_id": "51b8bcb3becca7a5210000c1",
+      "__v": 0,
+      "additives": [
+        "Klima Teller",
+        "vegetarisch",
+        "Farbstoffe",
+        "Konservierungsstoffe",
+        "Antioxidationsmittel",
+        "Süßungsmittel",
+        "Glutenhaltiges",
+        "Ei/-erzeugnisse",
+        "Milch/-erzeugnisse",
+        "Sellerie/-erzeugnisse",
+        "Senf/-erzeugnisse",
+        "Sesam/-erzeugnisse"
+      ],
+      "properties": [
+        "Klima Teller",
+        "vegetarisch"
+      ]
+    },
+    {
+      "mensaId": "stellingen",
+      "week": 24,
+      "name": "Vegetarisch",
+      "studPrice": 2.05,
+      "normalPrice": 3.05,
+      "date": "2013-06-12T22:00:00.000Z",
+      "_id": "51b8bcb3becca7a5210000c2",
+      "__v": 0,
+      "additives": [
+        "vegetarisch",
+        "Farbstoffe",
+        "Konservierungsstoffe",
+        "Glutenhaltiges",
+        "Ei/-erzeugnisse",
+        "Erdnuss/-erzeugnisse",
+        "Soja/-erzeugnisse",
+        "Milch/-erzeugnisse",
+        "Schalenfrüchte",
+        "Sellerie/-erzeugnisse",
+        "Schwefeldioxid/Sulfite"
+      ],
+      "properties": [
+        "vegetarisch"
+      ]
+    },
+    {
+      "mensaId": "stellingen",
+      "week": 24,
+      "name": "Vegetarisch",
+      "studPrice": 2.05,
+      "normalPrice": 3.05,
+      "date": "2013-06-13T22:00:00.000Z",
+      "_id": "51b8bcb3becca7a5210000c3",
+      "__v": 0,
+      "additives": [
+        "vegetarisch",
+        "Glutenhaltiges",
+        "Ei/-erzeugnisse",
+        "Milch/-erzeugnisse",
+        "Sellerie/-erzeugnisse",
+        "Soja/-erzeugnisse"
+      ],
+      "properties": [
+        "vegetarisch"
+      ]
+    },
+    {
+      "mensaId": "stellingen",
+      "week": 24,
+      "name": "Campus Spezial",
+      "studPrice": 3.95,
+      "normalPrice": 4.65,
+      "date": "2013-06-09T22:00:00.000Z",
+      "_id": "51b8bcb3becca7a5210000c4",
+      "__v": 0,
+      "additives": [
+        "mit Fisch",
+        "Glutenhaltiges",
+        "Fisch/-erzeugnisse",
+        "Milch/-erzeugnisse"
+      ],
+      "properties": [
+        "mit Fisch"
+      ]
+    },
+    {
+      "mensaId": "stellingen",
+      "week": 24,
+      "name": "Campus Spezial",
+      "studPrice": 3.4,
+      "normalPrice": 4,
+      "date": "2013-06-10T22:00:00.000Z",
+      "_id": "51b8bcb3becca7a5210000c5",
+      "__v": 0,
+      "additives": [
+        "mit Geflügel",
+        "Geschmacksverstärker",
+        "Milch/-erzeugnisse"
+      ],
+      "properties": [
+        "mit Geflügel"
+      ]
+    },
+    {
+      "mensaId": "stellingen",
+      "week": 24,
+      "name": "Campus Spezial",
+      "studPrice": 3.4,
+      "normalPrice": 4,
+      "date": "2013-06-11T22:00:00.000Z",
+      "_id": "51b8bcb3becca7a5210000c6",
+      "__v": 0,
+      "additives": [
+        "Klima Teller",
+        "mit Fisch",
+        "Antioxidationsmittel",
+        "Fisch/-erzeugnisse",
+        "Sellerie/-erzeugnisse",
+        "Schalenfrüchte",
+        "Senf/-erzeugnisse"
+      ],
+      "properties": [
+        "Klima Teller",
+        "mit Fisch"
+      ]
+    },
+    {
+      "mensaId": "stellingen",
+      "week": 24,
+      "name": "Campus Spezial",
+      "studPrice": 2.7,
+      "normalPrice": 3.2,
+      "date": "2013-06-12T22:00:00.000Z",
+      "_id": "51b8bcb3becca7a5210000c7",
+      "__v": 0,
+      "additives": [
+        "laktosefrei",
+        "mit Schwein",
+        "mit Alkohol",
+        "Glutenhaltiges",
+        "Sellerie/-erzeugnisse"
+      ],
+      "properties": [
+        "laktosefrei",
+        "mit Schwein",
+        "mit Alkohol"
+      ]
+    },
+    {
+      "mensaId": "stellingen",
+      "week": 24,
+      "name": "Campus Spezial",
+      "studPrice": 3.75,
+      "normalPrice": 4.4,
+      "date": "2013-06-13T22:00:00.000Z",
+      "_id": "51b8bcb3becca7a5210000c8",
+      "__v": 0,
+      "additives": [
+        "laktosefrei",
+        "mit Fisch",
+        "Farbstoffe",
+        "Glutenhaltiges",
+        "Fisch/-erzeugnisse",
+        "Senf/-erzeugnisse",
+        "Geschmacksverstärker",
+        "Krebstier(e)/-erzeugnisse",
+        "Sellerie/-erzeugnisse"
+      ],
+      "properties": [
+        "laktosefrei",
+        "mit Fisch"
+      ]
+    },
+    {
+      "mensaId": "stellingen",
+      "week": 24,
+      "name": "Pizza",
+      "studPrice": 2.2,
+      "normalPrice": 3.3,
+      "date": "2013-06-12T22:00:00.000Z",
+      "_id": "51b8bcb3becca7a5210000c9",
+      "__v": 0,
+      "additives": [
+        "mit Schwein",
+        "Farbstoffe",
+        "Glutenhaltiges",
+        "Milch/-erzeugnisse"
+      ],
+      "properties": [
+        "mit Schwein"
+      ]
+    }
+  ]
+}

@@ -553,11 +553,19 @@ storage = (function(){ // its a trap!
 			var week = additional_args.week;
 
 			// parse HTML
-			var newWeekMenu = JSON.parse(resp || "[]");
+			var newWeekMenu = JSON.parse(resp || "{menu:[]}");
+			newWeekMenu = newWeekMenu.menu || [];
 
 			// mark as cached only if new dishes where found
 			// data has changed!
 			if( newWeekMenu && newWeekMenu.length > 0 ){
+
+				newWeekMenu.map(function(item){
+					item.mensa = urls.byId[item.mensaId].name;
+					item.date = dateToDateString( new Date(item.date) );
+					return item;
+				});
+
 				// splice menu together
 				weekMenu = weekMenu.filter(function( item ){ return (parseInt(item.week, 10) !== week || item.mensa !== mensa); });
 				weekMenu = weekMenu.concat( newWeekMenu );
@@ -872,7 +880,7 @@ storage = (function(){ // its a trap!
 		 * Get todays menu
 		 *
 		 * @method today
-		 * @param callback {Function}
+		 * @param calldayback {Function}
 		 * @param sortedSegmented {Boolean}
 		 */
 		today = function(callback, sortedSegmented){

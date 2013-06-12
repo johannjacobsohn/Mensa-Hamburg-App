@@ -6,127 +6,120 @@
 (function(){
 	var baselink = "http://menu.mensaapp.org/";
 	urls = {
-		mensenWeek : {},
 		mensen : [
 			{
 				name: "Alexanderstrasse",
-				url:  baselink + "Alexanderstrasse/{{week}}",
-				address: "Alexanderstraße 1, 20099 Hamburg",
-				open: "Montag - Donnerstag: 07:45 - 18:00 Uhr, Freitag: 07:45 - 16:00 Uhr",
-				misc: "Vom 23.07.2012-07.09.2012 geschlossen"
+				id: "alexanderstrasse",
+				url: baselink + "alexanderstrasse/{{week}}",
+				address: "Alexanderstraße 1, 20099 Hamburg"
 			},
 			{
 				name: "Armgartstrasse",
-				url:  baselink + "Armgartstrasse/{{week}}/",
-				address: "Armgartstraße 24, 22087 Hamburg",
-				open: "Montag - Donnerstag: 09:00 - 15:00 Uhr; Freitag: 09:00 - 14:30 Uhr",
-				misc: "Vom 16.07.2012-14.09.2012 geschlossen"
+				id: "armgartstrasse",
+				url: baselink + "armgartstrasse/{{week}}/",
+				address: "Armgartstraße 24, 22087 Hamburg"
 			},
 			{
 				name: "Averhoffstrasse",
-				url:  baselink + "Averhoffstrasse/{{week}}/",
-				address: "Averhoffstraße 38, 22085 Hamburg",
-				open: "Montag - Donnerstag: 09:00 - 16:15 Uhr; Freitag: 09:00 - 14:00 Uhr",
-				misc: "Vom 16.07.2012-28.09.2012 geschlossen"
+				id: "averhoffstrasse",
+				url: baselink + "averhoffstrasse/{{week}}/",
+				address: "Averhoffstraße 38, 22085 Hamburg"
 			},
 			{
 				name: "Bergedorf",
-				url:  baselink + "Bergedorf/{{week}}/",
-				address: "Lohbrügger Kirchstraße 65, 21033 Hamburg",
-				open: "Montag - Donnerstag: 11:15 - 15:00 Uhr; Freitag: 11:15 - 14:30 Uhr"
+				id: "bergedorf",
+				url: baselink + "bergedorf/{{week}}/",
+				address: "Lohbrügger Kirchstraße 65, 21033 Hamburg"
 			},
 			{
 				name: "Berliner Tor",
-				url:  baselink + "BerlinerTor/{{week}}/",
-				address: "Berliner Tor 7, 20099 Hamburg",
-				open: "Montag - Freitag: 11:15 - 14:30 Uhr"
+				id: "berlinertor",
+				url: baselink + "berlinertor/{{week}}/",
+				address: "Berliner Tor 7, 20099 Hamburg"
 			},
 			{
 				name: "Botanischer Garten",
-				url:  baselink + "BotanischerGarten/{{week}}/",
-				address: "Ohnhorstraße 18, 22609 Hamburg",
-				open: "Montag - Donnerstag: 11:00 - 15:00 Uhr, Freitag: 11:00 - 14:30 Uhr",
-				misc: "Vom 16.07.2012-10.08.2012 geschlossen"
+				id: "botanischergarten",
+				url: baselink + "botanischergarten/{{week}}/",
+				address: "Ohnhorstraße 18, 22609 Hamburg"
 			},
 			{
 				name: "Bucerius Law School",
-				url:  baselink + "BuceriusLawSchool/{{week}}/",
-				address: "Jungiusstraße 6, 20355 Hamburg",
-				open: "Montag - Freitag: 11:30 - 14:00 Uhr"
+				id: "buceriuslawschool",
+				url: baselink + "buceriuslawschool/{{week}}/",
+				address: "Jungiusstraße 6, 20355 Hamburg"
 			},
 			{
 				name: "Campus",
-				url:  baselink + "Campus/{{week}}/",
-				address: "Von-Melle-Park 5, 20146 Hamburg",
-				open: "Montag - Donnerstag: 10:00 - 16:00 Uhr; Freitag: 10:00 - 15:30 Uhr"
+				id: "campus",
+				url: baselink + "campus/{{week}}/",
+				address: "Von-Melle-Park 5, 20146 Hamburg"
 			},
 			{
 				name: "City Nord",
-				url:  baselink + "CityNord/{{week}}/",
-				address: "Hebebrandstraße 1, 22297 Hamburg",
-				open: "Montag - Donnerstag: 08:00 - 15:00 Uhr; Freitag: 08:00 - 14:30 Uhr",
-				misc: "Vom 23.07.2012-24.08.2012 geschlossen"
+				id: "citynord",
+				url: baselink + "citynord/{{week}}/",
+				address: "Hebebrandstraße 1, 22297 Hamburg"
 			},
 			{
 				name: "Finkenau",
-				url:  baselink + "Finkenau/{{week}}/",
-				address: "Finkenau 35, 22081 Hamburg",
-				open: "Montag - Freitag: 08:00 - 18:00 Uhr",
-				misc: "Vom 13.08.2012-31.08.2012 geschlossen"
+				id: "finkenau",
+				url: baselink + "finkenau/{{week}}/",
+				address: "Finkenau 35, 22081 Hamburg"
 			},
 			{
 				name: "Geomatikum",
-				url:  baselink + "Geomatikum/{{week}}/",
-				address: "Bundesstraße 55, 20146 Hamburg",
-				open: "Montag - Donnerstag: 11:15 - 15:00 Uhr; Freitag: 11:15 - 14:30 Uhr"
+				id: "geomatikum",
+				url: baselink + "geomatikum/{{week}}/",
+				address: "Bundesstraße 55, 20146 Hamburg"
 			},
 			{
 				name: "Harburg",
-				url:  baselink + "Harburg/{{week}}/",
-				address: "Denickestraße 22, 21073 Hamburg",
-				open: "Montag - Freitag: 07:45 - 18:00 Uhr"
+				id: "harburg",
+				url: baselink + "harburg/{{week}}/",
+				address: "Denickestraße 22, 21073 Hamburg"
 			},
 			{
 				name: "Jungiusstrasse",
-				url:  baselink + "Jungiusstrasse/{{week}}/",
-				address: "Jungiusstraße 9, 20355 Hamburg",
-				open: "Montag - Freitag: 10:00- 16:30 Uhr",
-				misc: "Vom 16.07.2012-31.08.2012 geschlossen"
+				id: "jungiusstrasse",
+				url: baselink + "jungiusstrasse/{{week}}/",
+				address: "Jungiusstraße 9, 20355 Hamburg"
 			},
 			{
 				name: "Philosophenturm",
-				url:  baselink + "Philosophenturm/{{week}}/",
-				address: "Von-Melle-Park 6, 20146 Hamburg",
-				open: "Montag - Freitag: 08:00 - 19:00 Uhr, Samstag: 08:00 - 14:30 Uhr",
-				misc: "Vom 23.07.2012-25.08.2012 geschlossen"
+				id: "philosophenturm",
+				url: baselink + "philosophenturm/{{week}}/",
+				address: "Von-Melle-Park 6, 20146 Hamburg"
 			},
 			{
 				name: "Stellingen",
-				url:  baselink + "Stellingen/{{week}}/",
-				address: "Vogt-Kölln-Straße 30, 22527 Hamburg",
-				open: "Montag - Donnerstag: 08:00 - 15:00 Uhr; Freitag: 08:00 - 14:30 Uhr",
-				misc: "Vom 23.07.2012-24.08.2012 geschlossen"
+				id: "stellingen",
+				url: baselink + "stellingen/{{week}}/",
+				address: "Vogt-Kölln-Straße 30, 22527 Hamburg"
 			},
 			{
 				name: "Studierendenhaus",
-				url:  baselink + "Studierendenhaus/{{week}}/",
-				address: "Von-Melle-Park 2, 20146 Hamburg",
-				open: "Montag - Donnerstag: 11:00 - 15:00 Uhr, Freitag: 11:00 - 14:30 Uhr"
+				id: "studierendenhaus",
+				url: baselink + "studierendenhaus/{{week}}/",
+				address: "Von-Melle-Park 2, 20146 Hamburg"
 			},
 			{
 				name: "Cafe CFEL",
-				url:  baselink + "CafeCFEL/{{week}}/",
-				address: "Notkestrasse 85, 22607 Hamburg",
-				open: "Montag - Freitag: 08:00 - 15:00 Uhr"
+				id: "cafecfel",
+				url: baselink + "cafecfel/{{week}}/",
+				address: "Notkestrasse 85, 22607 Hamburg"
 			}
 		]
 	};
 
 	/*
-	 * copy urls.mensen into legacy urls.mensenWeek
+	 * create helpers
 	 */
-	urls.mensen.forEach(function( mensa ){
-		urls.mensenWeek[ mensa.name ] = mensa.url;
+	urls.byName = {};
+	urls.byId = {};
+	urls.mensenWeek = {}; // careful: if you combine these statements, all three will point to the *same* object
+	urls.mensen.forEach(function( m ){
+		urls.mensenWeek[m.name] = m.url; // copy urls.mensen into legacy urls.mensenWeek
+		urls.byName[m.name] = urls.byId[m.id] = m;
 	});
-
 })();

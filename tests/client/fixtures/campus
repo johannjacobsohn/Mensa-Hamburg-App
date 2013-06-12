@@ -1,0 +1,678 @@
+{
+  "menu": [
+    {
+      "mensaId": "campus",
+      "week": 24,
+      "name": "Aus dem Suppentopf und Süßes",
+      "studPrice": 1.2,
+      "normalPrice": 2.2,
+      "date": "2012-06-25T22:00:00.000Z",
+      "_id": "51b7acf52a893f5d08000001",
+      "__v": 0,
+      "additives": [
+        "vegetarisch",
+        "Farbstoffe",
+        "Ei/-erzeugnisse",
+        "Milch/-erzeugnisse",
+        "Süßungsmittel"
+      ],
+      "properties": [
+        "vegetarisch"
+      ]
+    },
+    {
+      "mensaId": "campus",
+      "week": 24,
+      "name": "Aus dem Suppentopf und Süßes",
+      "studPrice": 1.2,
+      "normalPrice": 2.2,
+      "date": "2012-06-26T22:00:00.000Z",
+      "_id": "51b7acf52a893f5d08000002",
+      "__v": 0,
+      "additives": [
+        "Klima Teller",
+        "vegetarisch",
+        "Farbstoffe",
+        "Glutenhaltiges",
+        "Ei/-erzeugnisse",
+        "Soja/-erzeugnisse",
+        "Milch/-erzeugnisse"
+      ],
+      "properties": [
+        "Klima Teller",
+        "vegetarisch"
+      ]
+    },
+    {
+      "mensaId": "campus",
+      "week": 24,
+      "name": "Gut und günstig",
+      "studPrice": 1.85,
+      "normalPrice": 2.95,
+      "date": "2012-06-25T22:00:00.000Z",
+      "_id": "51b7acf52a893f5d08000003",
+      "__v": 0,
+      "additives": [
+        "mit Schwein",
+        "Soja/-erzeugnisse",
+        "Antioxidationsmittel",
+        "Geschwefelt",
+        "Milch/-erzeugnisse"
+      ],
+      "properties": [
+        "mit Schwein"
+      ]
+    },
+    {
+      "mensaId": "campus",
+      "week": 24,
+      "name": "Gut und günstig",
+      "studPrice": 1.85,
+      "normalPrice": 2.95,
+      "date": "2012-06-26T22:00:00.000Z",
+      "_id": "51b7acf52a893f5d08000004",
+      "__v": 0,
+      "additives": [
+        "Klima Teller",
+        "mit Fisch",
+        "Konservierungsstoffe",
+        "Antioxidationsmittel",
+        "Geschmacksverstärker",
+        "Fisch/-erzeugnisse",
+        "Farbstoffe",
+        "Süßungsmittel",
+        "Glutenhaltiges",
+        "Ei/-erzeugnisse",
+        "Milch/-erzeugnisse",
+        "Senf/-erzeugnisse"
+      ],
+      "properties": [
+        "Klima Teller",
+        "mit Fisch"
+      ]
+    },
+    {
+      "mensaId": "campus",
+      "week": 24,
+      "name": "Gut und günstig",
+      "studPrice": 1.85,
+      "normalPrice": 2.95,
+      "date": "2012-06-28T22:00:00.000Z",
+      "_id": "51b7acf52a893f5d08000005",
+      "__v": 0,
+      "additives": [
+        "mit Rind",
+        "Farbstoffe",
+        "Konservierungsstoffe",
+        "Glutenhaltiges",
+        "Ei/-erzeugnisse",
+        "Soja/-erzeugnisse",
+        "Milch/-erzeugnisse",
+        "Sellerie/-erzeugnisse",
+        "Senf/-erzeugnisse"
+      ],
+      "properties": [
+        "mit Rind"
+      ]
+    },
+    {
+      "mensaId": "campus",
+      "week": 24,
+      "name": "Beliebt und gerne gegessen",
+      "studPrice": 2.2,
+      "normalPrice": 3.3,
+      "date": "2012-06-24T22:00:00.000Z",
+      "_id": "51b7acf52a893f5d08000006",
+      "__v": 0,
+      "additives": [
+        "mit Fisch",
+        "Konservierungsstoffe",
+        "Süßungsmittel",
+        "Glutenhaltiges",
+        "Fisch/-erzeugnisse",
+        "Senf/-erzeugnisse",
+        "Sesam/-erzeugnisse",
+        "Farbstoffe",
+        "Antioxidationsmittel",
+        "Ei/-erzeugnisse",
+        "Milch/-erzeugnisse"
+      ],
+      "properties": [
+        "mit Fisch"
+      ]
+    },
+    {
+      "mensaId": "campus",
+      "week": 24,
+      "name": "Beliebt und gerne gegessen",
+      "studPrice": 2.2,
+      "normalPrice": 3.3,
+      "date": "2012-06-25T22:00:00.000Z",
+      "_id": "51b7acf52a893f5d08000007",
+      "__v": 0,
+      "additives": [
+        "mit Geflügel",
+        "Geschmacksverstärker",
+        "Glutenhaltiges",
+        "Milch/-erzeugnisse",
+        "Ei/-erzeugnisse"
+      ],
+      "properties": [
+        "mit Geflügel"
+      ]
+    },
+    {
+      "mensaId": "campus",
+      "week": 24,
+      "name": "Beliebt und gerne gegessen",
+      "studPrice": 2.2,
+      "normalPrice": 3.3,
+      "date": "2012-06-26T22:00:00.000Z",
+      "_id": "51b7acf52a893f5d08000008",
+      "__v": 0,
+      "additives": [
+        "Klima Teller",
+        "mit Geflügel",
+        "Süßungsmittel",
+        "Sellerie/-erzeugnisse",
+        "Konservierungsstoffe",
+        "Glutenhaltiges",
+        "Milch/-erzeugnisse"
+      ],
+      "properties": [
+        "Klima Teller",
+        "mit Geflügel"
+      ]
+    },
+    {
+      "mensaId": "campus",
+      "week": 24,
+      "name": "Beliebt und gerne gegessen",
+      "studPrice": 2.2,
+      "normalPrice": 3.3,
+      "date": "2012-06-27T22:00:00.000Z",
+      "_id": "51b7acf52a893f5d08000009",
+      "__v": 0,
+      "additives": [
+        "Campus Vital",
+        "mit Geflügel",
+        "Ei/-erzeugnisse",
+        "Erdnuss/-erzeugnisse",
+        "Soja/-erzeugnisse",
+        "Milch/-erzeugnisse",
+        "Sellerie/-erzeugnisse",
+        "Senf/-erzeugnisse",
+        "Sesam/-erzeugnisse"
+      ],
+      "properties": [
+        "Campus Vital",
+        "mit Geflügel"
+      ]
+    },
+    {
+      "mensaId": "campus",
+      "week": 24,
+      "name": "Vegetarisch",
+      "studPrice": 2,
+      "normalPrice": 3.1,
+      "date": "2012-06-24T22:00:00.000Z",
+      "_id": "51b7acf52a893f5d0800000a",
+      "__v": 0,
+      "additives": [
+        "vegetarisch",
+        "Phosphat",
+        "Farbstoffe",
+        "Konservierungsstoffe",
+        "Milch/-erzeugnisse",
+        "Senf/-erzeugnisse"
+      ],
+      "properties": [
+        "vegetarisch"
+      ]
+    },
+    {
+      "mensaId": "campus",
+      "week": 24,
+      "name": "Vegetarisch",
+      "studPrice": 2.6,
+      "normalPrice": 3.7,
+      "date": "2012-06-25T22:00:00.000Z",
+      "_id": "51b7acf52a893f5d0800000b",
+      "__v": 0,
+      "additives": [
+        "Campus Vital",
+        "vegetarisch",
+        "Antioxidationsmittel",
+        "Glutenhaltiges",
+        "Soja/-erzeugnisse",
+        "Milch/-erzeugnisse"
+      ],
+      "properties": [
+        "Campus Vital",
+        "vegetarisch"
+      ]
+    },
+    {
+      "mensaId": "campus",
+      "week": 24,
+      "name": "Vegetarisch",
+      "studPrice": 2.5,
+      "normalPrice": 3.6,
+      "date": "2012-06-26T22:00:00.000Z",
+      "_id": "51b7acf52a893f5d0800000c",
+      "__v": 0,
+      "additives": [
+        "Klima Teller",
+        "laktosefrei",
+        "Campus Vital",
+        "vegetarisch",
+        "Konservierungsstoffe",
+        "Soja/-erzeugnisse",
+        "Glutenhaltiges"
+      ],
+      "properties": [
+        "Klima Teller",
+        "laktosefrei",
+        "Campus Vital",
+        "vegetarisch"
+      ]
+    },
+    {
+      "mensaId": "campus",
+      "week": 24,
+      "name": "Vegetarisch",
+      "studPrice": 2.5,
+      "normalPrice": 3.6,
+      "date": "2012-06-27T22:00:00.000Z",
+      "_id": "51b7acf52a893f5d0800000d",
+      "__v": 0,
+      "additives": [
+        "vegetarisch",
+        "Farbstoffe",
+        "Glutenhaltiges",
+        "Milch/-erzeugnisse"
+      ],
+      "properties": [
+        "vegetarisch"
+      ]
+    },
+    {
+      "mensaId": "campus",
+      "week": 24,
+      "name": "Vegetarisch",
+      "studPrice": 2.1,
+      "normalPrice": 3.2,
+      "date": "2012-06-28T22:00:00.000Z",
+      "_id": "51b7acf52a893f5d0800000e",
+      "__v": 0,
+      "additives": [
+        "vegetarisch",
+        "Geschmacksverstärker",
+        "Glutenhaltiges",
+        "Milch/-erzeugnisse",
+        "Sellerie/-erzeugnisse"
+      ],
+      "properties": [
+        "vegetarisch"
+      ]
+    },
+    {
+      "mensaId": "campus",
+      "week": 24,
+      "name": "Campus Spezial",
+      "studPrice": 3.9,
+      "normalPrice": 4.6,
+      "date": "2012-06-24T22:00:00.000Z",
+      "_id": "51b7acf52a893f5d0800000f",
+      "__v": 0,
+      "additives": [
+        "mit Schwein",
+        "Geschmacksverstärker",
+        "Soja/-erzeugnisse",
+        "Glutenhaltiges",
+        "Milch/-erzeugnisse",
+        "Sellerie/-erzeugnisse",
+        "Ei/-erzeugnisse"
+      ],
+      "properties": [
+        "mit Schwein"
+      ]
+    },
+    {
+      "mensaId": "campus",
+      "week": 24,
+      "name": "Campus Spezial",
+      "studPrice": 3.95,
+      "normalPrice": 4.65,
+      "date": "2012-06-27T22:00:00.000Z",
+      "_id": "51b7acf52a893f5d08000010",
+      "__v": 0,
+      "additives": [
+        "mit Geflügel",
+        "mit Rind",
+        "mit Schwein",
+        "Glutenhaltiges",
+        "Ei/-erzeugnisse",
+        "Antioxidationsmittel",
+        "Geschwefelt",
+        "Milch/-erzeugnisse"
+      ],
+      "properties": [
+        "mit Geflügel",
+        "mit Rind",
+        "mit Schwein"
+      ]
+    },
+    {
+      "mensaId": "campus",
+      "week": 24,
+      "name": "Campus Spezial",
+      "studPrice": 3.95,
+      "normalPrice": 4.65,
+      "date": "2012-06-28T22:00:00.000Z",
+      "_id": "51b7acf52a893f5d08000011",
+      "__v": 0,
+      "additives": [
+        "mit Geflügel",
+        "Geschmacksverstärker",
+        "Glutenhaltiges",
+        "Antioxidationsmittel",
+        "Soja/-erzeugnisse",
+        "Milch/-erzeugnisse"
+      ],
+      "properties": [
+        "mit Geflügel"
+      ]
+    },
+    {
+      "mensaId": "campus",
+      "week": 24,
+      "name": "Pasta-Bar pro 100g",
+      "studPrice": 0.45,
+      "normalPrice": 0.65,
+      "date": "2012-06-24T22:00:00.000Z",
+      "_id": "51b7acf52a893f5d08000012",
+      "__v": 0,
+      "additives": [
+        "mit Schwein",
+        "Konservierungsstoffe",
+        "Antioxidationsmittel",
+        "Ei/-erzeugnisse",
+        "Milch/-erzeugnisse",
+        "Sellerie/-erzeugnisse",
+        "Glutenhaltiges",
+        "Soja/-erzeugnisse"
+      ],
+      "properties": [
+        "mit Schwein"
+      ]
+    },
+    {
+      "mensaId": "campus",
+      "week": 24,
+      "name": "Pasta-Bar pro 100g",
+      "studPrice": 0.45,
+      "normalPrice": 0.65,
+      "date": "2012-06-24T22:00:00.000Z",
+      "_id": "51b7acf52a893f5d08000013",
+      "__v": 0,
+      "additives": [
+        "vegetarisch",
+        "Soja/-erzeugnisse",
+        "Milch/-erzeugnisse",
+        "Glutenhaltiges"
+      ],
+      "properties": [
+        "vegetarisch"
+      ]
+    },
+    {
+      "mensaId": "campus",
+      "week": 24,
+      "name": "Pasta-Bar pro 100g",
+      "studPrice": 0.45,
+      "normalPrice": 0.65,
+      "date": "2012-06-25T22:00:00.000Z",
+      "_id": "51b7acf52a893f5d08000014",
+      "__v": 0,
+      "additives": [
+        "vegetarisch",
+        "Milch/-erzeugnisse",
+        "Glutenhaltiges",
+        "Soja/-erzeugnisse"
+      ],
+      "properties": [
+        "vegetarisch"
+      ]
+    },
+    {
+      "mensaId": "campus",
+      "week": 24,
+      "name": "Pasta-Bar pro 100g",
+      "studPrice": 0.45,
+      "normalPrice": 0.65,
+      "date": "2012-06-25T22:00:00.000Z",
+      "_id": "51b7acf52a893f5d08000015",
+      "__v": 0,
+      "additives": [
+        "mit Fisch",
+        "Fisch/-erzeugnisse",
+        "Milch/-erzeugnisse",
+        "Sellerie/-erzeugnisse",
+        "Glutenhaltiges",
+        "Soja/-erzeugnisse"
+      ],
+      "properties": [
+        "mit Fisch"
+      ]
+    },
+    {
+      "mensaId": "campus",
+      "week": 24,
+      "name": "Pasta-Bar pro 100g",
+      "studPrice": 0.45,
+      "normalPrice": 0.65,
+      "date": "2012-06-26T22:00:00.000Z",
+      "_id": "51b7acf52a893f5d08000016",
+      "__v": 0,
+      "additives": [
+        "Klima Teller",
+        "mit Geflügel",
+        "Geschmacksverstärker",
+        "Soja/-erzeugnisse",
+        "Sellerie/-erzeugnisse",
+        "Glutenhaltiges"
+      ],
+      "properties": [
+        "Klima Teller",
+        "mit Geflügel"
+      ]
+    },
+    {
+      "mensaId": "campus",
+      "week": 24,
+      "name": "Pasta-Bar pro 100g",
+      "studPrice": 0.45,
+      "normalPrice": 0.65,
+      "date": "2012-06-26T22:00:00.000Z",
+      "_id": "51b7acf52a893f5d08000017",
+      "__v": 0,
+      "additives": [
+        "Klima Teller",
+        "vegetarisch",
+        "Glutenhaltiges",
+        "Soja/-erzeugnisse",
+        "Milch/-erzeugnisse",
+        "Sellerie/-erzeugnisse"
+      ],
+      "properties": [
+        "Klima Teller",
+        "vegetarisch"
+      ]
+    },
+    {
+      "mensaId": "campus",
+      "week": 24,
+      "name": "Pasta-Bar pro 100g",
+      "studPrice": 0.45,
+      "normalPrice": 0.65,
+      "date": "2012-06-27T22:00:00.000Z",
+      "_id": "51b7acf52a893f5d08000018",
+      "__v": 0,
+      "additives": [
+        "mit Schwein",
+        "Konservierungsstoffe",
+        "Antioxidationsmittel",
+        "Ei/-erzeugnisse",
+        "Milch/-erzeugnisse",
+        "Sellerie/-erzeugnisse",
+        "Glutenhaltiges",
+        "Soja/-erzeugnisse"
+      ],
+      "properties": [
+        "mit Schwein"
+      ]
+    },
+    {
+      "mensaId": "campus",
+      "week": 24,
+      "name": "Pasta-Bar pro 100g",
+      "studPrice": 0.45,
+      "normalPrice": 0.65,
+      "date": "2012-06-27T22:00:00.000Z",
+      "_id": "51b7acf52a893f5d08000019",
+      "__v": 0,
+      "additives": [
+        "vegetarisch",
+        "Glutenhaltiges",
+        "Soja/-erzeugnisse",
+        "Milch/-erzeugnisse"
+      ],
+      "properties": [
+        "vegetarisch"
+      ]
+    },
+    {
+      "mensaId": "campus",
+      "week": 24,
+      "name": "Pasta-Bar pro 100g",
+      "studPrice": 0.45,
+      "normalPrice": 0.65,
+      "date": "2012-06-28T22:00:00.000Z",
+      "_id": "51b7acf52a893f5d0800001a",
+      "__v": 0,
+      "additives": [
+        "vegetarisch",
+        "Glutenhaltiges",
+        "Soja/-erzeugnisse",
+        "Milch/-erzeugnisse",
+        "Sellerie/-erzeugnisse",
+        "Konservierungsstoffe",
+        "Ei/-erzeugnisse",
+        "Schalenfrüchte",
+        "Schwefeldioxid/Sulfite"
+      ],
+      "properties": [
+        "vegetarisch"
+      ]
+    },
+    {
+      "mensaId": "campus",
+      "week": 24,
+      "name": "Pasta-Bar pro 100g",
+      "studPrice": 0.45,
+      "normalPrice": 0.65,
+      "date": "2012-06-28T22:00:00.000Z",
+      "_id": "51b7acf52a893f5d0800001b",
+      "__v": 0,
+      "additives": [
+        "mit Schwein",
+        "Glutenhaltiges",
+        "Soja/-erzeugnisse",
+        "Milch/-erzeugnisse",
+        "Sellerie/-erzeugnisse"
+      ],
+      "properties": [
+        "mit Schwein"
+      ]
+    },
+    {
+      "mensaId": "campus",
+      "week": 24,
+      "name": "Gemüse-Bar pro 100g",
+      "studPrice": 0.45,
+      "normalPrice": 0.65,
+      "date": "2012-06-24T22:00:00.000Z",
+      "_id": "51b7acf52a893f5d0800001c",
+      "__v": 0,
+      "additives": [
+        "vegetarisch",
+        "Glutenhaltiges",
+        "Milch/-erzeugnisse",
+        "Antioxidationsmittel"
+      ],
+      "properties": [
+        "vegetarisch"
+      ]
+    },
+    {
+      "mensaId": "campus",
+      "week": 24,
+      "name": "Gemüse-Bar pro 100g",
+      "studPrice": 0.45,
+      "normalPrice": 0.65,
+      "date": "2012-06-25T22:00:00.000Z",
+      "_id": "51b7acf52a893f5d0800001d",
+      "__v": 0,
+      "additives": [
+        "vegetarisch",
+        "Glutenhaltiges",
+        "Milch/-erzeugnisse"
+      ],
+      "properties": [
+        "vegetarisch"
+      ]
+    },
+    {
+      "mensaId": "campus",
+      "week": 24,
+      "name": "Gemüse-Bar pro 100g",
+      "studPrice": 0.45,
+      "normalPrice": 0.65,
+      "date": "2012-06-26T22:00:00.000Z",
+      "_id": "51b7acf52a893f5d0800001e",
+      "__v": 0,
+      "additives": [
+        "Klima Teller",
+        "vegetarisch",
+        "Glutenhaltiges",
+        "Milch/-erzeugnisse"
+      ],
+      "properties": [
+        "Klima Teller",
+        "vegetarisch"
+      ]
+    },
+    {
+      "mensaId": "campus",
+      "week": 24,
+      "name": "Gemüse-Bar pro 100g",
+      "studPrice": 0.45,
+      "normalPrice": 0.65,
+      "date": "2012-06-27T22:00:00.000Z",
+      "_id": "51b7acf52a893f5d0800001f",
+      "__v": 0,
+      "additives": [
+        "vegetarisch",
+        "Farbstoffe",
+        "Konservierungsstoffe",
+        "Milch/-erzeugnisse",
+        "Antioxidationsmittel",
+        "Senf/-erzeugnisse"
+      ],
+      "properties": [
+        "vegetarisch"
+      ]
+    }
+  ]
+}

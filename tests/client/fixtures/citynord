@@ -1,0 +1,396 @@
+{
+  "menu": [
+    {
+      "mensaId": "citynord",
+      "week": 24,
+      "name": "Gut und günstig",
+      "studPrice": 1.3,
+      "normalPrice": 2.3,
+      "date": "2012-06-27T22:00:00.000Z",
+      "_id": "51b7a5fc8459fc1f0400007f",
+      "__v": 0,
+      "additives": [
+        "mit Schwein",
+        "Konservierungsstoffe",
+        "Antioxidationsmittel",
+        "Glutenhaltiges",
+        "Soja/-erzeugnisse",
+        "Milch/-erzeugnisse",
+        "Sellerie/-erzeugnisse"
+      ],
+      "properties": [
+        "mit Schwein"
+      ]
+    },
+    {
+      "mensaId": "citynord",
+      "week": 24,
+      "name": "Beliebt und gerne gegessen",
+      "studPrice": 1.65,
+      "normalPrice": 2.65,
+      "date": "2012-06-24T22:00:00.000Z",
+      "_id": "51b7a5fc8459fc1f04000080",
+      "__v": 0,
+      "additives": [
+        "mit Schwein",
+        "Glutenhaltiges",
+        "Milch/-erzeugnisse",
+        "Sellerie/-erzeugnisse"
+      ],
+      "properties": [
+        "mit Schwein"
+      ]
+    },
+    {
+      "mensaId": "citynord",
+      "week": 24,
+      "name": "Beliebt und gerne gegessen",
+      "studPrice": 1.65,
+      "normalPrice": 2.65,
+      "date": "2012-06-25T22:00:00.000Z",
+      "_id": "51b7a5fc8459fc1f04000081",
+      "__v": 0,
+      "additives": [
+        "mit Geflügel",
+        "Glutenhaltiges",
+        "Ei/-erzeugnisse",
+        "Erdnuss/-erzeugnisse",
+        "Soja/-erzeugnisse",
+        "Milch/-erzeugnisse",
+        "Sellerie/-erzeugnisse",
+        "Senf/-erzeugnisse",
+        "Sesam/-erzeugnisse",
+        "Konservierungsstoffe"
+      ],
+      "properties": [
+        "mit Geflügel"
+      ]
+    },
+    {
+      "mensaId": "citynord",
+      "week": 24,
+      "name": "Beliebt und gerne gegessen",
+      "studPrice": 1.65,
+      "normalPrice": 2.65,
+      "date": "2012-06-26T22:00:00.000Z",
+      "_id": "51b7a5fc8459fc1f04000082",
+      "__v": 0,
+      "additives": [
+        "Klima Teller",
+        "mit Geflügel",
+        "Glutenhaltiges",
+        "Soja/-erzeugnisse",
+        "Milch/-erzeugnisse",
+        "Sellerie/-erzeugnisse",
+        "Geschmacksverstärker"
+      ],
+      "properties": [
+        "Klima Teller",
+        "mit Geflügel"
+      ]
+    },
+    {
+      "mensaId": "citynord",
+      "week": 24,
+      "name": "Beliebt und gerne gegessen",
+      "studPrice": 1.65,
+      "normalPrice": 2.65,
+      "date": "2012-06-27T22:00:00.000Z",
+      "_id": "51b7a5fc8459fc1f04000083",
+      "__v": 0,
+      "additives": [
+        "laktosefrei",
+        "Campus Vital",
+        "mit Rind",
+        "Konservierungsstoffe",
+        "Antioxidationsmittel",
+        "Geschmacksverstärker",
+        "Krebstier(e)/-erzeugnisse",
+        "Soja/-erzeugnisse",
+        "Sellerie/-erzeugnisse"
+      ],
+      "properties": [
+        "laktosefrei",
+        "Campus Vital",
+        "mit Rind"
+      ]
+    },
+    {
+      "mensaId": "citynord",
+      "week": 24,
+      "name": "Beliebt und gerne gegessen",
+      "studPrice": 1.65,
+      "normalPrice": 2.65,
+      "date": "2012-06-28T22:00:00.000Z",
+      "_id": "51b7a5fc8459fc1f04000084",
+      "__v": 0,
+      "additives": [
+        "laktosefrei",
+        "Campus Vital",
+        "mit Fisch",
+        "Antioxidationsmittel",
+        "Geschwefelt",
+        "Glutenhaltiges",
+        "Krebstier(e)/-erzeugnisse",
+        "Ei/-erzeugnisse",
+        "Fisch/-erzeugnisse"
+      ],
+      "properties": [
+        "laktosefrei",
+        "Campus Vital",
+        "mit Fisch"
+      ]
+    },
+    {
+      "mensaId": "citynord",
+      "week": 24,
+      "name": "Vegetarisch",
+      "studPrice": 1.95,
+      "normalPrice": 3.05,
+      "date": "2012-06-24T22:00:00.000Z",
+      "_id": "51b7a5fc8459fc1f04000085",
+      "__v": 0,
+      "additives": [
+        "vegetarisch",
+        "Milch/-erzeugnisse",
+        "Geschwärzt"
+      ],
+      "properties": [
+        "vegetarisch"
+      ]
+    },
+    {
+      "mensaId": "citynord",
+      "week": 24,
+      "name": "Vegetarisch",
+      "studPrice": 1.95,
+      "normalPrice": 3.05,
+      "date": "2012-06-25T22:00:00.000Z",
+      "_id": "51b7a5fc8459fc1f04000086",
+      "__v": 0,
+      "additives": [
+        "vegetarisch",
+        "Glutenhaltiges",
+        "Ei/-erzeugnisse",
+        "Milch/-erzeugnisse",
+        "Sellerie/-erzeugnisse",
+        "Soja/-erzeugnisse"
+      ],
+      "properties": [
+        "vegetarisch"
+      ]
+    },
+    {
+      "mensaId": "citynord",
+      "week": 24,
+      "name": "Vegetarisch",
+      "studPrice": 1.85,
+      "normalPrice": 2.95,
+      "date": "2012-06-26T22:00:00.000Z",
+      "_id": "51b7a5fc8459fc1f04000087",
+      "__v": 0,
+      "additives": [
+        "Klima Teller",
+        "vegetarisch",
+        "Farbstoffe",
+        "Konservierungsstoffe",
+        "Antioxidationsmittel",
+        "Süßungsmittel",
+        "Glutenhaltiges",
+        "Ei/-erzeugnisse",
+        "Milch/-erzeugnisse",
+        "Sellerie/-erzeugnisse",
+        "Senf/-erzeugnisse",
+        "Sesam/-erzeugnisse"
+      ],
+      "properties": [
+        "Klima Teller",
+        "vegetarisch"
+      ]
+    },
+    {
+      "mensaId": "citynord",
+      "week": 24,
+      "name": "Vegetarisch",
+      "studPrice": 1.95,
+      "normalPrice": 2.95,
+      "date": "2012-06-27T22:00:00.000Z",
+      "_id": "51b7a5fc8459fc1f04000088",
+      "__v": 0,
+      "additives": [
+        "Glutenhaltiges",
+        "Soja/-erzeugnisse",
+        "Milch/-erzeugnisse",
+        "Farbstoffe",
+        "Senf/-erzeugnisse"
+      ],
+      "properties": []
+    },
+    {
+      "mensaId": "citynord",
+      "week": 24,
+      "name": "Vegetarisch",
+      "studPrice": 2.05,
+      "normalPrice": 3.05,
+      "date": "2012-06-28T22:00:00.000Z",
+      "_id": "51b7a5fc8459fc1f04000089",
+      "__v": 0,
+      "additives": [
+        "vegetarisch",
+        "Antioxidationsmittel",
+        "Milch/-erzeugnisse",
+        "Sellerie/-erzeugnisse"
+      ],
+      "properties": [
+        "vegetarisch"
+      ]
+    },
+    {
+      "mensaId": "citynord",
+      "week": 24,
+      "name": "Campus Spezial",
+      "studPrice": 3.95,
+      "normalPrice": 4.65,
+      "date": "2012-06-24T22:00:00.000Z",
+      "_id": "51b7a5fc8459fc1f0400008a",
+      "__v": 0,
+      "additives": [
+        "laktosefrei",
+        "Campus Vital",
+        "mit Geflügel",
+        "mit Fisch",
+        "Krebstier(e)/-erzeugnisse",
+        "Fisch/-erzeugnisse"
+      ],
+      "properties": [
+        "laktosefrei",
+        "Campus Vital",
+        "mit Geflügel",
+        "mit Fisch"
+      ]
+    },
+    {
+      "mensaId": "citynord",
+      "week": 24,
+      "name": "Campus Spezial",
+      "studPrice": 0,
+      "normalPrice": 0,
+      "date": "2012-06-25T22:00:00.000Z",
+      "_id": "51b7a5fc8459fc1f0400008b",
+      "__v": 0,
+      "additives": [],
+      "properties": []
+    },
+    {
+      "mensaId": "citynord",
+      "week": 24,
+      "name": "Campus Spezial",
+      "studPrice": 2.2,
+      "normalPrice": 2.6,
+      "date": "2012-06-25T22:00:00.000Z",
+      "_id": "51b7a5fc8459fc1f0400008c",
+      "__v": 0,
+      "additives": [
+        "laktosefrei",
+        "mit Schwein",
+        "Glutenhaltiges",
+        "Sellerie/-erzeugnisse"
+      ],
+      "properties": [
+        "laktosefrei",
+        "mit Schwein"
+      ]
+    },
+    {
+      "mensaId": "citynord",
+      "week": 24,
+      "name": "Campus Spezial",
+      "studPrice": 3.95,
+      "normalPrice": 4.65,
+      "date": "2012-06-26T22:00:00.000Z",
+      "_id": "51b7a5fc8459fc1f0400008d",
+      "__v": 0,
+      "additives": [
+        "Klima Teller",
+        "mit Fisch",
+        "Glutenhaltiges",
+        "Fisch/-erzeugnisse",
+        "Soja/-erzeugnisse",
+        "Milch/-erzeugnisse"
+      ],
+      "properties": [
+        "Klima Teller",
+        "mit Fisch"
+      ]
+    },
+    {
+      "mensaId": "citynord",
+      "week": 24,
+      "name": "Campus Spezial",
+      "studPrice": 2.85,
+      "normalPrice": 3.3,
+      "date": "2012-06-27T22:00:00.000Z",
+      "_id": "51b7a5fc8459fc1f0400008e",
+      "__v": 0,
+      "additives": [
+        "mit Fisch",
+        "Glutenhaltiges",
+        "Soja/-erzeugnisse",
+        "Milch/-erzeugnisse"
+      ],
+      "properties": [
+        "mit Fisch"
+      ]
+    },
+    {
+      "mensaId": "citynord",
+      "week": 24,
+      "name": "Pasta-Bar pro 100g",
+      "studPrice": 0,
+      "normalPrice": 0,
+      "date": "2012-06-24T22:00:00.000Z",
+      "_id": "51b7a5fc8459fc1f0400008f",
+      "__v": 0,
+      "additives": [],
+      "properties": []
+    },
+    {
+      "mensaId": "citynord",
+      "week": 24,
+      "name": "Pasta-Bar pro 100g",
+      "studPrice": 0,
+      "normalPrice": 0,
+      "date": "2012-06-24T22:00:00.000Z",
+      "_id": "51b7a5fc8459fc1f04000090",
+      "__v": 0,
+      "additives": [],
+      "properties": []
+    },
+    {
+      "mensaId": "citynord",
+      "week": 24,
+      "name": "Aus dem Wok",
+      "studPrice": 3.3,
+      "normalPrice": 3.9,
+      "date": "2012-06-26T22:00:00.000Z",
+      "_id": "51b7a5fc8459fc1f04000091",
+      "__v": 0,
+      "additives": [
+        "Klima Teller",
+        "laktosefrei",
+        "mit Geflügel",
+        "Antioxidationsmittel",
+        "Geschmacksverstärker",
+        "Süßungsmittel",
+        "Glutenhaltiges",
+        "Soja/-erzeugnisse",
+        "Schalenfrüchte"
+      ],
+      "properties": [
+        "Klima Teller",
+        "laktosefrei",
+        "mit Geflügel"
+      ]
+    }
+  ]
+}
