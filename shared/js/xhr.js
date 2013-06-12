@@ -1,8 +1,5 @@
 /**
- * 
  * A very simple XMLHttpRequest-Interface
- *
- * @class xhr
  */
 var xhr;
 (function(){
@@ -38,37 +35,12 @@ var xhr;
 		 */
 		get : function(url, success, error, additional_args){
 			var xhr = createCORSRequest("GET", url);
-			xhr.onload = function() {
-				success(xhr.responseText, additional_args);
+			xhr.onreadystatechange = function(){
+				if(xhr.readyState === 4){
+					success(xhr.responseText, additional_args);
+				}
 			};
-			xhr.send(null);
-		},
-		/**
-		 * Get JSON-Data from a server
-		 *
-		 * Just a wrapper for xhr.get, but tries to optain JSON
-		 *
-		 * @method getJSON
-		 * @param {String} url
-		 * @param {Function} success-callback
-		 * @param {Function} error-callback
-		 * @param additional_args
-		 */
-		getJSON : function(url, success, error, additional_args){
-			this.get(url, function(resp, additional_args){
-				var json = null;
-				try{
-					json = JSON.parse(resp);
-				} catch(e){
-//					console.log(url);
-//					console.log(resp);
-//					console.log(e);
-					return;
-				}
-				if (json){
-					success(json, additional_args);
-				}
-			}, error, additional_args);
+			xhr.send();
 		}
 	};
 })();
