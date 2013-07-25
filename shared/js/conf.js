@@ -46,9 +46,8 @@
 		 * Find out if app has been configured
 		 * 
 		 * @method isConfigured
-		 * @param {Array} names of mensen
 		 */
-		isConfigured : function(urls){
+		isConfigured : function(){
 			try{
 				return typeof data.get("urls") === "string";
 			} catch(e) {
