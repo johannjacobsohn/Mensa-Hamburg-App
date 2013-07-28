@@ -28,3 +28,6 @@
 [submodule "blackberry/bb10-phone/lib/layout"]
 	path = blackberry/bb10-phone/lib/layout
 	url = https://github.com/enyojs/layout.git
+[submodule "blackberry/bb10-phone/enyo"]
+	path = blackberry/bb10-phone/enyo
+	url = https://github.com/enyojs/enyo.git
