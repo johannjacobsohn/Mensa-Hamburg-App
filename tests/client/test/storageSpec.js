@@ -237,7 +237,7 @@ describe("storage", function(){
 			cache.mensen = val;
 			expect( 17 ).to.be( val.length );
 			expect( val[0].name ).to.be( "Alexanderstrasse" );
-			expect( val[0].url ).to.be( "http://menu.mensaapp.org/alexanderstrasse/{{week}}" );
+			expect( val[0].url.toLowerCase() ).to.be( "http://menu.mensaapp.org/alexanderstrasse/{{week}}" );
 		});
 	});
 
