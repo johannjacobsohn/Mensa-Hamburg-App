@@ -22,3 +22,9 @@
 [submodule "blackberry/bb10-phone/sdk"]
 	path = blackberry/bb10-phone/sdk
 	url = https://github.com/badtoyz/BB10-WebWorks-SDK-Linux-Gold.git
+[submodule "blackberry/bb10-phone/lib/enyo-bbui"]
+	path = blackberry/bb10-phone/lib/enyo-bbui
+	url = https://github.com/johannjacobsohn/enyo-bbui.git
+[submodule "blackberry/bb10-phone/lib/layout"]
+	path = blackberry/bb10-phone/lib/layout
+	url = https://github.com/enyojs/layout.git

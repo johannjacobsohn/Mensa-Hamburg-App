@@ -1,0 +1,93 @@
+.enyo-list-page > div{
+	position: relative;
+/*
+	height: 120px;
+*/
+}
+
+.divider,
+.item {
+	padding: 0 10px;
+/*
+	border-bottom: 1px solid #0e0e0e;
+*/
+	cursor: pointer;
+/*
+	border-top: 1px solid rgba(255, 255, 255, 0.5);
+*/
+/*
+	border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+*/
+/*
+	text-shadow: 1px 1px 1px #eee;
+*/
+	height: 100px;
+	margin-bottom: 20px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	position: relative;
+}
+
+.details{
+	height: auto;
+}
+
+.dish{
+/*
+	color: #000;
+	font-size: 18px;
+*/
+}
+.mensa,
+.name {
+	color: #aaa;
+	font-size: .6em;
+}
+.price {
+/*
+	float: right;
+*/
+	position: absolute;
+	right: 10px;
+	bottom: 0;
+}
+
+.additives,
+.properties{
+/*
+	font-size: .9em;
+*/
+	width: 49%;
+	padding: 5px;
+}
+.additives{
+	border-right: 1px solid rgba(0, 0, 0, 0.2);
+	text-align: right;
+}
+.properties{
+	border-left: 1px solid rgba(255, 255, 255, 0.5);
+}
+.details-header{
+	font-weight: bold;
+}
+.details-item{
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+
+
+
+.divider .dish{
+	font-size: 40px; border-bottom: 1px solid #ccc;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	text-align: center;
+	height: 50px;
+}
+.divider .price,
+.divider .name{
+	display: none;
+	visibility: hidden;
+}

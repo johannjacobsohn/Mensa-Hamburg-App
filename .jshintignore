@@ -14,7 +14,6 @@ shared/js-test
 tests
 experimental-plattforms
 diskontinued-frameworks
-blackberry
 
 shared/js/utils.js
 webos/mojo/js/utils.js
@@ -28,6 +27,16 @@ webapp/tablet/build
 webapp/phone/build
 webapp/tablet/lib
 webapp/phone/lib
+
+
+blackberry/bb10-phone/enyo
+blackberry/bb10-phone/lib
+blackberry/bb10-phone/sdk
+blackberry/bb10-phone/build
+blackberry/bb10-phone/deployable
+blackberry/bb10-phone/source/core/utils.js
+
+
 
 server
 node_modules

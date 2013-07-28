@@ -1,0 +1,33 @@
+
+
+.imgwrapper{
+	display: inline-block;
+	position: relative;
+}
+.new, .expired, .recommendation{
+	left: 0;
+	top: 0;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+.new{
+	background: url(assets/new.png) no-repeat;
+}
+.expired{
+	background: url(assets/expired.png) no-repeat;
+}
+.recommendation{
+	background: url(assets/recommendation.png) no-repeat;
+}
+
+.item.inactive img{
+	opacity: .5;
+}
+.add-remove-icon{
+	position: absolute;
+	top: 0;
+	right: 0px;
+	background: rgba(255,255,255, .9);
+	border-radius: 0 8px;
+}

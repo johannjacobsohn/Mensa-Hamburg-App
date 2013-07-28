@@ -19,3 +19,8 @@ webapp/tablet-dev
 webapp/phone-dev
 ios/keys/
 node_modules
+blackberry/bb10-phone/deployable/
+blackberry/bb10-phone/phone.zip
+blackberry/bb10-phone/simulator/
+blackberry/bb10-phone/device/
+blackberry/bb10-phone/build/

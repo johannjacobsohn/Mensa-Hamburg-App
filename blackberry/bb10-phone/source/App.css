@@ -1,0 +1,81 @@
+body {
+	font-family: BBAlpha Sans, Prelude, Prelude Medium, Segoe UI, Arial, Helvetica, Sans-Serif;
+	font-size: 30px;
+	color: #fff;
+	background-color: #000;
+}
+
+.today{
+	color: rgb(0, 168, 223);
+}
+
+.fixed,
+.fixed .caption{
+	position: fixed;
+	top:0;
+	background: red;
+}
+
+/*
+	size those pesky elements like inputs, textareas, iframes, etc.
+	in tempermental browsers (ff, ie)
+ */
+.enyo-view-fit {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	margin: 0;
+}
+
+.search-spinner {
+	margin: auto;
+	display: block;
+	position: absolute;
+	left: 50%;
+	margin-left: -12px;
+	margin-top: 150px;
+}
+.simple-scroller {
+/*
+	overflow-y: auto;
+*/
+/*
+	-webkit-overflow-scrolling: -blackberry-touch;
+*/
+	overflow:scroll; with -webkit-overflow-scrolling: -blackberry-touch;
+/*
+	-webkit-overflow-scrolling: touch;
+*/
+}
+
+small{
+	display: block;
+	font-size: 20px;
+	line-height: 0px;
+}
+
+.loading-message,
+.empty-message{
+	color: #666;
+	margin: 100px auto;
+	position: absolute;
+	width: 100%;
+	text-align: center;
+}
+.empty-message{
+	margin-top: 150px;
+}
+.onyx-toolbar .onyx-icon-button {
+	background-position: center 0;
+}
+
+.navButton{
+	min-width: 25%;
+}
+
+.selected{
+	background: red;
+}
