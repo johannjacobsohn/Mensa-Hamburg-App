@@ -12,6 +12,10 @@ body {
 */
 }
 
+#app_panels > *{
+	right: 0;
+}
+
 .header{
 	padding: 0!important;
 	position: absolute;
