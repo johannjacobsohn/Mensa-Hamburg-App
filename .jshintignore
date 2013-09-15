@@ -40,3 +40,4 @@ blackberry/bb10-phone/source/core/utils.js
 
 server
 node_modules
+shared/test

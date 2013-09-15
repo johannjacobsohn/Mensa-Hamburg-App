@@ -266,7 +266,7 @@ storage = (function(){ // its a trap!
 		 * @param Array b
 		 * @return 
 		 */
-		includeAll = function(a,b) {
+		includeAll = function(a, b) {
 			for (var i = 0; i < a.length; i++){
 				if( b.indexOf(a[i]) === -1 ){
 					return false;
@@ -554,20 +554,28 @@ storage = (function(){ // its a trap!
 
 			// parse HTML
 			var newWeekMenu = JSON.parse(resp || "{menu:[]}");
+
+			// compatibility with old server
+			if(newWeekMenu instanceof Array){
+				newWeekMenu = {menu: newWeekMenu};
+			}
 			newWeekMenu = newWeekMenu.menu || [];
 
 			// mark as cached only if new dishes where found
 			// data has changed!
 			if( newWeekMenu && newWeekMenu.length > 0 ){
 
-				newWeekMenu.map(function(item){
-					item.mensa = urls.byId[item.mensaId].name;
-					item.date = dateToDateString( new Date(item.date) );
+				newWeekMenu = newWeekMenu.map(function(item){
+					item.mensa = item.mensa || urls.byId[item.mensaId.toLowerCase()].name; // compatibility with old server
+					item.date = item.date.length < 11 ? item.date : dateToDateString( new Date(item.date) ); // compatibility with old server
 					return item;
 				});
 
 				// splice menu together
+				// remove old data
 				weekMenu = weekMenu.filter(function( item ){ return (parseInt(item.week, 10) !== week || item.mensa !== mensa); });
+
+				// append new data
 				weekMenu = weekMenu.concat( newWeekMenu );
 
 				loadedMensen[mensa][week] = true;

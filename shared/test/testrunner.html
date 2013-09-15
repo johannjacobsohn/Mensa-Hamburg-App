@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+  "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<title>Mocha</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" href="lib/mocha.css" />
+</head>
+<body>
+	<div id="mocha"></div>
+
+	<script src="lib/mocha.js"></script>
+	<script src="lib/expect.js"></script>
+	<script>
+		mocha.ui('bdd'); 
+		mocha.reporter('html');
+	</script>
+
+	<script src="lib/sinon.js"></script>
+	<script>
+		// mock xhr
+		xhr = {
+			get: function(url, success, error, additional_args){
+				var mensa = url.match(/\.org\/(.*?)\//)[1].toLowerCase();
+				var xhr = new XMLHttpRequest();
+				xhr.open("GET", "fixtures/" + mensa, true);
+				xhr.onreadystatechange = function(){
+					if(xhr.readyState === 4){
+						success(xhr.responseText, additional_args);
+					}
+				};
+				xhr.send();
+			}
+		}
+
+		// mock time
+		sinon.useFakeTimers(+new Date("2013-06-11T22:00:00.000Z"), "setTimeout", "clearTimeout", "setInterval", "clearInterval", "Date");
+	</script>
+
+	<!-- include source files here... -->
+	<script type="text/javascript" src="../js/urls.js"></script>
+	<script type="text/javascript" src="../js/utils.js"></script>
+	<script type="text/javascript" src="../js/data.js"></script>
+	<script type="text/javascript" src="../js/conf.js"></script>
+	<script type="text/javascript" src="../js/info.js"></script>
+	<script type="text/javascript" src="../js/storage.js"></script>
+
+	<!-- include test files here... -->
+	<script type="text/javascript" src="conf.js"></script>
+	<script type="text/javascript" src="storage.js"></script>
+
+	<script>
+		window.onload = function(){
+			if (window.mochaPhantomJS) {
+				mochaPhantomJS.run();
+			} else {
+				mocha.run();
+			}
+		}
+	</script>
+
+</body>
+</html>
