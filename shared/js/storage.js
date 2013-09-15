@@ -951,17 +951,18 @@ storage = (function(){ // its a trap!
 		 * @param callback {Function}
 		 */
 		day = function(date, sortedSegmented, callback){
-			setFilter("date", dateToDateString(date));
-
-			if(sortedSegmented){
-				getSortedSegmented(function(json){
-					callback(json, dateToDateString(date), date);
-				});
-			} else {
-				filter(function(json){
-					callback(json, dateToDateString(date), date);
-				});
-			}
+			getWeekMenu(function(){
+				setFilter("date", dateToDateString(date));
+				if(sortedSegmented){
+					getSortedSegmented(function(json){
+						callback(json, dateToDateString(date), date);
+					});
+				} else {
+					filter(function(json){
+						callback(json, dateToDateString(date), date);
+					});
+				}
+			});
 		},
 		/**
 		 * Find out if the previous day is available
