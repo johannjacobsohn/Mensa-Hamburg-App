@@ -4,7 +4,7 @@
   <title><![CDATA[Mensa Hamburg App]]></title>
   <link href="http://mensaapp.org/atom.xml" rel="self"/>
   <link href="http://mensaapp.org/"/>
-  <updated>2013-03-10T00:09:15+01:00</updated>
+  <updated>2013-09-24T00:25:09+02:00</updated>
   <id>http://mensaapp.org/</id>
   <author>
     <name><![CDATA[Johann Jacobsohn]]></name>
@@ -12,6 +12,20 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Neue Version für Android Phones (2.1.2)]]></title>
+    <link href="http://mensaapp.org/blog/2013/neue-version-fur-android-phones/"/>
+    <updated>2013-09-24T00:17:00+02:00</updated>
+    <id>http://mensaapp.org/blog/2013/neue-version-fur-android-phones</id>
+    <content type="html"><![CDATA[<div class="bogus-wrapper"><notextile><figure class="left">
+	<img src="http://mensaapp.org/assets/release/phone-2.1/android/ui-small.png" title="" />
+</figure></notextile></div>
+
+<p>Es ist ein Fehler aufgetreten, der manchmal dazu führt das beim Start der
+App der falsche Tag angezeigt wird… dieses Problem ist jetzt behoben.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Erste Version für FirefoxOS!]]></title>
@@ -49,6 +63,11 @@ die Mensa Hamburg App auswählen und fortan wie ein ganz normales Programm verwe
 <div class="bogus-wrapper"><notextile><figure>
 	<img src="http://mensaapp.org/assets/release/tablet-2.0/firefox/winxp.png" />
 	<figcaption>Die Mensa Hamburg App auf Windows XP</figcaption>
+</figure></notextile></div>
+
+<div class="bogus-wrapper"><notextile><figure>
+	<img src="http://mensaapp.org/assets/release/tablet-2.0/firefox/win8.png" />
+	<figcaption>Die Mensa Hamburg App auf Windows 8</figcaption>
 </figure></notextile></div>
 
 <div class="bogus-wrapper"><notextile><figure>

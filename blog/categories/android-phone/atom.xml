@@ -4,7 +4,7 @@
   <title><![CDATA[Category: android-phone | Mensa Hamburg App]]></title>
   <link href="http://mensaapp.org/blog/categories/android-phone/atom.xml" rel="self"/>
   <link href="http://mensaapp.org/"/>
-  <updated>2013-03-10T00:09:15+01:00</updated>
+  <updated>2013-09-24T00:25:09+02:00</updated>
   <id>http://mensaapp.org/</id>
   <author>
     <name><![CDATA[Johann Jacobsohn]]></name>
@@ -12,6 +12,20 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Neue Version für Android Phones (2.1.2)]]></title>
+    <link href="http://mensaapp.org/blog/2013/neue-version-fur-android-phones/"/>
+    <updated>2013-09-24T00:17:00+02:00</updated>
+    <id>http://mensaapp.org/blog/2013/neue-version-fur-android-phones</id>
+    <content type="html"><![CDATA[<figure class="left">
+	<img src="/assets/release/phone-2.1/android/ui-small.png" title="" >
+</figure>
+
+<p>Es ist ein Fehler aufgetreten, der manchmal dazu führt das beim Start der
+App der falsche Tag angezeigt wird… dieses Problem ist jetzt behoben.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Neue Phone-Version für Android (2.1)]]></title>

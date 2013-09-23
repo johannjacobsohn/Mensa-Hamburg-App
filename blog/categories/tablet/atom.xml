@@ -4,7 +4,7 @@
   <title><![CDATA[Category: tablet | Mensa Hamburg App]]></title>
   <link href="http://mensaapp.org/blog/categories/tablet/atom.xml" rel="self"/>
   <link href="http://mensaapp.org/"/>
-  <updated>2013-03-10T00:09:15+01:00</updated>
+  <updated>2013-09-24T00:25:09+02:00</updated>
   <id>http://mensaapp.org/</id>
   <author>
     <name><![CDATA[Johann Jacobsohn]]></name>
@@ -25,6 +25,11 @@ die Mensa Hamburg App auswählen und fortan wie ein ganz normales Programm verwe
 <figure>
 	<img src="/assets/release/tablet-2.0/firefox/winxp.png">
 	<figcaption>Die Mensa Hamburg App auf Windows XP</figcaption>
+</figure>
+
+<figure>
+	<img src="/assets/release/tablet-2.0/firefox/win8.png">
+	<figcaption>Die Mensa Hamburg App auf Windows 8</figcaption>
 </figure>
 
 <figure>
