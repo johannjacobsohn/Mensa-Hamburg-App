@@ -27,6 +27,8 @@ enyo.kind({
 	moreInfo : function(inSender, inEvent){
 		if (enyo.platform.blackberry) {
 			window.open(info.appURL);
+		} else if (enyo.platform.android || enyo.platform.androidChrome) {
+			navigator.app.loadUrl(info.appURL, { openExternal:true } );
 		} else {
 			location.href = info.appURL;
 		}

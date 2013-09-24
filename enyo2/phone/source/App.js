@@ -59,9 +59,11 @@ enyo.kind({
 	],
 	gotoNewVersion: function(){
 		if (enyo.platform.android || enyo.platform.androidChrome) {
-			location.href = info.releaseNotes.androidPhone;
+			navigator.app.loadUrl(info.releaseNotes.androidPhone, {openExternal: true});
 		} else if (enyo.platform.ios) {
 			location.href = info.releaseNotes.iphone;
+		} else {
+			location.href = info.appURL;
 		}
 	},
 	closePopup: function(){
