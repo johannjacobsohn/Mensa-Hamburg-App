@@ -7,7 +7,7 @@ set -x
 set -e
 
 type=$1
-release=${2-dev}
+release=${2}
 
 path="../enyo2/$type"
 build="$path/deploy/$type";
