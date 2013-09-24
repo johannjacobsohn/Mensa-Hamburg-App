@@ -21,7 +21,7 @@ info = {
 		playbook      : "http://mensaapp.org/blog/2013/kritisches-update-fur-alle-plattformen/",
 		ipad          : "http://mensaapp.org/blog/2013/kritisches-update-fur-alle-plattformen/",
 		iphone        : "http://mensaapp.org/blog/2013/kritisches-update-fur-alle-plattformen/",
-		androidPhone  : "http://mensaapp.org/blog/2013/kritisches-update-fur-alle-plattformen/",
+		androidPhone  : "http://mensaapp.org/blog/2013/neue-version-fur-android-phones/",
 		androidTablet : "http://mensaapp.org/blog/2013/kritisches-update-fur-alle-plattformen/"
 	}
 };

@@ -19,8 +19,8 @@
 -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" android:windowSoftInputMode="adjustPan"
 	package="jjacobsohn.mensaApp.android"
-	android:versionName="2.1.1"
-	android:versionCode="12"
+	android:versionName="2.1.2"
+	android:versionCode="13"
 	android:hardwareAccelerated="true"
 	android:installLocation="auto">
 	<supports-screens
