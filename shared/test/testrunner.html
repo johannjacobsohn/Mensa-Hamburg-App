@@ -21,9 +21,8 @@
 		// mock xhr
 		xhr = {
 			get: function(url, success, error, additional_args){
-				var mensa = url.match(/\.org\/(.*?)\//)[1].toLowerCase();
 				var xhr = new XMLHttpRequest();
-				xhr.open("GET", "fixtures/" + mensa, true);
+				xhr.open("GET", "fixtures/all.json", true);
 				xhr.onreadystatechange = function(){
 					if(xhr.readyState === 4){
 						success(xhr.responseText, additional_args);
@@ -34,8 +33,9 @@
 		}
 
 		// mock time
-		sinon.useFakeTimers(+new Date("2013-06-11T22:00:00.000Z"), "setTimeout", "clearTimeout", "setInterval", "clearInterval", "Date");
+		sinon.useFakeTimers(+new Date("2013-10-09T22:00:00.000Z"), "setTimeout", "clearTimeout", "setInterval", "clearInterval", "Date");
 	</script>
+
 
 	<!-- include source files here... -->
 	<script type="text/javascript" src="../js/urls.js"></script>

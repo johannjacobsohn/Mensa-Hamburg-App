@@ -13,7 +13,7 @@ describe("storage", function(){
 	});
 
 	it( "lets you include one mensa" , function(done){
-		storage.unsetFilters();
+//		storage.unsetFilters();
 		storage.setFilter('mensa', [{value: 'Geomatikum', type: 'include'}])
 		storage.filter(function(filteredWeekMenu){
 			var n = filteredWeekMenu.filter(function(item){
@@ -25,7 +25,7 @@ describe("storage", function(){
 		});
 	});
 
-	it( "lets you include multiple mensen" , function(){
+	it( "lets you include multiple mensen" , function(done){
 		var m;
 		storage.setFilter('mensa', [{value: 'Philosophenturm', type: 'include'}, {value: 'Geomatikum', type: 'include'}])
 		storage.filter(function(filteredWeekMenu){
@@ -43,10 +43,11 @@ describe("storage", function(){
 			expect( p.length ).to.be.greaterThan(0);
 			expect( g.length ).to.be.greaterThan(0);
 			expect( n.length ).to.be(0);
+			done();
 		});
 	});
 
-	it( "lets you exclude one mensa" , function(){
+	it( "lets you exclude one mensa" , function(done){
 		storage.setFilter('mensa', [{value: 'Geomatikum', type: 'exclude'}])
 		storage.filter(function(filteredWeekMenu){
 			var m = filteredWeekMenu;
@@ -55,6 +56,7 @@ describe("storage", function(){
 			});
 			expect( m.length ).to.be.greaterThan(0);
 			expect( n.length ).to.be(0);
+			done();
 		});
 	});
 
@@ -147,7 +149,7 @@ describe("storage", function(){
 	 * 
 	 */
 	var cache = {};
-	it( ".today works" , function(){
+	it( ".today works" , function(done){
 		// @TODO: test sortedSegmented variant as well
 		storage.today(function(menu, dateString, date){
 			var thisDate = new Date();
@@ -168,6 +170,7 @@ describe("storage", function(){
 			
 			// save Menu for later
 			cache.todaysMenu = menu;
+			done();
 		}, false);
 	});
 
@@ -233,12 +236,12 @@ describe("storage", function(){
 		});
 	});
 
-	it( ".getMensaInfo works" , function(){
+	it( ".getMensaInfo works" , function(done){
 		storage.getMensaInfo(function(val){
 			cache.mensen = val;
-			expect( 17 ).to.be( val.length );
+			expect( 18 ).to.be( val.length );
 			expect( val[0].name ).to.be( "Alexanderstrasse" );
-			expect( val[0].url.toLowerCase() ).to.be( "http://menu.mensaapp.org/alexanderstrasse/{{week}}" );
+			done();
 		});
 	});
 
@@ -303,7 +306,7 @@ describe("storage", function(){
 		var c = 3;
 		var d = function(){ if(!--c) done(); };
 		(function(){
-			var date = "2013-6-11";
+			var date = "2013-10-9";
 			storage.day(storage.dateStringToDate(date), true, function(json){
 				expect( json ).to.not.be.empty();
 				expect( json.every(function(i){ return i.date === date || i.type === "header"; }) ).to.be(true);
@@ -311,7 +314,7 @@ describe("storage", function(){
 			});
 		})();
 		(function(){
-			var date = "2013-6-12"
+			var date = "2013-10-10"
 			storage.day(storage.dateStringToDate(date), true, function(json){
 				expect( json ).to.not.be.empty();
 				expect( json.every(function(i){ return i.date === date || i.type === "header"; }) ).to.be(true);
@@ -319,7 +322,7 @@ describe("storage", function(){
 			});
 		})();
 		(function(){
-			var date = "2013-6-13"
+			var date = "2013-10-11"
 			storage.day(storage.dateStringToDate(date), true, function(json){
 				expect( json ).to.not.be.empty();
 				expect( json.every(function(i){ return i.date === date || i.type === "header"; }) ).to.be(true);

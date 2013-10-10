@@ -31,7 +31,7 @@
 		 * @return {Array} an Array of mensa names
 		 */
 		getURLs: function(){
-			return urls.mensen.map(function( item ){ return item.name ; });
+			return urls.mensen.map(function( item ){ return item.id; });
 		},
 		/**
 		 * set active mensen

@@ -13,7 +13,7 @@ storage = (function(){ // its a trap!
 		filteredWeekMenu = [], // Cache
 		isFiltered       = false,
 		date = new Date(), //now
-		lock = {},
+		locked = false,
 		dataHasChanged = false,
 		/**
 		 *     loadedMensen{
@@ -500,7 +500,7 @@ storage = (function(){ // its a trap!
 			} else {
 				// enqueue the callback to be executed when everything has been loaded
 				menuCallbackQueue.push(callback);
-				retrieveData( week );
+				retrieveData( [week] );
 			}
 			return this;
 		},
@@ -511,81 +511,65 @@ storage = (function(){ // its a trap!
 		 * @param {Integer}  optional Weeknumber, defaults to this week
 		 * @param {bool} force loading of data, even if already loaded
 		 */
-		retrieveData = function(week, force){
-			var mensenArr = conf.getSavedURLs(),
-			    mensa = "",
-			    thisWeek = (new Date()).getWeek(),  // get this week's number
-			    url = "";
-			week = week || date.getWeek(); // get Week from date
+		retrieveData = function(weeks, force){
+			var mensen = conf.getSavedURLs();
+			weeks = weeks || date.getWeek(); // get Week from date
 
-			for(var m = 0; m<mensenArr.length; m++){
-				mensa = mensenArr[m];
-				loadedMensen[mensa] = loadedMensen[mensa] || {};
-
-				// skip loading if this mensa has been already loaded,
-				// its currently loading or date is not this or next week
-				// -> there won't be any data on the server
-				// load anyway if forced to
-				if( ((!loadedMensen[mensa][week] || force) && !lock[mensa + week] && ( week === thisWeek || week === thisWeek + 1 )) ){
-					isFiltered = false;
-
-					// lock execution of callback queue to prevent race conditions
-					lock[mensa + week] = true;
-
-					// load and parse URL with correct week number
-					// @TODO: change to urls.mensen
-					url = urls.mensenWeek[mensa].replace("{{week}}", week);
-
-					// Trigger AJAX-Call
-					// @TODO: remove additional_args and use bind instead
-					xhr.get(url, success, error, {
-						mensa : mensa,
-						week : week
-					});
-				}
+			if(!locked || force){
+				// Trigger AJAX-Call
+				xhr.get(urls.combine(mensen, weeks), success.bind(this, mensen, weeks), error);
 			}
-
-			runMenuCallbacks();
+			locked = true;
 		},
-		// @TODO document
-		success = function(resp, additional_args){
-			var mensa = additional_args.mensa;
-			var week = additional_args.week;
 
-			// parse HTML
-			var newWeekMenu = JSON.parse(resp || "{menu:[]}");
-
-			// compatibility with old server
-			if(newWeekMenu instanceof Array){
-				newWeekMenu = {menu: newWeekMenu};
+		//
+		/**
+		 *
+		 * @TODO document
+		 * @private
+		 */
+		success = function(mensa, week, resp){
+			var newWeekMenu;
+			try{
+				newWeekMenu = JSON.parse(resp).menu;
+			} catch(e){
+				newWeekMenu = [];
 			}
-			newWeekMenu = newWeekMenu.menu || [];
 
 			// mark as cached only if new dishes where found
 			// data has changed!
 			if( newWeekMenu && newWeekMenu.length > 0 ){
 
+				var loadedMensen = newWeekMenu
+					.map(function(item){
+						return item.mensa;
+					})
+
+					//~ doesn't work on webos 2
+					//~ .filter(function(value, index, self) {
+						//~ return self.indexOf(value) === index;
+					//~ });
+//~ console.log("b", weekMenu.length, week)
+				// remove old data
+				weekMenu = weekMenu.filter(function( item ){
+					//~ console.log(week, item.week, week.indexOf(parseInt(item.week, 10) ))
+					return week.indexOf(parseInt(item.week, 10)) === -1 || loadedMensen.indexOf(item.mensa) !== -1;
+				});
+//~ console.log("a", weekMenu.length)
+
 				newWeekMenu = newWeekMenu.map(function(item){
-					item.mensa = item.mensa || urls.byId[item.mensaId.toLowerCase()].name; // compatibility with old server
-					item.date = item.date.length < 11 ? item.date : dateToDateString( new Date(item.date) ); // compatibility with old server
+					item.date = dateToDateString( new Date(item.date) );
+					item.mensa = urls.byId[item.mensaId].name;
 					return item;
 				});
-
-				// splice menu together
-				// remove old data
-				weekMenu = weekMenu.filter(function( item ){ return (parseInt(item.week, 10) !== week || item.mensa !== mensa); });
 
 				// append new data
 				weekMenu = weekMenu.concat( newWeekMenu );
 
-				loadedMensen[mensa][week] = true;
+				//~ loadedMensen[mensa][week] = true;
 				dataHasChanged = true;
 			}
-
-			// release lock
-			delete lock[additional_args.mensa+additional_args.week];
-
-			// try to run callbacks
+			locked = false;
 			runMenuCallbacks();
 		},
 
@@ -594,10 +578,7 @@ storage = (function(){ // its a trap!
 			log("xhr error");
 
 			// release lock
-			delete lock[additional_args.mensa+additional_args.week];
-
-			// try to run callbacks
-			runMenuCallbacks();
+			locked = false;
 		},
 
 		/**
@@ -608,7 +589,7 @@ storage = (function(){ // its a trap!
 		 */
 		runMenuCallbacks = function(){
 			// only execute callback queue if all locks are released
-			if(Object.keys(lock).length === 0){
+			if(!locked){
 				if(filteredWeekMenu.length === 0){
 					filteredWeekMenu = weekMenu;
 				}
@@ -1022,8 +1003,7 @@ storage = (function(){ // its a trap!
 		 */
 		update = function(){
 			var week = (new Date()).getWeek();
-			retrieveData(week    , true);
-			retrieveData(week + 1, true);
+			retrieveData([week,week + 1], true);
 		},
 
 		/**
