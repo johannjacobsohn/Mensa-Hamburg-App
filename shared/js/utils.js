@@ -15,6 +15,34 @@ if(typeof log === "undefined"){
 		}
 	}
 }
+/**
+ * Format number to german format
+ *
+ * @example:
+	formatNumberTest = function(){
+		console.assert(formatNumber(07) === "7,00", "Führende Null");
+		console.assert(formatNumber(121212128.1212121212) === "121212128,12", "Lange Zahl");
+		console.assert(formatNumber("8,23") === "8,23", "String im korrekten Format");
+		console.assert(formatNumber("8.235") === "8,24", "korrektes aufrunden");
+		console.assert(formatNumber("8.234") === "8,23", "korrektes abrunden");
+		console.assert(formatNumber("8") === "8,00", "Ganze Zahl als String");
+		console.assert(formatNumber(0) === "0,00", "Null als Int");
+		console.assert((formatNumber()).toString() === "0,00", "Kein Argument sollte 0,00 zurückgeben");
+		console.assert((formatNumber("test").toString() === "NaN"), "Nicht parsebare Zahl sollte NaN zurückgeben");
+	}
+	formatNumberTest()
+ * @param             n die zu formatierende Zahl - kann String, Int oder Float sein
+ * @param  {{int}}    precision (optional) - Anzahl an Nachkommastellen, voreingestellt sind 2 
+ * @return {{string}} der formatierte String
+ */
+var formatNumber = function(n, precision){
+	precision = precision || 2;
+	var p = Math.pow(10, precision);
+	n = n || 0; // Test "Kein Argument sollte 0,00 zurückgeben; "
+	n = parseFloat(n.toString().replace(",",".")); // Test "String im korrekten Format"
+	n = Math.round(n * p)/p;
+	return n.toFixed( precision ).toString().replace(".",",");
+};
 
 /**
  * Create a nicely formated string representation of any given Date

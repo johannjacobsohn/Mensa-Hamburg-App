@@ -17,12 +17,23 @@
 		 * @method getURLs
 		 * @return {Array} an Array of mensa names
 		 */
-		getSavedURLs : function(){
+		getSavedMensen: function(){
 			try {
 				return JSON.parse(data.get("urls")) || [];
 			} catch (e) {
 				return [];
 			}
+		},
+		/**
+		 * get all active mensen
+		 * 
+		 * @method getURLs
+		 * @return {Array} an Array of mensa names
+		 */
+		getSavedURLs : function(){
+			return this.getSavedMensen().map(function(mensa){
+				return urls.byId[mensa] ? urls.byId[mensa].name : mensa;
+			});
 		},
 		/**
 		 * get all known mensen
@@ -31,7 +42,7 @@
 		 * @return {Array} an Array of mensa names
 		 */
 		getURLs: function(){
-			return urls.mensen.map(function( item ){ return item.name ; });
+			return urls.mensen.map(function( item ){ return item.id; });
 		},
 		/**
 		 * set active mensen
@@ -39,8 +50,11 @@
 		 * @param {Array} urls ein Array an Mensennamen
 		 * @return {Boolean} success
 		 */
-		setURLs : function(urls){
-			return data.save("urls", JSON.stringify(urls));
+		setURLs : function(mensen){
+			mensen = mensen.map(function(mensa){
+				return urls.byName[mensa] ? urls.byName[mensa].id : mensa;
+			});
+			return data.save("urls", JSON.stringify(mensen));
 		},
 		/**
 		 * Find out if app has been configured
