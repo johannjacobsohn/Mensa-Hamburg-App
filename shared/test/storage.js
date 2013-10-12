@@ -60,7 +60,7 @@ describe("storage", function(){
 		});
 	});
 
-	it( "lets you in- and exclude mensen" , function(){
+	it( "lets you in- and exclude mensen" , function(done){
 		var m;
 		storage.setFilter('mensa', [{value: 'Philosophenturm', type: 'include'}, {value: 'Geomatikum', type: 'exclude'}])
 		storage.filter(function(filteredWeekMenu){
@@ -70,6 +70,7 @@ describe("storage", function(){
 			});
 			expect( m.length ).to.be.greaterThan(0);
 			expect( n.length ).to.be(0);
+			done();
 		});
 	});
 
@@ -99,7 +100,7 @@ describe("storage", function(){
 		});
 	});
 
-	it( "lets you exclude one additive" , function(){
+	it( "lets you exclude one additive" , function(done){
 		storage.setFilter('additives', [{value: 'Antioxidationsmittel', type: 'exclude'}]);
 		storage.filter(function(filteredWeekMenu){
 			var m = filteredWeekMenu.filter(function(item){
@@ -107,6 +108,7 @@ describe("storage", function(){
 			});
 			expect( filteredWeekMenu.length ).to.be.greaterThan(0);
 			expect( m.length ).to.be(0);
+			done();
 		});
 	});
 
@@ -174,7 +176,7 @@ describe("storage", function(){
 		}, false);
 	});
 
-	it( ".nextDay works" , function(){
+	it( ".nextDay works" , function(done){
 		var todaysMenu;
 		storage.today(function(){});
 		storage.nextDay(function(menu, dateString, date){
@@ -200,6 +202,7 @@ describe("storage", function(){
 			expect( tomorrowDate.valueOf() ).to.be( date.valueOf() );
 
 			expect( menu.filter(function( item ){ return item.date !== tomorrow } ).length ).to.be(0);
+			done();
 		}, false);
 	});
 
@@ -314,7 +317,7 @@ describe("storage", function(){
 			});
 		})();
 		(function(){
-			var date = "2013-10-10"
+			var date = "2013-10-10";
 			storage.day(storage.dateStringToDate(date), true, function(json){
 				expect( json ).to.not.be.empty();
 				expect( json.every(function(i){ return i.date === date || i.type === "header"; }) ).to.be(true);
@@ -322,7 +325,7 @@ describe("storage", function(){
 			});
 		})();
 		(function(){
-			var date = "2013-10-11"
+			var date = "2013-10-11";
 			storage.day(storage.dateStringToDate(date), true, function(json){
 				expect( json ).to.not.be.empty();
 				expect( json.every(function(i){ return i.date === date || i.type === "header"; }) ).to.be(true);
