@@ -112,7 +112,7 @@ describe("storage", function(){
 		});
 	});
 
-	it( "lets you include multiple additives" , function(){
+	it( "lets you include multiple additives" , function(done){
 		storage.setFilter('additives', [{value: 'Antioxidationsmittel', type: 'include'}, {value: 'Glutenhaltiges', type: 'include'}])
 		storage.filter(function(filteredWeekMenu){
 			var m = filteredWeekMenu.filter(function(item){
@@ -120,10 +120,11 @@ describe("storage", function(){
 			});
 			expect( filteredWeekMenu.length ).to.be.greaterThan(0);
 			expect( m.length ).to.be(0);
+			done();
 		});
 	});
 
-	it( "lets you include some additives exclude others" , function(){
+	it( "lets you include some additives exclude others" , function(done){
 		storage.setFilter('additives', [{value: 'Antioxidationsmittel', type: 'include'}, {value: "Sesam/-erzeugnisse", type: 'exclude'}])
 		storage.filter(function(filteredWeekMenu){
 			var m = filteredWeekMenu.filter(function(item){
@@ -131,10 +132,11 @@ describe("storage", function(){
 			});
 			expect( filteredWeekMenu.length ).to.be.greaterThan(0);
 			expect( m.length ).to.be(0);
+			done()
 		});
 	});
 
-	it( "lets you exclude multiple additives" , function(){
+	it( "lets you exclude multiple additives" , function(done){
 		storage.setFilter('additives', [{value: "Senf/-erzeugnisse", type: 'exclude'}, {value: "Milch/-erzeugnisse", type: 'exclude'}])
 		storage.filter(function(filteredWeekMenu){
 			var m = filteredWeekMenu.filter(function(item){
@@ -143,7 +145,8 @@ describe("storage", function(){
 
 			expect( filteredWeekMenu.length ).to.be.greaterThan(0);
 			expect( m.length ).to.be(0);
-		})
+			done();
+		});
 	});
 
 	/*
@@ -333,6 +336,29 @@ describe("storage", function(){
 			});
 		})();
 	});
+
+
+	it( "caches data", function(done){
+		var called = 0;
+		storage.clearCache();
+		storage.cleanData();
+		conf.setURLs(["geomatikum"]);
+		var oldGet = xhr.get;
+		xhr.get = function(url, callback){
+			called++;
+			callback(JSON.stringify({menu: [{mensaId: "geomatikum"}]}));
+		}
+		storage.getWeekMenu(function(){
+			storage.getWeekMenu(function(){
+				storage.getWeekMenu(function(){
+					expect( called ).to.be(1)
+					done();
+				});
+			});
+		});
+
+		xhr.get = oldGet;
+	});
 });
 
 describe("storage.sortedSegmented", function(){
@@ -341,6 +367,7 @@ describe("storage.sortedSegmented", function(){
 	beforeEach(function () {
 		server = { respond: function(){} }
 		storage.unsetFilter();
+		conf.setURLs( conf.getURLs() );
 	});
 
 	it( "is sorted" , function(done){
