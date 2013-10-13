@@ -460,29 +460,19 @@ storage = (function(){ // its a trap!
 			loadCachedData();
 
 			// filter menu
-			weekMenu = weekMenu.filter(function(item){
-				return validUrls.indexOf(item.mensa) !== -1;
-			});
+			var isValid = function(item){
+				return validUrls.indexOf(item.mensaId) !== -1;
+			};
 
-			filteredWeekMenu = filteredWeekMenu.filter(function(item){
-				return validUrls.indexOf(item.mensa) !== -1;
-			});
+			weekMenu = weekMenu.filter(isValid);
+			filteredWeekMenu = filteredWeekMenu.filter(isValid);
 
 			// cleanup loadedMensen
-			//~ // @TODO: cleanup
-			//~ var filterByMensaAndWeek = function(mensa, week, item){
-				//~ return (mensa === item.mensa && parseInt(week, 10) === item.week);
-			//~ };
-
-			//~ for(var mensa in loadedMensen){
-				//~ if( loadedMensen.hasOwnProperty(mensa) ){
-					//~ for(var week in loadedMensen[mensa]){
-						//~ if(loadedMensen[mensa].hasOwnProperty(week)){
-							//~ loadedMensen[mensa][week] = weekMenu.some(filterByMensaAndWeek.bind(this, mensa, week));
-						//~ }
-					//~ }
-				//~ }
-			//~ }
+			var loaded = {};
+			weekMenu.forEach(function(item){
+				loaded[item.mensaId] = 1;
+			});
+			loadedMensen = Object.keys(loaded);
 
 			// unset MensaFilter to prevent an inconsistent state where
 			// we are filtering by a mensa which doesn't exist anymore
@@ -524,10 +514,15 @@ storage = (function(){ // its a trap!
 			var mensen = conf.getSavedURLs();
 			weeks = weeks || date.getWeek(); // get Week from date
 
-			if(!locked || force){
+			// get missing mensen & weeks
+			var missing = mensen.filter(function(item){
+				return loadedMensen.indexOf(item) === -1;
+			});
+
+			if(missing.length && (!locked || force)){
 				locked = true;
 				// Trigger AJAX-Call
-				xhr.get(urls.combine(mensen, weeks), success.bind(this, mensen, weeks), error);
+				xhr.get(urls.combine(missing, weeks), success.bind(this, mensen, weeks), error);
 			}
 		},
 		/**
@@ -546,10 +541,10 @@ storage = (function(){ // its a trap!
 			// mark as cached only if new dishes where found
 			// data has changed!
 			if( newWeekMenu && newWeekMenu.length > 0 ){
-
 				// get unique loaded mensen
 				newWeekMenu = newWeekMenu
 					.map(function(item){
+						tempMensen[item.mensaId] = 1;
 						item.date = dateToDateString( new Date(item.date) );
 						item.mensa = urls.byId[item.mensaId].name;
 						return item;
@@ -593,11 +588,6 @@ storage = (function(){ // its a trap!
 				if(filteredWeekMenu.length === 0){
 					filteredWeekMenu = weekMenu;
 				}
-
-				while (menuCallbackQueue.length > 0){
-					( menuCallbackQueue.pop() )( filteredWeekMenu );
-				}
-
 				// do stuff if data has changed
 				if(dataHasChanged){
 					// sync cache
@@ -607,6 +597,10 @@ storage = (function(){ // its a trap!
 					fire( "update" );
 
 					dataHasChanged = false;
+				}
+
+				while (menuCallbackQueue.length > 0){
+					( menuCallbackQueue.pop() )( filteredWeekMenu );
 				}
 			}
 		},

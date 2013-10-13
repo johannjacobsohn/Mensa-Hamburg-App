@@ -270,29 +270,33 @@ describe("storage", function(){
 		});
 	});
 
-	it( ".getPropertiesInfo works" , function(){
+	it( ".getPropertiesInfo works" , function(done){
 		storage.getPropertiesInfo(function(val){
 			cache.properties = val;
 			expect( val.length ).to.be.greaterThan(0 );
+			done();
 		});
 	});
 
-	it( ".getInfo(properties) works" , function(){
+	it( ".getInfo(properties) works" , function(done){
 		storage.getInfo("properties", function(val){
 			expect( cache.properties ).to.eql( val )
+			done();
 		});
 	});
 
-	it( ".getAdditivesInfo works" , function(){
+	it( ".getAdditivesInfo works" , function(done){
 		storage.getAdditivesInfo(function(val){
 			cache.additives = val;
 			expect( val.length).to.be.greaterThan(0 );
+			done();
 		});
 	});
 
-	it( ".getInfo(additives) works" , function(){
+	it( ".getInfo(additives) works" , function(done){
 		storage.getInfo("additives", function(val){
 			expect( cache.additives ).to.eql( val);
+			done();
 		});
 	});
 
@@ -337,8 +341,7 @@ describe("storage", function(){
 		})();
 	});
 
-
-	it( "caches data", function(done){
+	it( "requests data only once", function(done){
 		var called = 0;
 		storage.clearCache();
 		storage.cleanData();
@@ -358,6 +361,31 @@ describe("storage", function(){
 		});
 
 		xhr.get = oldGet;
+	});
+
+	it( "Data is requested incrementally", function(done){
+		var called = 0;
+		storage.clearCache();
+		storage.cleanData();
+		conf.setURLs(["geomatikum", "philosophenturm"]);
+		var oldGet = xhr.get;
+		xhr.get = function(url, callback){
+			expect( url ).to.be("http://data.mensaapp.org/geomatikum,philosophenturm/41")
+			setTimeout(function(){ callback(JSON.stringify({menu: [{mensaId: "geomatikum"}, {mensaId: "philosophenturm"}]})) });
+		}
+		storage.getWeekMenu(function(json){
+			expect( json.every(function(item){ return item.mensaId === "geomatikum" || item.mensaId === "philosophenturm" }) ).to.be(true);
+			conf.setURLs(["geomatikum", "campus"]);
+			xhr.get = function(url, callback){
+				expect( url ).to.be("http://data.mensaapp.org/campus/41")
+				callback(JSON.stringify({menu: [{mensaId: "campus"}]}));
+			}
+			storage.getWeekMenu(function(json){
+				expect( json.every(function(item){ return item.mensaId === "geomatikum" || item.mensaId === "campus" }) ).to.be(true);
+				xhr.get = oldGet;
+				done();
+			});
+		});
 	});
 });
 
