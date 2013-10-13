@@ -547,6 +547,10 @@ storage = (function(){ // its a trap!
 						tempMensen[item.mensaId] = 1;
 						item.date = dateToDateString( new Date(item.date) );
 						item.mensa = urls.byId[item.mensaId].name;
+
+						// backwards compatibility
+						item.dish = item.name;
+						item.name = item.type;
 						return item;
 					});
 
