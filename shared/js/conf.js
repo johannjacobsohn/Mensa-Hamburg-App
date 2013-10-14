@@ -39,8 +39,11 @@
 		 * @param {Array} urls ein Array an Mensennamen
 		 * @return {Boolean} success
 		 */
-		setURLs : function(urls){
-			return data.save("urls", JSON.stringify(urls));
+		setURLs : function(mensen){
+			mensen = mensen.map(function(mensa){
+				return urls.byName[mensa] ? urls.byName[mensa].id : mensa;
+			});
+			return data.save("urls", JSON.stringify(mensen));
 		},
 		/**
 		 * Find out if app has been configured
