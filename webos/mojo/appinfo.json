@@ -1,6 +1,6 @@
 {
   "id"         : "com.mensaapp.webos",
-  "version"    : "1.5.4",
+  "version"    : "1.5.5",
   "vendor"     : "jjacobsohn",
   "type"       : "web",
   "main"       : "index.html",

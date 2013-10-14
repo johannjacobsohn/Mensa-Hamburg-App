@@ -16,18 +16,18 @@ MenuAssistant.prototype.activate = function(event) {
 
 	/* periodically set header as to pick up date changes */
 	this.headerReloadTimeout = 1000 * 60 * 10; // every ten minutes ought to be enough
-	this.timeout = setTimeout( this.reloadHeader.bind(this), this.headerReloadTimeout );
+	this.headerReloadTimer = setTimeout( this.reloadHeader.bind(this), this.headerReloadTimeout );
 };
 
 MenuAssistant.prototype.reloadHeader = function(event) {
 	this.setHeader();
-	this.timeout = setTimeout( this.reloadHeader.bind(this), this.headerReloadTimeout ); // rinse, repeat
+	this.headerReloadTimer = setTimeout( this.reloadHeader.bind(this), this.headerReloadTimeout ); // rinse, repeat
 };
 
 MenuAssistant.prototype.deactivate = function(event) {
 	/* remove any event handlers you added in activate and do any other cleanup that should happen before
 	   this scene is popped or another scene is pushed on top */
-	clearTimeout( this.timeout );
+	clearTimeout( this.headerReloadTimer );
 };
 
 MenuAssistant.prototype.cleanup = function(event) {
@@ -78,10 +78,8 @@ MenuAssistant.prototype.setup = function() {
 	// Swipe gestures
 	Mojo.Event.listen(this.controller.topContainer(), Mojo.Event.flick, this.handleFlick.bind(this));
 
-	this.controller.setupWidget("spinner",
-		this.attributes = { spinnerSize: "large" },
-		this.model = { spinning: true }
-	);
+	// activity indicator
+	this.controller.setupWidget("spinner", {spinnerSize: "large"}, { spinning: false });
 
 	this.controller.setupWidget(Mojo.Menu.viewMenu,
 		{spacerHeight: 0, menuClass: "no-fade"},
@@ -91,9 +89,9 @@ MenuAssistant.prototype.setup = function() {
 				{}, // <-- helps to center the menu
 				{
 					items: [
-						{ label: $L("Yesterday"), icon  : "back"   , command: "prevDay" },
-						{ label: "Heute"        , width : 200      , command: "today"   },
-						{ label: $L("Refresh")  , icon  :"forward" , command: "nextDay" }
+						{ label: $L("Yesterday"), icon  : "back"   , command: "prevDay" }, // left
+						{ label: "Heute"        , width : 200      , command: "today"   }, // center
+						{ label: $L("Refresh")  , icon  :"forward" , command: "nextDay" }  // right
 					]
 				},
 				{} // <-- helps to center the menu
@@ -106,7 +104,8 @@ MenuAssistant.prototype.setup = function() {
 		itemTemplate: "menu/static-list-menu-entry",
 		emptyTemplate:"menu/emptylist",
 		dividerTemplate: "menu/dividerTemplate",
-		renderLimit : 10,
+		fixedHeightItems: true,
+		hasNoWidgets: true,
 		dividerFunction: function(listitem){
 			return listitem.mensa;
 		}
@@ -116,7 +115,6 @@ MenuAssistant.prototype.setup = function() {
 
 	this.menu = this.controller.get("menu");
 
-//	this.controller.instantiateChildWidgets(menu);
 	this.controller.listen("menu", Mojo.Event.listTap, this.handleTap.bind(this));
 
 	// Data is fetched in activate...
@@ -125,6 +123,7 @@ MenuAssistant.prototype.setup = function() {
 MenuAssistant.prototype.handleTap = function(event){
 	//changes the open property in the drawer
 	event.item.open = !event.item.open;
+	event.item.drawerDisplay = event.item.open ? "block" : "none";
 	if( !event.item.propertiesString && !event.item.additivesString){
 		event.item.propertiesString = "";
 		event.item.additivesString = "";
@@ -136,6 +135,9 @@ MenuAssistant.prototype.handleTap = function(event){
 		for(i = 0; i<event.item.additives.length; i++) {
 			event.item.additivesString += "<li>" + event.item.additives[i] + "</li>";
 		}
+
+		event.item.propertiesString = event.item.propertiesString ? event.item.propertiesString : "<li><i>keine</i></li>";
+		event.item.additivesString = event.item.additivesString ? event.item.additivesString : "<li><i>keine</i></li>";
 	}
 	// invalidate list elements (= rerender list items);
 	// to avoid duplicate dividers invalidate surrounding items as well
@@ -149,28 +151,45 @@ MenuAssistant.prototype.handleCommand = function(event) {
 };
 
 MenuAssistant.prototype.load = function(type){
+	storage[type](this.fetch.bind(this), false);
+	this.timedOut = false;
+	this.showLoaderTimer = setTimeout(this.showLoader.bind(this), 100);
+};
+
+MenuAssistant.prototype.timedOut = true;
+MenuAssistant.prototype.showLoaderTimer = false;
+
+MenuAssistant.prototype.showLoader = function(type){
 	this.controller.get("spinner").mojo.start();
 	this.menu.style.display = "none";
-	this.menu.mojo.revealItem(0, false);
-
-	storage[type]( this.fetch.bind(this), false);
-};
+	this.timedOut = true;
+}
 
 MenuAssistant.prototype.fetch = function(json, dateString, date){
 	// stop wait indicator
-	this.controller.get("spinner").mojo.stop();
+	clearTimeout(this.showLoaderTimer);
+	if(this.timedOut){
+		this.controller.get("spinner").mojo.stop();
+		this.menu.style.display = "block";
+	}
 
 	// Set price
-	// @TODO: move in storage
+	// @TODO: move to storage
 	var studentPrices = conf.displayStudentPrices();
 	for(var i=0; i<json.length; i++){
-		json[i].price = studentPrices ? json[i].studPrice : json[i].normalPrice;
+		json[i].price = formatNumber( studentPrices ? json[i].studPrice : json[i].normalPrice );
+		json[i].drawerDisplay = "none";
 	}
 
 	// update menu
 	this.items.items = json;
-	this.menu.style.display = "block";
-	this.controller.modelChanged( this.items, this);
+	this.menu.mojo.revealItem(0, false);
+
+	this.menu.mojo.setLengthAndInvalidate( Math.min(6, this.items.items.length) );
+	setTimeout(function(){
+//		this.controller.modelChanged( this.items, this);
+		this.menu.mojo.setLength(this.items.items.length);
+	}.bind(this), 1)
 
 	// update header
 	this.date = date;
@@ -178,9 +197,9 @@ MenuAssistant.prototype.fetch = function(json, dateString, date){
 };
 
 MenuAssistant.prototype.setHeader = function(){
-	this.headerMenu.items[1].items[0].disabled = !storage.isPrevDayAvailable();
-	this.headerMenu.items[1].items[2].disabled = !storage.isNextDayAvailable();
+	this.headerMenu.items[1].items[0].disabled = !storage.isPrevDayAvailable(); // left
+	this.headerMenu.items[1].items[1].label = formatDate(this.date);            // center
+	this.headerMenu.items[1].items[2].disabled = !storage.isNextDayAvailable(); // right
 
-	this.headerMenu.items[1].items[1].label = formatDate(this.date);
 	this.controller.modelChanged( this.headerMenu, this);
 };
