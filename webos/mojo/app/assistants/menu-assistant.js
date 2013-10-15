@@ -177,7 +177,7 @@ MenuAssistant.prototype.fetch = function(json, dateString, date){
 	// @TODO: move to storage
 	var studentPrices = conf.displayStudentPrices();
 	for(var i=0; i<json.length; i++){
-		json[i].price = formatNumber( studentPrices ? json[i].studPrice : json[i].normalPrice );
+		json[i].price = Mojo.Format.formatCurrency( studentPrices ? json[i].studPrice : json[i].normalPrice, {fractionDigits: 2, countryCode : "de"});
 		json[i].drawerDisplay = "none";
 	}
 
