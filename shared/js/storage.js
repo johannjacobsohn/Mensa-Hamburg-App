@@ -454,7 +454,7 @@ storage = (function(){ // its a trap!
 		 * @return this
 		 */
 		cleanData = function(){
-			var validUrls = conf.getSavedURLs();
+			var validUrls = conf.getSavedMensen();
 
 			// Make sure we load the cache before we cleanup and save an empty menu
 			loadCachedData();
@@ -499,7 +499,7 @@ storage = (function(){ // its a trap!
 			} else {
 				// enqueue the callback to be executed when everything has been loaded
 				menuCallbackQueue.push(callback);
-				retrieveData( [week || date.getWeek()] ); // get Week from date
+				retrieveData([ "both" ]); // get Week from date
 			}
 			return this;
 		},
@@ -511,7 +511,7 @@ storage = (function(){ // its a trap!
 		 * @param {bool} force loading of data, even if already loaded
 		 */
 		retrieveData = function(weeks, force){
-			var mensen = conf.getSavedURLs();
+			var mensen = conf.getSavedMensen();
 			weeks = weeks || date.getWeek(); // get Week from date
 
 			// get missing mensen & weeks
@@ -522,15 +522,17 @@ storage = (function(){ // its a trap!
 			if(missing.length && (!locked || force)){
 				locked = true;
 				// Trigger AJAX-Call
-				xhr.get(urls.combine(missing, weeks), success.bind(this, mensen, weeks), error);
+				xhr.get(urls.combine(missing, weeks), success.bind(this, weeks), error);
 			}
+
+			runMenuCallbacks();
 		},
 		/**
 		 *
 		 * @TODO document
 		 * @private
 		 */
-		success = function(mensa, week, resp){
+		success = function(week, resp){
 			var newWeekMenu, tempMensen = {};
 			try{
 				newWeekMenu = JSON.parse(resp).menu;
@@ -589,7 +591,7 @@ storage = (function(){ // its a trap!
 		runMenuCallbacks = function(){
 			// only execute callback queue if all locks are released
 			if(!locked){
-				if(filteredWeekMenu.length === 0){
+				if(filteredWeekMenu.length === 0 || dataHasChanged){
 					filteredWeekMenu = weekMenu;
 				}
 				// do stuff if data has changed
