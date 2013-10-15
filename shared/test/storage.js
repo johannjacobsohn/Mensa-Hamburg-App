@@ -370,14 +370,15 @@ describe("storage", function(){
 		conf.setURLs(["geomatikum", "philosophenturm"]);
 		var oldGet = xhr.get;
 		xhr.get = function(url, callback){
-			expect( url ).to.be("http://data.mensaapp.org/geomatikum,philosophenturm/41")
+			expect( url ).to.be("http://data.mensaapp.org/geomatikum,philosophenturm/both")
 			setTimeout(function(){ callback(JSON.stringify({menu: [{mensaId: "geomatikum"}, {mensaId: "philosophenturm"}]})) });
 		}
 		storage.getWeekMenu(function(json){
 			expect( json.every(function(item){ return item.mensaId === "geomatikum" || item.mensaId === "philosophenturm" }) ).to.be(true);
 			conf.setURLs(["geomatikum", "campus"]);
+			storage.cleanData()
 			xhr.get = function(url, callback){
-				expect( url ).to.be("http://data.mensaapp.org/campus/41")
+				expect( url ).to.be("http://data.mensaapp.org/campus/both")
 				callback(JSON.stringify({menu: [{mensaId: "campus"}]}));
 			}
 			storage.getWeekMenu(function(json){

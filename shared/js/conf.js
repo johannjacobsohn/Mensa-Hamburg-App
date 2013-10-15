@@ -17,12 +17,23 @@
 		 * @method getURLs
 		 * @return {Array} an Array of mensa names
 		 */
-		getSavedURLs : function(){
+		getSavedMensen: function(){
 			try {
 				return JSON.parse(data.get("urls")) || [];
 			} catch (e) {
 				return [];
 			}
+		},
+		/**
+		 * get all active mensen
+		 * 
+		 * @method getURLs
+		 * @return {Array} an Array of mensa names
+		 */
+		getSavedURLs : function(){
+			return this.getSavedMensen().map(function(mensa){
+				return urls.byId[mensa] ? urls.byId[mensa].name : mensa;
+			});
 		},
 		/**
 		 * get all known mensen
