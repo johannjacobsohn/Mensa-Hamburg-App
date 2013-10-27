@@ -525,7 +525,7 @@ storage = (function(){ // its a trap!
 				xhr.get(urls.combine(missing, weeks), success.bind(this, weeks), error);
 			}
 
-			runMenuCallbacks();
+			setTimeout(runMenuCallbacks, 1);
 		},
 		/**
 		 *
@@ -559,15 +559,19 @@ storage = (function(){ // its a trap!
 				newWeekMenu.forEach(function(item){
 					tempMensen[item.mensaId] = 1;
 				});
-				loadedMensen = Object.keys(tempMensen);
 
 				weekMenu = weekMenu
 					// remove old data
 					.filter(function( item ){
-						return week.indexOf(parseInt(item.week, 10)) === -1 || tempMensen[item.mensa];
+						return !tempMensen[item.mensaId];
 					})
 					// append new data
 					.concat( newWeekMenu );
+
+				weekMenu.forEach(function(item){
+					tempMensen[item.mensaId] = 1;
+				});
+				loadedMensen = Object.keys(tempMensen);
 
 				dataHasChanged = true;
 			}
