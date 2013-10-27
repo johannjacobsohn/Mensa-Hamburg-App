@@ -492,7 +492,7 @@ storage = (function(){ // its a trap!
 		 * @param {Integer}  optional Weeknumber, defaults to this week
 		 */
 		getWeekMenu = function(callback, week){
-			var allLoaded = conf.getSavedURLs().sort().toString() === loadedMensen.sort().toString();
+			var allLoaded = conf.getSavedMensen().sort().toString() === loadedMensen.sort().toString();
 
 			if ( allLoaded ) {
 				setTimeout(callback.bind(this, weekMenu), 1);
