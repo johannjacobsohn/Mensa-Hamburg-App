@@ -15,3 +15,6 @@ deploy:
 
 run:
 	palm-launch $(NAME)
+
+watch:
+	while true; do inotifywait -e modify -r . && make; done
