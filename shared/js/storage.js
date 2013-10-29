@@ -547,6 +547,7 @@ storage = (function(){ // its a trap!
 				newWeekMenu = newWeekMenu
 					.map(function(item){
 						tempMensen[item.mensaId] = 1;
+						item.week = (new Date(item.date)).getWeek();
 						item.date = dateToDateString( new Date(item.date) );
 						item.mensa = urls.byId[item.mensaId].name;
 
