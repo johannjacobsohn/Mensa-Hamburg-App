@@ -100,6 +100,7 @@ MenuAssistant.prototype.setup = function() {
 	);
 
 	// get list data async
+	// Data is fetched in activate...
 	this.controller.setupWidget("menu",{
 		itemTemplate: "menu/static-list-menu-entry",
 		emptyTemplate:"menu/emptylist",
@@ -117,7 +118,31 @@ MenuAssistant.prototype.setup = function() {
 
 	this.controller.listen("menu", Mojo.Event.listTap, this.handleTap.bind(this));
 
-	// Data is fetched in activate...
+	// implement a filterField widget for real time filtering
+	this.controller.setupWidget("filterField");
+	this.filterField = this.controller.get("filterField");
+	Mojo.Event.listen(this.filterField, Mojo.Event.filter, this.handleFilter.bind(this));
+	Mojo.Event.listen(this.filterField, Mojo.Event.filterImmediate, this.handleFilterDisplay.bind(this));
+};
+
+MenuAssistant.prototype.handleFilter = function(event){
+	this.items.items = this.json.filter(function(item){
+		return event.filterString === "" || ((item.dish + item.name + item.mensa).toLowerCase().indexOf(event.filterString.toLowerCase()) !== -1);
+	});
+	this.filterField.mojo.setCount(this.items.items.length);
+	this.menu.mojo.setLengthAndInvalidate(this.items.items.length);
+};
+
+MenuAssistant.prototype.handleFilterDisplay = function(event){
+	var main = document.getElementById("main");
+	if(event.filterString){
+		main.className = main.className.replace("palm-hasheader", "");
+	} else {
+		main.className += " palm-hasheader";
+	}
+
+	this.headerMenu.visible = event.filterString === "";
+	this.controller.modelChanged( this.headerMenu, this);
 };
 
 MenuAssistant.prototype.handleTap = function(event){
@@ -163,7 +188,7 @@ MenuAssistant.prototype.showLoader = function(type){
 	this.controller.get("spinner").mojo.start();
 	this.menu.style.display = "none";
 	this.timedOut = true;
-}
+};
 
 MenuAssistant.prototype.fetch = function(json, dateString, date){
 	// stop wait indicator
@@ -173,12 +198,16 @@ MenuAssistant.prototype.fetch = function(json, dateString, date){
 		this.menu.style.display = "block";
 	}
 
+	this.json = [];
+
 	// Set price
 	// @TODO: move to storage
 	var studentPrices = conf.displayStudentPrices();
 	for(var i=0; i<json.length; i++){
-		json[i].price = Mojo.Format.formatCurrency( studentPrices ? json[i].studPrice : json[i].normalPrice, {fractionDigits: 2, countryCode : "de"});
+		json[i].price = studentPrices ? json[i].studPrice : json[i].normalPrice;
+		json[i].price = json[i].price ? Mojo.Format.formatCurrency(json[i].price, {fractionDigits: 2, countryCode : "de"}) : "";
 		json[i].drawerDisplay = "none";
+		this.json[i] = json[i];
 	}
 
 	// update menu
@@ -189,7 +218,7 @@ MenuAssistant.prototype.fetch = function(json, dateString, date){
 	setTimeout(function(){
 //		this.controller.modelChanged( this.items, this);
 		this.menu.mojo.setLength(this.items.items.length);
-	}.bind(this), 1)
+	}.bind(this), 1);
 
 	// update header
 	this.date = date;
