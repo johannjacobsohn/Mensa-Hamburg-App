@@ -5,8 +5,11 @@
 
 // startup
 var mensaApp;
-document.addEventListener("webworksready", function(e) {
-	mensaApp = new App().renderInto(document.body);
+
+window.addEventListener("load",function() {
+	document.addEventListener("webworksready", function(e) {
+		mensaApp = new App().renderInto(document.body);
+	}, false);
 }, false);
 
 // Should allow touch scrolling on all devices that do not have it natively.
@@ -19,9 +22,9 @@ enyo.kind({
 		{kind: "FittableRows", classes: "enyo-fit", components: [
 			{fit: true, components: [
 				{name: "menu", kind: "menuView", style: "height: 100%"},
-				{name: "settings", kind: "settingsView", style: "height: 100%", showing: false},
-				{name: "filter", kind: "filterView", style: "height: 100%", showing: false},
-				{name: "info", kind: "infoView", style: "height: 100%", showing: false}
+				{name: "settings", kind: "settingsView", style: "height: 100%", classes: "hidden"},
+				{name: "filter", kind: "filterView", style: "height: 100%",  classes: "hidden"},
+				{name: "info", kind: "infoView", style: "height: 100%",  classes: "hidden"}
 			]},
 			{kind: "bbUI.ActionBar", name: "toolbar", components: [
 				{kind: "bbUI.Action", type: "tab", selected: true, img: "assets/ic_info.png", caption: "Menu", ontap: "switchtap"},
@@ -42,31 +45,13 @@ enyo.kind({
 		]}
 	],
 	switchtap: function(inSender){
-		if(inSender.caption === "Settings"){
-			this.$.menu.hide();
-			this.$.info.hide();
-			this.$.filter.hide();
-			this.$.settings.show();
-		} else if(inSender.caption === "Info"){
-			this.$.menu.hide();
-			this.$.info.show();
-			this.$.filter.hide();
-			this.$.settings.hide();
-		} else if(inSender.caption === "Filter"){
-			this.$.menu.hide();
-			this.$.info.hide();
-			this.$.filter.show();
-			this.$.settings.hide();
-		} else {
-			this.$.menu.show();
-			this.$.info.hide();
-			this.$.filter.hide();
-			this.$.settings.hide();
+		this.$.menu    .addRemoveClass("hidden", inSender.caption !== "Menu");
+		this.$.info    .addRemoveClass("hidden", inSender.caption !== "Info");
+		this.$.filter  .addRemoveClass("hidden", inSender.caption !== "Filter");
+		this.$.settings.addRemoveClass("hidden", inSender.caption !== "Settings");
 
-			setTimeout(this.$.menu.reflow.bind(this.$.menu), 10);
-		}
-
-		setTimeout(this.reflow.bind(this), 10);
+		setTimeout(this.$.menu.reflow.bind(this.$.menu), 1);
+		setTimeout(this.reflow.bind(this), 1);
 	},
 	gotoNewVersion: function(){
 		if (enyo.platform.android || enyo.platform.androidChrome) {
@@ -83,7 +68,10 @@ enyo.kind({
 		this.inherited( arguments );
 		if(!conf.isConfigured()){
 			this.$.introPopup.show();
-			this.$.settingsTap.bubble("ontap");
+			setTimeout(function(){
+				this.switchtap({caption: "Settings"});
+				this.$.settingsTap.select();
+			}.bind(this), 100);
 		} else if( conf.versionHasChanged ){
 			this.$.newVersionPopup.setShowing(true);
 			this.$.newVersionPopup.reflow();

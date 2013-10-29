@@ -492,7 +492,7 @@ storage = (function(){ // its a trap!
 		 * @param {Integer}  optional Weeknumber, defaults to this week
 		 */
 		getWeekMenu = function(callback, week){
-			var allLoaded = conf.getSavedURLs().sort().toString() === loadedMensen.sort().toString();
+			var allLoaded = conf.getSavedMensen().sort().toString() === loadedMensen.sort().toString();
 
 			if ( allLoaded ) {
 				setTimeout(callback.bind(this, weekMenu), 1);
@@ -525,7 +525,7 @@ storage = (function(){ // its a trap!
 				xhr.get(urls.combine(missing, weeks), success.bind(this, weeks), error);
 			}
 
-			setTimeout(runMenuCallbacks, 1);
+			runMenuCallbacks();
 		},
 		/**
 		 *
@@ -547,6 +547,7 @@ storage = (function(){ // its a trap!
 				newWeekMenu = newWeekMenu
 					.map(function(item){
 						tempMensen[item.mensaId] = 1;
+						item.week = (new Date(item.date)).getWeek();
 						item.date = dateToDateString( new Date(item.date) );
 						item.mensa = urls.byId[item.mensaId].name;
 
@@ -559,19 +560,15 @@ storage = (function(){ // its a trap!
 				newWeekMenu.forEach(function(item){
 					tempMensen[item.mensaId] = 1;
 				});
+				loadedMensen = Object.keys(tempMensen);
 
 				weekMenu = weekMenu
 					// remove old data
 					.filter(function( item ){
-						return !tempMensen[item.mensaId];
+						return week.indexOf(parseInt(item.week, 10)) === -1 || tempMensen[item.mensa];
 					})
 					// append new data
 					.concat( newWeekMenu );
-
-				weekMenu.forEach(function(item){
-					tempMensen[item.mensaId] = 1;
-				});
-				loadedMensen = Object.keys(tempMensen);
 
 				dataHasChanged = true;
 			}
