@@ -1,9 +1,31 @@
+/*
+	@TODO:
+	test that all async methods are async
+	check menu for duplicate data
+	check menu format
+	storage.clearCache
+	storage.cleanData
+	storage.setMensaFilter
+	storage.unsetMensaFilter
+	storage.unsetNameFilter
+	storage.setDateFilter
+	storage.unsetDateFilter
+	storage.setPersistentFilters
+	storage.getPersistentFilters
+	storage.getWeekMenu
+	storage.getSortedSegmented
+*/
 describe("storage", function(){
+	var oldGet;
 	before(function () {
 		localStorage.clear();
 		conf.setURLs( conf.getURLs() );
 		storage.unsetFilter();
+		oldGet = xhr.get;
 	});
+	afterEach(function(){
+		xhr.get = oldGet;
+	})
 
 	it( "has working getWeekMenu-Method", function(done){
 		storage.getWeekMenu(function(menu){
@@ -346,7 +368,6 @@ describe("storage", function(){
 		storage.clearCache();
 		storage.cleanData();
 		conf.setURLs(["geomatikum"]);
-		var oldGet = xhr.get;
 		xhr.get = function(url, callback){
 			called++;
 			callback(JSON.stringify({menu: [{mensaId: "geomatikum"}]}));
@@ -359,18 +380,16 @@ describe("storage", function(){
 				});
 			});
 		});
-
-		xhr.get = oldGet;
 	});
 
-	it( "Data is requested incrementally", function(done){
+	it( "requested new mensen incrementally", function(done){
 		var called = 0;
 		storage.clearCache();
 		storage.cleanData();
+		storage.set("loadBothWeeks", true);
 		conf.setURLs(["geomatikum", "philosophenturm"]);
-		var oldGet = xhr.get;
 		xhr.get = function(url, callback){
-			expect( url ).to.be("http://data.mensaapp.org/geomatikum,philosophenturm/both")
+			expect( url.indexOf("http://data.mensaapp.org/geomatikum,philosophenturm/") ).to.be( 0 );
 			setTimeout(function(){ callback(JSON.stringify({menu: [{mensaId: "geomatikum"}, {mensaId: "philosophenturm"}]})) });
 		}
 		storage.getWeekMenu(function(json){
@@ -378,16 +397,55 @@ describe("storage", function(){
 			conf.setURLs(["geomatikum", "campus"]);
 			storage.cleanData()
 			xhr.get = function(url, callback){
-				expect( url ).to.be("http://data.mensaapp.org/campus/both")
+				expect( url.indexOf("http://data.mensaapp.org/campus/") ).to.be(0);
 				callback(JSON.stringify({menu: [{mensaId: "campus"}]}));
 			}
 			storage.getWeekMenu(function(json){
 				expect( json.every(function(item){ return item.mensaId === "geomatikum" || item.mensaId === "campus" }) ).to.be(true);
-				xhr.get = oldGet;
 				done();
 			});
 		});
 	});
+
+	it("loads weeks as needed when loadBothWeeks is not set", function(done){
+		storage.set("loadBothWeeks", false);
+		var week = new Date().getWeek() - 1;
+		var called = 0;
+		xhr.get = function(url, callback){
+			week++;
+			called++;
+			expect( url ).to.be( "http://data.mensaapp.org/geomatikum/" + week );
+			callback(JSON.stringify({menu: [{mensaId: "campus"}]}));
+		}
+		storage.today(function(){
+			var date = storage.dateToDateString(new Date(+new Date() + 7*24*3600*1000));
+			storage.day(new Date(+new Date() + 7*24*3600*1000), false, function(){
+				expect(called).to.be(2);
+				done();
+			});
+		});
+	});
+
+	it("loading both weeks when loadBothWeeks is set", function(done){
+		storage.set("loadBothWeeks", true);
+		conf.setURLs(["geomatikum"])
+		var week = new Date().getWeek();
+		var called = 0;
+		xhr.get = function(url, callback){
+			called++;
+			expect(url).to.contain( week );
+			expect(url).to.contain( week + 1 );
+			callback(JSON.stringify({menu: [{mensaId: "geomatikum"}]}));
+		}
+		storage.today(function(){
+			var date = storage.dateToDateString(new Date(+new Date() + 7*24*3600*1000));
+			storage.day(new Date(+new Date() + 7*24*3600*1000), false, function(){
+				expect(called).to.be(1);
+				done();
+			});
+		});
+	});
+
 });
 
 describe("storage.sortedSegmented", function(){
@@ -395,11 +453,13 @@ describe("storage.sortedSegmented", function(){
 	
 	beforeEach(function () {
 		server = { respond: function(){} }
-		storage.unsetFilter();
+		storage.unsetFilters();
+		storage.clearCache();
+		storage.cleanData();
 		conf.setURLs( conf.getURLs() );
 	});
 
-	it( "is sorted" , function(done){
+	it("is sorted", function(done){
 		storage.getSortedSegmented(function(m){
 			var date = "2000-01-01", mensa = "AAAAAAAAAAAAAAAAAAAAAAA", i, l;
 			expect( m.length ).to.be.greaterThan(0);
@@ -426,18 +486,3 @@ describe("storage.sortedSegmented", function(){
 */
 });
 
-/*
-	@TODO:
-	storage.clearCache
-	storage.cleanData
-	storage.setMensaFilter
-	storage.unsetMensaFilter
-	storage.	
-	storage.unsetNameFilter
-	storage.setDateFilter
-	storage.unsetDateFilter
-	storage.setPersistentFilters
-	storage.getPersistentFilters
-	storage.getWeekMenu
-	storage.getSortedSegmented
-*/

@@ -14,6 +14,9 @@ storage = (function(){ // its a trap!
 		isFiltered       = false,
 		date = new Date(), //now
 		locked = false,
+		defaults = {
+			loadBothWeeks: false
+		},
 		dataHasChanged = false,
 		/**
 		 *     loadedMensen{
@@ -225,13 +228,15 @@ storage = (function(){ // its a trap!
 				var isInclude = function(item){ return item.type === "include"; };
 				var isExclude = function(item){ return item.type === "exclude"; };
 				var returnValue = function(item){ return item.value; };
-				for( var prop in filterProperties ){
-					if( filterProperties.hasOwnProperty(prop) ){
+				for( var p in filterProperties ){
+					if( filterProperties.hasOwnProperty(p) ){
 						// split filtervalues in includes and excludes
-						includes = filterValues[prop].filter( isInclude ).map( returnValue );
-						excludes = filterValues[prop].filter( isExclude ).map( returnValue );
-						var includesAreSet = filterValues[prop].some( isInclude );
-						filteredWeekMenu = filteredWeekMenu.filter( filterByProp.bind(this, prop, includes, excludes, includesAreSet) );
+						includes = filterValues[p].filter( isInclude ).map( returnValue );
+						excludes = filterValues[p].filter( isExclude ).map( returnValue );
+						var includesAreSet = filterValues[p].some( isInclude );
+						filteredWeekMenu = filteredWeekMenu.filter( function(item){
+							return filterByProp(p, includes, excludes, includesAreSet, item);
+						});
 					}
 				}
 				isFiltered = true;
@@ -493,13 +498,20 @@ storage = (function(){ // its a trap!
 		 */
 		getWeekMenu = function(callback, week){
 			var allLoaded = conf.getSavedMensen().sort().toString() === loadedMensen.sort().toString();
-
+			var thisWeek, nextWeek;
 			if ( allLoaded ) {
-				setTimeout(callback.bind(this, weekMenu), 1);
+				setTimeout(function(){
+					callback(weekMenu);
+				}, 1);
 			} else {
-				// enqueue the callback to be executed when everything has been loaded
+				thisWeek = new Date().getWeek();
+				nextWeek = new Date( +new Date() + 7 * 24 * 3600 * 1000 ).getWeek();
+				week = week || thisWeek;
+				week = defaults.loadBothWeeks ? [thisWeek, nextWeek] : [week];
+
+				// enqueue the callback to be executed when everything has loaded
 				menuCallbackQueue.push(callback);
-				retrieveData([ "both" ]); // get Week from date
+				retrieveData(week);
 			}
 			return this;
 		},
@@ -507,12 +519,12 @@ storage = (function(){ // its a trap!
 		 * Retrieve menu data (for a given week)
 		 *
 		 * @method retrieveData
-		 * @param {Integer}  optional Weeknumber, defaults to this week
+		 * @param {Array} optional array of week numbers, defaults to this week
 		 * @param {bool} force loading of data, even if already loaded
 		 */
 		retrieveData = function(weeks, force){
 			var mensen = conf.getSavedMensen();
-			weeks = weeks || date.getWeek(); // get Week from date
+			weeks = weeks || [date.getWeek()]; // get Week from date
 
 			// get missing mensen & weeks
 			var missing = mensen.filter(function(item){
@@ -944,7 +956,7 @@ storage = (function(){ // its a trap!
 				var dateString = dateToDateString(date);
 				setFilter("date", dateString);
 				callback(getSorted ? getSortedSegmentedMenu() : getFilteredMenu(), dateString, date);
-			});
+			}, date.getWeek());
 		},
 		/**
 		 * Find out if the previous day is available
@@ -996,7 +1008,7 @@ storage = (function(){ // its a trap!
 		 */
 		update = function(){
 			var week = (new Date()).getWeek();
-			retrieveData([week,week + 1], true);
+			retrieveData([week, week + 1], true);
 		},
 
 		/**
@@ -1061,6 +1073,11 @@ storage = (function(){ // its a trap!
 		// cache control:
 		clearCache : clearCache,
 		cleanData  : cleanData,
+
+		// settings
+		set: function(defaultName, newValue){
+			defaults[defaultName] = newValue
+		},
 
 		// additional information:
 		getInfo      : getInfo,
