@@ -6,6 +6,7 @@
 // startup
 var mensaApp;
 
+storage.set("loadBothWeeks", true);
 window.addEventListener("load",function() {
 	document.addEventListener("webworksready", function(e) {
 		mensaApp = new App().renderInto(document.body);

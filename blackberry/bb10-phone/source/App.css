@@ -46,9 +46,6 @@ body {
 /*
 	overflow-y: auto;
 */
-/*
-	-webkit-overflow-scrolling: -blackberry-touch;
-*/
 	overflow: scroll;
 	-webkit-overflow-scrolling: -blackberry-touch;
 /*
@@ -60,6 +57,22 @@ small{
 	display: block;
 	font-size: 20px;
 	line-height: 0px;
+}
+/*
+
+.filter-item-double{
+	clear: both;
+	overflow: auto;
+}
+*/
+
+.filter-item-tripple .label,
+.filter-item-double .label{
+	position: absolute;
+	right: 0;
+	vertical-align: middle;
+	width: 407px;
+	line-height: 120px;
 }
 
 .loading-message,

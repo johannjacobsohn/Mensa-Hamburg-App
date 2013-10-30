@@ -45,7 +45,7 @@ enyo.kind({
 		//~ this.$.list.strategyKind = "TransitionScrollStrategy";
 	},
 	components: [
-		{kind: "bbUI.PillButtons", components: [
+		{kind: "bbUI.PillButtons", style: "padding: 2px!important", components: [
 			{kind: "bbUI.PillButton", allowHtml: true, content: "Mo<small>22.</small>", name:"mo", i: 0, ontap: "s"},
 			{kind: "bbUI.PillButton", allowHtml: true, content: "Di<small>23.</small>", name:"di", i: 1, ontap: "s"},
 			{kind: "bbUI.PillButton", allowHtml: true, content: "Mi<small>24.</small>", name:"mi", i: 2, ontap: "s"},
