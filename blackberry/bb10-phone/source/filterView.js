@@ -18,7 +18,7 @@ enyo.kind({
 	},
 	applyFilters : function(){
 		this.setFilter("name").setFilter("mensa").setFilter("properties").setFilter("additives");
-		enyo.Signals.send("onRequestMenu");
+		enyo.Signals.send("onSettingsChange");
 	},
 	setFilter : function(type){
 		var filters = this.$[type + "Filter"].getStatus();
@@ -49,16 +49,16 @@ enyo.kind({
 
 enyo.kind({
 	name: "filter-item-double",
-	classes: "item enyo-border-box",
+	classes: "item enyo-border-box filter-item-double",
 	kind: "FittableColumns",
-	style: "height: 120px;",
+	style: "height: 120px;position: relative;",
 	published: {
 		label: "",
 		state: "include"
 	},
 	components: [
-		{style: "width: 84px", kind: "bbUI.ToggleButton", name: "pickerButton", onContent: "Mit", offContent: "Ohne", onChange: "change"},
-		{content: "", name: "label", fit: true}
+		{classes: "input", style: "width: 84px", kind: "bbUI.ToggleButton", name: "pickerButton", onContent: "Mit", offContent: "Ohne", onChange: "change"},
+		{classes: "label", name: "label", fit: true}
 	],
 	stateChanged: function(){
 		this.$.pickerButton.value = this.state === "include";
@@ -77,29 +77,29 @@ enyo.kind({
 
 enyo.kind({
 	name: "filter-item-trippel",
-	classes: "item enyo-border-box",
+	classes: "item enyo-border-box filter-item-double",
 	kind: "FittableColumns",
 	published: {
 		label: "",
 		state: "none"
 	},
 	components: [
-		{content: "", name: "label", fit: true },
+		{classes: "label", content: "", name: "label", fit: true },
 		{style: "", components:[
 			{style: "float: left;", components: [
-				{kind: "bbUI.Checkbox", onchange: "change", name: "include"},
-				{ content: "Mit", style: "text-align: center;"}
+				{kind: "bbUI.Checkbox", onActivate: "change", name: "include"},
+				{content: "Mit", style: "text-align: center; margin-top: -20px; font-size: 60%;"}
 			]},
 			{style: "float: left;", components: [
-				{kind: "bbUI.Checkbox", onchange: "change", name: "exclude"},
-				{ content: "Ohne", style: "text-align: center;"}
+				{kind: "bbUI.Checkbox", onActivate: "change", name: "exclude"},
+				{content: "Ohne", style: "text-align: center; margin-top: -20px; font-size: 60%;"}
 			]}
 		]}
 	],
 	change: function(inSender, inEvent){
 		var o = inEvent.originator;
 		if(o.checked){
-			this.$[ o.name === "exclude" ? "include" : "exclude" ].setChecked( false );
+			this.$[ o.name === "exclude" ? "include" : "exclude" ].setChecked(false);
 		}
 
 		this.bubble( "onChange", {
