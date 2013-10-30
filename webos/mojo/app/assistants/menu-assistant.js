@@ -1,5 +1,3 @@
-/*
- */
 function MenuAssistant() {
 	/* this is the creator function for your scene assistant object. It will be passed all the 
 	   additional parameters (after the scene name) that were passed to pushScene. The reference
@@ -119,7 +117,7 @@ MenuAssistant.prototype.setup = function() {
 	this.controller.listen("menu", Mojo.Event.listTap, this.handleTap.bind(this));
 
 	// implement a filterField widget for real time filtering
-	this.controller.setupWidget("filterField");
+	this.controller.setupWidget("filterField", { delay: 200 });
 	this.filterField = this.controller.get("filterField");
 	Mojo.Event.listen(this.filterField, Mojo.Event.filter, this.handleFilter.bind(this));
 	Mojo.Event.listen(this.filterField, Mojo.Event.filterImmediate, this.handleFilterDisplay.bind(this));
@@ -130,12 +128,15 @@ MenuAssistant.prototype.handleFilter = function(event){
 		return event.filterString === "" || ((item.dish + item.name + item.mensa).toLowerCase().indexOf(event.filterString.toLowerCase()) !== -1);
 	});
 	this.filterField.mojo.setCount(this.items.items.length);
-	this.menu.mojo.setLengthAndInvalidate(this.items.items.length);
+	this.menu.mojo.revealItem(0, false);
+	setTimeout(function(){
+		this.menu.mojo.setLengthAndInvalidate(this.items.items.length);
+	}.bind(this), 10);
 };
 
 MenuAssistant.prototype.handleFilterDisplay = function(event){
 	var main = document.getElementById("main");
-	if(event.filterString){
+	if(event.filterString.length){
 		main.className = main.className.replace("palm-hasheader", "");
 	} else {
 		main.className += " palm-hasheader";
