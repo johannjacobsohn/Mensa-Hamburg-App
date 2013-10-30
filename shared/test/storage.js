@@ -25,6 +25,8 @@ describe("storage", function(){
 	});
 	afterEach(function(){
 		xhr.get = oldGet;
+		storage.clearCache();
+		storage.cleanData();
 	})
 
 	it( "has working getWeekMenu-Method", function(done){
@@ -363,7 +365,7 @@ describe("storage", function(){
 		})();
 	});
 
-	it( "requests data only once", function(done){
+	it("requests data only once", function(done){
 		var called = 0;
 		storage.clearCache();
 		storage.cleanData();
@@ -382,7 +384,7 @@ describe("storage", function(){
 		});
 	});
 
-	it( "requested new mensen incrementally", function(done){
+	it("requested new mensen incrementally", function(done){
 		var called = 0;
 		storage.clearCache();
 		storage.cleanData();
@@ -409,6 +411,7 @@ describe("storage", function(){
 
 	it("loads weeks as needed when loadBothWeeks is not set", function(done){
 		storage.set("loadBothWeeks", false);
+		conf.setURLs(["geomatikum"]);
 		var week = new Date().getWeek() - 1;
 		var called = 0;
 		xhr.get = function(url, callback){
@@ -445,7 +448,6 @@ describe("storage", function(){
 			});
 		});
 	});
-
 });
 
 describe("storage.sortedSegmented", function(){
