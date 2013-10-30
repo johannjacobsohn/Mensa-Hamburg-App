@@ -234,9 +234,7 @@ storage = (function(){ // its a trap!
 						includes = filterValues[p].filter( isInclude ).map( returnValue );
 						excludes = filterValues[p].filter( isExclude ).map( returnValue );
 						var includesAreSet = filterValues[p].some( isInclude );
-						filteredWeekMenu = filteredWeekMenu.filter( function(item){
-							return filterByProp(p, includes, excludes, includesAreSet, item);
-						});
+						filteredWeekMenu = filteredWeekMenu.filter( filterByProp.bind(this, p, includes, excludes, includesAreSet) );
 					}
 				}
 				isFiltered = true;
@@ -569,11 +567,6 @@ storage = (function(){ // its a trap!
 						return item;
 					});
 
-				newWeekMenu.forEach(function(item){
-					tempMensen[item.mensaId] = 1;
-				});
-				loadedMensen = Object.keys(tempMensen);
-
 				weekMenu = weekMenu
 					// remove old data
 					.filter(function( item ){
@@ -581,6 +574,11 @@ storage = (function(){ // its a trap!
 					})
 					// append new data
 					.concat( newWeekMenu );
+
+				weekMenu.forEach(function(item){
+					tempMensen[item.mensaId] = 1;
+				});
+				loadedMensen = Object.keys(tempMensen);
 
 				dataHasChanged = true;
 			}
@@ -1076,7 +1074,7 @@ storage = (function(){ // its a trap!
 
 		// settings
 		set: function(defaultName, newValue){
-			defaults[defaultName] = newValue
+			defaults[defaultName] = newValue;
 		},
 
 		// additional information:
