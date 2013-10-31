@@ -23,7 +23,7 @@ describe("storage", function(){
 		storage.unsetFilter();
 		oldGet = xhr.get;
 	});
-	afterEach(function(){
+	beforeEach(function(){
 		xhr.get = oldGet;
 		storage.clearCache();
 		storage.cleanData();
@@ -175,7 +175,7 @@ describe("storage", function(){
 
 	/*
 	 * Day based navigation
-	 * 
+	 *
 	 */
 	var cache = {};
 	it( ".today works" , function(done){
@@ -187,7 +187,7 @@ describe("storage", function(){
 			} else if ( thisDate.getDay() === 0 ){
 				thisDate = new Date(thisDate.valueOf() + 60 * 60 * 24 * 1000);
 			}
-			
+
 			var today = storage.dateToDateString( thisDate );
 			var todayDate = storage.dateStringToDate( today );
 
@@ -196,7 +196,7 @@ describe("storage", function(){
 			expect( todayDate.valueOf() ).to.be( date.valueOf() );
 
 			expect( menu.filter(function( item ){ return item.date !== today;  } ).length ).to.be(0);
-			
+
 			// save Menu for later
 			cache.todaysMenu = menu;
 			done();
@@ -246,11 +246,11 @@ describe("storage", function(){
 	}, false);
 
 	it( ".dateToDateString works" , function(){
-		expect( storage.dateToDateString( new Date(2012, 0, 1  ) ) ).to.be( "2012-1-1"   ); 
+		expect( storage.dateToDateString( new Date(2012, 0, 1  ) ) ).to.be( "2012-1-1"   );
 		expect( storage.dateToDateString( new Date(2012, 0, 1, 2, 3, 4) ) ).to.be( "2012-1-1" );
 		expect( storage.dateToDateString( new Date(2112, 0, 1  ) ) ).to.be( "2112-1-1"   );
-		expect( storage.dateToDateString( new Date(1912, 9, 10 ) ) ).to.be( "1912-10-10" ); 
-		expect( storage.dateToDateString( new Date(2012, 11, 31) ) ).to.be( "2012-12-31" ); 
+		expect( storage.dateToDateString( new Date(1912, 9, 10 ) ) ).to.be( "1912-10-10" );
+		expect( storage.dateToDateString( new Date(2012, 11, 31) ) ).to.be( "2012-12-31" );
 	});
 
 	it( ".getTypeInfo works" , function(){
@@ -367,12 +367,13 @@ describe("storage", function(){
 
 	it("requests data only once", function(done){
 		var called = 0;
+		var date = storage.dateToDateString(new Date());
 		storage.clearCache();
 		storage.cleanData();
 		conf.setURLs(["geomatikum"]);
 		xhr.get = function(url, callback){
 			called++;
-			callback(JSON.stringify({menu: [{mensaId: "geomatikum"}]}));
+			callback(JSON.stringify({menu: [{mensaId: "geomatikum", date: date}]}));
 		}
 		storage.getWeekMenu(function(){
 			storage.getWeekMenu(function(){
@@ -388,11 +389,12 @@ describe("storage", function(){
 		var called = 0;
 		storage.clearCache();
 		storage.cleanData();
-		storage.set("loadBothWeeks", true);
+		var date = storage.dateToDateString(new Date());
+		storage.set("loadBothWeeks", false);
 		conf.setURLs(["geomatikum", "philosophenturm"]);
 		xhr.get = function(url, callback){
 			expect( url.indexOf("http://data.mensaapp.org/geomatikum,philosophenturm/") ).to.be( 0 );
-			setTimeout(function(){ callback(JSON.stringify({menu: [{mensaId: "geomatikum"}, {mensaId: "philosophenturm"}]})) });
+			setTimeout(function(){ callback(JSON.stringify({menu: [{mensaId: "geomatikum", date:date}, {mensaId: "philosophenturm", date: date}]})) });
 		}
 		storage.getWeekMenu(function(json){
 			expect( json.every(function(item){ return item.mensaId === "geomatikum" || item.mensaId === "philosophenturm" }) ).to.be(true);
@@ -400,7 +402,7 @@ describe("storage", function(){
 			storage.cleanData()
 			xhr.get = function(url, callback){
 				expect( url.indexOf("http://data.mensaapp.org/campus/") ).to.be(0);
-				callback(JSON.stringify({menu: [{mensaId: "campus"}]}));
+				callback(JSON.stringify({menu: [{mensaId: "campus", date: date}]}));
 			}
 			storage.getWeekMenu(function(json){
 				expect( json.every(function(item){ return item.mensaId === "geomatikum" || item.mensaId === "campus" }) ).to.be(true);
@@ -412,17 +414,24 @@ describe("storage", function(){
 	it("loads weeks as needed when loadBothWeeks is not set", function(done){
 		storage.set("loadBothWeeks", false);
 		conf.setURLs(["geomatikum"]);
-		var week = new Date().getWeek() - 1;
+
+		var now = new Date();
+		var week = now.getWeek();
 		var called = 0;
+		var date;
+
 		xhr.get = function(url, callback){
-			week++;
 			called++;
 			expect( url ).to.be( "http://data.mensaapp.org/geomatikum/" + week );
-			callback(JSON.stringify({menu: [{mensaId: "campus"}]}));
-		}
+			week++;
+			date = storage.dateToDateString(now);
+			now = new Date( +now + 7 * 24 * 3600 * 1000 );
+
+			callback(JSON.stringify({ menu: [{mensaId: "geomatikum", date: date}]}));
+		};
 		storage.today(function(){
 			var date = storage.dateToDateString(new Date(+new Date() + 7*24*3600*1000));
-			storage.day(new Date(+new Date() + 7*24*3600*1000), false, function(){
+			storage.day(new Date(+new Date() + 7*24*3600*1000), true, function(){
 				expect(called).to.be(2);
 				done();
 			});
@@ -431,14 +440,22 @@ describe("storage", function(){
 
 	it("loading both weeks when loadBothWeeks is set", function(done){
 		storage.set("loadBothWeeks", true);
-		conf.setURLs(["geomatikum"])
+		conf.setURLs(["geomatikum"]);
+		storage.cleanData()
+
 		var week = new Date().getWeek();
+		var date = storage.dateToDateString(new Date());
+		var nextdate = storage.dateToDateString(new Date(+new Date() + 7*24*3600*1000 ));
+
 		var called = 0;
 		xhr.get = function(url, callback){
 			called++;
 			expect(url).to.contain( week );
 			expect(url).to.contain( week + 1 );
-			callback(JSON.stringify({menu: [{mensaId: "geomatikum"}]}));
+			callback(JSON.stringify({menu: [
+				{mensaId: "geomatikum", date: date},
+				{mensaId: "geomatikum", date: nextdate}
+			]}));
 		}
 		storage.today(function(){
 			var date = storage.dateToDateString(new Date(+new Date() + 7*24*3600*1000));
@@ -484,7 +501,7 @@ describe("storage.sortedSegmented", function(){
 		// one mensa, one mensa header
 
 		});
-	});	
+	});
 */
 });
 

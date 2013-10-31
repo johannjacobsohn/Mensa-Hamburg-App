@@ -27,7 +27,7 @@ storage = (function(){ // its a trap!
 		 *         mensa2 : {...}
 		 *     }
 		 */
-		loadedMensen = [],
+		loadedMensen = {},
 		menuCallbackQueue = [],
 
 		/*
@@ -42,8 +42,8 @@ storage = (function(){ // its a trap!
 		},
 		/**
 		 * Subscripe to an event
-		 * 
-		 * eg. 
+		 *
+		 * eg.
 		 *   storage.on( "update", callback );
 		 *
 		 * @method on
@@ -65,7 +65,7 @@ storage = (function(){ // its a trap!
 		},
 		/**
 		 * trigger an event
-		 * 
+		 *
 		 * fire( "update" );
 		 *
 		 * @method fire
@@ -141,12 +141,12 @@ storage = (function(){ // its a trap!
 		},
 		/**
 		 * filter function
-		 * 
+		 *
 		 * @TODO: needs optimization!
-		 * 
+		 *
 		 * @private
 		 * @method filterByProp
-		 * 
+		 *
 		 * @param prop
 		 * @param includes
 		 * @param excludes
@@ -246,13 +246,13 @@ storage = (function(){ // its a trap!
 		/**
 		 * return if one element of array a is in array b
 		 * http://jsperf.com/of-an-array-is-in-another-array/2
-		 * 
+		 *
 		 * @private
 		 * @method include
-		 * 
+		 *
 		 * @param Array a
 		 * @param Array b
-		 * @return 
+		 * @return
 		 */
 		exclude = function(a,b) {
 			for (var i = 0; i < a.length; i++){
@@ -265,13 +265,13 @@ storage = (function(){ // its a trap!
 
 		/**
 		 * return if every element of array a is in array b
-		 * 
+		 *
 		 * @private
 		 * @method include
-		 * 
+		 *
 		 * @param Array a
 		 * @param Array b
-		 * @return 
+		 * @return
 		 */
 		includeAll = function(a, b) {
 			for (var i = 0; i < a.length; i++){
@@ -318,7 +318,7 @@ storage = (function(){ // its a trap!
 		/**
 		 * Delete Filter
 		 *
-		 * 
+		 *
 		 * @method unsetFilter
 		 * @param {String} Name of Filter
 		 */
@@ -340,12 +340,12 @@ storage = (function(){ // its a trap!
 			filterValues = {};
 			saveFilters();
 		},
-		/** 
+		/**
 		 * Sort callback for menu, used in getSortedSegmented
-		 * 
+		 *
 		 * Performance tests: http://jsperf.com/sorting-by-multiple-parameters/2
-		 * 
-		 * @private 
+		 *
+		 * @private
 		 */
 		sort = function(a, b){
 			var nameA, nameB;
@@ -374,7 +374,7 @@ storage = (function(){ // its a trap!
 			});
 		},
 		/**
-		 * synchronous variant of getSorted Segmented 
+		 * synchronous variant of getSortedSegmented
 		 * @TODO: streamline
 		 * @private
 		 */
@@ -451,7 +451,7 @@ storage = (function(){ // its a trap!
 		 *
 		 * @TODO: Just clean if execcive data exits (no need to do all the work when there is really nothing to do)
 		 * @TODO: write tests
-		 * 
+		 *
 		 * @method cleanData
 		 * @param void
 		 * @return this
@@ -473,9 +473,10 @@ storage = (function(){ // its a trap!
 			// cleanup loadedMensen
 			var loaded = {};
 			weekMenu.forEach(function(item){
-				loaded[item.mensaId] = 1;
+				loaded[item.mensaId] = loaded[item.mensaId] || {};
+				loaded[item.mensaId][item.week] = 1;
 			});
-			loadedMensen = Object.keys(loaded);
+			loadedMensen = loaded;
 
 			// unset MensaFilter to prevent an inconsistent state where
 			// we are filtering by a mensa which doesn't exist anymore
@@ -495,22 +496,15 @@ storage = (function(){ // its a trap!
 		 * @param {Integer}  optional Weeknumber, defaults to this week
 		 */
 		getWeekMenu = function(callback, week){
-			var allLoaded = conf.getSavedMensen().sort().toString() === loadedMensen.sort().toString();
-			var thisWeek, nextWeek;
-			if ( allLoaded ) {
-				setTimeout(function(){
-					callback(weekMenu);
-				}, 1);
-			} else {
-				thisWeek = new Date().getWeek();
-				nextWeek = new Date( +new Date() + 7 * 24 * 3600 * 1000 ).getWeek();
-				week = week || thisWeek;
-				week = defaults.loadBothWeeks ? [thisWeek, nextWeek] : [week];
+			var thisWeek = new Date().getWeek();
+			var nextWeek = new Date( +new Date() + 7 * 24 * 3600 * 1000 ).getWeek();
+			week = week || thisWeek;
+			week = defaults.loadBothWeeks ? [thisWeek, nextWeek] : [week];
 
-				// enqueue the callback to be executed when everything has loaded
-				menuCallbackQueue.push(callback);
-				retrieveData(week);
-			}
+			// enqueue the callback to be executed when everything has loaded
+			menuCallbackQueue.push(callback);
+			retrieveData(week);
+
 			return this;
 		},
 		/**
@@ -525,8 +519,10 @@ storage = (function(){ // its a trap!
 			weeks = weeks || [date.getWeek()]; // get Week from date
 
 			// get missing mensen & weeks
-			var missing = mensen.filter(function(item){
-				return loadedMensen.indexOf(item) === -1;
+			var missing = mensen.filter(function(mensa){
+				return !weeks.every(function(week){
+					return loadedMensen[mensa] && loadedMensen[mensa][week];
+				});
 			});
 
 			if(missing.length && (!locked || force)){
@@ -535,7 +531,7 @@ storage = (function(){ // its a trap!
 				xhr.get(urls.combine(missing, weeks), success.bind(this, weeks), error);
 			}
 
-			runMenuCallbacks();
+			setTimeout(runMenuCallbacks, 1);
 		},
 		/**
 		 *
@@ -566,20 +562,12 @@ storage = (function(){ // its a trap!
 						item.name = item.type;
 						return item;
 					});
-
-				weekMenu = weekMenu
-					// remove old data
-					.filter(function( item ){
-						return week.indexOf(parseInt(item.week, 10)) === -1 || tempMensen[item.mensa];
-					})
-					// append new data
-					.concat( newWeekMenu );
+				weekMenu = weekMenu.concat( newWeekMenu ); // append new data
 
 				weekMenu.forEach(function(item){
-					tempMensen[item.mensaId] = 1;
+					loadedMensen[item.mensaId] = loadedMensen[item.mensaId] || {};
+					loadedMensen[item.mensaId]["" + item.week] = 1;
 				});
-				loadedMensen = Object.keys(tempMensen);
-
 				dataHasChanged = true;
 			}
 			locked = false;
@@ -595,7 +583,7 @@ storage = (function(){ // its a trap!
 		},
 		/**
 		 * Try to run callback queue
-		 * 
+		 *
 		 * @method runMenuCallbacks
 		 * @private
 		 */
@@ -623,7 +611,7 @@ storage = (function(){ // its a trap!
 		},
 		/**
 		 * Save Menu to disk
-		 * 
+		 *
 		 * @method cache
 		 * @private
 		 */
@@ -633,7 +621,7 @@ storage = (function(){ // its a trap!
 		},
 		/**
 		 * Get Menu from disk
-		 * 
+		 *
 		 * @TODO: only load from cached if not already loaded
 		 *
 		 * @method loadCachedData
@@ -645,9 +633,9 @@ storage = (function(){ // its a trap!
 				weekMenu = [];
 			}
 			try {
-				loadedMensen = JSON.parse( data.get("loadedMensen") ) || [];
+				loadedMensen = JSON.parse( data.get("loadedMensen") ) || {};
 			} catch (e) {
-				loadedMensen = [];
+				loadedMensen = {};
 			}
 		},
 		/**
@@ -675,7 +663,7 @@ storage = (function(){ // its a trap!
 		},
 		/**
 		* list all Types/Names
-		* 
+		*
 		* @method getTypes
 		* @depreciated
 		* @param {Function} callback
@@ -722,11 +710,11 @@ storage = (function(){ // its a trap!
 			});
 		},
 		/**
-		 * 
+		 *
 		 * @method getDetails
 		 * @private
 		 * @param type
-		 * @param callback 
+		 * @param callback
 		 */
 		getDetails = function(type, callback){
 			getWeekMenu(function(){
@@ -762,7 +750,7 @@ storage = (function(){ // its a trap!
 		},
 		/**
 		* getAdditivesInfo
-		* 
+		*
 		* @method getAdditivesInfo
 		* @param {Function} callback
 		*/
@@ -780,7 +768,7 @@ storage = (function(){ // its a trap!
 			var b = conf.getSavedURLs();
 			mensen.forEach(function(mensa, i){
 				mensa.content  = mensa.name; // for compability to the other filters
-				mensa.active   = b.indexOf( mensa.name ) !== -1; // mark mensen which are active 
+				mensa.active   = b.indexOf( mensa.name ) !== -1; // mark mensen which are active
 				mensa.filtered = typeof filterValues.mensa !== "undefined" && filterValues.mensa.some(function(item){ return item.value === mensa.name; });
 				mensa.filter   = filterValues.mensa ? filterValues.mensa.filter(function(item){ return item.value === mensa.name; })[0] : [];
 			});
@@ -903,9 +891,9 @@ storage = (function(){ // its a trap!
 		 * get next day's menu
 		 *
 		 * @method nextDay
-		 * @param  {Function} callback         
-		 * @param  {bool}     sortedSegmented  
-		 * @return {object}   this             
+		 * @param  {Function} callback
+		 * @param  {bool}     sortedSegmented
+		 * @return {object}   this
 		 */
 		nextDay = function(callback, sortedSegmented){
 			var thisDay = date.getDay();
@@ -943,7 +931,7 @@ storage = (function(){ // its a trap!
 		},
 		/**
 		 * Get menu for a specific date
-		 * 
+		 *
 		 * @method day
 		 * @param date {Object}
 		 * @param sortedSegmented {Boolean}
@@ -958,10 +946,10 @@ storage = (function(){ // its a trap!
 		},
 		/**
 		 * Find out if the previous day is available
-		 * 
+		 *
 		 * @method isPrevDayAvailable
 		 * @param void
-		 * @return bool 
+		 * @return bool
 		 */
 		isPrevDayAvailable = function(){
 			var testDate = new Date(date.valueOf()),
@@ -978,10 +966,10 @@ storage = (function(){ // its a trap!
 		},
 		/**
 		 * Find out if the previous day is available
-		 * 
+		 *
 		 * @method isPrevDayAvailable
 		 * @param void
-		 * @return bool 
+		 * @return bool
 		 */
 		isNextDayAvailable = function(){
 			var testDate = new Date( date.valueOf() ),
@@ -999,7 +987,7 @@ storage = (function(){ // its a trap!
 
 		/**
 		 * manually trigger update of data
-		 * 
+		 *
 		 * @method update
 		 * @param void
 		 * @return void
@@ -1011,7 +999,7 @@ storage = (function(){ // its a trap!
 
 		/**
 		 *  periodically check for new data on the server
-		 * 
+		 *
 		 * @method checkForData
 		 * @param void
 		 * @return void
@@ -1095,7 +1083,7 @@ storage = (function(){ // its a trap!
 		// shortcuts and legacy:
 		/**
 		 * set mensa filter
-		 * 
+		 *
 		 * Depreciated, use setFilter("mensa", val) instead.
 		 *
 		 * @depreciated
