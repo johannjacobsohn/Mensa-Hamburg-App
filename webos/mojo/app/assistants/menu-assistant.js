@@ -1,5 +1,5 @@
 function MenuAssistant() {
-	/* this is the creator function for your scene assistant object. It will be passed all the 
+	/* this is the creator function for your scene assistant object. It will be passed all the
 	   additional parameters (after the scene name) that were passed to pushScene. The reference
 	   to the scene controller (this.controller) has not be established yet, so any initialization
 	   that needs the scene controller should be done in the setup function below. */
@@ -29,7 +29,7 @@ MenuAssistant.prototype.deactivate = function(event) {
 };
 
 MenuAssistant.prototype.cleanup = function(event) {
-	/* this function should do any cleanup needed before the scene is destroyed as 
+	/* this function should do any cleanup needed before the scene is destroyed as
 	   a result of being popped off the scene stack */
 };
 
@@ -125,11 +125,13 @@ MenuAssistant.prototype.setup = function() {
 
 // handle in-place filtering of list
 MenuAssistant.prototype.filterString = "";
+
 MenuAssistant.prototype.applyFilter = function(){
 	this.items.items = this.json.filter(function(item){
 		return this.filterString === "" || ((item.dish + item.name + item.mensa).toLowerCase().indexOf(this.filterString.toLowerCase()) !== -1);
 	}.bind(this));
 };
+
 MenuAssistant.prototype.handleFilter = function(event){
 	this.filterString = event.filterString;
 	this.applyFilter();
@@ -139,6 +141,7 @@ MenuAssistant.prototype.handleFilter = function(event){
 		this.menu.mojo.setLengthAndInvalidate(this.items.items.length);
 	}.bind(this), 10);
 };
+
 MenuAssistant.prototype.handleFilterDisplay = function(event){
 	var main = document.getElementById("main");
 	if(event.filterString.length){

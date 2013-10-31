@@ -1,6 +1,6 @@
 /**
  * Static conf file for simple strings
- * 
+ *
  * @class info
  */
 info = {

@@ -10,14 +10,14 @@ var data = {};
 data = (function(){
 	"use strict";
 
-	/** 
-	 * since localstorage is quite slow, values get cached 
+	/**
+	 * since localstorage is quite slow, values get cached
 	 */
 	var cache = {},
 
 	/**
 	 * Get Item
-	 * 
+	 *
 	 * @memberof data
 	 * @method get
 	 * @param {String} key
@@ -32,7 +32,7 @@ data = (function(){
 
 	/**
 	 * Set (Save) Item
-	 * 
+	 *
 	 * @memberof data
 	 * @method set
 	 * @param {String} key
@@ -46,7 +46,7 @@ data = (function(){
 
 	/**
 	 * Remove (Delete) Item
-	 * 
+	 *
 	 * @memberof data
 	 * @method remove
 	 * @param {String} key
@@ -60,7 +60,7 @@ data = (function(){
 	/**
 	 * Clear cache and storage
 	 * Useful for resetting in case of panic
-	 * 
+	 *
 	 * @memberof data
 	 * @method clear
 	 */

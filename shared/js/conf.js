@@ -13,7 +13,7 @@
 		versionHasChanged: false,
 		/**
 		 * get all active mensen
-		 * 
+		 *
 		 * @method getURLs
 		 * @return {Array} an Array of mensa names
 		 */
@@ -26,7 +26,7 @@
 		},
 		/**
 		 * get all active mensen
-		 * 
+		 *
 		 * @method getURLs
 		 * @return {Array} an Array of mensa names
 		 */
@@ -37,7 +37,7 @@
 		},
 		/**
 		 * get all known mensen
-		 * 
+		 *
 		 * @method getURLs
 		 * @return {Array} an Array of mensa names
 		 */
@@ -58,7 +58,7 @@
 		},
 		/**
 		 * Find out if app has been configured
-		 * 
+		 *
 		 * @method isConfigured
 		 */
 		isConfigured : function(){
@@ -71,7 +71,7 @@
 		/**
 		 * Get a list of all mensa names and status
 		 * depreciated, use storage.getMensaInfo
-		 * 
+		 *
 		 * @depreciated
 		 * @method getMensaInfo
 		 * @return {JSON} json

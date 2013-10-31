@@ -1,6 +1,7 @@
 function StageAssistant() {
 	/* this is the creator function for your stage assistant object */
 }
+
 StageAssistant.prototype.setup = function() {
 	window.PalmSystem.setWindowOrientation(data.get("freeOrientation") || "up");
 	this.controller.pushScene("menu");
@@ -24,6 +25,7 @@ StageAssistant.prototype.setup = function() {
 		}, 1000);
 	}
 };
+
 // handle menu commands
 StageAssistant.prototype.handleCommand = function(event) {
 	if(event.type === Mojo.Event.command) {

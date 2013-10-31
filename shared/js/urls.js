@@ -1,4 +1,4 @@
-/** 
+/**
  * Static conf file for urls to load data from
  *
  * @class urls
