@@ -123,17 +123,22 @@ MenuAssistant.prototype.setup = function() {
 	Mojo.Event.listen(this.filterField, Mojo.Event.filterImmediate, this.handleFilterDisplay.bind(this));
 };
 
-MenuAssistant.prototype.handleFilter = function(event){
+// handle in-place filtering of list
+MenuAssistant.prototype.filterString = "";
+MenuAssistant.prototype.applyFilter = function(){
 	this.items.items = this.json.filter(function(item){
-		return event.filterString === "" || ((item.dish + item.name + item.mensa).toLowerCase().indexOf(event.filterString.toLowerCase()) !== -1);
-	});
+		return this.filterString === "" || ((item.dish + item.name + item.mensa).toLowerCase().indexOf(this.filterString.toLowerCase()) !== -1);
+	}.bind(this));
+};
+MenuAssistant.prototype.handleFilter = function(event){
+	this.filterString = event.filterString;
+	this.applyFilter();
 	this.filterField.mojo.setCount(this.items.items.length);
 	this.menu.mojo.revealItem(0, false);
 	setTimeout(function(){
 		this.menu.mojo.setLengthAndInvalidate(this.items.items.length);
 	}.bind(this), 10);
 };
-
 MenuAssistant.prototype.handleFilterDisplay = function(event){
 	var main = document.getElementById("main");
 	if(event.filterString.length){
@@ -213,6 +218,7 @@ MenuAssistant.prototype.fetch = function(json, dateString, date){
 
 	// update menu
 	this.items.items = json;
+	this.applyFilter();
 	this.menu.mojo.revealItem(0, false);
 
 	this.menu.mojo.setLengthAndInvalidate( Math.min(6, this.items.items.length) );
