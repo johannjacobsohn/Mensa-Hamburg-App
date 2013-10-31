@@ -373,7 +373,7 @@ describe("storage", function(){
 		conf.setURLs(["geomatikum"]);
 		xhr.get = function(url, callback){
 			called++;
-			callback(JSON.stringify({menu: [{mensaId: "geomatikum", date: date}]}));
+			callback(JSON.stringify({menu: [{mensaId: "geomatikum", date: date, type: ""}]}));
 		}
 		storage.getWeekMenu(function(){
 			storage.getWeekMenu(function(){
@@ -394,7 +394,7 @@ describe("storage", function(){
 		conf.setURLs(["geomatikum", "philosophenturm"]);
 		xhr.get = function(url, callback){
 			expect( url.indexOf("http://data.mensaapp.org/geomatikum,philosophenturm/") ).to.be( 0 );
-			setTimeout(function(){ callback(JSON.stringify({menu: [{mensaId: "geomatikum", date:date}, {mensaId: "philosophenturm", date: date}]})) });
+			setTimeout(function(){ callback(JSON.stringify({menu: [{mensaId: "geomatikum", date: date, type: ""}, {mensaId: "philosophenturm", date: date, type: ""}]})) });
 		}
 		storage.getWeekMenu(function(json){
 			expect( json.every(function(item){ return item.mensaId === "geomatikum" || item.mensaId === "philosophenturm" }) ).to.be(true);
@@ -402,7 +402,7 @@ describe("storage", function(){
 			storage.cleanData()
 			xhr.get = function(url, callback){
 				expect( url.indexOf("http://data.mensaapp.org/campus/") ).to.be(0);
-				callback(JSON.stringify({menu: [{mensaId: "campus", date: date}]}));
+				callback(JSON.stringify({menu: [{mensaId: "campus", date: date, type: ""}]}));
 			}
 			storage.getWeekMenu(function(json){
 				expect( json.every(function(item){ return item.mensaId === "geomatikum" || item.mensaId === "campus" }) ).to.be(true);
@@ -453,8 +453,8 @@ describe("storage", function(){
 			expect(url).to.contain( week );
 			expect(url).to.contain( week + 1 );
 			callback(JSON.stringify({menu: [
-				{mensaId: "geomatikum", date: date},
-				{mensaId: "geomatikum", date: nextdate}
+				{mensaId: "geomatikum", date: date, type: ""},
+				{mensaId: "geomatikum", date: nextdate, type: ""}
 			]}));
 		}
 		storage.today(function(){
@@ -465,21 +465,9 @@ describe("storage", function(){
 			});
 		});
 	});
-});
-
-describe("storage.sortedSegmented", function(){
-	var server;
-	
-	beforeEach(function () {
-		server = { respond: function(){} }
-		storage.unsetFilters();
-		storage.clearCache();
-		storage.cleanData();
-		conf.setURLs( conf.getURLs() );
-	});
 
 	it("is sorted", function(done){
-		storage.getSortedSegmented(function(m){
+		storage.getWeekMenu(function(m){
 			var date = "2000-01-01", mensa = "AAAAAAAAAAAAAAAAAAAAAAA", i, l;
 			expect( m.length ).to.be.greaterThan(0);
 			for(i = 0, l = m.length; i<l; i++){
@@ -494,6 +482,20 @@ describe("storage.sortedSegmented", function(){
 			done();
 		});
 	});
+
+});
+
+describe("storage.sortedSegmented", function(){
+	var server;
+
+	beforeEach(function () {
+		server = { respond: function(){} }
+		storage.unsetFilters();
+		storage.clearCache();
+		storage.cleanData();
+		conf.setURLs( conf.getURLs() );
+	});
+
 
 /*
 	it( "has headers" , function(){

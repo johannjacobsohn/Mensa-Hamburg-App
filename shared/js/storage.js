@@ -341,7 +341,7 @@ storage = (function(){ // its a trap!
 			saveFilters();
 		},
 		/**
-		 * Sort callback for menu, used in getSortedSegmented
+		 * Sort callback for menu, used in success
 		 *
 		 * Performance tests: http://jsperf.com/sorting-by-multiple-parameters/2
 		 *
@@ -350,8 +350,8 @@ storage = (function(){ // its a trap!
 		sort = function(a, b){
 			var nameA, nameB;
 			if (a.date === b.date){
-				nameA = a.mensa.toLowerCase();
-				nameB = b.mensa.toLowerCase();
+				nameA = a.mensaId + a.type;
+				nameB = b.mensaId + b.type;
 				if(nameA === nameB){
 					return 0;
 				} else {
@@ -379,8 +379,7 @@ storage = (function(){ // its a trap!
 		 * @private
 		 */
 		getSortedSegmentedMenu = function(){
-			var	json = getFilteredMenu(),
-				sorted = json.sort(sort),
+			var	sorted = getFilteredMenu(),
 				segmented = [],
 				mensa = "",
 				date = "",
@@ -398,9 +397,9 @@ storage = (function(){ // its a trap!
 			/*
 			 * wenn nur eine Mensa gewählt ist sollte diese als erstes in den Headern stehen
 			 */
-			if( json[0] && ((isMensaFilterSet && filteredByMensenLength === 1) || savedMensenLength === 1)){
+			if( sorted[0] && ((isMensaFilterSet && filteredByMensenLength === 1) || savedMensenLength === 1)){
 				segmented.push({
-					header     : json[0].mensa,
+					header     : sorted[0].mensa,
 					type       : "header",
 					headerType : "mensa"
 				});
@@ -562,8 +561,14 @@ storage = (function(){ // its a trap!
 						item.name = item.type;
 						return item;
 					});
-				weekMenu = weekMenu.concat( newWeekMenu ); // append new data
+				// append new data
+				weekMenu = weekMenu.concat( newWeekMenu );
 
+				// sort new collection
+				weekMenu = weekMenu.sort(sort);
+
+				// remember which mensen are currently loaded
+				loadedMensen = {};
 				weekMenu.forEach(function(item){
 					loadedMensen[item.mensaId] = loadedMensen[item.mensaId] || {};
 					loadedMensen[item.mensaId]["" + item.week] = 1;
