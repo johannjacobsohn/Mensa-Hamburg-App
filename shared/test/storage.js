@@ -513,6 +513,30 @@ describe("storage", function(){
 		});
 	});
 
+	it("next day is limited to the last available date", function(done){
+		conf.setURLs(["geomatikum"]);
+		var enddate = "";
+		for(var i = 0; i < 13; i++){
+			storage.nextDay(function(m, s, d){ enddate = d; });
+		}
+		storage.nextDay(function(m, s, d){
+			expect(d).to.eql(enddate);
+			done();
+		});
+	});
+
+	it("prev day is limited to the first available date", function(done){
+		conf.setURLs(["geomatikum"]);
+		var enddate = "";
+		for(var i = 0; i < 13; i++){
+			storage.prevDay(function(m, s, d){ enddate = d; });
+		}
+		storage.prevDay(function(m, s, d){
+			expect(d).to.eql(enddate);
+			done();
+		});
+	});
+
 });
 
 describe("storage.sortedSegmented", function(){

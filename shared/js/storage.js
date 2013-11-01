@@ -919,6 +919,12 @@ storage = (function(){ // its a trap!
 				date.setDate( date.getDate() + 1 );
 			}
 
+			// limit day to the highest available date
+			var availableDates = getAvailableDates(true);
+			if (availableDates.indexOf( dateToDateString(date) ) === -1){
+				date = dateStringToDate( availableDates[availableDates.length-1] );
+			}
+
 			day(date, sortedSegmented, callback);
 			return this;
 		},
@@ -940,6 +946,12 @@ storage = (function(){ // its a trap!
 				date.setDate( date.getDate() - 1 );
 			}
 
+			// limit day to the lowest available date
+			var availableDates = getAvailableDates(true);
+			if (availableDates.indexOf( dateToDateString(date) ) === -1){
+				date = dateStringToDate( availableDates[0] );
+			}
+
 			day(date, sortedSegmented, callback);
 		},
 		/**
@@ -951,10 +963,10 @@ storage = (function(){ // its a trap!
 		 * @param callback {Function}
 		 */
 		day = function(date, getSorted, callback){
+			var dateString = dateToDateString(date);
 			getWeekMenu(function(){
-				var dateString = dateToDateString(date);
 				setFilter("date", dateString);
-				callback(getSorted ? getSortedSegmentedMenu() : getFilteredMenu(), dateString, date);
+				callback(getSorted ? getSortedSegmentedMenu() : getFilteredMenu(), dateString, dateStringToDate(dateString));
 			}, date.getWeek());
 		},
 		/**
