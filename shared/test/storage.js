@@ -385,6 +385,22 @@ describe("storage", function(){
 		});
 	});
 
+	it("callbacks are called in the correct order", function(done){
+		var called = "";
+		conf.setURLs(["geomatikum"]);
+		storage.getWeekMenu(function(){
+			called += "a";
+		});
+		storage.getWeekMenu(function(menu2){
+			called += "b";
+		});
+		storage.getWeekMenu(function(menu2){
+			called += "c";
+			expect(called).to.be("abc")
+			done();
+		});
+	});
+
 	it("requested new mensen incrementally", function(done){
 		var called = 0;
 		storage.clearCache();

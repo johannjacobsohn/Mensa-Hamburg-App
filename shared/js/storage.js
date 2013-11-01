@@ -13,7 +13,7 @@ storage = (function(){ // its a trap!
 		filteredWeekMenu = [], // Cache
 		isFiltered       = false,
 		date = new Date(), //now
-		locked = false,
+		locked = 0,
 		defaults = {
 			loadBothWeeks: false
 		},
@@ -519,13 +519,13 @@ storage = (function(){ // its a trap!
 
 			// get missing mensen & weeks
 			var missing = mensen.filter(function(mensa){
-				return !weeks.every(function(week){
+				return force || !weeks.every(function(week){
 					return loadedMensen[mensa] && loadedMensen[mensa][week];
 				});
 			});
 
-			if(missing.length && (!locked || force)){
-				locked = true;
+			if(missing.length && !locked){
+				locked++;
 				// Trigger AJAX-Call
 				xhr.get(urls.combine(missing, weeks), success.bind(this, weeks), error);
 			}
@@ -575,7 +575,7 @@ storage = (function(){ // its a trap!
 				});
 				dataHasChanged = true;
 			}
-			locked = false;
+			locked--;
 			runMenuCallbacks();
 		},
 
@@ -584,7 +584,7 @@ storage = (function(){ // its a trap!
 			log("xhr error");
 
 			// release lock
-			locked = false;
+			locked--;
 		},
 		/**
 		 * Try to run callback queue
@@ -609,8 +609,10 @@ storage = (function(){ // its a trap!
 					dataHasChanged = false;
 				}
 
-				while (menuCallbackQueue.length > 0){
-					( menuCallbackQueue.pop() )( filteredWeekMenu );
+				// use for loop to ensure that called callbacks do not enqueue more callbacks
+				// (which would then be synchronious)
+				for (var i = menuCallbackQueue.length; i; i--){
+					( menuCallbackQueue.shift() )( filteredWeekMenu );
 				}
 			}
 		},
