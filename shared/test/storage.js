@@ -401,6 +401,20 @@ describe("storage", function(){
 		});
 	});
 
+	it("requesting new data removes the old", function(done){
+		conf.setURLs(["geomatikum"]);
+		storage.getWeekMenu(function(menu){
+			var menuLength = menu.length;
+			storage.update()
+
+			storage.getWeekMenu(function(menu2){
+				expect( menuLength > 0 ).to.be(true)
+				expect( menuLength ).to.be( menu2.length )
+				done();
+			});
+		});
+	});
+
 	it("requested new mensen incrementally", function(done){
 		var called = 0;
 		storage.clearCache();

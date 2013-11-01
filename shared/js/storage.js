@@ -561,8 +561,14 @@ storage = (function(){ // its a trap!
 						item.name = item.type;
 						return item;
 					});
-				// append new data
-				weekMenu = weekMenu.concat( newWeekMenu );
+
+				weekMenu = weekMenu
+					// remove old data before appending new data to prevent duplicates
+					.filter(function(item){
+						return week.indexOf(parseInt(item.week, 10)) === -1 || !tempMensen[item.mensaId];
+					})
+					// append new data
+					.concat(newWeekMenu);
 
 				// sort new collection
 				weekMenu = weekMenu.sort(sort);
