@@ -13,7 +13,7 @@ storage = (function(){ // its a trap!
 		filteredWeekMenu = [], // Cache
 		isFiltered       = false,
 		date = new Date(), //now
-		locked = 0,
+		locked = {},
 		defaults = {
 			loadBothWeeks: false
 		},
@@ -379,7 +379,7 @@ storage = (function(){ // its a trap!
 		 * @private
 		 */
 		getSortedSegmentedMenu = function(){
-			var	sorted = getFilteredMenu(),
+			var sorted = getFilteredMenu(),
 				segmented = [],
 				mensa = "",
 				date = "",
@@ -524,10 +524,13 @@ storage = (function(){ // its a trap!
 				});
 			});
 
-			if(missing.length && !locked){
-				locked++;
+			if(missing.length && !locked[weeks.toString()]){
+				// do not lock the callback queue when forced - no callbacks have been enqueue anyway
+				if(!force){
+					locked[weeks.toString()] = 1;
+				}
 				// Trigger AJAX-Call
-				xhr.get(urls.combine(missing, weeks), success.bind(this, weeks), error);
+				xhr.get(urls.combine(missing, weeks), success.bind(this, weeks), error.bind(this, weeks));
 			}
 
 			setTimeout(runMenuCallbacks, 1);
@@ -537,7 +540,7 @@ storage = (function(){ // its a trap!
 		 * @TODO document
 		 * @private
 		 */
-		success = function(week, resp){
+		success = function(weeks, resp){
 			var newWeekMenu, tempMensen = {};
 			try{
 				newWeekMenu = JSON.parse(resp).menu;
@@ -565,7 +568,7 @@ storage = (function(){ // its a trap!
 				weekMenu = weekMenu
 					// remove old data before appending new data to prevent duplicates
 					.filter(function(item){
-						return week.indexOf(parseInt(item.week, 10)) === -1 || !tempMensen[item.mensaId];
+						return weeks.indexOf(parseInt(item.week, 10)) === -1 || !tempMensen[item.mensaId];
 					})
 					// append new data
 					.concat(newWeekMenu);
@@ -581,16 +584,17 @@ storage = (function(){ // its a trap!
 				});
 				dataHasChanged = true;
 			}
-			locked--;
+			delete locked[weeks.toString()];
 			runMenuCallbacks();
 		},
 
 		// @TODO document
-		error = function (resp, additional_args){
+		error = function (weeks, resp, additional_args){
 			log("xhr error");
 
 			// release lock
-			locked--;
+			delete locked[weeks.toString()];
+			runMenuCallbacks();
 		},
 		/**
 		 * Try to run callback queue
@@ -600,7 +604,7 @@ storage = (function(){ // its a trap!
 		 */
 		runMenuCallbacks = function(){
 			// only execute callback queue if all locks are released
-			if(!locked){
+			if(!Object.keys(locked).length){
 				if(filteredWeekMenu.length === 0 || dataHasChanged){
 					filteredWeekMenu = weekMenu;
 				}

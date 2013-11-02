@@ -2,6 +2,29 @@
   "menu": [
     {
       "mensaId": "geomatikum",
+      "week": 42,
+      "type": "Aus dem Suppentopf und Süßes",
+      "name": "Kartoffelsuppe",
+      "studPrice": 1.2,
+      "normalPrice": 2.2,
+      "date": "2013-10-13T22:00:00.000Z",
+      "_id": "5253d3bf474a4f7573000001",
+      "__v": 0,
+      "additives": [
+        "laktosefrei",
+        "mit Schwein",
+        "Konservierungsstoffe",
+        "Antioxidationsmittel",
+        "Geschwefelt",
+        "Sellerie/-erzeugnisse"
+      ],
+      "properties": [
+        "laktosefrei",
+        "mit Schwein"
+      ]
+    },
+    {
+      "mensaId": "geomatikum",
       "week": 41,
       "type": "Aus dem Suppentopf und Süßes",
       "name": "Kartoffelsuppe",

@@ -403,13 +403,14 @@ describe("storage", function(){
 
 	it("requesting new data removes the old", function(done){
 		conf.setURLs(["geomatikum"]);
+		storage.set("loadBothWeeks", true);
 		storage.getWeekMenu(function(menu){
 			var menuLength = menu.length;
-			storage.update()
+			storage.update();
 
 			storage.getWeekMenu(function(menu2){
-				expect( menuLength > 0 ).to.be(true)
-				expect( menuLength ).to.be( menu2.length )
+				expect( menuLength > 0 ).to.be(true);
+				expect( menuLength ).to.be( menu2.length );
 				done();
 			});
 		});
@@ -468,6 +469,19 @@ describe("storage", function(){
 		});
 	});
 
+	it("locks do not prevent loading of other weeks", function(done){
+		var m;
+		conf.setURLs(["geomatikum"]);
+		storage.set("loadBothWeeks", false);
+		storage.getWeekMenu(function(menu){ m = menu.length; });
+		storage.set("loadBothWeeks", true);
+		storage.getWeekMenu(function(menu){
+			expect(m).to.be(menu.length);
+			expect(menu.length).to.be(22);
+			done();
+		});
+	});
+
 	it("loading both weeks when loadBothWeeks is set", function(done){
 		storage.set("loadBothWeeks", true);
 		conf.setURLs(["geomatikum"]);
@@ -510,6 +524,14 @@ describe("storage", function(){
 				mensa = m[i].mensa;
 			}
 			done();
+		});
+	});
+
+	it("update must not block cached requests", function(done){
+		storage.getWeekMenu(function(){ // make sure data is cached
+			xhr.get = function(){} // just do nothing, and do not execute the callback
+			storage.update(); // do a request that will hang (because we overwrote xhr.get)
+			storage.getWeekMenu(function(){ done() }); // since the data is cached a call to xhr.get is unnecessary, and done should be called
 		});
 	});
 
