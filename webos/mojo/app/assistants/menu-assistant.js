@@ -187,6 +187,7 @@ MenuAssistant.prototype.handleCommand = function(event) {
 MenuAssistant.prototype.load = function(type){
 	storage[type](this.fetch.bind(this), false);
 	this.timedOut = false;
+	clearTimeout(this.showLoaderTimer);
 	this.showLoaderTimer = setTimeout(this.showLoader.bind(this), 100);
 };
 
