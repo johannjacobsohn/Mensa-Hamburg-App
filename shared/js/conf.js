@@ -6,7 +6,7 @@
 (function(){
 	conf = {
 		/** @property majorVersion */
-		majorVersion: 3,
+		majorVersion: 4,
 		/** @property minorVersion */
 		minorVersion: 4,
 		/** @property versionHasChanged */
@@ -110,11 +110,7 @@
 	// ☢ nuke all saved data if major version has changed
 	if( data.get("menu") && parseInt(data.get("majorversion"), 10) !== conf.majorVersion ){
 		conf.versionHasChanged = true;
-		var savedMensen = data.get("urls");
 		data.clear();
-		if( savedMensen ){
-			data.set("urls", savedMensen);
-		}
 	}
 
 	data.set("majorversion", conf.majorVersion);

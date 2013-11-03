@@ -58,21 +58,6 @@ MenuAssistant.prototype.setup = function() {
 		]
 	});
 
-	if(!conf.isConfigured()){
-		this.controller.showAlertDialog({
-			onChoose: function(value) {
-				if(value === "conf"){
-					Mojo.Controller.stageController.pushScene("config");
-				}
-			},
-			title   : info.notConfTitle,
-			message : info.notConfText,
-			choices : [
-				{ label: $L("Jetzt konfigurieren"), value: "conf" }
-			]
-		});
-	}
-
 	// Swipe gestures
 	Mojo.Event.listen(this.controller.topContainer(), Mojo.Event.flick, this.handleFlick.bind(this));
 
