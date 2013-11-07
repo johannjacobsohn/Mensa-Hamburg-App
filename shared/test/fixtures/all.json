@@ -30,7 +30,7 @@
       "name": "Kartoffelsuppe",
       "studPrice": 1.2,
       "normalPrice": 2.2,
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "5253d3bf474a4f7573000001",
       "__v": 0,
       "additives": [
@@ -53,7 +53,7 @@
       "name": "Lauchcreme Suppe",
       "studPrice": 1.2,
       "normalPrice": 2.2,
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "5253d3bf474a4f7573000002",
       "__v": 0,
       "additives": [
@@ -161,7 +161,7 @@
       "name": "Pasta \"Bolognese\" mit pikantem Hackfleischragout Spaghetti",
       "studPrice": 2.2,
       "normalPrice": 3.3,
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "5253d3bf474a4f757300000b",
       "__v": 0,
       "additives": [
@@ -471,7 +471,7 @@
       "name": "Pikante Gemüsepfanne mit Bohnen dazu Mojo Rojo und Rosmarinkartoffeln",
       "studPrice": 2.8,
       "normalPrice": 3.9,
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "5253d3bf474a4f757300000f",
       "__v": 0,
       "additives": [
@@ -495,7 +495,7 @@
       "name": "Putenschnitzel mit Tomatenkruste auf Kräutersoße, dazu Prinzessbohnen und Kartoffelkroketten",
       "studPrice": 3.9,
       "normalPrice": 4.6,
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "5253d3bf474a4f7573000014",
       "__v": 0,
       "additives": [
@@ -517,7 +517,7 @@
       "name": "Blumenkohlrahmsuppe",
       "studPrice": 1.2,
       "normalPrice": 2.2,
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "5253d42b762e789073000001",
       "__v": 0,
       "additives": [
@@ -537,7 +537,7 @@
       "name": "2 Quarkkeulchen mit Apfelmus",
       "studPrice": 1.2,
       "normalPrice": 2.2,
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "5253d42b762e789073000002",
       "__v": 0,
       "additives": [
@@ -737,7 +737,7 @@
       "name": "Spaghetti mit Gorgonzolasoße und Rucola mit frischen Tomatenwürfeln",
       "studPrice": 1.85,
       "normalPrice": 2.95,
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "5253d42b762e78907300000b",
       "__v": 0,
       "additives": [
@@ -832,7 +832,7 @@
       "name": "Putenschnitzel gebacken auf Ratatouillegemüse und Rosmarinkartoffeln",
       "studPrice": 2.2,
       "normalPrice": 3.3,
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "5253d42b762e78907300000f",
       "__v": 0,
       "additives": [
@@ -1098,7 +1098,7 @@
       "name": "Schweinenackensteak mit geschmorten Zwiebeln, Speckbohnen und Rösti-Ecken",
       "studPrice": 3.5,
       "normalPrice": 4.15,
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "5253d42b762e78907300001a",
       "__v": 0,
       "additives": [
@@ -1145,7 +1145,7 @@
       "name": "Pasta \"Legumi\" mit bunten Gemüse in Sahnesoße",
       "studPrice": 0.45,
       "normalPrice": 0.65,
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "5253d42b762e78907300001c",
       "__v": 0,
       "additives": [
@@ -1168,7 +1168,7 @@
       "name": "Pasta \"Martigiana\" mit Speck und Tomaten",
       "studPrice": 0.45,
       "normalPrice": 0.65,
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "5253d42b762e78907300001d",
       "__v": 0,
       "additives": [
@@ -1351,7 +1351,7 @@
       "name": "Austernpilze in Kräuterrahm - Erbsen - Zucchinigemüse - Zwiebelgemüse",
       "studPrice": 0.45,
       "normalPrice": 0.65,
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "5253d42b762e789073000025",
       "__v": 0,
       "additives": [
@@ -1432,7 +1432,7 @@
       "mensaId": "uke",
       "week": 41,
       "type": "Suppe",
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "5253d834e53f636e77000001",
       "__v": 0,
       "additives": [],
@@ -1465,7 +1465,7 @@
       "name": "Frische Gemüsepfanne \"Sweet & Sour\" aus dem Wok dazu Mie-Nudeln",
       "studPrice": 2.4,
       "normalPrice": 3.5,
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "5253d42b762e78907300002a",
       "__v": 0,
       "additives": [
@@ -1585,7 +1585,7 @@
       "name": "Hähnchenstreifen in frischem Gemüse \"Sweet & Sour\" mit Mie-Nudeln",
       "studPrice": 3.3,
       "normalPrice": 3.9,
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "5253d42b762e78907300002f",
       "__v": 0,
       "additives": [
@@ -1708,7 +1708,7 @@
       "mensaId": "uke",
       "week": 41,
       "type": "Menü 1",
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "5253d834e53f636e77000002",
       "__v": 0,
       "additives": [],
@@ -1721,7 +1721,7 @@
       "mensaId": "uke",
       "week": 41,
       "type": "Menü 2 - Vegetarisch",
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "5253d834e53f636e77000003",
       "__v": 0,
       "additives": [],
@@ -1734,7 +1734,7 @@
       "mensaId": "uke",
       "week": 41,
       "type": "Menü 3",
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "5253d834e53f636e77000004",
       "__v": 0,
       "additives": [],
@@ -1747,7 +1747,7 @@
       "mensaId": "uke",
       "week": 41,
       "type": "Wok & Grill",
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "5253d834e53f636e77000005",
       "__v": 0,
       "additives": [],
@@ -1760,7 +1760,7 @@
       "mensaId": "uke",
       "week": 41,
       "type": "Aktion",
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "5253d834e53f636e77000006",
       "__v": 0,
       "additives": [],
@@ -1773,7 +1773,7 @@
       "mensaId": "uke",
       "week": 41,
       "type": "Beilagen & Gemüse",
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "5253d834e53f636e77000007",
       "__v": 0,
       "additives": [],
@@ -1786,7 +1786,7 @@
       "mensaId": "uke",
       "week": 41,
       "type": "Extra Beilagen Menü",
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "5253d834e53f636e77000008",
       "__v": 0,
       "additives": [],
@@ -1799,7 +1799,7 @@
       "mensaId": "uke",
       "week": 41,
       "type": "süßer Abschluß",
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "5253d834e53f636e77000009",
       "__v": 0,
       "additives": [],
@@ -1812,7 +1812,7 @@
       "mensaId": "uke",
       "week": 41,
       "type": "",
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "5253d834e53f636e7700000a",
       "__v": 0,
       "additives": [],
@@ -1825,7 +1825,7 @@
       "mensaId": "uke",
       "week": 41,
       "type": "",
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "5253d834e53f636e7700000b",
       "__v": 0,
       "additives": [],
@@ -2319,7 +2319,7 @@
       "name": "Grießflammeri mit Kirschkompott",
       "studPrice": 1.2,
       "normalPrice": 2.2,
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "5255c74f2a870b4c7e000001",
       "__v": 0,
       "additives": [
@@ -2490,7 +2490,7 @@
       "name": "Pasta in pikanter Gorgonzola-Sahne-Soße dazu Penne und Parmesan",
       "studPrice": 0.45,
       "normalPrice": 0.65,
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "5255c74f2a870b4c7e000014",
       "__v": 0,
       "additives": [
@@ -2551,7 +2551,7 @@
       "name": "Königsberger Klopse mit Kapernsoße, Salzkartoffeln und Rote Beete Salat",
       "studPrice": 2.2,
       "normalPrice": 3.3,
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "5255c74f2a870b4c7e000007",
       "__v": 0,
       "additives": [
@@ -2594,7 +2594,7 @@
       "name": "Cordon Bleu vom Hähnchen mit Soße Maltaise, Erbsen und Macaire Kartoffeln",
       "studPrice": 3.5,
       "normalPrice": 4.15,
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "5255c74f2a870b4c7e000011",
       "__v": 0,
       "additives": [
@@ -2883,7 +2883,7 @@
       "name": "Pasta \"Arcobaleno\" mit Schinken und Käse, dazu Penne und Parmesan",
       "studPrice": 0.45,
       "normalPrice": 0.65,
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "5255c74f2a870b4c7e000013",
       "__v": 0,
       "additives": [
@@ -2931,7 +2931,7 @@
       "name": "Blumenkohl natur, Chinagemüse natur Ratatouillegemüse, Porreegemüse natur",
       "studPrice": 0.45,
       "normalPrice": 0.65,
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "5255c74f2a870b4c7e00001d",
       "__v": 0,
       "additives": [
@@ -2953,7 +2953,7 @@
       "name": "Hirtenkäse auf buntem Wokgemüse mit Tzaziki und Reis",
       "studPrice": 3.3,
       "normalPrice": 3.9,
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "5255c74f2a870b4c7e000022",
       "__v": 0,
       "additives": [
@@ -3118,7 +3118,7 @@
       "name": "Zucchini Hackfleischtopf mit Penne",
       "studPrice": 1.85,
       "normalPrice": 2.95,
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "5255c8aa2a870b4c7e000046",
       "__v": 0,
       "additives": [
@@ -3235,7 +3235,7 @@
       "name": "Pikante Gemüsepfanne mit Bohnen dazu Mojo Rojo und Rosmarinkartoffeln",
       "studPrice": 2.8,
       "normalPrice": 3.9,
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "5255c8aa2a870b4c7e00004b",
       "__v": 0,
       "additives": [
@@ -3331,7 +3331,7 @@
       "name": "Quarkkeulchen mit Apfelmus",
       "studPrice": 1.2,
       "normalPrice": 2.2,
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "5255d55e2a870b4c7e000082",
       "__v": 0,
       "additives": [
@@ -3352,7 +3352,7 @@
       "name": "Kartoffelsuppe",
       "studPrice": 1.2,
       "normalPrice": 2.2,
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "5255d55e2a870b4c7e000083",
       "__v": 0,
       "additives": [
@@ -3375,7 +3375,7 @@
       "name": "Lauchcreme Suppe",
       "studPrice": 1.2,
       "normalPrice": 2.2,
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "5255d55e2a870b4c7e000084",
       "__v": 0,
       "additives": [
@@ -3713,7 +3713,7 @@
       "name": "Pasta \"Bolognese\" mit pikantem Hackfleischragout Spaghetti",
       "studPrice": 2.2,
       "normalPrice": 3.3,
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "5255d55e2a870b4c7e000093",
       "__v": 0,
       "additives": [
@@ -3734,7 +3734,7 @@
       "name": "Fischburger mit Seelachsfilet Remoulade und Pommes Frites",
       "studPrice": 2.4,
       "normalPrice": 3.5,
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "5255d55e2a870b4c7e000094",
       "__v": 0,
       "additives": [
@@ -3882,7 +3882,7 @@
       "name": "Pikante Gemüsepfanne mit Bohnen dazu Mojo Rojo und Rosmarinkartoffeln",
       "studPrice": 2.8,
       "normalPrice": 3.9,
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "5255d55e2a870b4c7e00009b",
       "__v": 0,
       "additives": [
@@ -4021,7 +4021,7 @@
       "name": "Putenschnitzel mit Tomatenkruste auf Kräutersoße, dazu Prinzessbohnen und Kartoffelkroketten",
       "studPrice": 3.9,
       "normalPrice": 4.6,
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "5255d55e2a870b4c7e0000a1",
       "__v": 0,
       "additives": [
@@ -4069,7 +4069,7 @@
       "name": "Pasta \"Napoletana\" Hausgemachte Tomatensoße mit Pasta",
       "studPrice": 0.45,
       "normalPrice": 0.65,
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "5255d55e2a870b4c7e0000a7",
       "__v": 0,
       "additives": [
@@ -4113,7 +4113,7 @@
       "name": "Blumenkohl natur Karottengemüse in Kräuterrahm Prinzessbohnen, Kartoffeldrillinge",
       "studPrice": 0.45,
       "normalPrice": 0.65,
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "5255d55e2a870b4c7e0000b1",
       "__v": 0,
       "additives": [
@@ -4259,7 +4259,7 @@
       "name": "Pasta \"Carbonara\" mit Speck, Parmesankäse und Farfalle-Nudeln",
       "studPrice": 0.45,
       "normalPrice": 0.65,
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "5255d55e2a870b4c7e0000a8",
       "__v": 0,
       "additives": [
@@ -4496,7 +4496,7 @@
       "name": "Pikante Gemüsepfanne mit Bohnen dazu Mojo Rojo und Rosmarinkartoffeln",
       "studPrice": 2.8,
       "normalPrice": 3.9,
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "5255d6f82a870b4c7e0000b7",
       "__v": 0,
       "additives": [
@@ -4615,7 +4615,7 @@
       "name": "Zucchini Hackfleischtopf",
       "studPrice": 1.3,
       "normalPrice": 2.3,
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "5255d7282a870b4c7e0000bc",
       "__v": 0,
       "additives": [
@@ -4708,7 +4708,7 @@
       "name": "Fischburger mit Seehechtfilet und Remouladensoße",
       "studPrice": 1.85,
       "normalPrice": 2.85,
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "5255d7282a870b4c7e0000c0",
       "__v": 0,
       "additives": [
@@ -4829,7 +4829,7 @@
       "name": "Pikante Gemüsepfanne mit Bohnen dazu Mojo Rojo",
       "studPrice": 2.25,
       "normalPrice": 3.25,
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "5255d7282a870b4c7e0000c5",
       "__v": 0,
       "additives": [
@@ -4948,7 +4948,7 @@
       "name": "Putenschnitzel mit Tomatenkruste mit Kräutersoße",
       "studPrice": 2.8,
       "normalPrice": 3.3,
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "5255d7282a870b4c7e0000ca",
       "__v": 0,
       "additives": [
@@ -5133,7 +5133,7 @@
       "name": "Sojastreifen in süß sauerer Soße mit Ananas und Duftreis",
       "studPrice": 2.8,
       "normalPrice": 3.9,
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "5255d7282a870b4c7e0000e3",
       "__v": 0,
       "additives": [
@@ -5184,7 +5184,7 @@
       "name": "Pasta \"Tomaten-Gorgonzola-Soße\" mit Farfalle und Parmesan",
       "studPrice": 0.45,
       "normalPrice": 0.65,
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "5255d7282a870b4c7e0000e5",
       "__v": 0,
       "additives": [
@@ -5228,7 +5228,7 @@
       "name": "Blumenkohl natur Karottengemüse in Kräuterrahm Prinzessbohnen Auberginen mit Balsamico Bianco",
       "studPrice": 0.45,
       "normalPrice": 0.65,
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "5255d7282a870b4c7e0000ef",
       "__v": 0,
       "additives": [
@@ -5316,7 +5316,7 @@
       "name": "Pasta \"Carbonara\" mit Speck, Parmesankäse und Farfalle-Nudeln",
       "studPrice": 0.45,
       "normalPrice": 0.65,
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "5255d7282a870b4c7e0000e6",
       "__v": 0,
       "additives": [
@@ -5512,7 +5512,7 @@
       "name": "Zucchini Hackfleischtopf mit Penne",
       "studPrice": 1.85,
       "normalPrice": 2.95,
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "525663f12a870b4c7e000108",
       "__v": 0,
       "additives": [
@@ -5630,7 +5630,7 @@
       "name": "Pasta \"gran sapore\" mit Auberginen in Tomatensoße und Fusilli",
       "studPrice": 2.2,
       "normalPrice": 3.3,
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "525663f12a870b4c7e00010d",
       "__v": 0,
       "additives": [
@@ -5653,7 +5653,7 @@
       "name": "Pfannkuchen mit Waldbeerfüllung",
       "studPrice": 1.2,
       "normalPrice": 2.2,
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "525663f12a870b4c7e000112",
       "__v": 0,
       "additives": [
@@ -5892,7 +5892,7 @@
       "name": "Ägyptische Falafel Krautsalat und Minz Joghurt Soße",
       "studPrice": 2.25,
       "normalPrice": 3.25,
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "525663f12a870b4c7e00011d",
       "__v": 0,
       "additives": [
@@ -6285,7 +6285,7 @@
       "name": "Fischburger mit Seelachsfilet Remoulade und Pommes Frites",
       "studPrice": 2.4,
       "normalPrice": 3.5,
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "525663f12a870b4c7e00012e",
       "__v": 0,
       "additives": [
@@ -6332,7 +6332,7 @@
       "name": "Texashacksteak mit Pfefferrahmsoße",
       "studPrice": 1.3,
       "normalPrice": 2.3,
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "525663f12a870b4c7e000116",
       "__v": 0,
       "additives": [
@@ -6376,7 +6376,7 @@
       "name": "Putenschnitzel mit fruchtiger Currysoße",
       "studPrice": 2.8,
       "normalPrice": 3.3,
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "525663f12a870b4c7e000120",
       "__v": 0,
       "additives": [
@@ -6396,7 +6396,7 @@
       "name": "Quarkkeulchen mit Apfelmus",
       "studPrice": 1.2,
       "normalPrice": 2.2,
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "525663f12a870b4c7e000125",
       "__v": 0,
       "additives": [
@@ -6417,7 +6417,7 @@
       "name": "Zucchini Hackfleischtopf mit Penne",
       "studPrice": 1.85,
       "normalPrice": 2.95,
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "525663f12a870b4c7e00012a",
       "__v": 0,
       "additives": [
@@ -6509,7 +6509,7 @@
       "name": "Pikante Gemüsepfanne mit Bohnen dazu Mojo Rojo und Rosmarinkartoffeln",
       "studPrice": 2.8,
       "normalPrice": 3.9,
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "525663f12a870b4c7e000133",
       "__v": 0,
       "additives": [
@@ -6625,7 +6625,7 @@
       "name": "Putenschnitzel mit Tomatenkruste auf Kräutersoße, dazu Prinzessbohnen und Kartoffelkroketten",
       "studPrice": 3.9,
       "normalPrice": 4.6,
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "525663f12a870b4c7e000138",
       "__v": 0,
       "additives": [
@@ -6744,7 +6744,7 @@
       "name": "Kartoffelsuppe",
       "studPrice": 1.2,
       "normalPrice": 2.2,
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "525663f12a870b4c7e00013d",
       "__v": 0,
       "additives": [
@@ -6767,7 +6767,7 @@
       "name": "Quarkkeulchen mit Apfelmus",
       "studPrice": 1.2,
       "normalPrice": 2.2,
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "525663f12a870b4c7e00013e",
       "__v": 0,
       "additives": [
@@ -6875,7 +6875,7 @@
       "name": "Pasta \"Bolognese\" mit pikantem Hackfleischragout Spaghetti",
       "studPrice": 2.2,
       "normalPrice": 3.3,
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "525663f12a870b4c7e000143",
       "__v": 0,
       "additives": [
@@ -6967,7 +6967,7 @@
       "name": "Pikante Gemüsepfanne mit Bohnen dazu Mojo Rojo und Rosmarinkartoffeln",
       "studPrice": 2.8,
       "normalPrice": 3.9,
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "525663f12a870b4c7e000147",
       "__v": 0,
       "additives": [
@@ -7086,7 +7086,7 @@
       "name": "Putenschnitzel mit Tomatenkruste auf Kräutersoße, dazu Prinzessbohnen und Kartoffelkroketten",
       "studPrice": 3.9,
       "normalPrice": 4.6,
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "525663f12a870b4c7e00014c",
       "__v": 0,
       "additives": [
@@ -7207,7 +7207,7 @@
       "name": "Pasta \"Carbonara\" mit Speck, Parmesankäse und Farfalle-Nudeln",
       "studPrice": 0.45,
       "normalPrice": 0.65,
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "525663f12a870b4c7e000151",
       "__v": 0,
       "additives": [
@@ -7231,7 +7231,7 @@
       "name": "Pasta \"Napoletana\" Hausgemachte Tomatensoße mit Pasta",
       "studPrice": 0.45,
       "normalPrice": 0.65,
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "525663f12a870b4c7e000152",
       "__v": 0,
       "additives": [
@@ -7336,7 +7336,7 @@
       "name": "Blumenkohl natur Karottengemüse in Kräuterrahm Prinzessbohnen, Kartoffeldrillinge",
       "studPrice": 0.45,
       "normalPrice": 0.65,
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "525663f12a870b4c7e00015b",
       "__v": 0,
       "additives": [
@@ -7560,7 +7560,7 @@
       "name": "Zucchini Hackfleischtopf mit Penne",
       "studPrice": 1.85,
       "normalPrice": 2.95,
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "525666c22a870b4c7e000162",
       "__v": 0,
       "additives": [
@@ -7754,7 +7754,7 @@
       "name": "Zucchini Hackfleischtopf mit Penne",
       "studPrice": 1.85,
       "normalPrice": 2.95,
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "525666c22a870b4c7e00016a",
       "__v": 0,
       "additives": [
@@ -7854,7 +7854,7 @@
       "name": "Fischburger mit Seelachsfilet Remoulade und Pommes Frites",
       "studPrice": 2.4,
       "normalPrice": 3.5,
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "525666c22a870b4c7e00016e",
       "__v": 0,
       "additives": [
@@ -7976,7 +7976,7 @@
       "name": "Pikante Gemüsepfanne mit Bohnen dazu Mojo Rojo und Rosmarinkartoffeln",
       "studPrice": 2.8,
       "normalPrice": 3.9,
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "525666c22a870b4c7e000173",
       "__v": 0,
       "additives": [
@@ -8095,7 +8095,7 @@
       "name": "Zucchini Hackfleischtopf mit Penne",
       "studPrice": 1.85,
       "normalPrice": 2.95,
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "525666c22a870b4c7e000178",
       "__v": 0,
       "additives": [
@@ -8190,7 +8190,7 @@
       "name": "Fischburger mit Seelachsfilet Remoulade und Pommes Frites",
       "studPrice": 2.4,
       "normalPrice": 3.5,
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "525666c22a870b4c7e00017c",
       "__v": 0,
       "additives": [
@@ -8312,7 +8312,7 @@
       "name": "Pikante Gemüsepfanne mit Bohnen dazu Mojo Rojo und Rosmarinkartoffeln",
       "studPrice": 2.8,
       "normalPrice": 3.9,
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "525666c22a870b4c7e000181",
       "__v": 0,
       "additives": [
@@ -8431,7 +8431,7 @@
       "name": "Putenschnitzel mit Tomatenkruste auf Kräutersoße, dazu Prinzessbohnen und Kartoffelkroketten",
       "studPrice": 3.9,
       "normalPrice": 4.6,
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "525666c22a870b4c7e000186",
       "__v": 0,
       "additives": [
@@ -8553,7 +8553,7 @@
       "name": "Huhn mit Cashewkernen aus dem Wok mit Reis",
       "studPrice": 3.3,
       "normalPrice": 3.9,
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "525666c22a870b4c7e00018b",
       "__v": 0,
       "additives": [
@@ -8692,7 +8692,7 @@
       "name": "Fischburger mit Seehechtfilet und Remouladensoße",
       "studPrice": 1.3,
       "normalPrice": 2.3,
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "525666c22a870b4c7e000191",
       "__v": 0,
       "additives": [
@@ -8769,7 +8769,7 @@
       "name": "Fischburger mit Seehechtfilet und Remouladensoße",
       "studPrice": 1.85,
       "normalPrice": 2.85,
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "525666c22a870b4c7e000194",
       "__v": 0,
       "additives": [
@@ -8890,7 +8890,7 @@
       "name": "Pikante Gemüsepfanne mit Bohnen dazu Mojo Rojo",
       "studPrice": 2.25,
       "normalPrice": 3.25,
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "525666c22a870b4c7e000199",
       "__v": 0,
       "additives": [
@@ -9006,7 +9006,7 @@
       "name": "Putenschnitzel mit Tomatenkruste mit Kräutersoße",
       "studPrice": 2.8,
       "normalPrice": 3.3,
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "525666c22a870b4c7e00019e",
       "__v": 0,
       "additives": [
@@ -9122,7 +9122,7 @@
       "name": "Pizza Tomate-Mozzarella",
       "studPrice": 2.2,
       "normalPrice": 3.3,
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "525666c22a870b4c7e0001a3",
       "__v": 0,
       "additives": [
@@ -9141,7 +9141,7 @@
       "name": "Kartoffelsuppe",
       "studPrice": 1.5,
       "normalPrice": 1.75,
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "525666c22a870b4c7e0001a4",
       "__v": 0,
       "additives": [
@@ -9265,7 +9265,7 @@
       "name": "Currybratwurst mit Cola BBQ Soße und Pommes Frites",
       "studPrice": 2.7,
       "normalPrice": 3.1,
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "525666c22a870b4c7e0001a9",
       "__v": 0,
       "additives": [
@@ -9389,7 +9389,7 @@
       "name": "hausgemachter Gemüsebratling mit Kerbelsoße und Vollkorn-Nudeln und Apfel-Karotten-Salat",
       "studPrice": 2.8,
       "normalPrice": 3.2,
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "525666c22a870b4c7e0001ae",
       "__v": 0,
       "additives": [
@@ -9506,7 +9506,7 @@
       "name": "Hähnchenbrust natur gebraten mit Bananen Kokossoße und Basmatireis",
       "studPrice": 2.9,
       "normalPrice": 3.3,
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "525666c22a870b4c7e0001b3",
       "__v": 0,
       "additives": [
@@ -9628,7 +9628,7 @@
       "name": "Pasta Pollo mit Geflügelbrust in Tomatensoße mit Penne",
       "studPrice": 2.6,
       "normalPrice": 3.1,
-      "date": "2013-10-06T22:00:00.000Z",
+      "date": "2013-10-07T22:00:00.000Z",
       "_id": "525666c22a870b4c7e0001b8",
       "__v": 0,
       "additives": [

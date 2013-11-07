@@ -20,14 +20,24 @@ describe("storage", function(){
 	before(function () {
 		localStorage.clear();
 		conf.setURLs( conf.getURLs() );
-		storage.unsetFilter();
+		storage.unsetFilters();
 		oldGet = xhr.get;
 	});
+
 	beforeEach(function(){
 		xhr.get = oldGet;
 		storage.clearCache();
 		storage.cleanData();
-	})
+	});
+
+	it("update must not block cached requests", function(done){
+		storage.getWeekMenu(function(menu){ // make sure data is cached
+		console.log(menu.length)
+			xhr.get = function(){} // just do nothing, and do not execute the callback
+			storage.update(); // do a request that will hang (because we overwrote xhr.get)
+			storage.getWeekMenu(function(){ done() }); // since the data is cached a call to xhr.get is unnecessary, and done should be called
+		});
+	});
 
 	it( "has working getWeekMenu-Method", function(done){
 		storage.getWeekMenu(function(menu){
@@ -340,7 +350,7 @@ describe("storage", function(){
 		var c = 3;
 		var d = function(){ if(!--c) done(); };
 		(function(){
-			var date = "2013-10-9";
+			var date = "2013-10-8";
 			storage.day(storage.dateStringToDate(date), true, function(json){
 				expect( json ).to.not.be.empty();
 				expect( json.every(function(i){ return i.date === date || i.type === "header"; }) ).to.be(true);
@@ -524,14 +534,6 @@ describe("storage", function(){
 				mensa = m[i].mensa;
 			}
 			done();
-		});
-	});
-
-	it("update must not block cached requests", function(done){
-		storage.getWeekMenu(function(){ // make sure data is cached
-			xhr.get = function(){} // just do nothing, and do not execute the callback
-			storage.update(); // do a request that will hang (because we overwrote xhr.get)
-			storage.getWeekMenu(function(){ done() }); // since the data is cached a call to xhr.get is unnecessary, and done should be called
 		});
 	});
 
