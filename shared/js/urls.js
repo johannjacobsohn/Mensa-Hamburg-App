@@ -1,10 +1,10 @@
-/** 
+/**
  * Static conf file for urls to load data from
  *
  * @class urls
 */
 (function(){
-	var baselink = "http://menu.mensaapp.org/";
+	var baselink = "http://data.mensaapp.org/";
 	urls = {
 		mensen : [
 			{
@@ -108,6 +108,12 @@
 				id: "cafecfel",
 				url: baselink + "CafeCFEL/{{week}}/",
 				address: "Notkestrasse 85, 22607 Hamburg"
+			},
+			{
+				name: "UKE",
+				id: "uke",
+				url: baselink + "uke/{{week}}/",
+				address: "Martinistrasse 52, 20246 Hamburg"
 			}
 		]
 	};
@@ -122,4 +128,7 @@
 		urls.mensenWeek[m.name] = m.url; // copy urls.mensen into legacy urls.mensenWeek
 		urls.byName[m.name] = urls.byId[m.id] = m;
 	});
+	urls.combine = function(mensen, weeks){
+		return baselink + mensen.join(",") + "/" + weeks.join(",");
+	};
 })();

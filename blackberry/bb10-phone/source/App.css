@@ -15,6 +15,10 @@ body {
 	top:0;
 	background: red;
 }
+.hidden{
+	position: absolute;
+	left: 999em;
+}
 
 /*
 	size those pesky elements like inputs, textareas, iframes, etc.
@@ -42,10 +46,8 @@ body {
 /*
 	overflow-y: auto;
 */
-/*
+	overflow: scroll;
 	-webkit-overflow-scrolling: -blackberry-touch;
-*/
-	overflow:scroll; with -webkit-overflow-scrolling: -blackberry-touch;
 /*
 	-webkit-overflow-scrolling: touch;
 */
@@ -55,6 +57,22 @@ small{
 	display: block;
 	font-size: 20px;
 	line-height: 0px;
+}
+/*
+
+.filter-item-double{
+	clear: both;
+	overflow: auto;
+}
+*/
+
+.filter-item-tripple .label,
+.filter-item-double .label{
+	position: absolute;
+	right: 0;
+	vertical-align: middle;
+	width: 407px;
+	line-height: 120px;
 }
 
 .loading-message,

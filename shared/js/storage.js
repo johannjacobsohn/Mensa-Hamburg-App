@@ -13,7 +13,10 @@ storage = (function(){ // its a trap!
 		filteredWeekMenu = [], // Cache
 		isFiltered       = false,
 		date = new Date(), //now
-		lock = {},
+		locked = {},
+		defaults = {
+			loadBothWeeks: false
+		},
 		dataHasChanged = false,
 		/**
 		 *     loadedMensen{
@@ -39,8 +42,8 @@ storage = (function(){ // its a trap!
 		},
 		/**
 		 * Subscripe to an event
-		 * 
-		 * eg. 
+		 *
+		 * eg.
 		 *   storage.on( "update", callback );
 		 *
 		 * @method on
@@ -62,7 +65,7 @@ storage = (function(){ // its a trap!
 		},
 		/**
 		 * trigger an event
-		 * 
+		 *
 		 * fire( "update" );
 		 *
 		 * @method fire
@@ -138,12 +141,12 @@ storage = (function(){ // its a trap!
 		},
 		/**
 		 * filter function
-		 * 
+		 *
 		 * @TODO: needs optimization!
-		 * 
+		 *
 		 * @private
 		 * @method filterByProp
-		 * 
+		 *
 		 * @param prop
 		 * @param includes
 		 * @param excludes
@@ -197,55 +200,59 @@ storage = (function(){ // its a trap!
 			}
 		},
 		/**
-		 * do the filtering
-		 *
-		 *
-		 * filterName
-		 * filterValues
+		 * Get the filtered week menu
 		 *
 		 * @method filter
 		 * @param {Function} callback with filtered menu
 		 */
 		filter = function(callback){
 			getWeekMenu(function(){
-				var i = 0, l = 0, includes = [], excludes = [];
-				if(!isFiltered) { // skip if already filtered
-					// copy weekMenu to filteredWeekMenu
-					filteredWeekMenu = [];
-					for(i = 0, l = weekMenu.length; i < l; i++){
-						filteredWeekMenu[i] = weekMenu[i];
-					}
-
-					// filter filteredWeekMenu
-					var isInclude = function(item){ return item.type === "include"; };
-					var isExclude = function(item){ return item.type === "exclude"; };
-					var returnValue = function(item){ return item.value; };
-					for( var prop in filterProperties ){
-						if( filterProperties.hasOwnProperty(prop) ){
-							// split filtervalues in includes and excludes
-							includes = filterValues[prop].filter( isInclude ).map( returnValue );
-							excludes = filterValues[prop].filter( isExclude ).map( returnValue );
-							var includesAreSet = filterValues[prop].some( isInclude );
-							filteredWeekMenu = filteredWeekMenu.filter( filterByProp.bind(this, prop, includes, excludes, includesAreSet) );
-						}
-					}
-					isFiltered = true;
+				callback( getFilteredMenu() );
+			});
+		},
+		/**
+		 * get the filtered weekMenu. Synchronous variant of filter
+		 *
+		 * @private
+		 */
+		getFilteredMenu = function(){
+			var i = 0, l = 0, includes = [], excludes = [];
+			if(!isFiltered) { // skip if already filtered
+				// copy weekMenu to filteredWeekMenu
+				filteredWeekMenu = [];
+				for(i = 0, l = weekMenu.length; i < l; i++){
+					filteredWeekMenu[i] = weekMenu[i];
 				}
 
-				callback(filteredWeekMenu);
-			});
+				// filter filteredWeekMenu
+				var isInclude = function(item){ return item.type === "include"; };
+				var isExclude = function(item){ return item.type === "exclude"; };
+				var returnValue = function(item){ return item.value; };
+				for( var p in filterProperties ){
+					if( filterProperties.hasOwnProperty(p) ){
+						// split filtervalues in includes and excludes
+						includes = filterValues[p].filter( isInclude ).map( returnValue );
+						excludes = filterValues[p].filter( isExclude ).map( returnValue );
+						var includesAreSet = filterValues[p].some( isInclude );
+						filteredWeekMenu = filteredWeekMenu.filter( filterByProp.bind(this, p, includes, excludes, includesAreSet) );
+					}
+				}
+				isFiltered = true;
+			}
+
+			return filteredWeekMenu;
 		},
 
 		/**
 		 * return if one element of array a is in array b
 		 * http://jsperf.com/of-an-array-is-in-another-array/2
-		 * 
+		 *
 		 * @private
 		 * @method include
-		 * 
+		 *
 		 * @param Array a
 		 * @param Array b
-		 * @return 
+		 * @return
 		 */
 		exclude = function(a,b) {
 			for (var i = 0; i < a.length; i++){
@@ -258,13 +265,13 @@ storage = (function(){ // its a trap!
 
 		/**
 		 * return if every element of array a is in array b
-		 * 
+		 *
 		 * @private
 		 * @method include
-		 * 
+		 *
 		 * @param Array a
 		 * @param Array b
-		 * @return 
+		 * @return
 		 */
 		includeAll = function(a, b) {
 			for (var i = 0; i < a.length; i++){
@@ -286,7 +293,7 @@ storage = (function(){ // its a trap!
 		 * @param {String} Property; the filtered property becomes the name of the filter
 		 * @param {String} {Array} Valid value string or array of valid values
 		 * @param {String} Type of comparison, either include or exclude
-		 * */
+		 */
 		setFilter = function(prop, value){
 			isFiltered = false;
 			value = (typeof value === "string")  ? [ { value: value, type: "include" } ] : value;
@@ -311,7 +318,7 @@ storage = (function(){ // its a trap!
 		/**
 		 * Delete Filter
 		 *
-		 * 
+		 *
 		 * @method unsetFilter
 		 * @param {String} Name of Filter
 		 */
@@ -333,18 +340,18 @@ storage = (function(){ // its a trap!
 			filterValues = {};
 			saveFilters();
 		},
-		/** 
-		 * Sort callback for menu, used in getSortedSegmented
-		 * 
+		/**
+		 * Sort callback for menu, used in success
+		 *
 		 * Performance tests: http://jsperf.com/sorting-by-multiple-parameters/2
-		 * 
-		 * @private 
+		 *
+		 * @private
 		 */
 		sort = function(a, b){
 			var nameA, nameB;
 			if (a.date === b.date){
-				nameA = a.mensa.toLowerCase();
-				nameB = b.mensa.toLowerCase();
+				nameA = a.mensaId + a.type;
+				nameB = b.mensaId + b.type;
 				if(nameA === nameB){
 					return 0;
 				} else {
@@ -358,119 +365,117 @@ storage = (function(){ // its a trap!
 		 * Get a segmented and sorted JSON representation of the current menu,
 		 * suitable for easy displaying
 		 *
-		 * @TODO: streamline
-		 *
 		 * @method getSortedSegmented
 		 * @param {Function} callback with the menu supplied as an argument
 		 */
 		getSortedSegmented = function(callback){
-			filter(function(json){
-				var sorted = json.sort(sort),
-					segmented = [],
-					mensa = "",
-					date = "",
-					i = 0,
-					l = sorted.length,
-					first = false,
-					savedMensenLength = (conf.getSavedURLs()).length,
-					savedMensenExist = savedMensenLength > 1 || true, // FIXME
-					isMensaFilterSet = typeof filterValues.mensa !== "undefined",
-					ex = filterValues.mensa ? filterValues.mensa.filter(function(item){ return item.type === "exclude"; }) : [],
-					inc =  filterValues.mensa ? filterValues.mensa.filter(function(item){ return item.type !== "exclude"; }) : [],
-					filteredByMensenLength = inc.length ? inc.length : savedMensenLength - ex.length,
-					isDateFilterSet = typeof filterValues.date !== "undefined" && filterValues.date.length === 1 && filterValues.date[0].type === "include";
+			getWeekMenu(function(){
+				callback( getSortedSegmentedMenu() );
+			});
+		},
+		/**
+		 * synchronous variant of getSortedSegmented
+		 * @TODO: streamline
+		 * @private
+		 */
+		getSortedSegmentedMenu = function(){
+			var sorted = getFilteredMenu(),
+				segmented = [],
+				mensa = "",
+				date = "",
+				i = 0,
+				l = sorted.length,
+				first = false,
+				savedMensenLength = (conf.getSavedURLs()).length,
+				savedMensenExist = savedMensenLength > 1 || true, // FIXME
+				isMensaFilterSet = typeof filterValues.mensa !== "undefined",
+				ex = filterValues.mensa ? filterValues.mensa.filter(function(item){ return item.type === "exclude"; }) : [],
+				inc =  filterValues.mensa ? filterValues.mensa.filter(function(item){ return item.type !== "exclude"; }) : [],
+				filteredByMensenLength = inc.length ? inc.length : savedMensenLength - ex.length,
+				isDateFilterSet = typeof filterValues.date !== "undefined" && filterValues.date.length === 1 && filterValues.date[0].type === "include";
 
-				/*
-				 * wenn nur eine Mensa gewählt ist sollte diese als erstes in den Headern stehen
-				 */
-				if( json[0] && ((isMensaFilterSet && filteredByMensenLength === 1) || savedMensenLength === 1)){
+			/*
+			 * wenn nur eine Mensa gewählt ist sollte diese als erstes in den Headern stehen
+			 */
+			if( sorted[0] && ((isMensaFilterSet && filteredByMensenLength === 1) || savedMensenLength === 1)){
+				segmented.push({
+					header     : sorted[0].mensa,
+					type       : "header",
+					headerType : "mensa"
+				});
+			}
+
+			for( i = 0; i < l; i++ ){
+				first = i === 0;
+				if(date !== sorted[i].date && !isDateFilterSet){
+					if( segmented.length > 0 ) {// wenn Header dann dieses und nächsten Eintrag als "First" bzw. "Last" kennzeichnen
+						segmented[segmented.length - 1].last = true;
+					}
+					first = true;
+
 					segmented.push({
-						header     : json[0].mensa,
+						header     : sorted[i].date,
 						type       : "header",
-						headerType : "mensa"
+						headerType : "date"
 					});
 				}
-
-				for( i = 0; i < l; i++ ){
-					first = i === 0;
-					if(date !== sorted[i].date && !isDateFilterSet){
-						if( segmented.length > 0 ) {// wenn Header dann dieses und nächsten Eintrag als "First" bzw. "Last" kennzeichnen
-							segmented[segmented.length - 1].last = true;
-						}
-						first = true;
-
-						segmented.push({
-							header     : sorted[i].date,
-							type       : "header",
-							headerType : "date"
-						});
+				if(mensa !== sorted[i].mensa && (!isMensaFilterSet || filteredByMensenLength !== 1) && savedMensenLength !== 1 && savedMensenExist){
+					// wenn Header dann dieses und nächsten Eintrag als "First" bzw. "Last" kennzeichnen
+					if( segmented.length > 0 ){
+						segmented[segmented.length-1].last = true;
 					}
-					if(mensa !== sorted[i].mensa && (!isMensaFilterSet || filteredByMensenLength !== 1) && savedMensenLength !== 1 && savedMensenExist){
-						// wenn Header dann dieses und nächsten Eintrag als "First" bzw. "Last" kennzeichnen
-						if( segmented.length > 0 ){
-							segmented[segmented.length-1].last = true;
-						}
-						first = true;
+					first = true;
 
-						segmented.push({
-							header    : sorted[i].mensa,
-							type      : "header",
-							headerType: "mensa"
-						});
-					}
-					sorted[i].type  = "item";
-					sorted[i].first = first; //(mensa != sorted[i].mensa && savedMensenExist);
-					sorted[i].last  = false;
-					segmented.push(sorted[i]);
+					segmented.push({
+						header    : sorted[i].mensa,
+						type      : "header",
+						headerType: "mensa"
+					});
+				}
+				sorted[i].type  = "item";
+				sorted[i].first = first; //(mensa != sorted[i].mensa && savedMensenExist);
+				sorted[i].last  = false;
+				segmented.push(sorted[i]);
 
-					mensa = sorted[i].mensa;
-					date = sorted[i].date;
-				}
-				if(segmented.length > 0) {
-					segmented[segmented.length - 1].last = true;
-				}
-				callback(segmented);
-			});
+				mensa = sorted[i].mensa;
+				date = sorted[i].date;
+			}
+			if(segmented.length > 0) {
+				segmented[segmented.length - 1].last = true;
+			}
+			return segmented;
 		},
 		/**
 		 * Find and delete Data of urls that are not saved
 		 *
 		 * @TODO: Just clean if execcive data exits (no need to do all the work when there is really nothing to do)
 		 * @TODO: write tests
-		 * 
+		 *
 		 * @method cleanData
 		 * @param void
 		 * @return this
 		 */
 		cleanData = function(){
-			var validUrls = conf.getSavedURLs();
+			var validUrls = conf.getSavedMensen();
 
 			// Make sure we load the cache before we cleanup and save an empty menu
 			loadCachedData();
 
 			// filter menu
-			weekMenu = weekMenu.filter(function(item){
-				return validUrls.indexOf(item.mensa) !== -1;
-			});
+			var isValid = function(item){
+				return validUrls.indexOf(item.mensaId) !== -1;
+			};
 
-			filteredWeekMenu = filteredWeekMenu.filter(function(item){
-				return validUrls.indexOf(item.mensa) !== -1;
-			});
+			weekMenu = weekMenu.filter(isValid);
+			filteredWeekMenu = filteredWeekMenu.filter(isValid);
 
 			// cleanup loadedMensen
-			// @TODO: cleanup
-			var filterByMensaAndWeek = function(mensa, week, item){
-				return (mensa === item.mensa && parseInt(week, 10) === item.week);
-			};
-			for(var mensa in loadedMensen){
-				if( loadedMensen.hasOwnProperty(mensa) ){
-					for(var week in loadedMensen[mensa]){
-						if(loadedMensen[mensa].hasOwnProperty(week)){
-							loadedMensen[mensa][week] = weekMenu.some(filterByMensaAndWeek.bind(this, mensa, week));
-						}
-					}
-				}
-			}
+			var loaded = {};
+			weekMenu.forEach(function(item){
+				loaded[item.mensaId] = loaded[item.mensaId] || {};
+				loaded[item.mensaId][item.week] = 1;
+			});
+			loadedMensen = loaded;
 
 			// unset MensaFilter to prevent an inconsistent state where
 			// we are filtering by a mensa which doesn't exist anymore
@@ -490,133 +495,119 @@ storage = (function(){ // its a trap!
 		 * @param {Integer}  optional Weeknumber, defaults to this week
 		 */
 		getWeekMenu = function(callback, week){
-			week = week || date.getWeek(); // get Week from date
-			var allLoaded = ( conf.getSavedURLs() ).every(function( item ){
-				return typeof loadedMensen[item] !== "undefined" && !!loadedMensen[item][week];
-			});
+			var thisWeek = new Date().getWeek();
+			var nextWeek = new Date( +new Date() + 7 * 24 * 3600 * 1000 ).getWeek();
+			week = week || thisWeek;
+			week = defaults.loadBothWeeks ? [thisWeek, nextWeek] : [week];
 
-			if ( allLoaded ) { // avoid running through the whole callback stack if all mensen are already loaded
-				callback( weekMenu );
-			} else {
-				// enqueue the callback to be executed when everything has been loaded
-				menuCallbackQueue.push(callback);
-				retrieveData( week );
-			}
+			// enqueue the callback to be executed when everything has loaded
+			menuCallbackQueue.push(callback);
+			retrieveData(week);
+
 			return this;
 		},
 		/**
 		 * Retrieve menu data (for a given week)
 		 *
 		 * @method retrieveData
-		 * @param {Integer}  optional Weeknumber, defaults to this week
+		 * @param {Array} optional array of week numbers, defaults to this week
 		 * @param {bool} force loading of data, even if already loaded
 		 */
-		retrieveData = function(week, force){
-			var mensenArr = conf.getSavedURLs(),
-			    mensa = "",
-			    thisWeek = (new Date()).getWeek(),  // get this week's number
-			    url = "";
-			week = week || date.getWeek(); // get Week from date
+		retrieveData = function(weeks, force){
+			var mensen = conf.getSavedMensen();
+			weeks = weeks || [date.getWeek()]; // get Week from date
 
-			for(var m = 0; m<mensenArr.length; m++){
-				mensa = mensenArr[m];
-				loadedMensen[mensa] = loadedMensen[mensa] || {};
+			// get missing mensen & weeks
+			var missing = mensen.filter(function(mensa){
+				return force || !weeks.every(function(week){
+					return loadedMensen[mensa] && loadedMensen[mensa][week];
+				});
+			});
 
-				// skip loading if this mensa has been already loaded,
-				// its currently loading or date is not this or next week
-				// -> there won't be any data on the server
-				// load anyway if forced to
-				if( ((!loadedMensen[mensa][week] || force) && !lock[mensa + week] && ( week === thisWeek || week === thisWeek + 1 )) ){
-					isFiltered = false;
-
-					// lock execution of callback queue to prevent race conditions
-					lock[mensa + week] = true;
-
-					// load and parse URL with correct week number
-					// @TODO: change to urls.mensen
-					url = urls.mensenWeek[mensa].replace("{{week}}", week);
-
-					// Trigger AJAX-Call
-					// @TODO: remove additional_args and use bind instead
-					xhr.get(url, success, error, {
-						mensa : mensa,
-						week : week
-					});
+			if(missing.length && !locked[weeks.toString()]){
+				// do not lock the callback queue when forced - no callbacks have been enqueue anyway
+				if(!force){
+					locked[weeks.toString()] = 1;
 				}
+				// Trigger AJAX-Call
+				xhr.get(urls.combine(missing, weeks), success.bind(this, weeks), error.bind(this, weeks));
 			}
 
-			runMenuCallbacks();
+			setTimeout(runMenuCallbacks, 1);
 		},
-		// @TODO document
-		success = function(resp, additional_args){
-			var mensa = additional_args.mensa;
-			var week = additional_args.week;
-
-			// parse HTML
-			var newWeekMenu = JSON.parse(resp || "{menu:[]}");
-
-			// compatibility with old server
-			if(newWeekMenu instanceof Array){
-				newWeekMenu = {menu: newWeekMenu};
+		/**
+		 *
+		 * @TODO document
+		 * @private
+		 */
+		success = function(weeks, resp){
+			var newWeekMenu, tempMensen = {};
+			try{
+				newWeekMenu = JSON.parse(resp).menu;
+			} catch(e){
+				newWeekMenu = [];
 			}
-			newWeekMenu = newWeekMenu.menu || [];
 
 			// mark as cached only if new dishes where found
 			// data has changed!
 			if( newWeekMenu && newWeekMenu.length > 0 ){
+				// get unique loaded mensen
+				newWeekMenu = newWeekMenu
+					.map(function(item){
+						tempMensen[item.mensaId] = 1;
+						item.week = (new Date(item.date)).getWeek();
+						item.date = dateToDateString( new Date(item.date) );
+						item.mensa = urls.byId[item.mensaId].name;
 
-				newWeekMenu = newWeekMenu.map(function(item){
-					item.mensa = item.mensa || urls.byId[item.mensaId.toLowerCase()].name; // compatibility with old server
-					item.date = item.date.length < 11 ? item.date : dateToDateString( new Date(item.date) ); // compatibility with old server
-					return item;
+						// backwards compatibility
+						item.dish = item.name;
+						item.name = item.type;
+						return item;
+					});
+
+				weekMenu = weekMenu
+					// remove old data before appending new data to prevent duplicates
+					.filter(function(item){
+						return weeks.indexOf(parseInt(item.week, 10)) === -1 || !tempMensen[item.mensaId];
+					})
+					// append new data
+					.concat(newWeekMenu);
+
+				// sort new collection
+				weekMenu = weekMenu.sort(sort);
+
+				// remember which mensen are currently loaded
+				loadedMensen = {};
+				weekMenu.forEach(function(item){
+					loadedMensen[item.mensaId] = loadedMensen[item.mensaId] || {};
+					loadedMensen[item.mensaId]["" + item.week] = 1;
 				});
-
-				// splice menu together
-				// remove old data
-				weekMenu = weekMenu.filter(function( item ){ return (parseInt(item.week, 10) !== week || item.mensa !== mensa); });
-
-				// append new data
-				weekMenu = weekMenu.concat( newWeekMenu );
-
-				loadedMensen[mensa][week] = true;
 				dataHasChanged = true;
 			}
-
-			// release lock
-			delete lock[additional_args.mensa+additional_args.week];
-
-			// try to run callbacks
+			delete locked[weeks.toString()];
 			runMenuCallbacks();
 		},
 
 		// @TODO document
-		error = function (resp, additional_args){
+		error = function (weeks, resp, additional_args){
 			log("xhr error");
 
 			// release lock
-			delete lock[additional_args.mensa+additional_args.week];
-
-			// try to run callbacks
+			delete locked[weeks.toString()];
 			runMenuCallbacks();
 		},
-
 		/**
 		 * Try to run callback queue
-		 * 
+		 *
 		 * @method runMenuCallbacks
 		 * @private
 		 */
 		runMenuCallbacks = function(){
 			// only execute callback queue if all locks are released
-			if(Object.keys(lock).length === 0){
-				if(filteredWeekMenu.length === 0){
+			if(!Object.keys(locked).length){
+				if(filteredWeekMenu.length === 0 || dataHasChanged){
 					filteredWeekMenu = weekMenu;
 				}
-
-				while (menuCallbackQueue.length > 0){
-					( menuCallbackQueue.pop() )( filteredWeekMenu );
-				}
-
 				// do stuff if data has changed
 				if(dataHasChanged){
 					// sync cache
@@ -627,11 +618,17 @@ storage = (function(){ // its a trap!
 
 					dataHasChanged = false;
 				}
+
+				// use for loop to ensure that called callbacks do not enqueue more callbacks
+				// (which would then be synchronious)
+				for (var i = menuCallbackQueue.length; i; i--){
+					( menuCallbackQueue.shift() )( filteredWeekMenu );
+				}
 			}
 		},
 		/**
 		 * Save Menu to disk
-		 * 
+		 *
 		 * @method cache
 		 * @private
 		 */
@@ -641,7 +638,7 @@ storage = (function(){ // its a trap!
 		},
 		/**
 		 * Get Menu from disk
-		 * 
+		 *
 		 * @TODO: only load from cached if not already loaded
 		 *
 		 * @method loadCachedData
@@ -683,7 +680,7 @@ storage = (function(){ // its a trap!
 		},
 		/**
 		* list all Types/Names
-		* 
+		*
 		* @method getTypes
 		* @depreciated
 		* @param {Function} callback
@@ -730,11 +727,11 @@ storage = (function(){ // its a trap!
 			});
 		},
 		/**
-		 * 
+		 *
 		 * @method getDetails
 		 * @private
 		 * @param type
-		 * @param callback 
+		 * @param callback
 		 */
 		getDetails = function(type, callback){
 			getWeekMenu(function(){
@@ -770,7 +767,7 @@ storage = (function(){ // its a trap!
 		},
 		/**
 		* getAdditivesInfo
-		* 
+		*
 		* @method getAdditivesInfo
 		* @param {Function} callback
 		*/
@@ -788,7 +785,7 @@ storage = (function(){ // its a trap!
 			var b = conf.getSavedURLs();
 			mensen.forEach(function(mensa, i){
 				mensa.content  = mensa.name; // for compability to the other filters
-				mensa.active   = b.indexOf( mensa.name ) !== -1; // mark mensen which are active 
+				mensa.active   = b.indexOf( mensa.name ) !== -1; // mark mensen which are active
 				mensa.filtered = typeof filterValues.mensa !== "undefined" && filterValues.mensa.some(function(item){ return item.value === mensa.name; });
 				mensa.filter   = filterValues.mensa ? filterValues.mensa.filter(function(item){ return item.value === mensa.name; })[0] : [];
 			});
@@ -911,9 +908,9 @@ storage = (function(){ // its a trap!
 		 * get next day's menu
 		 *
 		 * @method nextDay
-		 * @param  {Function} callback         
-		 * @param  {bool}     sortedSegmented  
-		 * @return {object}   this             
+		 * @param  {Function} callback
+		 * @param  {bool}     sortedSegmented
+		 * @return {object}   this
 		 */
 		nextDay = function(callback, sortedSegmented){
 			var thisDay = date.getDay();
@@ -924,6 +921,12 @@ storage = (function(){ // its a trap!
 				date.setDate( date.getDate() + 3 );
 			} else {
 				date.setDate( date.getDate() + 1 );
+			}
+
+			// limit day to the highest available date
+			var availableDates = getAvailableDates(true);
+			if (availableDates.indexOf( dateToDateString(date) ) === -1){
+				date = dateStringToDate( availableDates[availableDates.length-1] );
 			}
 
 			day(date, sortedSegmented, callback);
@@ -947,37 +950,35 @@ storage = (function(){ // its a trap!
 				date.setDate( date.getDate() - 1 );
 			}
 
+			// limit day to the lowest available date
+			var availableDates = getAvailableDates(true);
+			if (availableDates.indexOf( dateToDateString(date) ) === -1){
+				date = dateStringToDate( availableDates[0] );
+			}
+
 			day(date, sortedSegmented, callback);
 		},
-
 		/**
 		 * Get menu for a specific date
-		 * 
+		 *
 		 * @method day
 		 * @param date {Object}
 		 * @param sortedSegmented {Boolean}
 		 * @param callback {Function}
 		 */
-		day = function(date, sortedSegmented, callback){
+		day = function(date, getSorted, callback){
+			var dateString = dateToDateString(date);
 			getWeekMenu(function(){
-				setFilter("date", dateToDateString(date));
-				if(sortedSegmented){
-					getSortedSegmented(function(json){
-						callback(json, dateToDateString(date), date);
-					});
-				} else {
-					filter(function(json){
-						callback(json, dateToDateString(date), date);
-					});
-				}
-			});
+				setFilter("date", dateString);
+				callback(getSorted ? getSortedSegmentedMenu() : getFilteredMenu(), dateString, dateStringToDate(dateString));
+			}, date.getWeek());
 		},
 		/**
 		 * Find out if the previous day is available
-		 * 
+		 *
 		 * @method isPrevDayAvailable
 		 * @param void
-		 * @return bool 
+		 * @return bool
 		 */
 		isPrevDayAvailable = function(){
 			var testDate = new Date(date.valueOf()),
@@ -994,10 +995,10 @@ storage = (function(){ // its a trap!
 		},
 		/**
 		 * Find out if the previous day is available
-		 * 
+		 *
 		 * @method isPrevDayAvailable
 		 * @param void
-		 * @return bool 
+		 * @return bool
 		 */
 		isNextDayAvailable = function(){
 			var testDate = new Date( date.valueOf() ),
@@ -1015,20 +1016,19 @@ storage = (function(){ // its a trap!
 
 		/**
 		 * manually trigger update of data
-		 * 
+		 *
 		 * @method update
 		 * @param void
 		 * @return void
 		 */
 		update = function(){
 			var week = (new Date()).getWeek();
-			retrieveData(week    , true);
-			retrieveData(week + 1, true);
+			retrieveData([week, week + 1], true);
 		},
 
 		/**
 		 *  periodically check for new data on the server
-		 * 
+		 *
 		 * @method checkForData
 		 * @param void
 		 * @return void
@@ -1089,6 +1089,11 @@ storage = (function(){ // its a trap!
 		clearCache : clearCache,
 		cleanData  : cleanData,
 
+		// settings
+		set: function(defaultName, newValue){
+			defaults[defaultName] = newValue;
+		},
+
 		// additional information:
 		getInfo      : getInfo,
 		getTypeInfo  : getTypeInfo,
@@ -1107,7 +1112,7 @@ storage = (function(){ // its a trap!
 		// shortcuts and legacy:
 		/**
 		 * set mensa filter
-		 * 
+		 *
 		 * Depreciated, use setFilter("mensa", val) instead.
 		 *
 		 * @depreciated
