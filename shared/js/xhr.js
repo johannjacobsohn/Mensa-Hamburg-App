@@ -33,7 +33,7 @@ var xhr;
 		 * @param {Function} error-callback
 		 * @param additional_args
 		 */
-		get : function(url, success, error, additional_args){
+		get: function(url, success, error, additional_args){
 			var xhr = createCORSRequest("GET", url);
 			xhr.onreadystatechange = function(){
 				if(xhr.readyState === 4){

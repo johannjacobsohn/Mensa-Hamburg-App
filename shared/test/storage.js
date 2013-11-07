@@ -373,7 +373,7 @@ describe("storage", function(){
 		conf.setURLs(["geomatikum"]);
 		xhr.get = function(url, callback){
 			called++;
-			callback(JSON.stringify({menu: [{mensaId: "geomatikum", date: date}]}));
+			callback(JSON.stringify({menu: [{mensaId: "geomatikum", date: date, type: ""}]}));
 		}
 		storage.getWeekMenu(function(){
 			storage.getWeekMenu(function(){
@@ -381,6 +381,37 @@ describe("storage", function(){
 					expect( called ).to.be(1)
 					done();
 				});
+			});
+		});
+	});
+
+	it("callbacks are called in the correct order", function(done){
+		var called = "";
+		conf.setURLs(["geomatikum"]);
+		storage.getWeekMenu(function(){
+			called += "a";
+		});
+		storage.getWeekMenu(function(menu2){
+			called += "b";
+		});
+		storage.getWeekMenu(function(menu2){
+			called += "c";
+			expect(called).to.be("abc")
+			done();
+		});
+	});
+
+	it("requesting new data removes the old", function(done){
+		conf.setURLs(["geomatikum"]);
+		storage.set("loadBothWeeks", true);
+		storage.getWeekMenu(function(menu){
+			var menuLength = menu.length;
+			storage.update();
+
+			storage.getWeekMenu(function(menu2){
+				expect( menuLength > 0 ).to.be(true);
+				expect( menuLength ).to.be( menu2.length );
+				done();
 			});
 		});
 	});
@@ -394,7 +425,7 @@ describe("storage", function(){
 		conf.setURLs(["geomatikum", "philosophenturm"]);
 		xhr.get = function(url, callback){
 			expect( url.indexOf("http://data.mensaapp.org/geomatikum,philosophenturm/") ).to.be( 0 );
-			setTimeout(function(){ callback(JSON.stringify({menu: [{mensaId: "geomatikum", date:date}, {mensaId: "philosophenturm", date: date}]})) });
+			setTimeout(function(){ callback(JSON.stringify({menu: [{mensaId: "geomatikum", date: date, type: ""}, {mensaId: "philosophenturm", date: date, type: ""}]})) });
 		}
 		storage.getWeekMenu(function(json){
 			expect( json.every(function(item){ return item.mensaId === "geomatikum" || item.mensaId === "philosophenturm" }) ).to.be(true);
@@ -402,7 +433,7 @@ describe("storage", function(){
 			storage.cleanData()
 			xhr.get = function(url, callback){
 				expect( url.indexOf("http://data.mensaapp.org/campus/") ).to.be(0);
-				callback(JSON.stringify({menu: [{mensaId: "campus", date: date}]}));
+				callback(JSON.stringify({menu: [{mensaId: "campus", date: date, type: ""}]}));
 			}
 			storage.getWeekMenu(function(json){
 				expect( json.every(function(item){ return item.mensaId === "geomatikum" || item.mensaId === "campus" }) ).to.be(true);
@@ -438,6 +469,19 @@ describe("storage", function(){
 		});
 	});
 
+	it("locks do not prevent loading of other weeks", function(done){
+		var m;
+		conf.setURLs(["geomatikum"]);
+		storage.set("loadBothWeeks", false);
+		storage.getWeekMenu(function(menu){ m = menu.length; });
+		storage.set("loadBothWeeks", true);
+		storage.getWeekMenu(function(menu){
+			expect(m).to.be(menu.length);
+			expect(menu.length).to.be(22);
+			done();
+		});
+	});
+
 	it("loading both weeks when loadBothWeeks is set", function(done){
 		storage.set("loadBothWeeks", true);
 		conf.setURLs(["geomatikum"]);
@@ -453,8 +497,8 @@ describe("storage", function(){
 			expect(url).to.contain( week );
 			expect(url).to.contain( week + 1 );
 			callback(JSON.stringify({menu: [
-				{mensaId: "geomatikum", date: date},
-				{mensaId: "geomatikum", date: nextdate}
+				{mensaId: "geomatikum", date: date, type: ""},
+				{mensaId: "geomatikum", date: nextdate, type: ""}
 			]}));
 		}
 		storage.today(function(){
@@ -465,21 +509,9 @@ describe("storage", function(){
 			});
 		});
 	});
-});
-
-describe("storage.sortedSegmented", function(){
-	var server;
-	
-	beforeEach(function () {
-		server = { respond: function(){} }
-		storage.unsetFilters();
-		storage.clearCache();
-		storage.cleanData();
-		conf.setURLs( conf.getURLs() );
-	});
 
 	it("is sorted", function(done){
-		storage.getSortedSegmented(function(m){
+		storage.getWeekMenu(function(m){
 			var date = "2000-01-01", mensa = "AAAAAAAAAAAAAAAAAAAAAAA", i, l;
 			expect( m.length ).to.be.greaterThan(0);
 			for(i = 0, l = m.length; i<l; i++){
@@ -494,6 +526,52 @@ describe("storage.sortedSegmented", function(){
 			done();
 		});
 	});
+
+	it("update must not block cached requests", function(done){
+		storage.getWeekMenu(function(){ // make sure data is cached
+			xhr.get = function(){} // just do nothing, and do not execute the callback
+			storage.update(); // do a request that will hang (because we overwrote xhr.get)
+			storage.getWeekMenu(function(){ done() }); // since the data is cached a call to xhr.get is unnecessary, and done should be called
+		});
+	});
+
+	it("next day is limited to the last available date", function(done){
+		conf.setURLs(["geomatikum"]);
+		var enddate = "";
+		for(var i = 0; i < 13; i++){
+			storage.nextDay(function(m, s, d){ enddate = d; });
+		}
+		storage.nextDay(function(m, s, d){
+			expect(d).to.eql(enddate);
+			done();
+		});
+	});
+
+	it("prev day is limited to the first available date", function(done){
+		conf.setURLs(["geomatikum"]);
+		var enddate = "";
+		for(var i = 0; i < 13; i++){
+			storage.prevDay(function(m, s, d){ enddate = d; });
+		}
+		storage.prevDay(function(m, s, d){
+			expect(d).to.eql(enddate);
+			done();
+		});
+	});
+
+});
+
+describe("storage.sortedSegmented", function(){
+	var server;
+
+	beforeEach(function () {
+		server = { respond: function(){} }
+		storage.unsetFilters();
+		storage.clearCache();
+		storage.cleanData();
+		conf.setURLs( conf.getURLs() );
+	});
+
 
 /*
 	it( "has headers" , function(){

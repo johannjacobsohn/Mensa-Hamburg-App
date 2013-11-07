@@ -6,14 +6,14 @@
 (function(){
 	conf = {
 		/** @property majorVersion */
-		majorVersion: 3,
+		majorVersion: 4,
 		/** @property minorVersion */
 		minorVersion: 4,
 		/** @property versionHasChanged */
 		versionHasChanged: false,
 		/**
 		 * get all active mensen
-		 * 
+		 *
 		 * @method getURLs
 		 * @return {Array} an Array of mensa names
 		 */
@@ -26,7 +26,7 @@
 		},
 		/**
 		 * get all active mensen
-		 * 
+		 *
 		 * @method getURLs
 		 * @return {Array} an Array of mensa names
 		 */
@@ -37,7 +37,7 @@
 		},
 		/**
 		 * get all known mensen
-		 * 
+		 *
 		 * @method getURLs
 		 * @return {Array} an Array of mensa names
 		 */
@@ -58,7 +58,7 @@
 		},
 		/**
 		 * Find out if app has been configured
-		 * 
+		 *
 		 * @method isConfigured
 		 */
 		isConfigured : function(){
@@ -71,7 +71,7 @@
 		/**
 		 * Get a list of all mensa names and status
 		 * depreciated, use storage.getMensaInfo
-		 * 
+		 *
 		 * @depreciated
 		 * @method getMensaInfo
 		 * @return {JSON} json
@@ -110,11 +110,7 @@
 	// ☢ nuke all saved data if major version has changed
 	if( data.get("menu") && parseInt(data.get("majorversion"), 10) !== conf.majorVersion ){
 		conf.versionHasChanged = true;
-		var savedMensen = data.get("urls");
 		data.clear();
-		if( savedMensen ){
-			data.set("urls", savedMensen);
-		}
 	}
 
 	data.set("majorversion", conf.majorVersion);
