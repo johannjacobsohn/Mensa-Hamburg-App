@@ -21,7 +21,7 @@
 	url = https://github.com/enyojs/enyo.git
 [submodule "blackberry/bb10-phone/sdk"]
 	path = blackberry/bb10-phone/sdk
-	url = https://github.com/badtoyz/BB10-WebWorks-SDK-Linux-Gold.git
+	url = https://github.com/badtoyz/BB10-WebWorks-SDK-linux-1.0.4.11.git
 [submodule "blackberry/bb10-phone/lib/enyo-bbui"]
 	path = blackberry/bb10-phone/lib/enyo-bbui
 	url = https://github.com/johannjacobsohn/enyo-bbui.git
