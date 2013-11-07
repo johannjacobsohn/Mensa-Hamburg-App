@@ -3,9 +3,9 @@
 
 body{
 	-webkit-hyphens: auto;
-   -moz-hyphens: auto;
-        hyphens: auto;
-        white-space: normal;
+	-moz-hyphens: auto;
+	hyphens: auto;
+	white-space: normal;
 }
 
 body > header {
@@ -43,7 +43,7 @@ body > header {
 	background-size:16px 16px;
 
 	_padding-left: 160px;
-	
+
 	color: #666666;
     margin-bottom: 3px;
     _text-align: center;
@@ -59,7 +59,7 @@ body > header {
 		height: 6em;
 		background: url(../images/173x173_.png) no-repeat right center;
 		background-size: contain;
-		color: transparent;	
+		color: transparent;
 		text-shadow: none;
 		position: absolute;
 		right: 10px;
@@ -131,10 +131,13 @@ figure > a{
 	display: inline-block;
 	line-height: 1em;
 }
-
 .quicklink > a{
 	float: right;
 	background: none;
+}
+
+#content .blog-index a[rel=full-article]{
+	text-shadow: 1px 1px 1px #fff;
 }
 
 h1, h2, h3, h4, h5, h6 {
