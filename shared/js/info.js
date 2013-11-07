@@ -16,7 +16,7 @@ info = {
 	notConfText  : "Uh, scheinbar ist hier noch nichts konfiguriert, daher werden *keine* Mensen geladen... Du musst welche aktivieren um etwas zu sehen.",
 	// contains an url to the latest release notes
 	releaseNotes: {
-		mojo          : "http://mensaapp.org/blog/2013/kritisches-update-fur-alle-plattformen/",
+		mojo          : "http://mensaapp.org/blog/2013/neue-version-fur-hp-slash-palm-phones-1-dot-6-0/",
 		touchpad      : "http://mensaapp.org/blog/2013/kritisches-update-fur-alle-plattformen/",
 		playbook      : "http://mensaapp.org/blog/2013/kritisches-update-fur-alle-plattformen/",
 		ipad          : "http://mensaapp.org/blog/2013/kritisches-update-fur-alle-plattformen/",
