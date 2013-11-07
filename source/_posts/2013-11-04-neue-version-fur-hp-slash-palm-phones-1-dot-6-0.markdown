@@ -20,15 +20,15 @@ Es gibt wieder eine neue Version für webOS-Smartphones (Palm Pre, Pre 2, Pre
 Echtzeitsuche
 ----
 
-Eine Funktion die ich immer schon seit der ersten Version haben wollte ist
-das interaktive Suchen nach Gerichten oder Mensen. Diese Funktion ist jetzt
+Eine Funktion die ich seit der ersten Version haben wollte ist das
+interaktive Suchen nach Gerichten oder Mensen. Diese Funktion ist jetzt
 implementiert und ich liebe sie!
 
 <figure>
 	{% img /assets/release/mojo-1.6/mojo-1.6-filter-philo.png %}
 	{% img /assets/release/mojo-1.6/mojo-1.6-filter-pommes.png %}
-	<figcaption>Echtzeitsuche in aktion. Einfach lostippen, und schon wird
-	nur noch das gesuchte angezeigt.</figcaption>
+	<figcaption>Echtzeitsuche in Aktion. Einfach lostippen, und schon wird
+	nur noch das Gesuchte angezeigt.</figcaption>
 </figure>
 
 In der Menüliste einfach das gewünschte eintippen (wie die bekannte "Einfach
@@ -60,5 +60,3 @@ Gute Nachrichten für alle Medizin- und Psychologie-Studierenden,
 eine neue Mensa ist hinzu gekommen: Das "Casino" im UKE! Im Moment ist diese
 Mensa noch experimentell, aber das sollte sich in der nächsten Zeit
 stabilisieren.
-
-
