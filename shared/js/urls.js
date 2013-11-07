@@ -112,8 +112,8 @@
 			{
 				name: "UKE",
 				id: "uke",
-				url: baselink + "CafeCFEL/{{week}}/",
-				address: "SEHR EXPERIMENTELL!"
+				url: baselink + "uke/{{week}}/",
+				address: "Martinistrasse 52, 20246 Hamburg"
 			}
 		]
 	};
