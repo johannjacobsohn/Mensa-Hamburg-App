@@ -5,4 +5,5 @@ node_js:
 branches:
   except:
     - gh-pages
+    - source
 script: make setup && make lint && make test
