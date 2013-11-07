@@ -4,7 +4,7 @@
   <title><![CDATA[Category: mojo | Mensa Hamburg App]]></title>
   <link href="http://mensaapp.org/blog/categories/mojo/atom.xml" rel="self"/>
   <link href="http://mensaapp.org/"/>
-  <updated>2013-11-07T09:37:54+01:00</updated>
+  <updated>2013-11-07T22:54:49+01:00</updated>
   <id>http://mensaapp.org/</id>
   <author>
     <name><![CDATA[Johann Jacobsohn]]></name>
@@ -29,15 +29,15 @@
 
 <h2 id="echtzeitsuche">Echtzeitsuche</h2>
 
-<p>Eine Funktion die ich immer schon seit der ersten Version haben wollte ist
-das interaktive Suchen nach Gerichten oder Mensen. Diese Funktion ist jetzt
+<p>Eine Funktion die ich seit der ersten Version haben wollte ist das
+interaktive Suchen nach Gerichten oder Mensen. Diese Funktion ist jetzt
 implementiert und ich liebe sie!</p>
 
 <figure>
 	<img src="/assets/release/mojo-1.6/mojo-1.6-filter-philo.png">
 	<img src="/assets/release/mojo-1.6/mojo-1.6-filter-pommes.png">
-	<figcaption>Echtzeitsuche in aktion. Einfach lostippen, und schon wird
-	nur noch das gesuchte angezeigt.</figcaption>
+	<figcaption>Echtzeitsuche in Aktion. Einfach lostippen, und schon wird
+	nur noch das Gesuchte angezeigt.</figcaption>
 </figure>
 
 <p>In der Menüliste einfach das gewünschte eintippen (wie die bekannte “Einfach
@@ -63,7 +63,6 @@ effizienter überträgt und zuverlässiger sein sollte.</p>
 eine neue Mensa ist hinzu gekommen: Das “Casino” im UKE! Im Moment ist diese
 Mensa noch experimentell, aber das sollte sich in der nächsten Zeit
 stabilisieren.</p>
-
 ]]></content>
   </entry>
   
