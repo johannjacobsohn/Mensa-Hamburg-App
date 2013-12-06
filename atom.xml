@@ -4,7 +4,7 @@
   <title><![CDATA[Mensa Hamburg App]]></title>
   <link href="http://mensaapp.org/atom.xml" rel="self"/>
   <link href="http://mensaapp.org/"/>
-  <updated>2013-12-06T19:16:25+01:00</updated>
+  <updated>2013-12-06T20:29:20+01:00</updated>
   <id>http://mensaapp.org/</id>
   <author>
     <name><![CDATA[Johann Jacobsohn]]></name>
@@ -34,11 +34,11 @@ am 30. November 2011. Die erste Veröffentlichung war dann schon rund 2
 Monate später, am 5. Februar 2012.</p>
 
 <p>Seitdem gab es über 600 Änderungen und mehr als 50 Veröffentlichungen. 12
-Plattformen werden mittlerweile unterstützt, und drei weitere sind fast
+Plattformen werden mittlerweile unterstützt, drei weitere sind fast
 fertig. Mehr als fünfzehn Nutzer haben sich mit Kritik und Vorschlägen
-direkt an mich gewandt und so geholfen die App zu verbessern, und dutzende
-ermunternde Bewertungen wurden in den verschiedenen App Stores abgegeben.
-Tausende Nutzer haben die App instaliert und viele nutzen sie täglich.</p>
+direkt an mich gewandt und so geholfen die App zu verbessern. Dutzende
+ermunternde Bewertungen wurden in den verschiedenen App Stores abgegeben und
+tausende Nutzer haben die App instaliert und viele nutzen sie täglich.</p>
 
 <div class="plattform-text">
 	<div>
@@ -74,7 +74,7 @@ Tausende Nutzer haben die App instaliert und viele nutzen sie täglich.</p>
 	<div>
 		<img src="http://mensaapp.org/assets/logos/chrome.png" />
 	</div>
-	<p><strong>Google Chrome</strong> hat über den <a href="https://chrome.google.com/webstore/detail/mensa-hamburg/hamlhbipfkffciojpiojpnadcbmogfhe">Chrome Web Store</a> ebenfalls die Möglichkeit Apps zu installieren, und die Mensaapp ist dabei! Das gleiche gilt übrigens für <strong>Google Chrome OS</strong>.</p>
+	<p><strong>Google Chrome</strong> hat über den <a href="https://chrome.google.com/webstore/detail/mensa-hamburg/hamlhbipfkffciojpiojpnadcbmogfhe">Chrome Web Store</a> ebenfalls die Möglichkeit Apps zu installieren und die Mensaapp ist dabei! Das gleiche gilt übrigens für <strong>Google Chrome OS</strong>.</p>
 </div>
 
 <div class="plattform-text">
@@ -88,7 +88,7 @@ Tausende Nutzer haben die App instaliert und viele nutzen sie täglich.</p>
 	<div>
 		<img src="http://mensaapp.org/assets/logos/firefox-os.png" />
 	</div>
-	<p>Das noch junge Betriebssystem <a href="	https://marketplace.firefox.com/app/mensa-hamburg"><strong>Firefox OS</strong> wird ebenfalls bereits unterstützt</a>. Die gilt natürlich auch für Firefox auf Android!</p>
+	<p>Das noch junge Betriebssystem <a href="https://marketplace.firefox.com/app/mensa-hamburg"><strong>Firefox OS</strong> wird ebenfalls bereits unterstützt</a>. Die gilt natürlich auch für Firefox auf Android!</p>
 </div>
 
 <div class="plattform-text">
@@ -113,21 +113,21 @@ Tausende Nutzer haben die App instaliert und viele nutzen sie täglich.</p>
 	<div>
 		<img src="http://mensaapp.org/assets/logos/windows-phone-8.png" />
 	</div>
-	<p>Die Unterstützung für <strong>Windows Phone 8</strong> ist schon lange geplant und bald verwirklicht&#8230;</p>
+	<p>Die Unterstützung für <strong>Windows Phone 8</strong> ist lange geplant und bald verwirklicht&#8230;</p>
 </div>
 
 <div class="plattform-text">
 	<div>
 		<img src="http://mensaapp.org/assets/logos/windows-8.png" />
 	</div>
-	<p>Schon lange geplant, und schon fast unterwegs ist die Version für <strong>Windows 8</strong>.</p>
+	<p>Lange geplant und fast unterwegs ist die Version für <strong>Windows 8</strong>.</p>
 </div>
 
 <div class="plattform-text">
 	<div>
 		<img src="http://mensaapp.org/assets/logos/kindle-fire.png" />
 	</div>
-	<p>Das Amazon <strong>Kindle Fire OS</strong> basiert auf Android, hat aber einen eigenen App Store. Eine Portierung sollte nicht allzulange dauern, und ist schon in Planung.</p>
+	<p>Das Amazon <strong>Kindle Fire OS</strong> basiert auf Android, hat aber einen eigenen App Store. Eine Portierung sollte nicht allzulange dauern und ist schon in Planung.</p>
 </div>
 
 <h1 id="was-die-zukunft-bringt">Was die Zukunft bringt…</h1>
